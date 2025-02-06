@@ -1,0 +1,88 @@
+\hypertarget{system_8h}{}\doxysection{source/system.h File Reference}
+\label{system_8h}\index{source/system.h@{source/system.h}}
+
+
+A simple file about creating and deleting the system.  
+
+
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{system_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structSystem}{System}}
+\begin{DoxyCompactList}\small\item\em A structure to represent a system and desired P\+ID tuning method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{system_8h_aed7f5186d416224e26c97bc9978aac47}\label{system_8h_aed7f5186d416224e26c97bc9978aac47}} 
+enum {\bfseries Tuning} \{ {\bfseries Classic\+\_\+\+Ziegler\+\_\+\+Nichols}, 
+{\bfseries Pessen\+\_\+\+Integral\+\_\+\+Rule}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structSystem}{System}} $\ast$ \mbox{\hyperlink{system_8h_a89d285f35ca686ba869daaaf54ba7744}{system\+\_\+create}} (double Ku, double Tu, Tuning tuning\+\_\+method)
+\begin{DoxyCompactList}\small\item\em Creates and initializes a new \mbox{\hyperlink{structSystem}{System}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{system_8h_adab9a110141ccce185af981adbc62515}{system\+\_\+delete}} (\mbox{\hyperlink{structSystem}{System}} $\ast$system\+\_\+current)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A simple file about creating and deleting the system. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{system_8h_a89d285f35ca686ba869daaaf54ba7744}\label{system_8h_a89d285f35ca686ba869daaaf54ba7744}} 
+\index{system.h@{system.h}!system\_create@{system\_create}}
+\index{system\_create@{system\_create}!system.h@{system.h}}
+\doxysubsubsection{\texorpdfstring{system\_create()}{system\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structSystem}{System}}$\ast$ system\+\_\+create (\begin{DoxyParamCaption}\item[{double}]{Ku,  }\item[{double}]{Tu,  }\item[{Tuning}]{tuning\+\_\+method }\end{DoxyParamCaption})}
+
+
+
+Creates and initializes a new \mbox{\hyperlink{structSystem}{System}}. 
+
+This function creates a new {\ttfamily \mbox{\hyperlink{structSystem}{System}}} structure, initializing it with the given values of Ku, Tu, and the tuning method. The returned {\ttfamily \mbox{\hyperlink{structSystem}{System}}} pointer can then be used for further processing or control.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em Ku} & The ultimate gain parameter used in the system creation. It is a tuning parameter that affects the system\textquotesingle{}s behavior. \\
+\hline
+\mbox{\texttt{ in}}  & {\em Tu} & The ultimate period used in the system creation. It is another tuning parameter that helps define system dynamics. \\
+\hline
+\mbox{\texttt{ in}}  & {\em tuning\+\_\+method} & The tuning method to be used when creating the system. This parameter determines how the system\textquotesingle{}s values are set.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created and initialized {\ttfamily \mbox{\hyperlink{structSystem}{System}}} structure. The caller is responsible for managing the memory of the returned structure. 
+\end{DoxyReturn}
+
+
+Definition at line 6 of file system.\+c.
+
+\mbox{\Hypertarget{system_8h_adab9a110141ccce185af981adbc62515}\label{system_8h_adab9a110141ccce185af981adbc62515}} 
+\index{system.h@{system.h}!system\_delete@{system\_delete}}
+\index{system\_delete@{system\_delete}!system.h@{system.h}}
+\doxysubsubsection{\texorpdfstring{system\_delete()}{system\_delete()}}
+{\footnotesize\ttfamily void system\+\_\+delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSystem}{System}} $\ast$}]{system\+\_\+current }\end{DoxyParamCaption})}
+
+@brif Deletes the system for the given system.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em current\+\_\+system} & A pointer to a \textquotesingle{}\mbox{\hyperlink{structSystem}{System}}\textquotesingle{} structure that is to be deleted. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 20 of file system.\+c.
+
