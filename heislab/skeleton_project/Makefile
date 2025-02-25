@@ -30,6 +30,8 @@ $(OBJECTDIR)/%.o: $(SOURCEDIR)/%.c
 	@mkdir -p $(@D)
 	$(COMPILER) -o $@ -c $(CFLAGS) $<
 
+run: all
+	./$(EXECUTABLE)
 	
 .PHONY: all rebuild clean
 
