@@ -16,17 +16,35 @@ void freeElevator(Elevator *elevator)
     free(elevator->_destinationQueue);
 }
 
-void addRequestToQueue(Elevator *elevator, int floor, int direction)
+void swap(ButtonRequest arr[], size_t i, size_t j)
 {
-    if (elevator->_queueSize == elevator->_queueCapacity)
-    {
-        elevator->_queueCapacity *= 2; // Double the capacity
-        elevator->_destinationQueue = (ButtonRequest *)realloc(elevator->_destinationQueue, elevator->_queueCapacity * sizeof(ButtonRequest));
-    }
+    ButtonRequest temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+}
 
-    elevator->_destinationQueue[elevator->_queueSize]._floor = floor;
-    elevator->_destinationQueue[elevator->_queueSize]._direction = direction;
-    elevator->_queueSize++;
+void bubble_sort(ButtonRequest arr[], size_t size, MotorDirection dir)
+{
+    if (size == 0)
+        return;
+
+    bool swapped;
+
+    for (size_t i = 0; i < size - 1; i++)
+    {
+        swapped = false;
+        for (size_t j = 0; j < size - i - 1; j++)
+        {
+            if ((dir == DIRN_UP && arr[j]._floor > arr[j + 1]._floor) ||
+                (dir == DIRN_DOWN && arr[j]._floor < arr[j + 1]._floor))
+            {
+                swap(arr, j, j + 1);
+                swapped = true;
+            }
+        }
+        if (!swapped)
+            break;
+    }
 }
 
 void sort_queue(Elevator *elevator)
@@ -97,6 +115,19 @@ void sort_queue(Elevator *elevator)
     free(requestsOppositeDirection);
 }
 
+void addRequestToQueue(Elevator *elevator, int floor, int direction)
+{
+    if (elevator->_queueSize == elevator->_queueCapacity)
+    {
+        elevator->_queueCapacity *= 2; // Double the capacity
+        elevator->_destinationQueue = (ButtonRequest *)realloc(elevator->_destinationQueue, elevator->_queueCapacity * sizeof(ButtonRequest));
+    }
+
+    elevator->_destinationQueue[elevator->_queueSize]._floor = floor;
+    elevator->_destinationQueue[elevator->_queueSize]._direction = direction;
+    elevator->_queueSize++;
+}
+
 void print_queue(ButtonRequest arr[], size_t size)
 {
     for (size_t i = 0; i < size; i++)
@@ -137,7 +168,8 @@ void test_sort_queue()
 int main()
 {
     test_sort_queue();
-    // gcc -o elevator_program source/driver/elevator.c source/driver/elevio.c source/driver/buttonRequest.c
+    // gcc -o elevator_program source/driver/elevator.c source/driver/elevio.c
     // ./elevator_program
+    // rm elevator_program
     return 0;
 }
