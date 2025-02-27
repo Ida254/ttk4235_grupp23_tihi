@@ -1,90 +1,32 @@
 #include "elevator.h"
 
-void print_queue(ButtonRequest arr[], size_t size)
+void initializeElevator(Elevator *elevator, size_t initialCapacity)
 {
-    for (size_t i = 0; i < size; i++)
-    {
-        printf("Floor: %d, Direction: %d\n", arr[i]._floor, arr[i]._direction);
-    }
-    printf("\n");
+    elevator->_currentFloor = 4;
+    elevator->_movingDirection = DIRN_UP;
+
+    // Allocate memory for the queue (initial size of 10, for example)
+    elevator->_destinationQueue = (ButtonRequest *)malloc(initialCapacity * sizeof(ButtonRequest));
+    elevator->_queueSize = 0;                   // Initialize with no elements
+    elevator->_queueCapacity = initialCapacity; // Set the initial capacity
 }
 
-void swap(ButtonRequest *a, ButtonRequest *b)
+void freeElevator(Elevator *elevator)
 {
-    ButtonRequest temp = *a;
-    *a = *b;
-    *b = temp;
+    free(elevator->_destinationQueue);
 }
 
-void bubble_sort(ButtonRequest arr[], size_t size, MotorDirection dir)
+void addRequestToQueue(Elevator *elevator, int floor, int direction)
 {
-    if (size == 0)
-        return;
-
-    bool swapped;
-
-    for (size_t i = 0; i < size - 1; i++)
+    if (elevator->_queueSize == elevator->_queueCapacity)
     {
-        swapped = false;
-        for (size_t j = 0; j < size - i - 1; j++)
-        {
-            if ((dir == DIRN_UP && arr[j]._floor > arr[j + 1]._floor) ||
-                (dir == DIRN_DOWN && arr[j]._floor < arr[j + 1]._floor))
-            {
-                swap(&arr[j], &arr[j + 1]);
-                swapped = true;
-            }
-        }
-        if (!swapped)
-            break;
-    }
-}
-
-int find_split_index(ButtonRequest arr[], size_t size, Elevator *elevator)
-{
-    int currentFloor = elevator->_currentFloor;
-    MotorDirection direction = elevator->_movingDirection;
-
-    for (size_t i = 0; i < size; i++)
-    {
-        if (direction == DIRN_DOWN && arr[i]._floor > currentFloor)
-        {
-            return i;
-        }
-        else if (direction == DIRN_UP && arr[i]._floor < currentFloor)
-        {
-            return i;
-        }
+        elevator->_queueCapacity *= 2; // Double the capacity
+        elevator->_destinationQueue = (ButtonRequest *)realloc(elevator->_destinationQueue, elevator->_queueCapacity * sizeof(ButtonRequest));
     }
 
-    return size;
-}
-
-void split_sort(ButtonRequest arr[], size_t size, Elevator *elevator)
-{
-    size_t splitIndex = find_split_index(arr, size, elevator);
-
-    printf("splitIndex: %zu \n", splitIndex); // debuging
-
-    if (splitIndex >= size)
-        return;
-
-    size_t firstPartSize = splitIndex;
-    size_t secondPartSize = size - splitIndex;
-
-    ButtonRequest *tempArr = (ButtonRequest *)malloc(firstPartSize * sizeof(ButtonRequest));
-    if (!tempArr)
-        return;
-
-    memcpy(tempArr, arr, firstPartSize * sizeof(ButtonRequest));
-
-    // Move the first part of the array to the end
-    memmove(arr, &arr[splitIndex], secondPartSize * sizeof(ButtonRequest));
-
-    // Copy tempArr back to the start
-    memcpy(&arr[secondPartSize], tempArr, firstPartSize * sizeof(ButtonRequest));
-
-    free(tempArr);
+    elevator->_destinationQueue[elevator->_queueSize]._floor = floor;
+    elevator->_destinationQueue[elevator->_queueSize]._direction = direction;
+    elevator->_queueSize++;
 }
 
 void sort_queue(Elevator *elevator)
@@ -95,59 +37,93 @@ void sort_queue(Elevator *elevator)
     MotorDirection mainDir = elevator->_movingDirection;
     MotorDirection otherDir = (mainDir == DIRN_DOWN) ? DIRN_UP : DIRN_DOWN;
 
-    ButtonRequest *tempMainDirQueue = (ButtonRequest *)malloc(size * sizeof(ButtonRequest));
-    ButtonRequest *tempOtherDirQueue = (ButtonRequest *)malloc(size * sizeof(ButtonRequest));
+    ButtonRequest *requestsInFrontOfCurrentFloor = (ButtonRequest *)malloc(size * sizeof(ButtonRequest));
+    ButtonRequest *requestsBehindCurrentFloor = (ButtonRequest *)malloc(size * sizeof(ButtonRequest));
+    ButtonRequest *requestsOppositeDirection = (ButtonRequest *)malloc(size * sizeof(ButtonRequest));
 
-    if (!tempMainDirQueue || !tempOtherDirQueue)
+    if (!requestsInFrontOfCurrentFloor || !requestsBehindCurrentFloor || !requestsOppositeDirection)
     {
-        free(tempMainDirQueue);
-        free(tempOtherDirQueue);
+        free(requestsInFrontOfCurrentFloor);
+        free(requestsBehindCurrentFloor);
+        free(requestsOppositeDirection);
         return;
     }
 
-    size_t mainCount = 0;
-    size_t otherCount = 0;
+    size_t countRequestsInFrontOfCurrentFloor = 0;
+    size_t countRequestsBehindCurrentFloor = 0;
+    size_t countRequestsOppositeDirection = 0;
 
     for (size_t i = 0; i < size; i++)
     {
         ButtonRequest el = elQueue[i];
-        if (el._direction == mainDir)
+        bool isStop = (el._direction == DIRN_STOP);
+        bool isMainDir = (el._direction == mainDir);
+        bool isOtherDir = (el._direction == otherDir);
+
+        if (isMainDir || isStop)
         {
-            tempMainDirQueue[mainCount++] = el;
+            bool isForward = (mainDir == DIRN_DOWN) ? (el._floor <= elevator->_currentFloor) : (el._floor >= elevator->_currentFloor);
+            if (isForward)
+            {
+                requestsInFrontOfCurrentFloor[countRequestsInFrontOfCurrentFloor++] = el;
+            }
+            else
+            {
+                requestsBehindCurrentFloor[countRequestsBehindCurrentFloor++] = el;
+            }
         }
-        else if (el._direction == otherDir)
+        else if (isOtherDir)
         {
-            tempOtherDirQueue[otherCount++] = el;
+            requestsOppositeDirection[countRequestsOppositeDirection++] = el;
         }
     }
 
-    bubble_sort(tempMainDirQueue, mainCount, mainDir); // debug
-    printf("temparr before split-sorting:\n");
-    print_queue(tempMainDirQueue, elevator->_queueSize);
-    split_sort(tempMainDirQueue, mainCount, elevator);
-    printf("temparr after split-sorting:\n");
-    print_queue(tempMainDirQueue, elevator->_queueSize);
+    bubble_sort(requestsInFrontOfCurrentFloor, countRequestsInFrontOfCurrentFloor, mainDir);
+    bubble_sort(requestsBehindCurrentFloor, countRequestsBehindCurrentFloor, mainDir);
+    bubble_sort(requestsOppositeDirection, countRequestsOppositeDirection, otherDir);
 
-    bubble_sort(tempOtherDirQueue, otherCount, otherDir);
+    size_t appendIndex = 0;
+    memcpy(elQueue + appendIndex, requestsInFrontOfCurrentFloor, countRequestsInFrontOfCurrentFloor * sizeof(ButtonRequest));
+    appendIndex += countRequestsInFrontOfCurrentFloor;
 
-    memcpy(elQueue, tempMainDirQueue, mainCount * sizeof(ButtonRequest));
-    memcpy(elQueue + mainCount, tempOtherDirQueue, otherCount * sizeof(ButtonRequest));
+    memcpy(elQueue + appendIndex, requestsOppositeDirection, countRequestsOppositeDirection * sizeof(ButtonRequest));
+    appendIndex += countRequestsOppositeDirection;
 
-    free(tempMainDirQueue);
-    free(tempOtherDirQueue);
+    memcpy(elQueue + appendIndex, requestsBehindCurrentFloor, countRequestsBehindCurrentFloor * sizeof(ButtonRequest));
+    appendIndex += countRequestsBehindCurrentFloor;
+
+    free(requestsInFrontOfCurrentFloor);
+    free(requestsBehindCurrentFloor);
+    free(requestsOppositeDirection);
+}
+
+void print_queue(ButtonRequest arr[], size_t size)
+{
+    for (size_t i = 0; i < size; i++)
+    {
+        printf("Floor: %d, Direction: %d\n", arr[i]._floor, arr[i]._direction);
+    }
+    printf("\n");
 }
 
 void test_sort_queue()
 {
-    Elevator elevator = {
-        ._currentFloor = 4,
-        ._movingDirection = DIRN_UP,
-        ._destinationQueue = (ButtonRequest[]){
-            {5, DIRN_UP}, {3, DIRN_UP}, {8, DIRN_DOWN}, {2, DIRN_UP}, {1, DIRN_DOWN}, {7, DIRN_DOWN}},
-        ._queueSize = 6};
+    Elevator elevator;
+    initializeElevator(&elevator, 10); // Initialize with capacity for 10 elements
 
-    elevator._movingDirection = DIRN_UP;
-    elevator._currentFloor = 3;
+    // Adding some requests to the queue
+    addRequestToQueue(&elevator, 5, DIRN_UP);
+    addRequestToQueue(&elevator, 5, DIRN_STOP);
+    addRequestToQueue(&elevator, 3, DIRN_UP);
+    addRequestToQueue(&elevator, 8, DIRN_DOWN);
+    addRequestToQueue(&elevator, 2, DIRN_UP);
+    addRequestToQueue(&elevator, 1, DIRN_DOWN);
+    addRequestToQueue(&elevator, 7, DIRN_DOWN);
+    addRequestToQueue(&elevator, 3, DIRN_DOWN);
+    addRequestToQueue(&elevator, 6, DIRN_STOP);
+    addRequestToQueue(&elevator, 8, DIRN_STOP);
+    addRequestToQueue(&elevator, 10, DIRN_UP);
+    addRequestToQueue(&elevator, 2, DIRN_STOP);
 
     printf("Before sorting:\n");
     print_queue(elevator._destinationQueue, elevator._queueSize);
@@ -161,7 +137,7 @@ void test_sort_queue()
 int main()
 {
     test_sort_queue();
-    // gcc -o elevator_program source/driver/elevator.c source/driver/elevio.c
+    // gcc -o elevator_program source/driver/elevator.c source/driver/elevio.c source/driver/buttonRequest.c
     // ./elevator_program
     return 0;
 }
