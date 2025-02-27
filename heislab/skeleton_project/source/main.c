@@ -2,7 +2,10 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <time.h>
+#include <stdbool.h>
 #include "driver/elevio.h"
+#include "driver/elevator.h"
+#include "driver/utilities.h"
 
 
 
@@ -21,16 +24,17 @@ int main(){
             elevio_motorDirection(DIRN_UP);
         }
 
-        if(floor == N_FLOORS-1){
-            elevio_motorDirection(DIRN_DOWN);
-        }
+        // if(floor == N_FLOORS-1){
+        //     elevio_motorDirection(DIRN_DOWN);
+        // }
+        Elevator elevator; // Need to define it more
+        elevator._queueSize = 8;
+        elevator._currentFloor = floor;
 
+        button_pressed(&elevator);
 
-        for(int f = 0; f < N_FLOORS; f++){
-            for(int b = 0; b < N_BUTTONS; b++){
-                int btnPressed = elevio_callButton(f, b);
-                elevio_buttonLamp(f, b, btnPressed);
-            }
+        if(!_doorOpen){
+            at_right_floor(&elevator);            
         }
 
         if(elevio_obstruction()){

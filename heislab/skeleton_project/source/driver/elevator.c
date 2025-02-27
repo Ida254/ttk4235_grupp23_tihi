@@ -93,3 +93,29 @@ void sort_queue(Elevator *elevator)
     memcpy(elQueue, tempMainDirQueue, mainCount * sizeof(ButtonRequest));
     memcpy(elQueue + mainCount, tempOtherDirQueue, otherCount * sizeof(ButtonRequest));
 }
+
+void moving_elevator(Elevator *elevator){
+    MotorDirection direction = elevator->destinationQueue[0]._direction;
+    if (direction == elevator->movorDirection){
+        return
+    } else{
+        elevator->motorState = direction;
+        elevio_motorDirection(direction);
+        return;
+    }
+}
+
+void at_right_floor(Elevator *elevator){
+    if (elevator._currentFloor == elevator._destinationQueue[0]._floor){
+        elevator->motorState = DIRN_STOP;
+        elevio_motorDirection(DIRN_STOP);
+        elevator->doorOpen = true;
+        elevio_doorOpenLamp(1);
+        nanosleep(&(struct timespec){10, 0}, NULL);
+        elevio_doorOpenLamp(0);
+        elevator->doorOpen = false;
+        //Should remove the floor from the queue
+    } else{
+        moving_elevator(elevator);
+    }
+}
