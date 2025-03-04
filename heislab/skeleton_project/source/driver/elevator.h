@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include "elevio.h"
+#include <time.h>
 
 typedef struct
 {

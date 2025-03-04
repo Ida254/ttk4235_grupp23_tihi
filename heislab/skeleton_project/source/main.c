@@ -17,6 +17,10 @@ int main(){
 
     elevio_motorDirection(DIRN_UP);
 
+    Elevator elevator; // Need to define it more
+    elevator._queueSize = 8;
+    elevator._currentFloor = floor;
+
     while(1){
         int floor = elevio_floorSensor();
 
@@ -27,13 +31,10 @@ int main(){
         // if(floor == N_FLOORS-1){
         //     elevio_motorDirection(DIRN_DOWN);
         // }
-        Elevator elevator; // Need to define it more
-        elevator._queueSize = 8;
-        elevator._currentFloor = floor;
 
-        button_pressed(&elevator);
+        button_pressed(&elevator);  //execute if button is pressed, and add to queue
 
-        if(!_doorOpen){
+        if(!elevator._doorOpen){
             at_right_floor(&elevator);            
         }
 

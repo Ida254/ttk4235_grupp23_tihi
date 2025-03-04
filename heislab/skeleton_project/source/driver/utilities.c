@@ -19,11 +19,11 @@ void button_pressed(Elevator *elevator){
             int btnPressed = elevio_callButton(f, b);
             elevio_buttonLamp(f, b, btnPressed);
             ButtonRequest btn = {f, btnPressed};
-            bool inQueue = check_in_array(&btn, elevator._destinationQueue);
+            bool inQueue = check_in_array(&btn, elevator->_destinationQueue);
             if (!inQueue)
             {
-                elevator._destinationQueue[elevator._queueSize-1] = btn;  //replace this
-                sort_queue(elevator);
+                elevator->_destinationQueue[elevator->_queueSize-1] = btn;  //replace this
+                sort_queue(elevator);  //Ida fix
             }
         }
     }
