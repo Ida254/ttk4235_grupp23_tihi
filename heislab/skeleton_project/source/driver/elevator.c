@@ -1,8 +1,14 @@
+/**
+ * @file
+ * @brief The implementation file of elevator.h
+ */
+
 #include "elevator.h"
 
 void initialize_elevator(Elevator *elevator, size_t initialCapacity)
 {
-    elevator->_currentFloor = 4;
+    // elevator->_currentFloor = 1;
+    elevator->_currentFloor = 4; // db, remove later
     elevator->_movingDirection = DIRN_UP;
 
     // Allocate memory for the queue (initial size of 10, for example)
@@ -155,5 +161,7 @@ int main()
     // gcc -o elevator_program source/driver/elevator.c source/driver/elevio.c source/driver/DestinationRequest.c
     // ./elevator_program
     // rm elevator_program
+
+    // does initialize actually make sure that the elevator starts at first floor??
     return 0;
 }

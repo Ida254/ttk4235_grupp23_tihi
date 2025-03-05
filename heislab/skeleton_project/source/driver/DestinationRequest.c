@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief The implementation file of DestinationRequest.h
+ */
+
 #include "DestinationRequest.h"
 
 void swap(DestinationRequest arr[], size_t i, size_t j)
