@@ -36,6 +36,14 @@ INPUT = source/
 SOURCE_BROWSER = YES
 ```
 
+After commenting the code, run
+
+```bash
+doxygen doxconfig
+```
+
+to actually generate the documentation files
+
 ## Syntax and Commenting Code
 To start commands, use `@`.
 * `@brief` - a short description of what a function do
