@@ -40,7 +40,7 @@ To start commands, use `@`.
 
 ### NB! Always Include
 The first Doxygen do is look through the code after a `@file`-command. This should be at the top of the file (no `@file` at the top of the code results in an empty documentation) and communicates to Doxygen that it should be generated documentation for this file.
-```bash
+```c
 /**
 * @file
 * @brief [description]
@@ -50,7 +50,7 @@ The first Doxygen do is look through the code after a `@file`-command. This shou
 ### Commenting Functions
 When commenting functions, start with
 
-```bash
+```c
 /**
 * @param[in] source buffer
 * @param[out] destination buffer
@@ -61,7 +61,7 @@ When commenting functions, start with
 ```
 
 ## Example
-```bash
+```c
 /**
 * @brief Multiply all the elements in @p p_buffer, of size
 * @p size with the supplied @p factor.
