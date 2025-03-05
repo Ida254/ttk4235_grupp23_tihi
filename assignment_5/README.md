@@ -51,6 +51,7 @@ The first Doxygen do is look through the code after a `@file`-command. This shou
 When commenting functions, start with
 
 ```bash
+/**
 * @param[in] source buffer
 * @param[out] destination buffer
 * @param[in,out] size Number of integers in the buffer
