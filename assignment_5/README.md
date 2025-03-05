@@ -15,7 +15,19 @@ Before running Doxygen it is important to make a configurationfile. This is done
 doxygen -g doxconfig
 ```
 
-This file decides the different paramters and settings for the project. You could for example changes these parameters
+This file decides the different paramters and settings for the project by first running
+
+```bash
+nano doxconfig
+```
+
+or
+
+```bash
+code doxconfig
+```
+
+and then you could for example changes these parameters
 
 ```bash
 PROJECT_NAME = "Memory Library Example"
