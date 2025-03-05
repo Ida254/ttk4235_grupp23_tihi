@@ -1,13 +1,13 @@
 #include "DestinationRequest.h"
 
-void swap(ButtonRequest arr[], size_t i, size_t j)
+void swap(DestinationRequest arr[], size_t i, size_t j)
 {
-    ButtonRequest temp = arr[i];
+    DestinationRequest temp = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;
 }
 
-void bubble_sort(ButtonRequest arr[], size_t size, MotorDirection dir)
+void bubble_sort(DestinationRequest arr[], size_t size, MotorDirection dir)
 {
     if (size == 0)
         return;
@@ -31,7 +31,7 @@ void bubble_sort(ButtonRequest arr[], size_t size, MotorDirection dir)
     }
 }
 
-void print_queue(ButtonRequest arr[], size_t size)
+void print_queue(DestinationRequest arr[], size_t size)
 {
     for (size_t i = 0; i < size; i++)
     {

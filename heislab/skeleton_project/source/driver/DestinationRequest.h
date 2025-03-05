@@ -8,9 +8,9 @@ typedef struct
 {
     int _floor;
     ButtonType _direction;
-} ButtonRequest;
+} DestinationRequest;
 
-void swap(ButtonRequest arr[], size_t i, size_t j);
-void bubble_sort(ButtonRequest arr[], size_t size, MotorDirection dir);
+void swap(DestinationRequest arr[], size_t i, size_t j);
+void bubble_sort(DestinationRequest arr[], size_t size, MotorDirection dir);
 
-void print_queue(ButtonRequest arr[], size_t size);
+void print_queue(DestinationRequest arr[], size_t size);
