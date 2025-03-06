@@ -8,13 +8,26 @@
 void initialize_elevator(Elevator *elevator, size_t initialCapacity)
 {
     // elevator->_currentFloor = 1;
-    elevator->_currentFloor = 4; // db, remove later
+    //elevator->_currentFloor = 4; // db, remove later
     elevator->_movingDirection = DIRN_UP;
 
     // Allocate memory for the queue (initial size of 10, for example)
     elevator->_destinationQueue = (DestinationRequest *)malloc(initialCapacity * sizeof(DestinationRequest));
     elevator->_queueSize = 0;                   // Initialize with no elements
     elevator->_queueCapacity = initialCapacity; // Set the initial capacity
+
+    //Get the elevator to the first floor
+    int floor = elevio_floorSensor();
+    if (floor == 0){
+        return;
+    } else{
+        elevio_motorDirection(DIRN_DOWN);
+        while (floor != 0){
+            floor = elevio_floorSensor();
+        }
+        elevio_motorDirection(DIRN_STOP);
+        return;
+    }
 }
 
 void free_elevator(Elevator *elevator)
@@ -139,7 +152,24 @@ void at_right_floor(Elevator *elevator){ //as long as door is closed, check if a
         elevio_motorDirection(DIRN_STOP);
         elevator->_doorOpen = true;
         elevio_doorOpenLamp(1);
-        nanosleep(&(struct timespec){10, 0}, NULL);
+        time_t start_time = time(NULL);
+        while (time(NULL) - start_time < 3) {
+            button_pressed(elevator);
+            if (elevio_obstruction())
+            {
+                elevio_stopLamp(1);
+            }
+            else
+            {
+                elevio_stopLamp(0);
+            }
+    
+            if (elevio_stopButton())
+            {
+                elevio_motorDirection(DIRN_STOP);
+                kill(getpid(), SIGKILL);  // Forcefully stops the program
+            }    
+        }
         elevio_doorOpenLamp(0);
         elevator->_doorOpen = false;
         //Ida: make 'remove from queue' function
@@ -180,6 +210,7 @@ void test_sort_queue()
     printf("After removing:\n");
     print_queue(elevator._destinationQueue, elevator._queueSize);
 }
+
 
 // for testing, db, remove later
 //int main()

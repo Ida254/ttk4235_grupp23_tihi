@@ -12,6 +12,8 @@
 #include "DestinationRequest.h"
 #include "elevio.h"
 #include <time.h>
+#include <signal.h>
+#include <unistd.h>
 
 /**
  * @brief Defines an Elevator struct to store values.

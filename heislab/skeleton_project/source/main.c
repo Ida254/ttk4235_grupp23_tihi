@@ -7,9 +7,13 @@
 #include <signal.h>
 #include <time.h>
 #include <stdbool.h>
+#include <signal.h>
+#include <unistd.h>
 #include "driver/elevio.h"
 #include "driver/elevator.h"
 #include "driver/utilities.h"
+
+run_elevator_program(Elevator *elevator);
 
 int main()
 {
@@ -21,8 +25,14 @@ int main()
     // elevio_motorDirection(DIRN_UP);
 
     Elevator elevator; // Need to define it more
-    elevator._queueSize = 8;
-    
+    size_t queueCapacaty = 8;
+    initialize_elevator(&elevator, queueCapacaty);
+    run_elevator_program(&elevator);
+
+    return 0;
+}
+
+void run_elevator_program(Elevator *elevator){
     while(1){
         int floor = elevio_floorSensor();
         elevator._currentFloor = floor;
@@ -54,11 +64,9 @@ int main()
         if (elevio_stopButton())
         {
             elevio_motorDirection(DIRN_STOP);
-            break;
+            kill(getpid(), SIGKILL);  // Forcefully stops the program
         }
 
         nanosleep(&(struct timespec){0, 20 * 1000 * 1000}, NULL);
     }
-
-    return 0;
 }
