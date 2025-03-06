@@ -79,11 +79,9 @@ void sort_queue(Elevator *elevator);
  * the direction in which the elevator should move after reaching the floor.
  *
  * @param[in,out] elevator Pointer to the Elevator struct.
- * @param[in] floor The floor number to be added to the queue.
- * @param[in] direction The direction the elevator should move after reaching the floor.
- *                      It can be either @c DIRN_UP, @c DIRN_DOWN, or @c DIRN_STOP.
+ * @param[in] directionRequest The direction request to be added to the queue.
  */
-void add_request_to_queue(Elevator *elevator, int floor, int direction); // make floor and dir into DestinationRequest, Ida
+void add_request_to_queue(Elevator *elevator, DestinationRequest destinationRequest);
 
 /**
  * @brief Removes a floor request from the Elevator's destination queue.
