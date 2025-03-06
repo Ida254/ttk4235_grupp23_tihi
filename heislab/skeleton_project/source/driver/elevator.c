@@ -182,13 +182,13 @@ void test_sort_queue()
 }
 
 // for testing, db, remove later
-int main()
-{
-    test_sort_queue();
+//int main()
+//{
+    //test_sort_queue();
     // gcc -o elevator_program source/driver/elevator.c source/driver/elevio.c source/driver/DestinationRequest.c
     // ./elevator_program
     // rm elevator_program
 
     // does initialize actually make sure that the elevator starts at first floor??
-    return 0;
-}
+    //return 0;
+//}

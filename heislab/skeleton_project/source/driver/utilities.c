@@ -18,12 +18,26 @@ void button_pressed(Elevator *elevator){
         {
             int btnPressed = elevio_callButton(f, b);
             elevio_buttonLamp(f, b, btnPressed);
-            DestinationRequest btn = {f, btnPressed};
-            bool inQueue = check_in_array(&btn, elevator->_destinationQueue);
+            motorDirection dirRequest;
+            switch (b)
+            {
+            case 0:
+                dirRequest = DIRN_UP;
+                break;
+            case 1:
+                dirRequest = DIRN_DOWN;
+                break;
+            default:
+                dirRequest = DIRN_STOP;
+                break;
+            }
+            DestinationRequest btn = {f, dirRequest};
+            bool inQueue = check_in_array(elevator->_destinationQueue, &btn);
+            // bool inQueue = check_in_array(&btn, elevator->_destinationQueue);
             if (!inQueue)
             {
-                elevator->_destinationQueue[elevator->_queueSize-1] = btn;  //replace this
-                sort_queue(elevator);  //Ida fix
+                add_request_to_queue(elevator, f, btnPressed);
+                remove_request_from_queue(elevator, f);
             }
         }
     }

@@ -15,10 +15,10 @@ int main()
 {
     elevio_init();
 
-    printf("=== Example Program ===\n");
-    printf("Press the stop button on the elevator panel to exit\n");
+    // printf("=== Example Program ===\n");
+    // printf("Press the stop button on the elevator panel to exit\n");
 
-    elevio_motorDirection(DIRN_UP);
+    // elevio_motorDirection(DIRN_UP);
 
     Elevator elevator; // Need to define it more
     elevator._queueSize = 8;

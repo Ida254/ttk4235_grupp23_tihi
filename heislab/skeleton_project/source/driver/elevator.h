@@ -50,9 +50,6 @@ typedef struct
  */
 void initialize_elevator(Elevator *elevator, size_t initialCapacity);
 
-int find_floor(DestinationRequest *arr, size_t size, int floor);
-void moving_elevator(Elevator *elevator);
-void at_right_floor(Elevator *elevator);
 /**
  * @brief Frees memory allocated for the Elevator struct.
  *
@@ -84,7 +81,7 @@ void sort_queue(Elevator *elevator);
  * @param[in] direction The direction the elevator should move after reaching the floor.
  *                      It can be either @c DIRN_UP, @c DIRN_DOWN, or @c DIRN_STOP.
  */
-void add_request_to_queue(Elevator *elevator, int floor, int direction);
+void add_request_to_queue(Elevator *elevator, int floor, int direction); // make floor and dir into DestinationRequest, Ida
 
 /**
  * @brief Removes a floor request from the Elevator's destination queue.
@@ -96,6 +93,9 @@ void add_request_to_queue(Elevator *elevator, int floor, int direction);
  * @param[in] floor The floor number to remove from the queue.
  */
 void remove_request_from_queue(Elevator *elevator, int floor);
+
+void moving_elevator(Elevator *elevator);
+void at_right_floor(Elevator *elevator);
 
 /**
  * @brief Runs a test for the sorting function.
