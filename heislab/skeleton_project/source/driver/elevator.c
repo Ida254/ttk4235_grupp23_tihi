@@ -122,6 +122,40 @@ void remove_request_from_queue(Elevator *elevator, int floor)
     elevator->_queueSize = j;
 }
 
+void moving_elevator(Elevator *elevator)
+{ // moves the elevator, updates states
+    MotorDirection direction = elevator->_destinationQueue[0]._direction;
+    if (direction == elevator->_movingDirection)
+    {
+        return;
+    }
+    else
+    {
+        elevator->_motorState = direction;
+        elevio_motorDirection(direction);
+        return;
+    }
+}
+
+void at_right_floor(Elevator *elevator)
+{ // as long as door is closed, check if at right floor
+    if (elevator->_currentFloor == elevator->_destinationQueue[0]._floor)
+    {
+        elevator->_motorState = DIRN_STOP;
+        elevio_motorDirection(DIRN_STOP);
+        elevator->_doorOpen = true;
+        elevio_doorOpenLamp(1);
+        nanosleep(&(struct timespec){10, 0}, NULL);
+        elevio_doorOpenLamp(0);
+        elevator->_doorOpen = false;
+        // Ida: make 'remove from queue' function
+    }
+    else
+    {
+        moving_elevator(elevator);
+    }
+}
+
 void test_sort_queue()
 {
     Elevator elevator;
@@ -164,13 +198,13 @@ void test_sort_queue()
 }
 
 // for testing, db, remove later
-int main()
-{
-    test_sort_queue();
-    // gcc -o elevator_program source/driver/elevator.c source/driver/elevio.c source/driver/DestinationRequest.c
-    // ./elevator_program
-    // rm elevator_program
+// int main()
+//{
+// test_sort_queue();
+// gcc -o elevator_program source/driver/elevator.c source/driver/elevio.c source/driver/DestinationRequest.c
+// ./elevator_program
+// rm elevator_program
 
-    // does initialize actually make sure that the elevator starts at first floor??
-    return 0;
-}
+// does initialize actually make sure that the elevator starts at first floor??
+// return 0;
+//}

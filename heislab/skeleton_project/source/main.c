@@ -6,38 +6,40 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <time.h>
+#include <stdbool.h>
 #include "driver/elevio.h"
+#include "driver/elevator.h"
+#include "driver/utilities.h"
 
 int main()
 {
     elevio_init();
 
-    printf("=== Example Program ===\n");
-    printf("Press the stop button on the elevator panel to exit\n");
+    // printf("=== Example Program ===\n");
+    // printf("Press the stop button on the elevator panel to exit\n");
 
-    elevio_motorDirection(DIRN_UP);
+    // elevio_motorDirection(DIRN_UP);
 
-    while (1)
-    {
+    Elevator elevator; // Need to define it more
+    elevator._queueSize = 8;
+    
+    while(1){
         int floor = elevio_floorSensor();
+        elevator._currentFloor = floor;
 
         if (floor == 0)
         {
             elevio_motorDirection(DIRN_UP);
         }
 
-        if (floor == N_FLOORS - 1)
-        {
-            elevio_motorDirection(DIRN_DOWN);
-        }
+        // if(floor == N_FLOORS-1){
+        //     elevio_motorDirection(DIRN_DOWN);
+        // }
 
-        for (int f = 0; f < N_FLOORS; f++)
-        {
-            for (int b = 0; b < N_BUTTONS; b++)
-            {
-                int btnPressed = elevio_callButton(f, b);
-                elevio_buttonLamp(f, b, btnPressed);
-            }
+        button_pressed(&elevator);  //execute if button is pressed, and add to queue
+
+        if(!elevator._doorOpen){
+            at_right_floor(&elevator);            
         }
 
         if (elevio_obstruction())

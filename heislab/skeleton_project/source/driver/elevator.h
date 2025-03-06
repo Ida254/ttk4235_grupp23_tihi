@@ -5,10 +5,13 @@
 
 #pragma once
 
+#include <stdio.h>
+#include <stdbool.h>
 #include <string.h>
 #include <stdlib.h> // for testing
 #include "DestinationRequest.h"
 #include "elevio.h"
+#include <time.h>
 
 /**
  * @brief Defines an Elevator struct to store values.
@@ -27,7 +30,11 @@
 typedef struct
 {
     int _currentFloor;
+    bool _doorOpen;
+    bool _validFloor; // not floor 9 3/4
+    bool _emergencyStop;
     MotorDirection _movingDirection;
+    MotorDirection _motorState;
     DestinationRequest *_destinationQueue;
     size_t _queueSize;
     size_t _queueCapacity;
@@ -84,6 +91,9 @@ void add_request_to_queue(Elevator *elevator, DestinationRequest destinationRequ
  * @param[in] floor The floor number to remove from the queue.
  */
 void remove_request_from_queue(Elevator *elevator, int floor);
+
+void moving_elevator(Elevator *elevator);
+void at_right_floor(Elevator *elevator);
 
 /**
  * @brief Runs a test for the sorting function.
