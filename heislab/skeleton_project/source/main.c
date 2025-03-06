@@ -19,10 +19,10 @@ int main(){
 
     Elevator elevator; // Need to define it more
     elevator._queueSize = 8;
-    elevator._currentFloor = floor;
-
+    
     while(1){
         int floor = elevio_floorSensor();
+        elevator._currentFloor = floor;
 
         if(floor == 0){
             elevio_motorDirection(DIRN_UP);
