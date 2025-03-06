@@ -6,7 +6,6 @@ Just some basics about how to initialize this project. This is mostly from the g
   - [Run the elevator at the lab](#run-the-elevator-at-the-lab)
   - [Elevatorsimulator ('heissimulator')](#elevatorsimulator-heissimulator)
     - [How to set up the `heissimulator`](#how-to-set-up-the-heissimulator)
-- [Set working pc up with github](#set-working-pc-up-with-github)
 
 ## GUI and buttons ##
 - `#` - the elevator is right above the `Floor`
@@ -69,32 +68,3 @@ To initialize the `heissimulator`, do as follows:
     make
     ./elevator
     ```
-
-# Set working pc up with github
-Before starting, move into the git repository.
-
-* Location of the `id_ed25519` on the pc at lab is:
-  ```bash
-  ~/Desktop/gruppe23_tihi/.ssh/id_ed25519
-  ```
-
-* Ensure that the SSH Key is loaded
-  ```bash
-    ssh-add ~/Desktop/gruppe23_tihi/.ssh/id_ed25519
-  ```
-
-  * If you encounter an error try
-    ```bash
-    eval "$(ssh-agent -s)"
-    ssh-add ~/Desktop/gruppe23_tihi/.ssh/id_ed25519
-    ```
-
-* How to copy the SSH Key:
-    ```bash
-    ~/Desktop/gruppe23_tihi/.ssh/id_ed25519
-    ```
-
-* How to verify the key:
-  ```bash
-  ssh -T git@github.com
-  ```
