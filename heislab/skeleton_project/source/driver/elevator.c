@@ -90,7 +90,7 @@ void sort_queue(Elevator *elevator)
     free(requestsOppositeDirection);
 }
 
-void add_request_to_queue(Elevator *elevator, int floor, int direction)
+void add_request_to_queue(Elevator *elevator, DestinationRequest destinationRequest)
 {
     if (elevator->_queueSize == elevator->_queueCapacity)
     {
@@ -98,8 +98,9 @@ void add_request_to_queue(Elevator *elevator, int floor, int direction)
         elevator->_destinationQueue = (DestinationRequest *)realloc(elevator->_destinationQueue, elevator->_queueCapacity * sizeof(DestinationRequest));
     }
 
-    elevator->_destinationQueue[elevator->_queueSize]._floor = floor;
-    elevator->_destinationQueue[elevator->_queueSize]._direction = direction;
+    int currentIndex = elevator->_queueSize;
+    elevator->_destinationQueue[currentIndex]._floor = destinationRequest._floor;
+    elevator->_destinationQueue[currentIndex]._direction = destinationRequest._direction;
     elevator->_queueSize++;
 }
 
@@ -126,20 +127,28 @@ void test_sort_queue()
     Elevator elevator;
     initialize_elevator(&elevator, 10); // Initialize with capacity for 10 elements
 
-    // Adding some requests to the queue
-    add_request_to_queue(&elevator, 5, DIRN_UP);
-    add_request_to_queue(&elevator, 5, DIRN_STOP);
-    add_request_to_queue(&elevator, 5, DIRN_DOWN);
-    add_request_to_queue(&elevator, 3, DIRN_UP);
-    add_request_to_queue(&elevator, 8, DIRN_DOWN);
-    add_request_to_queue(&elevator, 2, DIRN_UP);
-    add_request_to_queue(&elevator, 1, DIRN_DOWN);
-    add_request_to_queue(&elevator, 7, DIRN_DOWN);
-    add_request_to_queue(&elevator, 3, DIRN_DOWN);
-    add_request_to_queue(&elevator, 6, DIRN_STOP);
-    add_request_to_queue(&elevator, 8, DIRN_STOP);
-    add_request_to_queue(&elevator, 10, DIRN_UP);
-    add_request_to_queue(&elevator, 2, DIRN_STOP);
+    DestinationRequest requests[] = {
+        {5, DIRN_UP},
+        {5, DIRN_STOP},
+        {5, DIRN_DOWN},
+        {3, DIRN_UP},
+        {8, DIRN_DOWN},
+        {2, DIRN_UP},
+        {1, DIRN_DOWN},
+        {7, DIRN_DOWN},
+        {3, DIRN_DOWN},
+        {6, DIRN_STOP},
+        {8, DIRN_STOP},
+        {10, DIRN_UP},
+        {2, DIRN_STOP}};
+
+    int numRequests = sizeof(requests) / sizeof(requests[0]);
+
+    for (int i = 0; i < numRequests; i++)
+    {
+        DestinationRequest request = requests[i];
+        add_request_to_queue(&elevator, request);
+    }
 
     printf("Before sorting:\n");
     print_queue(elevator._destinationQueue, elevator._queueSize);
