@@ -2,10 +2,44 @@
 Just some basics about how to initialize this project. This is mostly from the guide given out with the assignment.
 
 - [Heislab](#heislab)
+  - [Run elevator at lab](#run-elevator-at-lab)
+  - [GUI and buttons](#gui-and-buttons)
   - [Heissimulator](#heissimulator)
     - [How to set up the `heissimulator`](#how-to-set-up-the-heissimulator)
-    - [GUI and buttons](#gui-and-buttons)
 - [Set working pc up with github](#set-working-pc-up-with-github)
+
+## Run elevator at lab ##
+To run the elevator at lab, do this
+1. Make sure the pc is on and that everything is up to date
+2. Check that the elevator panel is toggled to `PC` and `OBSTRUCTION`
+3. On the pc open terminal and locate to `heislab/skeleton_project`, then run
+   ```bash
+   make
+   elevatorserver
+   ```
+4. Open a new terminal in the same folder and run
+   ```bash
+   make
+   ./elevator
+   ```
+Now the elevator should be running.
+
+## GUI and buttons ##
+- `#` - the elevator is right above the `Floor`
+
+- `#>` - the elevator is moving upwards
+
+- `<#` - the elevator is moving downwards
+
+- `qwe` - `up` buttons
+
+- `sdf` - `down` buttons
+
+- `zxcv` - floor buttons inside the elevator
+
+- `-` - `obstruction` button
+
+- `p` - `stop` button
 
 ## Heissimulator ##
 
@@ -32,23 +66,6 @@ To initialize the `heissimulator`, do as follows:
     make
     ./elevator
     ```
-
-### GUI and buttons ###
-- `#` - the elevator is right above the `Floor`
-
-- `#>` - the elevator is moving upwards
-
-- `<#` - the elevator is moving downwards
-
-- `qwe` - `up` buttons
-
-- `sdf` - `down` buttons
-
-- `zxcv` - floor buttons inside the elevator
-
-- `-` - `obstruction` button
-
-- `p` - `stop` button
 
 # Set working pc up with github
 Before starting, move into the git repository.
