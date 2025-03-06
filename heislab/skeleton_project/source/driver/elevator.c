@@ -120,6 +120,12 @@ void remove_request_from_queue(Elevator *elevator, int floor)
         i++;
     }
     elevator->_queueSize = j;
+
+    if (elevator->_queueSize < elevator->_queueCapacity / 4 && elevator->_queueCapacity > 10)
+    {
+        elevator->_queueCapacity /= 2;
+        elevator->_destinationQueue = (DestinationRequest *)realloc(elevator->_destinationQueue, elevator->_queueCapacity * sizeof(DestinationRequest));
+    }
 }
 
 void moving_elevator(Elevator *elevator)
