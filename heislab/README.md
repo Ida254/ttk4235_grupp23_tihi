@@ -2,27 +2,30 @@
 Just some basics about how to initialize this project. This is mostly from the guide given out with the assignment.
 
 - [Heislab](#heislab)
-  - [Run elevator at lab](#run-elevator-at-lab)
+  - [Run the elevator at the lab](#run-the-elevator-at-the-lab)
   - [GUI and buttons](#gui-and-buttons)
-  - [Heissimulator](#heissimulator)
+  - [Elevatorsimulator ('heissimulator')](#elevatorsimulator-heissimulator)
     - [How to set up the `heissimulator`](#how-to-set-up-the-heissimulator)
 - [Set working pc up with github](#set-working-pc-up-with-github)
 
-## Run elevator at lab ##
-To run the elevator at lab, do this
-1. Make sure the pc is on and that everything is up to date
-2. Check that the elevator panel is toggled to `PC` and `OBSTRUCTION`
-3. On the pc open terminal and locate to `heislab/skeleton_project`, then run
+## Run the elevator at the lab ##
+To make the elevator run at the lab:
+1. Check if the everything is set up correctly
+   * Turn *on* the PC
+   * Make sure everything is up to date
+   * Toggle to `pc` and `obstruction` on the elevator panel
+2. On the PC, open the terminal and go to `heislab/skeleton_project`
+3. Run
    ```bash
    make
    elevatorserver
    ```
-4. Open a new terminal in the same folder and run
+4. Open a new elevator, makeing sure you are in the correct folder (`heislab/skeleton_project`), and run
    ```bash
    make
    ./elevator
    ```
-Now the elevator should be running.
+5. Now the elevator should run
 
 ## GUI and buttons ##
 - `#` - the elevator is right above the `Floor`
@@ -41,7 +44,7 @@ Now the elevator should be running.
 
 - `p` - `stop` button
 
-## Heissimulator ##
+## Elevatorsimulator ('heissimulator') ##
 
 ### How to set up the `heissimulator` ###
 To initialize the `heissimulator`, do as follows:
