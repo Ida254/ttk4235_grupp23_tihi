@@ -13,43 +13,27 @@
 #include "driver/elevator.h"
 #include "driver/utilities.h"
 
-run_elevator_program(Elevator *elevator);
-
-int main()
+void run_elevator_program(Elevator *elevator)
 {
-    elevio_init();
+    while (1)
+    {
+        int floor1 = elevio_floorSensor();
+        elevator->_currentFloor = floor1;
 
-    // printf("=== Example Program ===\n");
-    // printf("Press the stop button on the elevator panel to exit\n");
-
-    // elevio_motorDirection(DIRN_UP);
-
-    Elevator elevator; // Need to define it more
-    size_t queueCapacaty = 8;
-    initialize_elevator(&elevator, queueCapacaty);
-    run_elevator_program(&elevator);
-
-    return 0;
-}
-
-void run_elevator_program(Elevator *elevator){
-    while(1){
-        int floor = elevio_floorSensor();
-        elevator._currentFloor = floor;
-
-        if (floor == 0)
-        {
-            elevio_motorDirection(DIRN_UP);
-        }
+        // if (floor1 == 0)
+        // {
+        //     elevio_motorDirection(DIRN_UP);
+        // }
 
         // if(floor == N_FLOORS-1){
         //     elevio_motorDirection(DIRN_DOWN);
         // }
 
-        button_pressed(&elevator);  //execute if button is pressed, and add to queue
+        button_pressed(&elevator); // execute if button is pressed, and add to queue
 
-        if(!elevator._doorOpen){
-            at_right_floor(&elevator);            
+        if (!elevator->_doorOpen)
+        {
+            at_right_floor(&elevator);
         }
 
         if (elevio_obstruction())
@@ -64,9 +48,27 @@ void run_elevator_program(Elevator *elevator){
         if (elevio_stopButton())
         {
             elevio_motorDirection(DIRN_STOP);
-            kill(getpid(), SIGKILL);  // Forcefully stops the program
+            kill(getpid(), SIGKILL); // Forcefully stops the program
         }
 
         nanosleep(&(struct timespec){0, 20 * 1000 * 1000}, NULL);
     }
+}
+
+int main()
+{
+    elevio_init();
+
+    // printf("=== Example Program ===\n");
+    // printf("Press the stop button on the elevator panel to exit\n");
+
+    // elevio_motorDirection(DIRN_UP);
+    printf("=== Cool Program ===\n");
+    Elevator elevator; // Need to define it more
+    size_t queueCapacaty = 10;
+    initialize_elevator(&elevator, queueCapacaty);
+    printf("Done with initializing\n");
+    run_elevator_program(&elevator);
+
+    return 0;
 }

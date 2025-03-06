@@ -8,7 +8,7 @@
 void initialize_elevator(Elevator *elevator, size_t initialCapacity)
 {
     // elevator->_currentFloor = 1;
-    //elevator->_currentFloor = 4; // db, remove later
+    // elevator->_currentFloor = 4; // db, remove later
     elevator->_movingDirection = DIRN_UP;
 
     // Allocate memory for the queue (initial size of 10, for example)
@@ -16,13 +16,18 @@ void initialize_elevator(Elevator *elevator, size_t initialCapacity)
     elevator->_queueSize = 0;                   // Initialize with no elements
     elevator->_queueCapacity = initialCapacity; // Set the initial capacity
 
-    //Get the elevator to the first floor
+    // Get the elevator to the first floor
     int floor = elevio_floorSensor();
-    if (floor == 0){
+    printf("Floor = %d \n", floor);
+    if (floor == 0)
+    {
         return;
-    } else{
+    }
+    else
+    {
         elevio_motorDirection(DIRN_DOWN);
-        while (floor != 0){
+        while (floor != 0)
+        {
             floor = elevio_floorSensor();
         }
         elevio_motorDirection(DIRN_STOP);
@@ -103,7 +108,6 @@ void sort_queue(Elevator *elevator)
     free(requestsOppositeDirection);
 }
 
-
 void add_request_to_queue(Elevator *elevator, int floor, int direction)
 {
     if (elevator->_queueSize == elevator->_queueCapacity)
@@ -135,25 +139,36 @@ void remove_request_from_queue(Elevator *elevator, int floor)
     elevator->_queueSize = j;
 }
 
-void moving_elevator(Elevator *elevator){ //moves the elevator, updates states
+void moving_elevator(Elevator *elevator)
+{ // moves the elevator, updates states
     MotorDirection direction = elevator->_destinationQueue[0]._direction;
-    if (direction == elevator->_movingDirection){
+    if (direction == elevator->_movingDirection)
+    {
         return;
-    } else{
+    }
+    else
+    {
         elevator->_motorState = direction;
         elevio_motorDirection(direction);
         return;
     }
 }
 
-void at_right_floor(Elevator *elevator){ //as long as door is closed, check if at right floor
-    if (elevator->_currentFloor == elevator->_destinationQueue[0]._floor){
+void at_right_floor(Elevator *elevator)
+{ // as long as door is closed, check if at right floor
+    if (elevator->_queueSize == 0)
+    {
+        return;
+    }
+    if (elevator->_currentFloor == elevator->_destinationQueue[0]._floor)
+    {
         elevator->_motorState = DIRN_STOP;
         elevio_motorDirection(DIRN_STOP);
         elevator->_doorOpen = true;
         elevio_doorOpenLamp(1);
         time_t start_time = time(NULL);
-        while (time(NULL) - start_time < 3) {
+        while (time(NULL) - start_time < 3)
+        {
             button_pressed(elevator);
             if (elevio_obstruction())
             {
@@ -163,17 +178,19 @@ void at_right_floor(Elevator *elevator){ //as long as door is closed, check if a
             {
                 elevio_stopLamp(0);
             }
-    
+
             if (elevio_stopButton())
             {
                 elevio_motorDirection(DIRN_STOP);
-                kill(getpid(), SIGKILL);  // Forcefully stops the program
-            }    
+                kill(getpid(), SIGKILL); // Forcefully stops the program
+            }
         }
         elevio_doorOpenLamp(0);
         elevator->_doorOpen = false;
-        //Ida: make 'remove from queue' function
-    } else{
+        // Ida: make 'remove from queue' function
+    }
+    else
+    {
         moving_elevator(elevator);
     }
 }
@@ -211,15 +228,14 @@ void test_sort_queue()
     print_queue(elevator._destinationQueue, elevator._queueSize);
 }
 
-
 // for testing, db, remove later
-//int main()
+// int main()
 //{
-    //test_sort_queue();
-    // gcc -o elevator_program source/driver/elevator.c source/driver/elevio.c source/driver/DestinationRequest.c
-    // ./elevator_program
-    // rm elevator_program
+// test_sort_queue();
+// gcc -o elevator_program source/driver/elevator.c source/driver/elevio.c source/driver/DestinationRequest.c
+// ./elevator_program
+// rm elevator_program
 
-    // does initialize actually make sure that the elevator starts at first floor??
-    //return 0;
+// does initialize actually make sure that the elevator starts at first floor??
+// return 0;
 //}
