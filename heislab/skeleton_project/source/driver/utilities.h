@@ -4,6 +4,5 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-bool check_in_array(ButtonRequest *btn, ButtonRequest *arr[]);
+bool check_in_array(DestinationRequest *btn, DestinationRequest *arr[]);
 void button_pressed(Elevator *elevator);
-void remove_elements(ButtonRequest *arr, size_t size, int index);

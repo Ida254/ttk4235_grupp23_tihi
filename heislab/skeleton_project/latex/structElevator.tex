@@ -1,0 +1,68 @@
+\hypertarget{structElevator}{}\doxysection{Elevator Struct Reference}
+\label{structElevator}\index{Elevator@{Elevator}}
+
+
+Defines an \mbox{\hyperlink{structElevator}{Elevator}} struct to store values.  
+
+
+
+
+{\ttfamily \#include $<$elevator.\+h$>$}
+
+
+
+Collaboration diagram for Elevator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{structElevator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structElevator_a4a0c0025a37dea476e7c6d28b66bb534}\label{structElevator_a4a0c0025a37dea476e7c6d28b66bb534}} 
+int {\bfseries \+\_\+current\+Floor}
+\item 
+\mbox{\Hypertarget{structElevator_a2dbbd5ec5d15410521634f20de3bc936}\label{structElevator_a2dbbd5ec5d15410521634f20de3bc936}} 
+Motor\+Direction {\bfseries \+\_\+moving\+Direction}
+\item 
+\mbox{\Hypertarget{structElevator_a506909adb097bee2ed8edcfb91671369}\label{structElevator_a506909adb097bee2ed8edcfb91671369}} 
+\mbox{\hyperlink{structDestinationRequest}{Destination\+Request}} $\ast$ {\bfseries \+\_\+destination\+Queue}
+\item 
+\mbox{\Hypertarget{structElevator_aa64853921257dc97d35cb590e07ff12c}\label{structElevator_aa64853921257dc97d35cb590e07ff12c}} 
+size\+\_\+t {\bfseries \+\_\+queue\+Size}
+\item 
+\mbox{\Hypertarget{structElevator_a382adb15352e31380525966860b1df92}\label{structElevator_a382adb15352e31380525966860b1df92}} 
+size\+\_\+t {\bfseries \+\_\+queue\+Capacity}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines an \mbox{\hyperlink{structElevator}{Elevator}} struct to store values. 
+
+This struct holds information about an elevator, including its current floor, movement direction, and a queue of requested destinations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+current\+Floor} & The current floor of the elevator. \\
+\hline
+{\em \+\_\+moving\+Direction} & The current movement direction, which can be either {\ttfamily D\+I\+R\+N\+\_\+\+UP} or {\ttfamily D\+I\+R\+N\+\_\+\+D\+O\+WN}. \\
+\hline
+{\em \+\_\+destination\+Queue} & A queue of destination requests that helps the elevator determine where to go next. \\
+\hline
+{\em \+\_\+queue\+Size} & The current number of elements in the destination queue. \\
+\hline
+{\em \+\_\+queue\+Capacity} & The maximum number of destination requests the queue can hold. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 27 of file elevator.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/driver/\mbox{\hyperlink{elevator_8h}{elevator.\+h}}\end{DoxyCompactItemize}

@@ -1,7 +1,7 @@
 #include "utilities.h"
 
 
-bool check_in_array(ButtonRequest *btn, ButtonRequest *arr[]){
+bool check_in_array(DestinationRequest *btn, DestinationRequest *arr[]){
     size_t size = sizeof(arr)/sizeof(arr);
     for (int i = 0; i < size; i++){
         if (btn == arr[i]){
@@ -18,7 +18,7 @@ void button_pressed(Elevator *elevator){
         {
             int btnPressed = elevio_callButton(f, b);
             elevio_buttonLamp(f, b, btnPressed);
-            ButtonRequest btn = {f, btnPressed};
+            DestinationRequest btn = {f, btnPressed};
             bool inQueue = check_in_array(&btn, elevator->_destinationQueue);
             if (!inQueue)
             {

@@ -1,6 +1,11 @@
 # Heislab
 Just some basics about how to initialize this project. This is mostly from the guide given out with the assignment.
 
+- [Heislab](#heislab)
+  - [Heissimulator](#heissimulator)
+    - [How to set up the `heissimulator`](#how-to-set-up-the-heissimulator)
+    - [GUI and buttons](#gui-and-buttons)
+
 ## Heissimulator ##
 
 ### How to set up the `heissimulator` ###

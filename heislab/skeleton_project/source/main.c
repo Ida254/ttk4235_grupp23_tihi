@@ -1,3 +1,7 @@
+/**
+ * @file
+ * @brief The main file of the elevator application
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -7,11 +11,10 @@
 #include "driver/elevator.h"
 #include "driver/utilities.h"
 
-
-
-int main(){
+int main()
+{
     elevio_init();
-    
+
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
 
@@ -24,7 +27,8 @@ int main(){
         int floor = elevio_floorSensor();
         elevator._currentFloor = floor;
 
-        if(floor == 0){
+        if (floor == 0)
+        {
             elevio_motorDirection(DIRN_UP);
         }
 
@@ -38,18 +42,22 @@ int main(){
             at_right_floor(&elevator);            
         }
 
-        if(elevio_obstruction()){
+        if (elevio_obstruction())
+        {
             elevio_stopLamp(1);
-        } else {
+        }
+        else
+        {
             elevio_stopLamp(0);
         }
-        
-        if(elevio_stopButton()){
+
+        if (elevio_stopButton())
+        {
             elevio_motorDirection(DIRN_STOP);
             break;
         }
-        
-        nanosleep(&(struct timespec){0, 20*1000*1000}, NULL);
+
+        nanosleep(&(struct timespec){0, 20 * 1000 * 1000}, NULL);
     }
 
     return 0;
