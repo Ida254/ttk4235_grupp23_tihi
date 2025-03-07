@@ -15,8 +15,8 @@
  */
 typedef struct
 {
-    int _floor;            ///< The requested floor.
-    ButtonType _direction; ///< The direction of travel (@c DIRN_UP, @c DIRN_DOWN, or @c DIRN_STOP).
+    int _floor;             ///< The requested floor.
+    ButtonType _buttonType; ///< The direction of travel (@c DIRN_UP, @c DIRN_DOWN, or @c DIRN_STOP).
 } DestinationRequest;
 
 /**
@@ -38,6 +38,11 @@ void swap(DestinationRequest arr[], size_t i, size_t j);
  * @param[in] dir The @c MotorDirection that determines the sorting order.
  */
 void bubble_sort(DestinationRequest arr[], size_t size, MotorDirection dir);
+
+bool in_array(DestinationRequest arr[], size_t size, DestinationRequest destinationRequest);
+
+MotorDirection int_to_motor_direction(int button);
+MotorDirection button_type_to_motor_direction(ButtonType btn);
 
 /**
  * @brief Prints a @c DestinationRequest array for debugging purposes.

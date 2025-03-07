@@ -2,16 +2,8 @@
  * @file
  * @brief The main file of the elevator application
  */
-#include <stdio.h>
-#include <stdlib.h>
-#include <signal.h>
-#include <time.h>
-#include <stdbool.h>
-#include <signal.h>
-#include <unistd.h>
 #include "driver/elevio.h"
 #include "driver/elevator.h"
-#include "driver/utilities.h"
 
 void run_elevator_program(Elevator *elevator)
 {
@@ -29,21 +21,18 @@ void run_elevator_program(Elevator *elevator)
         //     elevio_motorDirection(DIRN_DOWN);
         // }
 
-        button_pressed(&elevator); // execute if button is pressed, and add to queue
+        on_button_press(elevator); // execute if button is pressed, and add to queue
 
-        if (!elevator->_doorOpen)
-        {
-            at_right_floor(&elevator);
-        }
+        at_right_floor(elevator);
 
-        if (elevio_obstruction())
-        {
-            elevio_stopLamp(1);
-        }
-        else
-        {
-            elevio_stopLamp(0);
-        }
+        // if (elevio_obstruction())
+        // {
+        //     elevio_stopLamp(1);
+        // }
+        // else
+        // {
+        //     elevio_stopLamp(0);
+        // }
 
         if (elevio_stopButton())
         {
