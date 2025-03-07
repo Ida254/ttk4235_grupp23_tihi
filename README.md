@@ -1,2 +1,34 @@
 # ttk4235_grupp23_tihi
-intro til learning git, linux etc.
+Working folder for the subject TTK4235 (spring 2025).
+
+- [ttk4235\_grupp23\_tihi](#ttk4235_grupp23_tihi)
+- [Set working pc up with github](#set-working-pc-up-with-github)
+
+# Set working pc up with github
+Before starting, move into the git repository.
+
+* Location of the `id_ed25519` on the pc at lab is:
+  ```bash
+  ~/Desktop/gruppe23_tihi/.ssh/id_ed25519
+  ```
+
+* Ensure that the SSH Key is loaded
+  ```bash
+    ssh-add ~/Desktop/gruppe23_tihi/.ssh/id_ed25519
+  ```
+
+  * If you encounter an error try
+    ```bash
+    eval "$(ssh-agent -s)"
+    ssh-add ~/Desktop/gruppe23_tihi/.ssh/id_ed25519
+    ```
+
+* How to copy the SSH Key:
+    ```bash
+    ~/Desktop/gruppe23_tihi/.ssh/id_ed25519
+    ```
+
+* How to verify the key:
+  ```bash
+  ssh -T git@github.com
+  ```

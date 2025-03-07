@@ -9,12 +9,11 @@
 #include <stdbool.h>
 #include <string.h>
 #include <stdlib.h> // for testing
-#include "DestinationRequest.h"
-#include "elevio.h"
 #include <time.h>
 #include <signal.h>
 #include <unistd.h>
-#include "utilities.h"
+#include "DestinationRequest.h"
+#include "elevio.h"
 
 /**
  * @brief Defines an Elevator struct to store values.
@@ -33,11 +32,11 @@
 typedef struct
 {
     int _currentFloor;
-    bool _doorOpen;
+    // bool _doorOpen;
     bool _validFloor; // not floor 9 3/4
-    bool _emergencyStop;
+    // bool _emergencyStop;
     MotorDirection _movingDirection;
-    MotorDirection _motorState;
+    // MotorDirection _motorState;
     DestinationRequest *_destinationQueue;
     size_t _queueSize;
     size_t _queueCapacity;
@@ -80,11 +79,9 @@ void sort_queue(Elevator *elevator);
  * the direction in which the elevator should move after reaching the floor.
  *
  * @param[in,out] elevator Pointer to the Elevator struct.
- * @param[in] floor The floor number to be added to the queue.
- * @param[in] direction The direction the elevator should move after reaching the floor.
- *                      It can be either @c DIRN_UP, @c DIRN_DOWN, or @c DIRN_STOP.
+ * @param[in] directionRequest The direction request to be added to the queue.
  */
-void add_request_to_queue(Elevator *elevator, int floor, int direction); // make floor and dir into DestinationRequest, Ida
+void add_request_to_queue(Elevator *elevator, DestinationRequest destinationRequest);
 
 /**
  * @brief Removes a floor request from the Elevator's destination queue.
@@ -96,6 +93,10 @@ void add_request_to_queue(Elevator *elevator, int floor, int direction); // make
  * @param[in] floor The floor number to remove from the queue.
  */
 void remove_request_from_queue(Elevator *elevator, int floor);
+
+void on_button_press(Elevator *elevator);
+
+void move_elevator_to_floor(Elevator *elevator, DestinationRequest destinationRequest);
 
 void moving_elevator(Elevator *elevator);
 void at_right_floor(Elevator *elevator);
