@@ -14,6 +14,7 @@
 #include <time.h>
 #include <signal.h>
 #include <unistd.h>
+#include "utilities.h"
 
 /**
  * @brief Defines an Elevator struct to store values.
