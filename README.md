@@ -17,15 +17,15 @@ Before starting, move into the git repository.
       ssh-add ~/Desktop/gruppe23_tihi/.ssh/id_ed25519
     ```
 
-  * If you encounter an error try
-    ```bash
-    eval "$(ssh-agent -s)"
-    ssh-add ~/Desktop/gruppe23_tihi/.ssh/id_ed25519
-    ```
-  * How to copy the SSH Key:
-    ```bash
-    cat ~/Desktop/gruppe23_tihi/.ssh/id_ed25519.pub
-    ```
+     * If you encounter an error try
+       ```bash
+       eval "$(ssh-agent -s)"
+       ssh-add ~/Desktop/gruppe23_tihi/.ssh/id_ed25519
+       ```
+     * How to copy the SSH Key:
+       ```bash
+       cat ~/Desktop/gruppe23_tihi/.ssh/id_ed25519.pub
+       ```
 
 3. How to verify the key:
     ```bash
