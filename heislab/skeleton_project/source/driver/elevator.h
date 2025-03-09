@@ -27,21 +27,21 @@
  * This struct holds information about an elevator, including its current floor,
  * movement direction, and a queue of requested destinations.
  *
- * @param _currentFloor The current floor of the elevator.
- * @param _movingDirection The current movement direction, which can be either
+ * @param current_floor The current floor of the elevator.
+ * @param moving_direction The current movement direction, which can be either
  *        @c DIRN_UP or @c DIRN_DOWN.
- * @param _requestQueue A queue of destination requests that helps the elevator
+ * @param request_queue A queue of destination requests that helps the elevator
  *        determine where to go next.
- * @param _queueSize The current number of elements in the destination queue.
-//  * @param _queueCapacity The maximum number of destination requests the queue can hold.
+ * @param queue_size The current number of elements in the destination queue.
+//  * @param queue_capacity The maximum number of destination requests the queue can hold.
  */
 typedef struct
 {
-    int _currentFloor;
-    MotorDirection _movingDirection;
-    Request *_requestQueue;
-    size_t _queueSize;
-    size_t _queueCapacity;
+    int current_floor;
+    MotorDirection moving_direction;
+    Request *request_queue;
+    size_t queue_size;
+    size_t queue_capacity;
 } Elevator;
 
 /**

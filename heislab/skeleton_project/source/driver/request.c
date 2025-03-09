@@ -30,6 +30,17 @@ const char *motor_direction_to_string(MotorDirection direction)
     }
 }
 
+const char *bool_to_string(bool trueOrFalse)
+{
+    if (trueOrFalse)
+    {
+        return "TRUE";
+    }
+    else if (!trueOrFalse)
+        return "FALSE";
+    return "UNKNOWN";
+}
+
 MotorDirection int_to_motor_direction(int button)
 {
     MotorDirection motorDir;
@@ -87,7 +98,7 @@ void bubble_sort(Request *arr, size_t size, MotorDirection direction)
     {
         for (size_t j = 0; j < size - i - 1; j++)
         {
-            if ((reverse && arr[j]._floor < arr[j + 1]._floor) || (!reverse && arr[j]._floor > arr[j + 1]._floor))
+            if ((reverse && arr[j].floor < arr[j + 1].floor) || (!reverse && arr[j].floor > arr[j + 1].floor))
             {
                 Request temp = arr[j];
                 arr[j] = arr[j + 1];
@@ -106,10 +117,10 @@ void sort_requests(Request *arr, size_t arr_size, int currentFloor, MotorDirecti
     for (size_t i = 0; i < arr_size; i++)
     {
         Request el = arr[i];
-        int floor = el._floor;
-        int isStop = (el._button == BUTTON_CAB);
-        int buttonUp = (el._button == BUTTON_HALL_UP);
-        int buttonDown = (el._button == BUTTON_HALL_DOWN);
+        int floor = el.floor;
+        int isStop = (el.button == BUTTON_CAB);
+        int buttonUp = (el.button == BUTTON_HALL_UP);
+        int buttonDown = (el.button == BUTTON_HALL_DOWN);
         int movingUp = (movingDir == DIRN_UP);
         int movingDown = (movingDir == DIRN_DOWN);
 
@@ -168,11 +179,11 @@ void add_request(Request **arr, size_t *arrSize, size_t *capacity, Request newRe
     (*arr)[(*arrSize)++] = newReq;
 }
 
-void remove_request_by_floor(Request **arr, size_t *arrSize, size_t *capacity, int floor)
+void remove_request_byfloor(Request **arr, size_t *arrSize, size_t *capacity, int floor)
 {
     for (size_t i = 0; i < *arrSize; i++)
     {
-        if ((*arr)[i]._floor == floor)
+        if ((*arr)[i].floor == floor)
         {
             for (size_t j = i; j < (*arrSize) - 1; j++)
             {
@@ -198,7 +209,7 @@ bool in_array(Request arr[], size_t size, Request destinationRequest)
 {
     for (int i = 0; i < size; i++)
     {
-        if ((arr[i]._floor == destinationRequest._floor) && (arr[i]._button == destinationRequest._button))
+        if ((arr[i].floor == destinationRequest.floor) && (arr[i].button == destinationRequest.button))
         {
             return true;
         }
@@ -219,6 +230,6 @@ void print_requests(Request arr[], size_t size)
     for (size_t i = 0; i < size; i++)
     {
         el = arr[i];
-        printf("%zu: Floor %d, Button %s\n", i, el._floor, button_to_string(el._button));
+        printf("%zu: Floor %d, Button %s\n", i, el.floor, button_to_string(el.button));
     }
 }

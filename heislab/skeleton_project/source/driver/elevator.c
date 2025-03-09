@@ -13,17 +13,17 @@ void initialize_elevator(Elevator *elevator)
         exit(1);
     }
 
-    elevator->_currentFloor = INITIAL_FLOOR;
-    elevator->_movingDirection = INITIAL_DIRECTION;
-    elevator->_requestQueue = NULL;
-    elevator->_queueSize = 0;
-    elevator->_queueCapacity = 0;
+    elevator->current_floor = INITIAL_FLOOR;
+    elevator->moving_direction = INITIAL_DIRECTION;
+    elevator->request_queue = NULL;
+    elevator->queue_size = 0;
+    elevator->queue_capacity = 0;
 }
 
 void free_elevator(Elevator *elevator)
 {
-    free(elevator->_requestQueue);
-    elevator->_requestQueue = NULL;
+    free(elevator->request_queue);
+    elevator->request_queue = NULL;
 }
 
 void sort_queue(Elevator *elevator)
@@ -36,32 +36,32 @@ void sort_queue(Elevator *elevator)
 
     // printf("Elevator pointer address: %p\n", (void *)elevator); // db         // db
 
-    size_t queueSize = elevator->_queueSize;
-    int currFloor = elevator->_currentFloor;
-    MotorDirection currMovingDir = elevator->_movingDirection;
-    sort_requests(elevator->_requestQueue, queueSize, currFloor, currMovingDir);
+    size_t queueSize = elevator->queue_size;
+    int currFloor = elevator->current_floor;
+    MotorDirection currMovingDir = elevator->moving_direction;
+    sort_requests(elevator->request_queue, queueSize, currFloor, currMovingDir);
 }
 
 void add_request_to_queue(Elevator *elevator, Request newReq)
 {
-    size_t *queueSize = &elevator->_queueSize;
-    size_t *queueCapacity = &elevator->_queueCapacity;
+    size_t *queueSize = &elevator->queue_size;
+    size_t *queueCapacity = &elevator->queue_capacity;
 
-    add_request(&elevator->_requestQueue, queueSize, queueCapacity, newReq);
+    add_request(&elevator->request_queue, queueSize, queueCapacity, newReq);
 
     sort_queue(elevator);
 }
 
 void remove_request_from_queue(Elevator *elevator, int floor)
 {
-    size_t *queueSize = &elevator->_queueSize;
-    size_t *queueCapacity = &elevator->_queueCapacity;
+    size_t *queueSize = &elevator->queue_size;
+    size_t *queueCapacity = &elevator->queue_capacity;
 
-    remove_request_by_floor(&elevator->_requestQueue, queueSize, queueCapacity, floor);
+    remove_request_byfloor(&elevator->request_queue, queueSize, queueCapacity, floor);
 }
 
 // thomas sin del
-void on_button_press(Elevator *elevator)
+void onbutton_press(Elevator *elevator)
 {
     int buttonPressed;
     for (int floor = 0; floor < N_FLOORS; floor++)
@@ -80,9 +80,9 @@ void on_button_press(Elevator *elevator)
                 Request destReq = {floor, dirReq};
                 bool inQueue = false;
 
-                if (elevator->_queueSize != 0) // db, there are an error here ... check out
+                if (elevator->queue_size != 0) // db, there are an error here ... check out
                 {
-                    inQueue = in_array(elevator->_requestQueue, elevator->_queueSize, destReq);
+                    inQueue = in_array(elevator->request_queue, elevator->queue_size, destReq);
                     printf("inQueue = %d \n", inQueue);
                 }
 
@@ -98,21 +98,21 @@ void on_button_press(Elevator *elevator)
 
 void moving_elevator(Elevator *elevator)
 { // moves the elevator, updates states
-    MotorDirection direction = elevator->_requestQueue[0]._button;
-    int destinationFloor = elevator->_requestQueue[0]._floor;
-    if (elevator->_movingDirection == direction)
+    MotorDirection direction = elevator->request_queue[0].button;
+    int destinationFloor = elevator->request_queue[0].floor;
+    if (elevator->moving_direction == direction)
     {
         return;
     }
     // elevator->_motorState = direction;
-    // elevator->_movingDirection = direction;
+    // elevator->moving_direction = direction;
     // printf("Moving elevator = %d \n", direction);
     // elevio_motorDirection(direction);
-    if (direction == DIRN_UP && elevator->_currentFloor > destinationFloor)
+    if (direction == DIRN_UP && elevator->current_floor > destinationFloor)
     {
         elevio_motorDirection(DIRN_DOWN);
     }
-    else if (direction == DIRN_DOWN && elevator->_currentFloor < destinationFloor)
+    else if (direction == DIRN_DOWN && elevator->current_floor < destinationFloor)
     {
         elevio_motorDirection(DIRN_UP);
     }
@@ -123,30 +123,30 @@ void moving_elevator(Elevator *elevator)
     return;
 }
 
-void at_right_floor(Elevator *elevator)
+void at_rightfloor(Elevator *elevator)
 { // as long as door is closed, check if at right floor
-    if (elevator->_queueSize == 0)
+    if (elevator->queue_size == 0)
     {
         return;
     }
-    if (elevator->_currentFloor == elevator->_requestQueue[0]._floor)
+    if (elevator->current_floor == elevator->request_queue[0].floor)
     {
         // elevator->_motorState = DIRN_STOP;
         elevio_motorDirection(DIRN_STOP);
-        if (elevator->_currentFloor == 0)
+        if (elevator->current_floor == 0)
         {
-            elevio_buttonLamp(elevator->_currentFloor, 0, 0);
+            elevio_buttonLamp(elevator->current_floor, 0, 0);
         }
         else
         {
-            elevio_buttonLamp(elevator->_currentFloor, elevator->_requestQueue[0]._button, 0);
+            elevio_buttonLamp(elevator->current_floor, elevator->request_queue[0].button, 0);
         }
         // elevator->_doorOpen = true;
         elevio_doorOpenLamp(1);
         time_t start_time = time(NULL);
         while (time(NULL) - start_time < 3)
         {
-            on_button_press(elevator);
+            onbutton_press(elevator);
             if (elevio_stopButton())
             {
                 elevio_motorDirection(DIRN_STOP);
@@ -154,7 +154,7 @@ void at_right_floor(Elevator *elevator)
             }
         }
         elevio_doorOpenLamp(0);
-        remove_request_from_queue(elevator, elevator->_currentFloor);
+        remove_request_from_queue(elevator, elevator->current_floor);
         // elevator->_doorOpen = false;
         // Ida: make 'remove from queue' function
     }
@@ -162,12 +162,12 @@ void at_right_floor(Elevator *elevator)
     moving_elevator(elevator);
 }
 
-void move_elevator_to_floor(Elevator *elevator, Request destinationRequest)
+void move_elevator_tofloor(Elevator *elevator, Request destinationRequest)
 {
-    MotorDirection direction = button_type_to_motor_direction(destinationRequest._button);
-    elevator->_movingDirection = direction;
+    MotorDirection direction = button_type_to_motor_direction(destinationRequest.button);
+    elevator->moving_direction = direction;
 
-    int floor = destinationRequest._floor;
+    int floor = destinationRequest.floor;
     bool stopped = false;
 
     elevio_motorDirection(direction);
@@ -178,7 +178,7 @@ void move_elevator_to_floor(Elevator *elevator, Request destinationRequest)
         {
             elevio_motorDirection(DIRN_STOP);
             elevio_stopLamp(floor);
-            elevator->_currentFloor = floor;
+            elevator->current_floor = floor;
             stopped = true;
         }
     }
@@ -186,20 +186,21 @@ void move_elevator_to_floor(Elevator *elevator, Request destinationRequest)
 
 void print_elevator(Elevator *elevator)
 {
-    printf("Current floor: %d\n", elevator->_currentFloor);
-    printf("Current moving direction: %s\n", motor_direction_to_string(elevator->_movingDirection));
+    printf("Current floor: %d\n", elevator->current_floor);
+    printf("Current moving direction: %s\n", motor_direction_to_string(elevator->moving_direction));
+    // printf("In motion: %s\n", bool_to_string(elevator->in_motion));
 
-    if (elevator->_queueSize > 0)
+    if (elevator->queue_size > 0)
     {
-        print_requests(elevator->_requestQueue, elevator->_queueSize);
+        print_requests(elevator->request_queue, elevator->queue_size);
     }
     else
     {
         printf("No requests in the queue.\n");
     }
 
-    printf("Queue size: %zu\n", elevator->_queueSize);
-    printf("Queue capacity: %zu\n", elevator->_queueCapacity);
+    printf("Queue size: %zu\n", elevator->queue_size);
+    printf("Queue capacity: %zu\n", elevator->queue_capacity);
 }
 
 void test_elevator(void)
