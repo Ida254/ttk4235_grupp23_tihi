@@ -50,7 +50,7 @@ void add_request_to_queue(Elevator *elevator, Request new_req)
 
     add_request(&elevator->_requestQueue, queueSize, queueCapacity, new_req);
 
-    sort_queue(elevator); // db, might be issues ...
+    // sort_queue(elevator); // db, there are issues ... i dont know why
 }
 
 void remove_request_from_queue(Elevator *elevator, int floor)
