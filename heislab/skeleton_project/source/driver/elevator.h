@@ -39,6 +39,7 @@ typedef struct
 {
     int _currentFloor;
     MotorDirection _movingDirection;
+    bool _inMotion;
     Request *_requestQueue;
     size_t _queueSize;
     size_t _queueCapacity;

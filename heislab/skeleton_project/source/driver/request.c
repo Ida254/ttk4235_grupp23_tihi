@@ -77,6 +77,10 @@ void extend_requests(Request *arr1, size_t index, Request *arr2, size_t arr2_siz
 void bubble_sort(Request *arr, size_t size, MotorDirection direction)
 {
     int reverse = (direction == DIRN_DOWN); // Sort descending if moving down
+    if (size <= 1)  //Need to be sure that the size is greater than 1
+    {
+        return;
+    }
     for (size_t i = 0; i < size - 1; i++)
     {
         for (size_t j = 0; j < size - i - 1; j++)
@@ -97,6 +101,7 @@ void sort_requests(Request *arr, size_t req_size, int currentFloor, MotorDirecti
     int alphaCount = 0, bravoCount = 0, charlieCount = 0;
 
     MotorDirection otherDir = (movingDir == DIRN_DOWN) ? DIRN_UP : DIRN_DOWN;
+    printf("in sort_requests, currentFloor = %d, movingDir = %d \n", currentFloor, movingDir);
 
     for (size_t i = 0; i < req_size; i++)
     {
@@ -131,10 +136,11 @@ void sort_requests(Request *arr, size_t req_size, int currentFloor, MotorDirecti
     }
 
     // Sorting the three priority lists
-    bubble_sort(tempArrAlpha, alphaCount, movingDir);
+    bubble_sort(tempArrAlpha, alphaCount, movingDir);  //something wrong here
+    printf("done with sorting \n");
     bubble_sort(tempArrBravo, bravoCount, otherDir);
     bubble_sort(tempArrCharlie, charlieCount, movingDir);
-
+    
     // print_requests(tempArrAlpha, alphaCount); // db
     size_t index = 0;
     extend_requests(arr, index, tempArrAlpha, alphaCount);

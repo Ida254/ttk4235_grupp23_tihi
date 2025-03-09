@@ -59,5 +59,6 @@ int main()
     printf("Done with initializing\n");
     run_elevator_program(&elevator);
 
+    free_elevator(&elevator);
     return 0;
 }
