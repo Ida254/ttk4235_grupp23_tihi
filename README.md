@@ -28,6 +28,6 @@ Before starting, move into the git repository.
     ```
 
 3. How to verify the key:
-  ```bash
-  ssh -T git@github.com
-  ```
+    ```bash
+    ssh -T git@github.com
+    ```
