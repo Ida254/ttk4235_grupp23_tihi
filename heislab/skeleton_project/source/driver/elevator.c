@@ -58,12 +58,12 @@ void sort_queue(Elevator *elevator)
     sort_requests(elevator->request_queue, queueSize, currFloor, currMovingDir);
 }
 
-void add_request_to_queue(Elevator *elevator, Request newReq)
+void add_request_to_queue(Elevator *elevator, Request new_req)
 {
     size_t *queueSize = &elevator->queue_size;
     size_t *queueCapacity = &elevator->queue_capacity;
 
-    add_request(&elevator->request_queue, queueSize, queueCapacity, newReq);
+    add_request(&elevator->request_queue, queueSize, queueCapacity, new_req);
 
     sort_queue(elevator);
 }

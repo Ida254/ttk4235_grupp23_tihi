@@ -30,6 +30,7 @@
  * @param current_floor The current floor of the elevator.
  * @param moving_direction The current movement direction, which can be either
  *        @c DIRN_UP or @c DIRN_DOWN.
+ * @param in_motion Tell whether or not the elevator is in motion at the current moment.
  * @param request_queue A queue of destination requests that helps the elevator
  *        determine where to go next.
  * @param queue_size The current number of elements in the destination queue.
@@ -82,9 +83,9 @@ void sort_queue(Elevator *elevator);
  * the direction in which the elevator should move after reaching the floor.
  *
  * @param[in,out] elevator Pointer to the Elevator struct.
- * @param[in] directionRequest The direction request to be added to the queue.
+ * @param[in] new_req The direction request to be added to the queue.
  */
-void add_request_to_queue(Elevator *elevator, Request newReq);
+void add_request_to_queue(Elevator *elevator, Request new_req);
 
 /**
  * @brief Removes a floor request from the Elevator's destination queue.
@@ -105,6 +106,13 @@ void on_button_press(Elevator *elevator);
 void moving_elevator(Elevator *elevator);
 void at_right_floor(Elevator *elevator);
 
+/**
+ * @brief Prints the memebers of the struct Elevator.
+ *
+ * This function prints the values of an elevator in a nice way that helps with debuging of the code.
+ *
+ * @param[in] elevator Pointer to the Elevator struct.
+ */
 void print_elevator(Elevator *elevator);
 
 /**
