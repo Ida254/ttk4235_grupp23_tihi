@@ -122,7 +122,7 @@ void on_button_press(Elevator *elevator)
 
 void moving_elevator(Elevator *elevator)
 { // moves the elevator, updates states
-    MotorDirection direction = elevator->_requestQueue[0]._button;
+    MotorDirection direction = elevator->_requestQueue[0]._button; // dont need maybe
     int destinationFloor = elevator->_requestQueue[0]._floor;
     if (elevator->_inMotion)
     {
@@ -181,6 +181,7 @@ void at_right_floor(Elevator *elevator)
         // elevator->_motorState = DIRN_STOP;
         elevio_motorDirection(DIRN_STOP);
         elevator->_inMotion = false;
+        elevio_doorOpenLamp(1);
         if (elevator->_currentFloor == 0)
         {
             elevio_buttonLamp(elevator->_currentFloor, 0, 0);
@@ -192,7 +193,6 @@ void at_right_floor(Elevator *elevator)
             elevio_buttonLamp(elevator->_currentFloor, elevator->_requestQueue[0]._button, 0);
         }
         // elevator->_doorOpen = true;
-        elevio_doorOpenLamp(1);
         time_t start_time = time(NULL);
         while (time(NULL) - start_time < 3)
         {
