@@ -38,14 +38,17 @@ void bubble_sort(DestinationRequest arr[], size_t size, MotorDirection dir)
 
 bool in_array(DestinationRequest arr[], size_t size, DestinationRequest destinationRequest)
 {
+    printf("in array function");
+    bool inArray = false;
     for (int i = 0; i < size; i++)
     {
         if ((arr[i]._floor == destinationRequest._floor) && (arr[i]._buttonType == destinationRequest._buttonType))
         {
-            return true;
+            printf("Yes sir \n");
+            inArray = true;
         }
     }
-    return false;
+    return inArray;
 }
 
 MotorDirection int_to_motor_direction(int button)

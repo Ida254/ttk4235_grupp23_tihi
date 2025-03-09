@@ -146,8 +146,8 @@ void add_request_to_queue(Elevator *elevator, DestinationRequest destinationRequ
     elevator->_destinationQueue[currentIndex]._buttonType = button;
     elevator->_queueSize++;
     printf("Added to queue floor: %d \n", floor);
-    printf("Added to queue button: %d \n", buttom);
-    //sort_queue(elevator);
+    printf("Added to queue button: %d \n", button);
+    // sort_queue(elevator);
 }
 
 void remove_request_from_queue(Elevator *elevator, int floor)
@@ -192,7 +192,7 @@ void on_button_press(Elevator *elevator)
         {
             buttonPressed = elevio_callButton(floor, btn);
             elevio_buttonLamp(floor, btn, buttonPressed);
-            
+
             if (buttonPressed)
             {
                 printf("buttonPressed = %d \n", buttonPressed);
@@ -205,7 +205,7 @@ void on_button_press(Elevator *elevator)
                 if (elevator->_queueSize != 0) // db, there are an error here ... check out
                 {
                     inQueue = in_array(elevator->_destinationQueue, elevator->_queueSize, destReq);
-                    printf("What \n");
+                    printf("inQueue = %d \n", inQueue);
                 }
 
                 if (!inQueue)
@@ -231,7 +231,7 @@ void moving_elevator(Elevator *elevator)
     // elevator->_movingDirection = direction;
     // printf("Moving elevator = %d \n", direction);
     // elevio_motorDirection(direction);
-    if (direction == DIRN_UP  && elevator->_currentFloor > destinationFloor)
+    if (direction == DIRN_UP && elevator->_currentFloor > destinationFloor)
     {
         elevio_motorDirection(DIRN_DOWN);
     }
@@ -242,7 +242,6 @@ void moving_elevator(Elevator *elevator)
     else
     {
         elevio_motorDirection(direction);
-
     }
     return;
 }
@@ -257,9 +256,9 @@ void at_right_floor(Elevator *elevator)
     {
         // elevator->_motorState = DIRN_STOP;
         elevio_motorDirection(DIRN_STOP);
-        if(elevator->_currentFloor == 0)
+        if (elevator->_currentFloor == 0)
         {
-            elevio_buttonLamp(elevator->_currentFloor, 0, 0); 
+            elevio_buttonLamp(elevator->_currentFloor, 0, 0);
         }
         else
         {
