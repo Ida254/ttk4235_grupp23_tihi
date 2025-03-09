@@ -30,6 +30,42 @@ const char *motor_direction_to_string(MotorDirection direction)
     }
 }
 
+MotorDirection int_to_motor_direction(int button)
+{
+    MotorDirection motorDir;
+    switch (button)
+    {
+    case 0:
+        motorDir = DIRN_UP;
+        break;
+    case 1:
+        motorDir = DIRN_DOWN;
+        break;
+    default:
+        motorDir = DIRN_STOP;
+        break;
+    }
+    return motorDir;
+}
+
+MotorDirection button_type_to_motor_direction(ButtonType btn)
+{
+    MotorDirection motorDir;
+    switch (btn)
+    {
+    case BUTTON_HALL_UP:
+        motorDir = DIRN_UP;
+        break;
+    case BUTTON_HALL_DOWN:
+        motorDir = DIRN_DOWN;
+        break;
+    default:
+        motorDir = DIRN_STOP;
+        break;
+    }
+    return motorDir;
+}
+
 void extend_requests(Request *arr1, size_t index, Request *arr2, size_t arr2_size)
 {
     for (size_t i = 0; i < arr2_size; i++)
@@ -152,6 +188,18 @@ void remove_request_by_floor(Request **arr, size_t *arr_size, size_t *capacity, 
             printf("Memory reallocation failed!\n");
         }
     }
+}
+
+bool in_array(Request arr[], size_t size, Request destinationRequest)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if ((arr[i]._floor == destinationRequest._floor) && (arr[i]._button == destinationRequest._button))
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 void print_requests(Request arr[], size_t size)

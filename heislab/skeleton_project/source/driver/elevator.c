@@ -78,12 +78,12 @@ void on_button_press(Elevator *elevator)
                 printf("floor = %d \n", floor);
                 MotorDirection dirReq = int_to_motor_direction(btn);
                 printf("direction = %d \n", dirReq);
-                DestinationRequest destReq = {floor, dirReq};
+                Request destReq = {floor, dirReq};
                 bool inQueue = false;
 
                 if (elevator->_queueSize != 0) // db, there are an error here ... check out
                 {
-                    inQueue = in_array(elevator->_destinationQueue, elevator->_queueSize, destReq);
+                    inQueue = in_array(elevator->_requestQueue, elevator->_queueSize, destReq);
                     printf("inQueue = %d \n", inQueue);
                 }
 
@@ -100,8 +100,8 @@ void on_button_press(Elevator *elevator)
 
 void moving_elevator(Elevator *elevator)
 { // moves the elevator, updates states
-    MotorDirection direction = elevator->_destinationQueue[0]._buttonType;
-    int destinationFloor = elevator->_destinationQueue[0]._floor;
+    MotorDirection direction = elevator->_requestQueue[0]._button;
+    int destinationFloor = elevator->_requestQueue[0]._floor;
     if (elevator->_movingDirection == direction)
     {
         return;
@@ -131,7 +131,7 @@ void at_right_floor(Elevator *elevator)
     {
         return;
     }
-    if (elevator->_currentFloor == elevator->_destinationQueue[0]._floor)
+    if (elevator->_currentFloor == elevator->_requestQueue[0]._floor)
     {
         // elevator->_motorState = DIRN_STOP;
         elevio_motorDirection(DIRN_STOP);
@@ -141,7 +141,7 @@ void at_right_floor(Elevator *elevator)
         }
         else
         {
-            elevio_buttonLamp(elevator->_currentFloor, elevator->_destinationQueue[0]._buttonType, 0);
+            elevio_buttonLamp(elevator->_currentFloor, elevator->_requestQueue[0]._button, 0);
         }
         // elevator->_doorOpen = true;
         elevio_doorOpenLamp(1);
@@ -164,9 +164,9 @@ void at_right_floor(Elevator *elevator)
     moving_elevator(elevator);
 }
 
-void move_elevator_to_floor(Elevator *elevator, DestinationRequest destinationRequest)
+void move_elevator_to_floor(Elevator *elevator, Request destinationRequest)
 {
-    MotorDirection direction = button_type_to_motor_direction(destinationRequest._buttonType);
+    MotorDirection direction = button_type_to_motor_direction(destinationRequest._button);
     elevator->_movingDirection = direction;
 
     int floor = destinationRequest._floor;
