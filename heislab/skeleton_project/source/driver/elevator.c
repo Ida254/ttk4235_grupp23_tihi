@@ -15,9 +15,25 @@ void initialize_elevator(Elevator *elevator)
 
     elevator->current_floor = INITIAL_FLOOR;
     elevator->moving_direction = INITIAL_DIRECTION;
+    elevator->in_motion = false;
     elevator->request_queue = NULL;
     elevator->queue_size = 0;
     elevator->queue_capacity = 0;
+
+    // move to BOTTOM_FLOOR
+    int floor = elevio_floorSensor();
+    printf("Floor = %d \n", floor);
+    if (floor == BOTTOM_FLOOR)
+    {
+        return;
+    }
+
+    elevio_motorDirection(DIRN_DOWN);
+    while (floor != BOTTOM_FLOOR)
+    {
+        floor = elevio_floorSensor();
+    }
+    elevio_motorDirection(DIRN_STOP);
 }
 
 void free_elevator(Elevator *elevator)
@@ -61,7 +77,7 @@ void remove_request_from_queue(Elevator *elevator, int floor)
 }
 
 // thomas sin del
-void onbutton_press(Elevator *elevator)
+void on_button_press(Elevator *elevator)
 {
     int buttonPressed;
     for (int floor = 0; floor < N_FLOORS; floor++)
@@ -75,7 +91,7 @@ void onbutton_press(Elevator *elevator)
             {
                 printf("buttonPressed = %d \n", buttonPressed);
                 printf("floor = %d \n", floor);
-                MotorDirection dirReq = int_to_motor_direction(btn);
+                MotorDirection dirReq = int_to_motor_direction(btn); // db, should be a button here
                 printf("direction = %d \n", dirReq);
                 Request destReq = {floor, dirReq};
                 bool inQueue = false;
@@ -90,6 +106,9 @@ void onbutton_press(Elevator *elevator)
                 {
                     printf("Adding request to queue \n");
                     add_request_to_queue(elevator, destReq);
+                    printf("after add, sorting \n");
+                    sort_queue(elevator);
+                    printf("after sorting, floor = %d , direction = %d \n", elevator->request_queue->floor, elevator->request_queue->button);
                 }
             }
         }
@@ -98,9 +117,9 @@ void onbutton_press(Elevator *elevator)
 
 void moving_elevator(Elevator *elevator)
 { // moves the elevator, updates states
-    MotorDirection direction = elevator->request_queue[0].button;
+    // MotorDirection direction = elevator->request_queue[0].button;
     int destinationFloor = elevator->request_queue[0].floor;
-    if (elevator->moving_direction == direction)
+    if (elevator->in_motion)
     {
         return;
     }
@@ -108,45 +127,75 @@ void moving_elevator(Elevator *elevator)
     // elevator->moving_direction = direction;
     // printf("Moving elevator = %d \n", direction);
     // elevio_motorDirection(direction);
-    if (direction == DIRN_UP && elevator->current_floor > destinationFloor)
-    {
-        elevio_motorDirection(DIRN_DOWN);
-    }
-    else if (direction == DIRN_DOWN && elevator->current_floor < destinationFloor)
+    // if (direction == DIRN_UP && elevator->_currentFloor > destinationFloor)
+    // {
+    //     elevio_motorDirection(DIRN_DOWN);
+    //     elevator->_inMotion = true;
+    // }
+    // else if (direction == DIRN_DOWN && elevator->_currentFloor < destinationFloor)
+    // {
+    //     elevio_motorDirection(DIRN_UP);
+    //     elevator->_inMotion = true;
+    // }
+    // else
+    // {
+    //     elevio_motorDirection(direction);
+    //     elevator->_inMotion = true;
+    // }
+    int differenceInFloors = destinationFloor - elevator->current_floor;
+    if (differenceInFloors > 0)
     {
         elevio_motorDirection(DIRN_UP);
+        elevator->in_motion = true;
+    }
+    else if (differenceInFloors < 0)
+    {
+        elevio_motorDirection(DIRN_DOWN);
+        elevator->in_motion = true;
     }
     else
     {
-        elevio_motorDirection(direction);
+        elevio_motorDirection(DIRN_STOP);
+        elevator->in_motion = false;
     }
     return;
 }
 
-void at_rightfloor(Elevator *elevator)
+void at_right_floor(Elevator *elevator)
 { // as long as door is closed, check if at right floor
     if (elevator->queue_size == 0)
     {
+        printf("Queue is empty \n");
         return;
     }
+
+    int floor1 = elevio_floorSensor();
+    elevator->current_floor = floor1;
+
     if (elevator->current_floor == elevator->request_queue[0].floor)
     {
+        printf("At right floor for reeeaaaal!!! \n");
         // elevator->_motorState = DIRN_STOP;
         elevio_motorDirection(DIRN_STOP);
+        elevator->in_motion = false;
+        elevio_doorOpenLamp(1);
         if (elevator->current_floor == 0)
         {
             elevio_buttonLamp(elevator->current_floor, 0, 0);
+        }
+        else if (elevator->current_floor == 3)
+        {
+            elevio_buttonLamp(elevator->current_floor, 1, 0);
         }
         else
         {
             elevio_buttonLamp(elevator->current_floor, elevator->request_queue[0].button, 0);
         }
         // elevator->_doorOpen = true;
-        elevio_doorOpenLamp(1);
         time_t start_time = time(NULL);
         while (time(NULL) - start_time < 3)
         {
-            onbutton_press(elevator);
+            on_button_press(elevator);
             if (elevio_stopButton())
             {
                 elevio_motorDirection(DIRN_STOP);
@@ -158,7 +207,11 @@ void at_rightfloor(Elevator *elevator)
         // elevator->_doorOpen = false;
         // Ida: make 'remove from queue' function
     }
-
+    if (elevator->queue_size == 0)
+    {
+        printf("Queue is empty \n");
+        return;
+    }
     moving_elevator(elevator);
 }
 
@@ -188,7 +241,7 @@ void print_elevator(Elevator *elevator)
 {
     printf("Current floor: %d\n", elevator->current_floor);
     printf("Current moving direction: %s\n", motor_direction_to_string(elevator->moving_direction));
-    // printf("In motion: %s\n", bool_to_string(elevator->in_motion));
+    printf("In motion: %s\n", bool_to_string(elevator->in_motion));
 
     if (elevator->queue_size > 0)
     {
@@ -246,11 +299,11 @@ void test_elevator(void)
     print_elevator(&elevator);
 }
 
-int main()
-{
-    test_elevator();
-    // gcc -o elevator_program source/driver/elevator.c source/driver/request.c source/driver/elevio.c
-    // ./elevator_program
-    // rm ./elevator_program
-    return 0;
-}
+// int main()
+// {
+//     test_elevator();
+//     // gcc -o elevator_program source/driver/elevator.c source/driver/request.c source/driver/elevio.c
+//     // ./elevator_program
+//     // rm ./elevator_program
+//     return 0;
+// }

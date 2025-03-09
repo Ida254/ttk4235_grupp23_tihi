@@ -9,8 +9,8 @@ void run_elevator_program(Elevator *elevator)
 {
     while (1)
     {
-        int floor1 = elevio_floorSensor();
-        elevator->_currentFloor = floor1;
+        int floor = elevio_floorSensor();
+        elevator->current_floor = floor;
 
         // if (floor1 == 0)
         // {
@@ -59,5 +59,6 @@ int main()
     printf("Done with initializing\n");
     run_elevator_program(&elevator);
 
+    free_elevator(&elevator);
     return 0;
 }

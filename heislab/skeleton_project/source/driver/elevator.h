@@ -39,6 +39,7 @@ typedef struct
 {
     int current_floor;
     MotorDirection moving_direction;
+    bool in_motion;
     Request *request_queue;
     size_t queue_size;
     size_t queue_capacity;
@@ -100,6 +101,7 @@ void on_button_press(Elevator *elevator);
 
 // void move_elevator_to_floor(Elevator *elevator, Request destinationRequest);
 
+void on_button_press(Elevator *elevator);
 void moving_elevator(Elevator *elevator);
 void at_right_floor(Elevator *elevator);
 
