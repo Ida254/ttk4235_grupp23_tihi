@@ -30,13 +30,13 @@ const char *motor_direction_to_string(MotorDirection direction)
     }
 }
 
-const char *bool_to_string(bool trueOrFalse)
+const char *bool_to_string(bool true_or_false)
 {
-    if (trueOrFalse)
+    if (true_or_false)
     {
         return "TRUE";
     }
-    else if (!trueOrFalse)
+    else if (!true_or_false)
         return "FALSE";
     return "UNKNOWN";
 }
@@ -77,9 +77,9 @@ MotorDirection button_type_to_motor_direction(ButtonType btn)
     return motorDir;
 }
 
-void extend_requests(Request *arr1, size_t index, Request *arr2, size_t arr2Size)
+void extend_requests(Request *arr1, size_t index, Request *arr2, size_t arr2_size)
 {
-    for (size_t i = 0; i < arr2Size; i++)
+    for (size_t i = 0; i < arr2_size; i++)
     {
         arr1[index++] = arr2[i];
     }
@@ -108,11 +108,11 @@ void bubble_sort(Request *arr, size_t size, MotorDirection direction)
     }
 }
 
-void sort_requests(Request *arr, size_t arr_size, int currentFloor, MotorDirection movingDir)
+void sort_requests(Request *arr, size_t arr_size, int curr_floor, MotorDirection moving_dir)
 {
     Request tempArrAlpha[arr_size], tempArrBravo[arr_size], tempArrCharlie[arr_size];
     int alphaCount = 0, bravoCount = 0, charlieCount = 0;
-    MotorDirection otherDir = (movingDir == DIRN_DOWN) ? DIRN_UP : DIRN_DOWN;
+    MotorDirection otherDir = (moving_dir == DIRN_DOWN) ? DIRN_UP : DIRN_DOWN;
 
     for (size_t i = 0; i < arr_size; i++)
     {
@@ -121,16 +121,16 @@ void sort_requests(Request *arr, size_t arr_size, int currentFloor, MotorDirecti
         int isStop = (el.button == BUTTON_CAB);
         int buttonUp = (el.button == BUTTON_HALL_UP);
         int buttonDown = (el.button == BUTTON_HALL_DOWN);
-        int movingUp = (movingDir == DIRN_UP);
-        int movingDown = (movingDir == DIRN_DOWN);
+        int movingUp = (moving_dir == DIRN_UP);
+        int movingDown = (moving_dir == DIRN_DOWN);
 
         int forward = (movingUp && buttonUp) || (movingDown && buttonDown);
         if (isStop || forward)
         {
-            int inFront = (buttonUp && floor >= currentFloor) ||
-                          (buttonDown && floor <= currentFloor) ||
-                          (movingUp && isStop && floor >= currentFloor) ||
-                          (movingDown && isStop && floor <= currentFloor);
+            int inFront = (buttonUp && floor >= curr_floor) ||
+                          (buttonDown && floor <= curr_floor) ||
+                          (movingUp && isStop && floor >= curr_floor) ||
+                          (movingDown && isStop && floor <= curr_floor);
             if (!inFront)
             {
                 tempArrCharlie[charlieCount++] = el;
@@ -146,9 +146,9 @@ void sort_requests(Request *arr, size_t arr_size, int currentFloor, MotorDirecti
         }
     }
 
-    bubble_sort(tempArrAlpha, alphaCount, movingDir);
+    bubble_sort(tempArrAlpha, alphaCount, moving_dir);
     bubble_sort(tempArrBravo, bravoCount, otherDir);
-    bubble_sort(tempArrCharlie, charlieCount, movingDir);
+    bubble_sort(tempArrCharlie, charlieCount, moving_dir);
 
     // print_requests(tempArrAlpha, alphaCount); // db
     size_t index = 0;
@@ -160,9 +160,9 @@ void sort_requests(Request *arr, size_t arr_size, int currentFloor, MotorDirecti
     index += charlieCount;
 }
 
-void add_request(Request **arr, size_t *arrSize, size_t *capacity, Request newReq)
+void add_request(Request **arr, size_t *arr_size, size_t *capacity, Request new_req)
 {
-    if (*arrSize >= *capacity)
+    if (*arr_size >= *capacity)
     {
         *capacity = (*capacity == 0) ? 1 : (*capacity * 2);
         // printf("Resizing capacity to: %zu\n", *capacity); // db
@@ -176,27 +176,27 @@ void add_request(Request **arr, size_t *arrSize, size_t *capacity, Request newRe
         *arr = newQueue;
     }
 
-    (*arr)[(*arrSize)++] = newReq;
+    (*arr)[(*arr_size)++] = new_req;
 }
 
-void remove_request_byfloor(Request **arr, size_t *arrSize, size_t *capacity, int floor)
+void remove_request_byfloor(Request **arr, size_t *arr_size, size_t *capacity, int floor)
 {
-    for (size_t i = 0; i < *arrSize; i++)
+    for (size_t i = 0; i < *arr_size; i++)
     {
         if ((*arr)[i].floor == floor)
         {
-            for (size_t j = i; j < (*arrSize) - 1; j++)
+            for (size_t j = i; j < (*arr_size) - 1; j++)
             {
                 (*arr)[j] = (*arr)[j + 1]; // Shift left
             }
-            (*arrSize)--;
+            (*arr_size)--;
             i--;
         }
     }
 
-    if (*capacity > (*arrSize * 2))
+    if (*capacity > (*arr_size * 2))
     {
-        *capacity = *arrSize;
+        *capacity = *arr_size;
         *arr = realloc(*arr, (*capacity) * sizeof(Request));
         if (!*arr && *capacity > 0)
         {
@@ -205,11 +205,11 @@ void remove_request_byfloor(Request **arr, size_t *arrSize, size_t *capacity, in
     }
 }
 
-bool in_array(Request arr[], size_t size, Request destinationRequest)
+bool in_array(Request arr[], size_t size, Request req)
 {
     for (int i = 0; i < size; i++)
     {
-        if ((arr[i].floor == destinationRequest.floor) && (arr[i].button == destinationRequest.button))
+        if ((arr[i].floor == req.floor) && (arr[i].button == req.button))
         {
             return true;
         }
