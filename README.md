@@ -13,9 +13,9 @@ Before starting, move into the git repository.
    ```
 
 2. Ensure that the SSH Key is loaded
-  ```bash
-    ssh-add ~/Desktop/gruppe23_tihi/.ssh/id_ed25519
-  ```
+    ```bash
+      ssh-add ~/Desktop/gruppe23_tihi/.ssh/id_ed25519
+    ```
 
   * If you encounter an error try
     ```bash
