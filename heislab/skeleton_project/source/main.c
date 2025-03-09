@@ -54,8 +54,8 @@ int main()
     // elevio_motorDirection(DIRN_UP);
     printf("=== Cool Program ===\n");
     Elevator elevator; // Need to define it more
-    size_t queueCapacaty = 10;
-    initialize_elevator(&elevator, queueCapacaty);
+    // size_t queueCapacaty = 10;
+    initialize_elevator(&elevator);
     printf("Done with initializing\n");
     run_elevator_program(&elevator);
 

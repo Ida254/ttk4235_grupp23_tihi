@@ -5,6 +5,11 @@
 
 #pragma once
 
+#define BOTTOM_FLOOR 0
+#define TOP_FLOOR 10 // db, should be 3
+#define INITIAL_FLOOR 3
+#define INITIAL_DIRECTION DIRN_UP
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
@@ -12,7 +17,8 @@
 #include <time.h>
 #include <signal.h>
 #include <unistd.h>
-#include "DestinationRequest.h"
+// #include "DestinationRequest.h"
+#include "request.h"
 #include "elevio.h"
 
 /**
@@ -24,20 +30,16 @@
  * @param _currentFloor The current floor of the elevator.
  * @param _movingDirection The current movement direction, which can be either
  *        @c DIRN_UP or @c DIRN_DOWN.
- * @param _destinationQueue A queue of destination requests that helps the elevator
+ * @param _requestQueue A queue of destination requests that helps the elevator
  *        determine where to go next.
  * @param _queueSize The current number of elements in the destination queue.
- * @param _queueCapacity The maximum number of destination requests the queue can hold.
+//  * @param _queueCapacity The maximum number of destination requests the queue can hold.
  */
 typedef struct
 {
     int _currentFloor;
-    // bool _doorOpen;
-    bool _validFloor; // not floor 9 3/4
-    // bool _emergencyStop;
     MotorDirection _movingDirection;
-    // MotorDirection _motorState;
-    DestinationRequest *_destinationQueue;
+    Request *_requestQueue;
     size_t _queueSize;
     size_t _queueCapacity;
 } Elevator;
@@ -50,7 +52,7 @@ typedef struct
  * @param[in,out] elevator Pointer to the Elevator struct to be initialized.
  * @param[in] initialCapacity The initial capacity of the destination queue.
  */
-void initialize_elevator(Elevator *elevator, size_t initialCapacity);
+void initialize_elevator(Elevator *elevator);
 
 /**
  * @brief Frees memory allocated for the Elevator struct.
@@ -81,7 +83,7 @@ void sort_queue(Elevator *elevator);
  * @param[in,out] elevator Pointer to the Elevator struct.
  * @param[in] directionRequest The direction request to be added to the queue.
  */
-void add_request_to_queue(Elevator *elevator, DestinationRequest destinationRequest);
+void add_request_to_queue(Elevator *elevator, Request new_req);
 
 /**
  * @brief Removes a floor request from the Elevator's destination queue.
@@ -96,14 +98,16 @@ void remove_request_from_queue(Elevator *elevator, int floor);
 
 void on_button_press(Elevator *elevator);
 
-void move_elevator_to_floor(Elevator *elevator, DestinationRequest destinationRequest);
+// void move_elevator_to_floor(Elevator *elevator, Request destinationRequest);
 
 void moving_elevator(Elevator *elevator);
 void at_right_floor(Elevator *elevator);
+
+void print_elevator(Elevator *elevator);
 
 /**
  * @brief Runs a test for the sorting function.
  *
  * This function tests whether the elevator's queue sorting mechanism works correctly.
  */
-void test_sort_queue();
+void test_elevator();
