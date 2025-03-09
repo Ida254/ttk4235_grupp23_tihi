@@ -89,7 +89,7 @@ void bubble_sort(Request *arr, size_t size, MotorDirection direction)
 {
     if (size < 2)
     {
-        printf("Abort: arr_size too small, no need for sorting \n");
+        // printf("Abort: arr_size too small, no need for sorting \n");
         return;
     }
 

@@ -106,6 +106,8 @@ void on_button_press(Elevator *elevator);
 void moving_elevator(Elevator *elevator);
 void at_right_floor(Elevator *elevator);
 
+void stop_elevator(Elevator *elevator, int floor);
+
 /**
  * @brief Prints the memebers of the struct Elevator.
  *
