@@ -66,9 +66,9 @@ MotorDirection button_type_to_motor_direction(ButtonType btn)
     return motorDir;
 }
 
-void extend_requests(Request *arr1, size_t index, Request *arr2, size_t arr2_size)
+void extend_requests(Request *arr1, size_t index, Request *arr2, size_t arr2Size)
 {
-    for (size_t i = 0; i < arr2_size; i++)
+    for (size_t i = 0; i < arr2Size; i++)
     {
         arr1[index++] = arr2[i];
     }
@@ -76,6 +76,12 @@ void extend_requests(Request *arr1, size_t index, Request *arr2, size_t arr2_siz
 
 void bubble_sort(Request *arr, size_t size, MotorDirection direction)
 {
+    if (size < 2)
+    {
+        printf("Abort: arr_size too small, no need for sorting \n");
+        return;
+    }
+
     int reverse = (direction == DIRN_DOWN); // Sort descending if moving down
     for (size_t i = 0; i < size - 1; i++)
     {
@@ -91,14 +97,13 @@ void bubble_sort(Request *arr, size_t size, MotorDirection direction)
     }
 }
 
-void sort_requests(Request *arr, size_t req_size, int currentFloor, MotorDirection movingDir)
+void sort_requests(Request *arr, size_t arr_size, int currentFloor, MotorDirection movingDir)
 {
-    Request tempArrAlpha[req_size], tempArrBravo[req_size], tempArrCharlie[req_size];
+    Request tempArrAlpha[arr_size], tempArrBravo[arr_size], tempArrCharlie[arr_size];
     int alphaCount = 0, bravoCount = 0, charlieCount = 0;
-
     MotorDirection otherDir = (movingDir == DIRN_DOWN) ? DIRN_UP : DIRN_DOWN;
 
-    for (size_t i = 0; i < req_size; i++)
+    for (size_t i = 0; i < arr_size; i++)
     {
         Request el = arr[i];
         int floor = el._floor;
@@ -130,7 +135,6 @@ void sort_requests(Request *arr, size_t req_size, int currentFloor, MotorDirecti
         }
     }
 
-    // Sorting the three priority lists
     bubble_sort(tempArrAlpha, alphaCount, movingDir);
     bubble_sort(tempArrBravo, bravoCount, otherDir);
     bubble_sort(tempArrCharlie, charlieCount, movingDir);
@@ -145,9 +149,9 @@ void sort_requests(Request *arr, size_t req_size, int currentFloor, MotorDirecti
     index += charlieCount;
 }
 
-void add_request(Request **arr, size_t *arr_size, size_t *capacity, Request new_req)
+void add_request(Request **arr, size_t *arrSize, size_t *capacity, Request newReq)
 {
-    if (*arr_size >= *capacity)
+    if (*arrSize >= *capacity)
     {
         *capacity = (*capacity == 0) ? 1 : (*capacity * 2);
         // printf("Resizing capacity to: %zu\n", *capacity); // db
@@ -161,27 +165,27 @@ void add_request(Request **arr, size_t *arr_size, size_t *capacity, Request new_
         *arr = newQueue;
     }
 
-    (*arr)[(*arr_size)++] = new_req;
+    (*arr)[(*arrSize)++] = newReq;
 }
 
-void remove_request_by_floor(Request **arr, size_t *arr_size, size_t *capacity, int floor)
+void remove_request_by_floor(Request **arr, size_t *arrSize, size_t *capacity, int floor)
 {
-    for (size_t i = 0; i < *arr_size; i++)
+    for (size_t i = 0; i < *arrSize; i++)
     {
         if ((*arr)[i]._floor == floor)
         {
-            for (size_t j = i; j < (*arr_size) - 1; j++)
+            for (size_t j = i; j < (*arrSize) - 1; j++)
             {
                 (*arr)[j] = (*arr)[j + 1]; // Shift left
             }
-            (*arr_size)--;
+            (*arrSize)--;
             i--;
         }
     }
 
-    if (*capacity > (*arr_size * 2))
+    if (*capacity > (*arrSize * 2))
     {
-        *capacity = *arr_size;
+        *capacity = *arrSize;
         *arr = realloc(*arr, (*capacity) * sizeof(Request));
         if (!*arr && *capacity > 0)
         {

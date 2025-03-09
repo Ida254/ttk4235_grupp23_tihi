@@ -34,23 +34,22 @@ void sort_queue(Elevator *elevator)
         return;
     }
 
-    // printf("Elevator pointer address: %p\n", (void *)elevator);         // db
+    // printf("Elevator pointer address: %p\n", (void *)elevator); // db         // db
 
     size_t queueSize = elevator->_queueSize;
     int currFloor = elevator->_currentFloor;
     MotorDirection currMovingDir = elevator->_movingDirection;
-
     sort_requests(elevator->_requestQueue, queueSize, currFloor, currMovingDir);
 }
 
-void add_request_to_queue(Elevator *elevator, Request new_req)
+void add_request_to_queue(Elevator *elevator, Request newReq)
 {
     size_t *queueSize = &elevator->_queueSize;
     size_t *queueCapacity = &elevator->_queueCapacity;
 
-    add_request(&elevator->_requestQueue, queueSize, queueCapacity, new_req);
+    add_request(&elevator->_requestQueue, queueSize, queueCapacity, newReq);
 
-    // sort_queue(elevator); // db, there are issues ... i dont know why
+    sort_queue(elevator);
 }
 
 void remove_request_from_queue(Elevator *elevator, int floor)
@@ -230,10 +229,12 @@ void test_elevator(void)
     {
         add_request_to_queue(&elevator, initial_requests[i]);
     }
+    printf("\nBefore sorting \n");
+    print_elevator(&elevator);
 
-    sort_queue(&elevator);
+    // sort_queue(&elevator);
 
-    printf("\nBefore removing \n");
+    printf("\nAfter sorting, before removing \n");
     print_elevator(&elevator);
 
     remove_request_from_queue(&elevator, 5);
@@ -244,11 +245,11 @@ void test_elevator(void)
     print_elevator(&elevator);
 }
 
-// int main()
-// {
-//     test_elevator();
-//     // gcc -o elevator_program source/driver/elevator.c source/driver/request.c source/driver/elevio.c
-//     // ./elevator_program
-//     // rm ./elevator_program
-//     return 0;
-// }
+int main()
+{
+    test_elevator();
+    // gcc -o elevator_program source/driver/elevator.c source/driver/request.c source/driver/elevio.c
+    // ./elevator_program
+    // rm ./elevator_program
+    return 0;
+}

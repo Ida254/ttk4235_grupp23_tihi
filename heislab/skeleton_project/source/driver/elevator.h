@@ -83,7 +83,7 @@ void sort_queue(Elevator *elevator);
  * @param[in,out] elevator Pointer to the Elevator struct.
  * @param[in] directionRequest The direction request to be added to the queue.
  */
-void add_request_to_queue(Elevator *elevator, Request new_req);
+void add_request_to_queue(Elevator *elevator, Request newReq);
 
 /**
  * @brief Removes a floor request from the Elevator's destination queue.
