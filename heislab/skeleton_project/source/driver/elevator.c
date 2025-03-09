@@ -219,14 +219,14 @@ void test_elevator(void)
 
     sort_queue(&elevator);
 
-    printf("\n Before removing \n");
+    printf("\nBefore removing \n");
     print_elevator(&elevator);
 
     remove_request_from_queue(&elevator, 5);
     remove_request_from_queue(&elevator, 2);
     remove_request_from_queue(&elevator, 3);
 
-    printf("\n After removing ");
+    printf("\nAfter removing ");
     print_elevator(&elevator);
 }
 
