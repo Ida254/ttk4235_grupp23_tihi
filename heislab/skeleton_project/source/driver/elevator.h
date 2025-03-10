@@ -106,7 +106,6 @@ void on_button_press(Elevator *elevator);
 void on_button_press(Elevator *elevator);
 void moving_elevator(Elevator *elevator);
 void at_right_floor(Elevator *elevator);
-void switch_direction(Elevator *elevator);
 
 void switch_direction(Elevator *elevator);
 void stop_elevator_at_floor(Elevator *elevator, int floor);

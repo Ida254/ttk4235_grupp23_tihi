@@ -173,7 +173,7 @@ void at_right_floor(Elevator *elevator)
         printf("Queue is empty \n");
         return;
     }
-    switch_direction(elevator);
+    // switch_direction(elevator);
     moving_elevator(elevator);
 }
 
@@ -254,17 +254,6 @@ void print_elevator(Elevator *elevator)
 
     printf("Queue size: %zu\n", elevator->queue_size);
     printf("Queue capacity: %zu\n", elevator->queue_capacity);
-}
-
-void switch_direction(Elevator *elevator)
-{
-    if (elevator->moving_direction == button_type_to_motor_direction(elevator->request_queue[0].button))
-    {
-        return;
-    }
-
-    elevator->moving_direction = button_type_to_motor_direction(elevator->request_queue[0].button);
-    printf("Direction switched \n"); // db
 }
 
 void test_elevator(void)
