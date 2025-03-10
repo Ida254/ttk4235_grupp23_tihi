@@ -177,6 +177,7 @@ void at_right_floor(Elevator *elevator)
         // elevator->_motorState = DIRN_STOP;
         elevio_motorDirection(DIRN_STOP);
         elevator->in_motion = false;
+        elevator->motor_state = 0;
         elevator->last_floor = floor;
         elevio_doorOpenLamp(1);
         if (elevator->current_floor == BOTTOM_FLOOR)
