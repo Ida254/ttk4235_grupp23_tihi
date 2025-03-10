@@ -211,6 +211,16 @@ void switch_direction(Elevator *elevator)
     printf("Switched direction \n");
 }
 
+void rest_elevator(Elevator *elevator)
+{
+    time_t start_time = time(NULL);
+    while (time(NULL) - start_time < 3)
+    {
+        on_button_press(elevator);
+        check_emergency_stop();
+    }
+}
+
 void stop_elevator_at_floor(Elevator *elevator, int floor)
 {
     elevio_motorDirection(DIRN_STOP);
@@ -222,17 +232,12 @@ void stop_elevator_at_floor(Elevator *elevator, int floor)
     elevio_doorOpenLamp(1);
 }
 
-void rest_elevator(Elevator *elevator)
+void check_emergency_stop()
 {
-    time_t start_time = time(NULL);
-    while (time(NULL) - start_time < 3)
+    if (elevio_stopButton())
     {
-        on_button_press(elevator);
-        if (elevio_stopButton())
-        {
-            elevio_motorDirection(DIRN_STOP);
-            kill(getpid(), SIGKILL); // Forcefully stops the program
-        }
+        elevio_motorDirection(DIRN_STOP);
+        kill(getpid(), SIGKILL); // Forcefully stops the program
     }
 }
 
