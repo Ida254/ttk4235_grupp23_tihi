@@ -154,42 +154,15 @@ void at_right_floor(Elevator *elevator)
     elevator->current_floor = elevio_floorSensor();
     int currFloor = elevator->current_floor;
     Request req = elevator->request_queue[0];
-    // int floorSensored = elevio_floorSensor();
-    // elevator->current_floor = floorSensored;
 
     if (currFloor == req.floor)
     {
         printf("At floor %d \n", currFloor);
-        stop_elevator(elevator);
-        // elevio_motorDirection(DIRN_STOP);
-        // elevator->in_motion = false;
-        elevio_stopLamp(currFloor);
-        elevio_doorOpenLamp(1);
-        // if (currFloor == BOTTOM_FLOOR)
-        // {
-        //     elevio_buttonLamp(currFloor, BUTTON_HALL_UP, 0);
-        // }
-        // else if (currFloor == TOP_FLOOR) // db, change to 3 in 'elevator.h' later
-        // {
-        //     elevio_buttonLamp(currFloor, BUTTON_HALL_DOWN, 0);
-        // }
-        // else
-        // {
-        //     elevio_buttonLamp(currFloor, req.button, 0);
-        // }
-        // elevator->_doorOpen = true;
-        time_t start_time = time(NULL);
-        while (time(NULL) - start_time < 3)
-        {
-            on_button_press(elevator);
-            if (elevio_stopButton())
-            {
-                elevio_motorDirection(DIRN_STOP);
-                kill(getpid(), SIGKILL); // Forcefully stops the program
-            }
-        }
+        stop_elevator_at_floor(elevator, currFloor);
+
+        rest_elevator(elevator);
+
         elevio_doorOpenLamp(0);
-        remove_request_from_queue(elevator, currFloor);
         // elevator->_doorOpen = false;
         // Ida: make 'remove from queue' function
     }
@@ -235,14 +208,29 @@ void switch_direction(Elevator *elevator)
     printf("Switched direction \n");
 }
 
-void stop_elevator(Elevator *elevator)
+void stop_elevator_at_floor(Elevator *elevator, int floor)
 {
-    int currFloor = elevator->current_floor;
     elevio_motorDirection(DIRN_STOP);
     elevator->in_motion = false;
-    remove_request_from_queue(elevator, currFloor);
+    remove_request_from_queue(elevator, floor);
     switch_direction(elevator);
-    elevio_buttonLamp(currFloor, elevator->moving_direction, 0);
+    elevio_buttonLamp(floor, elevator->moving_direction, 0);
+    elevio_stopLamp(floor);
+    elevio_doorOpenLamp(1);
+}
+
+void rest_elevator(Elevator *elevator)
+{
+    time_t start_time = time(NULL);
+    while (time(NULL) - start_time < 3)
+    {
+        on_button_press(elevator);
+        if (elevio_stopButton())
+        {
+            elevio_motorDirection(DIRN_STOP);
+            kill(getpid(), SIGKILL); // Forcefully stops the program
+        }
+    }
 }
 
 void print_elevator(Elevator *elevator)

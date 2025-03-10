@@ -107,7 +107,8 @@ void moving_elevator(Elevator *elevator);
 void at_right_floor(Elevator *elevator);
 
 void switch_direction(Elevator *elevator);
-void stop_elevator(Elevator *elevator);
+void stop_elevator_at_floor(Elevator *elevator, int floor);
+void rest_elevator(Elevator *elevator);
 
 /**
  * @brief Prints the memebers of the struct Elevator.
