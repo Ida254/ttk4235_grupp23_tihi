@@ -216,12 +216,12 @@ void at_right_floor(Elevator *elevator) // as long as door is closed, check if a
 void switch_direction(Elevator *elevator)
 {
     int currFloor = elevator->current_floor;
-    MotorDirection currDir = elevator->moving_direction;
+    MotorDirection *currDir = &elevator->moving_direction;
 
     if (currFloor == BOTTOM_FLOOR || currFloor == TOP_FLOOR)
     {
-        MotorDirection newDir = currDir == DIRN_DOWN ? DIRN_UP : DIRN_DOWN;
-        currDir = newDir;
+        MotorDirection newDir = *currDir == DIRN_DOWN ? DIRN_UP : DIRN_DOWN;
+        *currDir = newDir;
         sort_queue(elevator);
         return;
     }
@@ -232,12 +232,12 @@ void switch_direction(Elevator *elevator)
     }
 
     Request new_req = elevator->request_queue[0];
-    if (elevator->moving_direction != button_type_to_motor_direction(new_req.button))
+    if (*currDir != button_type_to_motor_direction(new_req.button))
     {
         return;
     }
 
-    elevator->moving_direction = button_type_to_motor_direction(new_req.button);
+    *currDir = button_type_to_motor_direction(new_req.button);
     sort_queue(elevator);
     printf("Switched direction \n");
 }
