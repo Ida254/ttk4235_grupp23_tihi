@@ -7,6 +7,19 @@
 
 void run_elevator_program(Elevator *elevator)
 {
+    initialize_elevator(elevator);
+    elevio_floorIndicator(0);
+    elevio_doorOpenLamp(0);
+    elevio_stopLamp(0);
+    for (int floor = 0; floor < N_FLOORS; floor++)
+    {
+        for (int btn = 0; btn < N_BUTTONS; btn++)
+        {
+            elevio_buttonLamp(floor, btn, 0);
+        }
+    }
+    printf("Done with initializing\n");
+    print_elevator(elevator);
     while (1)
     {
         int floor = elevio_floorSensor();
@@ -21,10 +34,27 @@ void run_elevator_program(Elevator *elevator)
         //     elevio_motorDirection(DIRN_DOWN);
         // }
         at_right_floor(elevator);
+        // elevio_floorIndicator(elevator->last_floor);
 
         on_button_press(elevator); // execute if button is pressed, and add to queue
 
         at_right_floor(elevator);
+
+        // checking if elevator goes out of bounce
+        if (floor == BOTTOM_FLOOR && elevator->motor_state < 0)
+        {
+            elevio_motorDirection(DIRN_STOP);
+            printf("Elevator out of bounce \n");
+            elevio_stopLamp(1);
+            kill(getpid(), SIGKILL); // Forcefully stops the program
+        }
+        else if (floor == TOP_FLOOR && elevator->motor_state > 0)
+        {
+            elevio_motorDirection(DIRN_STOP);
+            printf("Elevator out of bounce \n");
+            elevio_stopLamp(1);
+            kill(getpid(), SIGKILL); // Forcefully stops the program
+        }
 
         // if (elevio_obstruction())
         // {
@@ -38,6 +68,8 @@ void run_elevator_program(Elevator *elevator)
         if (elevio_stopButton())
         {
             elevio_motorDirection(DIRN_STOP);
+            printf("Stop button pressed \n");
+            elevio_stopLamp(1);
             kill(getpid(), SIGKILL); // Forcefully stops the program
         }
 
@@ -56,11 +88,7 @@ int main()
     printf("=== Cool Program ===\n");
     Elevator elevator; // Need to define it more
     // size_t queueCapacaty = 10;
-    initialize_elevator(&elevator);
-    printf("Done with initializing\n");
-    print_elevator(&elevator);
     run_elevator_program(&elevator);
-
     free_elevator(&elevator);
     return 0;
 }

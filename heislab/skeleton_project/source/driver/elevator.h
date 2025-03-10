@@ -45,6 +45,7 @@ typedef struct
     size_t queue_size;
     size_t queue_capacity;
     int last_floor;
+    int motor_state;
 } Elevator;
 
 /**
