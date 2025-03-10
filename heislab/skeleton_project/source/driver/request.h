@@ -14,7 +14,8 @@ typedef struct
 const char *button_to_string(ButtonType button);
 const char *motor_direction_to_string(MotorDirection direction);
 const char *bool_to_string(bool true_or_false);
-MotorDirection int_to_motor_direction(int button);
+ButtonType int_to_button_type(int integer);
+MotorDirection int_to_motor_direction(int integer);
 MotorDirection button_type_to_motor_direction(ButtonType btn);
 
 void extend_requests(Request *arr1, size_t index, Request *arr2, size_t arr2_size);

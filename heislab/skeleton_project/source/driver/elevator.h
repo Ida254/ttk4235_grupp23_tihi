@@ -104,6 +104,8 @@ void on_button_press(Elevator *elevator);
 // void move_elevator_to_floor(Elevator *elevator, Request destinationRequest);
 
 void on_button_press(Elevator *elevator);
+bool button_pressed(Request *req);
+
 void moving_elevator(Elevator *elevator);
 void at_right_floor(Elevator *elevator);
 

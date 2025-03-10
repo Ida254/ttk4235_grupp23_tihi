@@ -23,7 +23,6 @@ void initialize_elevator(Elevator *elevator)
 
     // move to BOTTOM_FLOOR
     int floor = elevio_floorSensor();
-    // printf("Floor = %d \n", floor);
     if (floor == BOTTOM_FLOOR)
     {
         return;
@@ -68,8 +67,9 @@ void add_request_to_queue(Elevator *elevator, Request new_req)
 
     if (in_array(elevator->request_queue, *queueSize, new_req))
     {
-        printf("New req already in the queue");              // db
-        print_requests(elevator->request_queue, *queueSize); // db
+        // printf("New req already in the queue \n   ");        // db
+        // print_request(new_req);                              // db
+        // print_requests(elevator->request_queue, *queueSize); // db
         return;
     }
     add_request(&elevator->request_queue, queueSize, queueCapacity, new_req);
@@ -92,50 +92,42 @@ void remove_request_from_queue(Elevator *elevator, int floor)
 // thomas sin del
 void on_button_press(Elevator *elevator)
 {
-    int buttonPressed;
+    Request new_req;
+
+    if (button_pressed(&new_req))
+    {
+        elevio_buttonLamp(new_req.floor, new_req.button, 1);
+
+        add_request_to_queue(elevator, new_req);
+    }
+}
+
+bool button_pressed(Request *req)
+{
     for (int floor = 0; floor < N_FLOORS; floor++)
     {
         for (int btn = 0; btn < N_BUTTONS; btn++)
         {
-            buttonPressed = elevio_callButton(floor, btn);
-            elevio_buttonLamp(floor, btn, buttonPressed);
-
-            if (buttonPressed)
+            if (elevio_callButton(floor, btn))
             {
-                // printf("buttonPressed = %d \n", buttonPressed);
-                // printf("floor = %d \n", floor);
-                MotorDirection dirReq = int_to_motor_direction(btn); // db, should be a button here
-                // printf("direction = %d \n", dirReq);
-                Request destReq = {floor, dirReq};
-                // bool inQueue = false;
-
-                // if (elevator->queue_size != 0) // db, there are an error here ... check out
-                // {
-                //     inQueue = in_array(elevator->request_queue, elevator->queue_size, destReq);
-                //     printf("inQueue = %d \n", inQueue);
-                // }
-
-                // if (!inQueue)
-                // {
-                //     printf("Adding request to queue \n"); // db
-                add_request_to_queue(elevator, destReq);
-                // printf("after add, sorting \n");
-                // sort_queue(elevator);
-                // printf("after sorting, floor = %d , direction = %d \n", elevator->request_queue->floor, elevator->request_queue->button);
-                // }
+                req->floor = floor;
+                req->button = btn;
+                return true;
             }
         }
     }
+
+    return false;
 }
 
 void moving_elevator(Elevator *elevator)
-{ // moves the elevator, updates states
-    // MotorDirection direction = elevator->request_queue[0].button;
-    int destinationFloor = elevator->request_queue[0].floor;
-    if (elevator->in_motion)
+{
+    if (elevator->queue_size == 0 || elevator->in_motion)
     {
         return;
     }
+
+    int destinationFloor = elevator->request_queue[0].floor;
 
     int differenceInFloors = destinationFloor - elevator->current_floor;
     MotorDirection direction = (differenceInFloors > 0) ? DIRN_UP : (differenceInFloors < 0) ? DIRN_DOWN
@@ -145,35 +137,33 @@ void moving_elevator(Elevator *elevator)
     elevio_motorDirection(direction);
 }
 
-void at_right_floor(Elevator *elevator)
-{ // as long as door is closed, check if at right floor
+void at_right_floor(Elevator *elevator) // as long as door is closed, check if at right floor
+{
     if (elevator->queue_size == 0)
     {
-        // printf("Queue is empty \n"); // db
         return;
     }
 
     elevator->current_floor = elevio_floorSensor();
     int currFloor = elevator->current_floor;
+
+    if (currFloor != -1)
+    {
+        elevio_floorIndicator(currFloor);
+    }
+
     Request req = elevator->request_queue[0];
 
     if (currFloor == req.floor)
     {
-        printf("At floor %d \n", currFloor); // db
+        // printf("At floor %d \n", currFloor); // db
         stop_elevator_at_floor(elevator, currFloor);
 
         rest_elevator(elevator);
 
         elevio_doorOpenLamp(0);
-        // elevator->_doorOpen = false;
-        // Ida: make 'remove from queue' function
     }
-    if (elevator->queue_size == 0)
-    {
-        printf("Queue is empty \n");
-        return;
-    }
-    // switch_direction(elevator);
+
     moving_elevator(elevator);
 }
 
@@ -205,6 +195,7 @@ void switch_direction(Elevator *elevator)
     {
         return;
     }
+
     Request new_req = elevator->request_queue[0];
     if (elevator->moving_direction != button_type_to_motor_direction(new_req.button))
     {
@@ -229,9 +220,10 @@ void stop_elevator_at_floor(Elevator *elevator, int floor)
 {
     elevio_motorDirection(DIRN_STOP);
     elevator->in_motion = false;
+    elevio_buttonLamp(floor, elevator->request_queue[0].button, 0);
     remove_request_from_queue(elevator, floor);
+
     switch_direction(elevator);
-    elevio_buttonLamp(floor, elevator->moving_direction, 0);
     elevio_doorOpenLamp(1);
 }
 
@@ -261,7 +253,7 @@ void print_elevator(Elevator *elevator)
     }
 
     printf("Queue size: %zu\n", elevator->queue_size);
-    printf("Queue capacity: %zu\n", elevator->queue_capacity);
+    printf("Queue capacity: %zu\n\n", elevator->queue_capacity);
 }
 
 void test_elevator(void)

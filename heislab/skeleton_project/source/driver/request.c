@@ -41,10 +41,28 @@ const char *bool_to_string(bool true_or_false)
     return "UNKNOWN";
 }
 
-MotorDirection int_to_motor_direction(int button)
+ButtonType int_to_button_type(int integer)
+{
+    ButtonType button;
+    switch (integer)
+    {
+    case 0:
+        button = BUTTON_HALL_UP;
+        break;
+    case 1:
+        button = BUTTON_HALL_DOWN;
+        break;
+    default:
+        button = BUTTON_CAB;
+        break;
+    }
+    return button;
+}
+
+MotorDirection int_to_motor_direction(int integer)
 {
     MotorDirection motorDir;
-    switch (button)
+    switch (integer)
     {
     case -1:
         motorDir = DIRN_DOWN;
@@ -87,7 +105,6 @@ void extend_requests(Request *arr1, size_t index, Request *arr2, size_t arr2_siz
 
 void bubble_sort(Request *arr, size_t size, MotorDirection direction)
 {
-    printf("Queuesize = %zu \n", size);
     if (size <= 1)
     {
         // printf("Abort: arr_size %zu, no need for sorting \n", size); // db
@@ -191,8 +208,11 @@ void remove_request_by_floor(Request **arr, size_t *arr_size, size_t *capacity, 
 {
     for (size_t i = 0; i < *arr_size; i++)
     {
-        if ((*arr)[i].floor == floor)
+        Request req_el = (*arr)[i];
+        if (req_el.floor == floor)
         {
+            elevio_buttonLamp(req_el.floor, req_el.button, 0);
+
             for (size_t j = i; j < (*arr_size) - 1; j++)
             {
                 (*arr)[j] = (*arr)[j + 1]; // Shift left
@@ -243,7 +263,7 @@ void print_requests(Request arr[], size_t size)
     for (size_t i = 0; i < size; i++)
     {
         el = arr[i];
-        printf("%zu. ", i);
+        printf("   %zu. ", i);
         print_request(el);
     }
 }
