@@ -39,12 +39,12 @@
 typedef struct
 {
     int current_floor;
+    int last_floor;
     MotorDirection moving_direction;
     bool in_motion;
     Request *request_queue;
     size_t queue_size;
     size_t queue_capacity;
-    int last_floor;
 } Elevator;
 
 /**
@@ -189,7 +189,7 @@ void stop_elevator_at_floor(Elevator *elevator, int floor);
  * If an emergency stop is detected, the elevator stops immediately and takes
  * appropriate safety measures.
  */
-void check_emergency_stop();
+void check_emergency_stop(Elevator *elevator);
 
 /**
  * @brief Prints the memebers of the struct Elevator.

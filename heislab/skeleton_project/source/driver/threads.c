@@ -24,9 +24,17 @@ void *floor_listener(void *arg)
 
 void *emergency_listener(void *arg)
 {
+    Elevator *elevator = (Elevator *)arg;
+
+    if (!elevator)
+    {
+        // printf("Error: Elevator is NULL in emergency_listener\n");
+        return NULL;
+    }
+
     while (1)
     {
-        check_emergency_stop();                                   // Constantly monitor if the emergency stop is triggered
+        check_emergency_stop(elevator);                           // Constantly monitor if the emergency stop is triggered
         nanosleep(&(struct timespec){0, 10 * 1000 * 1000}, NULL); // Sleep for 10ms
     }
     return NULL;

@@ -14,12 +14,12 @@ void initialize_elevator(Elevator *elevator)
     }
 
     elevator->current_floor = INITIAL_FLOOR;
+    elevator->last_floor = INITIAL_FLOOR;
     elevator->moving_direction = INITIAL_DIRECTION;
     elevator->in_motion = false;
     elevator->request_queue = NULL;
     elevator->queue_size = 0;
     elevator->queue_capacity = 0;
-    elevator->last_floor = 0;
 
     // move to BOTTOM_FLOOR
     int floor = elevio_floorSensor();
@@ -61,9 +61,9 @@ void sort_queue(Elevator *elevator)
         return;
     }
 
-    int currFloor = elevator->current_floor;
+    int lastFloor = elevator->last_floor;
     MotorDirection currMovingDir = elevator->moving_direction;
-    sort_requests(elevator->request_queue, queueSize, currFloor, currMovingDir);
+    sort_requests(elevator->request_queue, queueSize, lastFloor, currMovingDir);
 }
 
 void add_request_to_queue(Elevator *elevator, Request new_req)
@@ -200,7 +200,7 @@ void rest_elevator(Elevator *elevator)
     while (time(NULL) - start_time < 3)
     {
         on_button_press(elevator);
-        check_emergency_stop();
+        check_emergency_stop(elevator);
     }
 }
 
@@ -209,7 +209,8 @@ void stop_elevator_at_floor(Elevator *elevator, int floor)
     elevio_motorDirection(DIRN_STOP);
     elevator->in_motion = false;
     elevio_buttonLamp(floor, elevator->request_queue[0].button, 0);
-    switch_direction(elevator);
+    elevator->last_floor = floor;
+    switch_direction(elevator); // db, might be issues here ...
 
     remove_request_from_queue(elevator, floor);
     elevio_doorOpenLamp(1);
@@ -220,9 +221,12 @@ void stop_elevator_at_floor(Elevator *elevator, int floor)
     // print_elevator(elevator); // db
 }
 
-void check_emergency_stop()
+void check_emergency_stop(Elevator *elevator)
 {
-    if (elevio_stopButton())
+    int currFloor = elevator->current_floor;
+    MotorDirection currDir = elevator->moving_direction;
+    bool invalidMovement = (currFloor == BOTTOM_FLOOR && currDir == DIRN_DOWN) || (currFloor == TOP_FLOOR && currDir == DIRN_UP);
+    if (elevio_stopButton() || invalidMovement)
     {
         elevio_motorDirection(DIRN_STOP);
         kill(getpid(), SIGKILL); // Forcefully stops the program
@@ -233,6 +237,7 @@ void print_elevator(Elevator *elevator)
 {
     printf("Elevator \n");
     printf("Current floor: %d\n", elevator->current_floor);
+    printf("Last floor: %d\n", elevator->last_floor);
     printf("Current moving direction: %s\n", motor_direction_to_string(elevator->moving_direction));
     printf("In motion: %s\n", bool_to_string(elevator->in_motion));
 

@@ -61,10 +61,10 @@ void sort_requests(Request *arr, size_t arr_size, int curr_floor, MotorDirection
         int forward = (movingUp && buttonUp) || (movingDown && buttonDown);
         if (isStop || forward)
         {
-            int inFront = (buttonUp && floor >= curr_floor) ||
-                          (buttonDown && floor <= curr_floor) ||
-                          (movingUp && isStop && floor >= curr_floor) ||
-                          (movingDown && isStop && floor <= curr_floor);
+            int inFront = (buttonUp && floor > curr_floor) ||
+                          (buttonDown && floor < curr_floor) ||
+                          (movingUp && isStop && floor > curr_floor) ||
+                          (movingDown && isStop && floor < curr_floor);
             if (!inFront)
             {
                 tempArrCharlie[charlieCount++] = el;
