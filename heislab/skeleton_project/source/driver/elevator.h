@@ -67,6 +67,8 @@ void initialize_elevator(Elevator *elevator);
  */
 void free_elevator(Elevator *elevator);
 
+void run_Elevator_program(Elevator *elevator);
+
 /**
  * @brief Sorts the destination queue in the Elevator struct.
  *
