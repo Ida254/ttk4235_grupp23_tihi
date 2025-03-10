@@ -89,10 +89,10 @@ void on_button_press(Elevator *elevator)
         for (int btn = 0; btn < N_BUTTONS; btn++)
         {
             buttonPressed = elevio_callButton(floor, btn);
-            elevio_buttonLamp(floor, btn, buttonPressed);
 
             if (buttonPressed)
             {
+                elevio_buttonLamp(floor, btn, 1);
                 // printf("buttonPressed = %d \n", buttonPressed);
                 // printf("floor = %d \n", floor);
                 MotorDirection dirReq = int_to_motor_direction(btn); // db, should be a button here
@@ -163,6 +163,11 @@ void at_right_floor(Elevator *elevator)
 
     int floor = elevio_floorSensor();
     elevator->current_floor = floor;
+
+    if (floor != -1)
+    {
+        elevio_floorIndicator(floor);
+    }
 
     if (elevator->current_floor == elevator->request_queue[0].floor)
     {
