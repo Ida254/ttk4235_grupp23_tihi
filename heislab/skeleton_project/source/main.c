@@ -21,10 +21,12 @@ void run_elevator_program(Elevator *elevator)
         //     elevio_motorDirection(DIRN_DOWN);
         // }
         at_right_floor(elevator);
+        elevio_floorIndicator(elevator->last_floor);
 
         on_button_press(elevator); // execute if button is pressed, and add to queue
 
         at_right_floor(elevator);
+        elevio_floorIndicator(elevator->last_floor);
 
         // if (elevio_obstruction())
         // {
@@ -38,6 +40,7 @@ void run_elevator_program(Elevator *elevator)
         if (elevio_stopButton())
         {
             elevio_motorDirection(DIRN_STOP);
+            elevio_stopLamp(1);
             kill(getpid(), SIGKILL); // Forcefully stops the program
         }
 

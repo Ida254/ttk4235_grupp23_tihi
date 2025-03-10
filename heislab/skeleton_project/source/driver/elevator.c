@@ -191,6 +191,7 @@ void at_right_floor(Elevator *elevator)
             if (elevio_stopButton())
             {
                 elevio_motorDirection(DIRN_STOP);
+                elevio_stopLamp(1);
                 kill(getpid(), SIGKILL); // Forcefully stops the program
             }
         }
