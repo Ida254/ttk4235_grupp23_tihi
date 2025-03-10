@@ -201,6 +201,10 @@ void at_right_floor(Elevator *elevator)
 
 void switch_direction(Elevator *elevator)
 {
+    if (elevator->queue_size == 0)
+    {
+        return;
+    }
     Request new_req = elevator->request_queue[0];
     if (elevator->moving_direction != button_type_to_motor_direction(new_req.button))
     {
@@ -228,7 +232,6 @@ void stop_elevator_at_floor(Elevator *elevator, int floor)
     remove_request_from_queue(elevator, floor);
     switch_direction(elevator);
     elevio_buttonLamp(floor, elevator->moving_direction, 0);
-    elevio_stopLamp(floor);
     elevio_doorOpenLamp(1);
 }
 
