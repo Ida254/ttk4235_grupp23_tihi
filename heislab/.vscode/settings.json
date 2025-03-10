@@ -1,6 +1,7 @@
 {
-    "files.associations": {
-        "stdbool.h": "c",
-        "random": "c"
-    }
+  "files.associations": {
+    "stdbool.h": "c",
+    "random": "c",
+    "threads.h": "c"
+  }
 }
