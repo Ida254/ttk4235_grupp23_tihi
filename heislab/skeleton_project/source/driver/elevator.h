@@ -6,7 +6,7 @@
 #pragma once
 
 #define BOTTOM_FLOOR 0
-#define TOP_FLOOR 10 // db, should be 3
+#define TOP_FLOOR 3 // db, should be 3
 #define INITIAL_FLOOR 3
 #define INITIAL_DIRECTION DIRN_UP
 
@@ -106,7 +106,8 @@ void on_button_press(Elevator *elevator);
 void moving_elevator(Elevator *elevator);
 void at_right_floor(Elevator *elevator);
 
-void stop_elevator(Elevator *elevator, int floor);
+void switch_direction(Elevator *elevator);
+void stop_elevator(Elevator *elevator);
 
 /**
  * @brief Prints the memebers of the struct Elevator.

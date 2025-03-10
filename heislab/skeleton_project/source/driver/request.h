@@ -24,7 +24,8 @@ void bubble_sort(Request *arr, size_t size, MotorDirection direction);
 void sort_requests(Request *arr, size_t arr_size, int curr_floor, MotorDirection moving_dir);
 
 void add_request(Request **arr, size_t *arr_size, size_t *capacity, Request req);
-void remove_request_byfloor(Request **arr, size_t *arr_size, size_t *capacity, int floor);
+void remove_request_by_floor(Request **arr, size_t *arr_size, size_t *capacity, int floor);
 bool in_array(Request arr[], size_t size, Request req);
 
+void print_request(Request req);
 void print_requests(Request arr[], size_t size);

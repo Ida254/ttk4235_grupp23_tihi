@@ -56,7 +56,7 @@ int main()
     Elevator elevator; // Need to define it more
     // size_t queueCapacaty = 10;
     initialize_elevator(&elevator);
-    printf("Done with initializing\n");
+    printf("Done with initializing\n\n");
     run_elevator_program(&elevator);
 
     free_elevator(&elevator);
