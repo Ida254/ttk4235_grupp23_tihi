@@ -1,3 +1,11 @@
+/**
+ * @file
+ * @brief Header file for elevator control threads.
+ *
+ * This file declares thread functions for handling button presses, floor monitoring,
+ * and emergency stop detection in the elevator system.
+ */
+
 #pragma once
 
 #include <pthread.h>

@@ -1,13 +1,12 @@
 <map id="source/driver/elevator.h" name="source/driver/elevator.h">
-<area shape="rect" id="node1" title="The header file for elevator.c." alt="" coords="273,5,450,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,155,72,181"/>
-<area shape="rect" id="node3" title=" " alt="" coords="96,155,179,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="363,80,434,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="203,155,274,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="459,80,523,107"/>
-<area shape="rect" id="node7" title=" " alt="" coords="547,80,621,107"/>
-<area shape="rect" id="node8" title=" " alt="" coords="645,80,720,107"/>
-<area shape="rect" id="node9" title=" " alt="" coords="745,80,829,107"/>
-<area shape="rect" id="node10" href="$request_8h.html" title="The header file for request.c." alt="" coords="155,80,237,107"/>
-<area shape="rect" id="node11" href="$elevio_8h_source.html" title=" " alt="" coords="299,155,373,181"/>
+<area shape="rect" id="node1" title="Header file for the elevator control system." alt="" coords="263,5,441,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="128,229,195,256"/>
+<area shape="rect" id="node3" title=" " alt="" coords="219,229,301,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="390,80,461,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="485,80,549,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="574,80,647,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="672,80,747,107"/>
+<area shape="rect" id="node8" href="$elevio_8h_source.html" title=" " alt="" coords="5,229,80,256"/>
+<area shape="rect" id="node9" href="$utilities_8h.html" title="Utility functions for conversions and mappings in the elevator system." alt="" coords="131,155,213,181"/>
+<area shape="rect" id="node10" href="$request_8h.html" title="Header file for managing elevator requests." alt="" coords="131,80,213,107"/>
 </map>

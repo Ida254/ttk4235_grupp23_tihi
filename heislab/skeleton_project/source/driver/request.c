@@ -1,6 +1,9 @@
 /**
  * @file
- * @brief The header file for request.h
+ * @brief Implementation of elevator request management.
+ *
+ * This file provides functions for handling elevator requests, such as
+ * dynamically managing request arrays, sorting requests, and checking request existence.
  */
 
 #include "request.h"

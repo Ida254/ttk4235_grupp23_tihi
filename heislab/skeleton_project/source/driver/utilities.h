@@ -1,3 +1,11 @@
+/**
+ * @file
+ * @brief Utility functions for conversions and mappings in the elevator system.
+ *
+ * This header file provides functions to convert between different data types
+ * used in the elevator system, such as buttons, motor directions, and boolean values.
+ */
+
 #pragma once
 
 #include <stdio.h>

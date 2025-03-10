@@ -1,6 +1,9 @@
 /**
  * @file
- * @brief The header file for elevator.c
+ * @brief Header file for the elevator control system.
+ *
+ * This file defines the Elevator structure and declares functions to control
+ * and manage elevator movement, request handling, and system states.
  */
 
 #pragma once
@@ -12,10 +15,9 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-#include <string.h>
-#include <stdlib.h> // for testing
-#include <time.h>
-#include <signal.h>
+#include <stdlib.h> // for malloc
+#include <time.h>   // for time
+#include <signal.h> // for kill
 #include <unistd.h>
 #include "elevio.h"
 #include "utilities.h"

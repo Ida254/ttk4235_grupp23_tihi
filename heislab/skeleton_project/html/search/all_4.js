@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['elevator_13',['Elevator',['../structElevator.html',1,'']]],
-  ['elevator_2ec_14',['elevator.c',['../elevator_8c.html',1,'']]],
-  ['elevator_2eh_15',['elevator.h',['../elevator_8h.html',1,'']]],
-  ['emergency_5flistener_16',['emergency_listener',['../elevator_8c.html#a4429467f1dbcf6c5dd8a57fe9faf395f',1,'emergency_listener(void *arg):&#160;elevator.c'],['../elevator_8h.html#a4429467f1dbcf6c5dd8a57fe9faf395f',1,'emergency_listener(void *arg):&#160;elevator.c']]],
-  ['extend_5frequests_17',['extend_requests',['../request_8c.html#a87d7b129ea92db6cbb2b30cb4583bf6e',1,'extend_requests(Request *arr1, size_t index, Request *arr2, size_t arr2_size):&#160;request.c'],['../request_8h.html#a87d7b129ea92db6cbb2b30cb4583bf6e',1,'extend_requests(Request *arr1, size_t index, Request *arr2, size_t arr2_size):&#160;request.c']]]
+  ['floor_16',['floor',['../structRequest.html#a0515e7c2c2bbcd7847b245f4b599d57a',1,'Request']]],
+  ['floor_5flistener_17',['floor_listener',['../threads_8c.html#a1f2ca9f4fcd88ae718dcca47bbcf8b14',1,'floor_listener(void *arg):&#160;threads.c'],['../threads_8h.html#a1f2ca9f4fcd88ae718dcca47bbcf8b14',1,'floor_listener(void *arg):&#160;threads.c']]],
+  ['free_5felevator_18',['free_elevator',['../elevator_8c.html#ab45cd18d19af28e6e537c60f244fd19c',1,'free_elevator(Elevator *elevator):&#160;elevator.c'],['../elevator_8h.html#ab45cd18d19af28e6e537c60f244fd19c',1,'free_elevator(Elevator *elevator):&#160;elevator.c']]]
 ];

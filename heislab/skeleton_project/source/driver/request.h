@@ -1,12 +1,14 @@
 /**
  * @file
- * @brief The header file for request.c
+ * @brief Header file for managing elevator requests.
+ *
+ * This file defines the Request structure and declares functions for handling
+ * elevator requests, including adding, removing, sorting, and checking requests.
  */
 
 #pragma once
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
 #include "elevio.h"
 #include "utilities.h"

@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['remove_5frequest_5fby_5ffloor_32',['remove_request_by_floor',['../request_8c.html#a6e2c4bfbe7d96a852a0893018eec19f4',1,'remove_request_by_floor(Request **arr, size_t *arr_size, size_t *capacity, int floor):&#160;request.c'],['../request_8h.html#a6e2c4bfbe7d96a852a0893018eec19f4',1,'remove_request_by_floor(Request **arr, size_t *arr_size, size_t *capacity, int floor):&#160;request.c']]],
-  ['remove_5frequest_5ffrom_5fqueue_33',['remove_request_from_queue',['../elevator_8c.html#a8e5355790bd87cb643194ce31f3c4ad1',1,'remove_request_from_queue(Elevator *elevator, int floor):&#160;elevator.c'],['../elevator_8h.html#a8e5355790bd87cb643194ce31f3c4ad1',1,'remove_request_from_queue(Elevator *elevator, int floor):&#160;elevator.c']]],
-  ['request_34',['Request',['../structRequest.html',1,'']]],
-  ['request_2ec_35',['request.c',['../request_8c.html',1,'']]],
-  ['request_2eh_36',['request.h',['../request_8h.html',1,'']]],
-  ['rest_5felevator_37',['rest_elevator',['../elevator_8c.html#a09fe0fbc43e9f9e0dfb501b8b7b30220',1,'rest_elevator(Elevator *elevator):&#160;elevator.c'],['../elevator_8h.html#a09fe0fbc43e9f9e0dfb501b8b7b30220',1,'rest_elevator(Elevator *elevator):&#160;elevator.c']]],
-  ['run_5felevator_5fprogram_38',['run_elevator_program',['../elevator_8c.html#afd5e72590848c54b48b357211223e9b4',1,'run_elevator_program(Elevator *elevator):&#160;elevator.c'],['../elevator_8h.html#afd5e72590848c54b48b357211223e9b4',1,'run_elevator_program(Elevator *elevator):&#160;elevator.c']]]
+  ['sort_5fqueue_37',['sort_queue',['../elevator_8c.html#a4f348f1b497c1f050fa390439e96af58',1,'sort_queue(Elevator *elevator):&#160;elevator.c'],['../elevator_8h.html#a4f348f1b497c1f050fa390439e96af58',1,'sort_queue(Elevator *elevator):&#160;elevator.c']]],
+  ['sort_5frequests_38',['sort_requests',['../request_8c.html#a9ef37aefa5313b9f76ff056733aa3327',1,'sort_requests(Request *arr, size_t arr_size, int curr_floor, MotorDirection moving_dir):&#160;request.c'],['../request_8h.html#a9ef37aefa5313b9f76ff056733aa3327',1,'sort_requests(Request *arr, size_t arr_size, int curr_floor, MotorDirection moving_dir):&#160;request.c']]],
+  ['stop_5felevator_5fat_5ffloor_39',['stop_elevator_at_floor',['../elevator_8c.html#a0ee210d178f3017ab19d98bde6041b48',1,'stop_elevator_at_floor(Elevator *elevator, int floor):&#160;elevator.c'],['../elevator_8h.html#a0ee210d178f3017ab19d98bde6041b48',1,'stop_elevator_at_floor(Elevator *elevator, int floor):&#160;elevator.c']]],
+  ['switch_5fdirection_40',['switch_direction',['../elevator_8c.html#a5122c7a557779d70de85ee2aa2227cca',1,'switch_direction(Elevator *elevator):&#160;elevator.c'],['../elevator_8h.html#a5122c7a557779d70de85ee2aa2227cca',1,'switch_direction(Elevator *elevator):&#160;elevator.c']]]
 ];

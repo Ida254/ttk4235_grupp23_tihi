@@ -1,6 +1,9 @@
 /**
  * @file
- * @brief The implementation file of elevator.h
+ * @brief Implementation of the elevator control system.
+ *
+ * This file contains function definitions for managing elevator movement,
+ * handling button presses, processing requests, and controlling the system state.
  */
 
 #include "elevator.h"

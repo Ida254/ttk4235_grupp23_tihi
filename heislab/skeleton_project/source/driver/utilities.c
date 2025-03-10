@@ -1,3 +1,11 @@
+/**
+ * @file
+ * @brief Implementation of utility functions for the elevator system.
+ *
+ * This source file contains the definitions of functions that handle
+ * conversions between button types, motor directions, and boolean values.
+ */
+
 #include "utilities.h"
 
 const char *button_to_string(ButtonType button)

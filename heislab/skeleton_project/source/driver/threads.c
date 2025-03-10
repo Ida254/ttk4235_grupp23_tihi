@@ -1,3 +1,11 @@
+/**
+ * @file
+ * @brief Implementation of elevator control threads.
+ *
+ * This file defines thread functions that continuously monitor and process button presses,
+ * track the elevator's floor position, and detect emergency stop conditions.
+ */
+
 #include "threads.h"
 
 void *button_listener(void *arg)
