@@ -1,0 +1,378 @@
+\hypertarget{request_8c}{}\doxysection{source/driver/request.c File Reference}
+\label{request_8c}\index{source/driver/request.c@{source/driver/request.c}}
+
+
+The header file for \mbox{\hyperlink{request_8h}{request.\+h}}.  
+
+
+{\ttfamily \#include \char`\"{}request.\+h\char`\"{}}\newline
+Include dependency graph for request.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{request_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{request_8c_adef0f38085d3cff37e91fcdcffac489a}{button\+\_\+to\+\_\+string}} (Button\+Type button)
+\begin{DoxyCompactList}\small\item\em Converts a Button\+Type to a string representation. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{request_8c_a0af0735cee97c788f4c885abfd1d4542}{motor\+\_\+direction\+\_\+to\+\_\+string}} (Motor\+Direction direction)
+\begin{DoxyCompactList}\small\item\em Converts a Motor\+Direction to a string representation. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{request_8c_a3f7a96bfcf0ad3a5ca1ebb0a52666d68}{bool\+\_\+to\+\_\+string}} (bool true\+\_\+or\+\_\+false)
+\begin{DoxyCompactList}\small\item\em Converts a boolean value to a string (\char`\"{}true\char`\"{} or \char`\"{}false\char`\"{}). \end{DoxyCompactList}\item 
+Button\+Type \mbox{\hyperlink{request_8c_a56f351f649b8b4dfa899373bbcca4ce3}{int\+\_\+to\+\_\+button\+\_\+type}} (int integer)
+\begin{DoxyCompactList}\small\item\em Converts an integer to a Button\+Type. \end{DoxyCompactList}\item 
+Motor\+Direction \mbox{\hyperlink{request_8c_ad92bad2f5c7780a8512e0c07340660b7}{int\+\_\+to\+\_\+motor\+\_\+direction}} (int integer)
+\begin{DoxyCompactList}\small\item\em Converts an integer to a Motor\+Direction. \end{DoxyCompactList}\item 
+Motor\+Direction \mbox{\hyperlink{request_8c_a0f530a564e26ef4cad2baeb7f1c955c0}{button\+\_\+type\+\_\+to\+\_\+motor\+\_\+direction}} (Button\+Type btn)
+\begin{DoxyCompactList}\small\item\em Maps a button type to the corresponding motor direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{request_8c_a87d7b129ea92db6cbb2b30cb4583bf6e}{extend\+\_\+requests}} (\mbox{\hyperlink{structRequest}{Request}} $\ast$arr1, size\+\_\+t index, \mbox{\hyperlink{structRequest}{Request}} $\ast$arr2, size\+\_\+t arr2\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Extends an array of requests by inserting elements from another array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{request_8c_a01502cf380fa7a467c1276b880d7acc7}{bubble\+\_\+sort}} (\mbox{\hyperlink{structRequest}{Request}} $\ast$arr, size\+\_\+t size, Motor\+Direction direction)
+\begin{DoxyCompactList}\small\item\em Sorts an array of requests using the bubble sort algorithm. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{request_8c_a9ef37aefa5313b9f76ff056733aa3327}{sort\+\_\+requests}} (\mbox{\hyperlink{structRequest}{Request}} $\ast$arr, size\+\_\+t arr\+\_\+size, int curr\+\_\+floor, Motor\+Direction moving\+\_\+dir)
+\begin{DoxyCompactList}\small\item\em Sorts elevator requests based on the current floor and direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{request_8c_a2b1ae8ed1c2ccc4282f2f22c82e55da6}{add\+\_\+request}} (\mbox{\hyperlink{structRequest}{Request}} $\ast$$\ast$arr, size\+\_\+t $\ast$arr\+\_\+size, size\+\_\+t $\ast$capacity, \mbox{\hyperlink{structRequest}{Request}} new\+\_\+req)
+\begin{DoxyCompactList}\small\item\em Adds a request to a dynamically allocated request array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{request_8c_a6e2c4bfbe7d96a852a0893018eec19f4}{remove\+\_\+request\+\_\+by\+\_\+floor}} (\mbox{\hyperlink{structRequest}{Request}} $\ast$$\ast$arr, size\+\_\+t $\ast$arr\+\_\+size, size\+\_\+t $\ast$capacity, int floor)
+\begin{DoxyCompactList}\small\item\em Removes all requests associated with a specific floor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{request_8c_ac65b5c8a6a5fe4c460b482bada4d165d}{in\+\_\+array}} (\mbox{\hyperlink{structRequest}{Request}} arr\mbox{[}$\,$\mbox{]}, size\+\_\+t size, \mbox{\hyperlink{structRequest}{Request}} req)
+\begin{DoxyCompactList}\small\item\em Checks if a request exists in an array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{request_8c_ae4d039d77b6c7249c0d522abeebb9860}{print\+\_\+request}} (\mbox{\hyperlink{structRequest}{Request}} req)
+\begin{DoxyCompactList}\small\item\em Prints a single request in a human-\/readable format. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{request_8c_a2ec02587266875c87469de7ebfd74d33}{print\+\_\+requests}} (\mbox{\hyperlink{structRequest}{Request}} arr\mbox{[}$\,$\mbox{]}, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Prints all requests in an array. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The header file for \mbox{\hyperlink{request_8h}{request.\+h}}. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{request_8c_a2b1ae8ed1c2ccc4282f2f22c82e55da6}\label{request_8c_a2b1ae8ed1c2ccc4282f2f22c82e55da6}} 
+\index{request.c@{request.c}!add\_request@{add\_request}}
+\index{add\_request@{add\_request}!request.c@{request.c}}
+\doxysubsubsection{\texorpdfstring{add\_request()}{add\_request()}}
+{\footnotesize\ttfamily void add\+\_\+request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRequest}{Request}} $\ast$$\ast$}]{arr,  }\item[{size\+\_\+t $\ast$}]{arr\+\_\+size,  }\item[{size\+\_\+t $\ast$}]{capacity,  }\item[{\mbox{\hyperlink{structRequest}{Request}}}]{req }\end{DoxyParamCaption})}
+
+
+
+Adds a request to a dynamically allocated request array. 
+
+Resizes the array if necessary.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & Pointer to the request array. \\
+\hline
+{\em arr\+\_\+size} & Pointer to the current array size. \\
+\hline
+{\em capacity} & Pointer to the array\textquotesingle{}s capacity. \\
+\hline
+{\em req} & The request to add. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 192 of file request.\+c.
+
+\mbox{\Hypertarget{request_8c_a3f7a96bfcf0ad3a5ca1ebb0a52666d68}\label{request_8c_a3f7a96bfcf0ad3a5ca1ebb0a52666d68}} 
+\index{request.c@{request.c}!bool\_to\_string@{bool\_to\_string}}
+\index{bool\_to\_string@{bool\_to\_string}!request.c@{request.c}}
+\doxysubsubsection{\texorpdfstring{bool\_to\_string()}{bool\_to\_string()}}
+{\footnotesize\ttfamily const char$\ast$ bool\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{bool}]{true\+\_\+or\+\_\+false }\end{DoxyParamCaption})}
+
+
+
+Converts a boolean value to a string (\char`\"{}true\char`\"{} or \char`\"{}false\char`\"{}). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em true\+\_\+or\+\_\+false} & Boolean value to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string representing \char`\"{}true\char`\"{} or \char`\"{}false\char`\"{}. 
+\end{DoxyReturn}
+
+
+Definition at line 38 of file request.\+c.
+
+\mbox{\Hypertarget{request_8c_a01502cf380fa7a467c1276b880d7acc7}\label{request_8c_a01502cf380fa7a467c1276b880d7acc7}} 
+\index{request.c@{request.c}!bubble\_sort@{bubble\_sort}}
+\index{bubble\_sort@{bubble\_sort}!request.c@{request.c}}
+\doxysubsubsection{\texorpdfstring{bubble\_sort()}{bubble\_sort()}}
+{\footnotesize\ttfamily void bubble\+\_\+sort (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRequest}{Request}} $\ast$}]{arr,  }\item[{size\+\_\+t}]{size,  }\item[{Motor\+Direction}]{direction }\end{DoxyParamCaption})}
+
+
+
+Sorts an array of requests using the bubble sort algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & The array of requests. \\
+\hline
+{\em size} & The size of the array. \\
+\hline
+{\em direction} & The sorting order based on motor direction. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 111 of file request.\+c.
+
+\mbox{\Hypertarget{request_8c_adef0f38085d3cff37e91fcdcffac489a}\label{request_8c_adef0f38085d3cff37e91fcdcffac489a}} 
+\index{request.c@{request.c}!button\_to\_string@{button\_to\_string}}
+\index{button\_to\_string@{button\_to\_string}!request.c@{request.c}}
+\doxysubsubsection{\texorpdfstring{button\_to\_string()}{button\_to\_string()}}
+{\footnotesize\ttfamily const char$\ast$ button\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{Button\+Type}]{button }\end{DoxyParamCaption})}
+
+
+
+Converts a Button\+Type to a string representation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & The button type to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string representing the button type. 
+\end{DoxyReturn}
+
+
+Definition at line 8 of file request.\+c.
+
+\mbox{\Hypertarget{request_8c_a0f530a564e26ef4cad2baeb7f1c955c0}\label{request_8c_a0f530a564e26ef4cad2baeb7f1c955c0}} 
+\index{request.c@{request.c}!button\_type\_to\_motor\_direction@{button\_type\_to\_motor\_direction}}
+\index{button\_type\_to\_motor\_direction@{button\_type\_to\_motor\_direction}!request.c@{request.c}}
+\doxysubsubsection{\texorpdfstring{button\_type\_to\_motor\_direction()}{button\_type\_to\_motor\_direction()}}
+{\footnotesize\ttfamily Motor\+Direction button\+\_\+type\+\_\+to\+\_\+motor\+\_\+direction (\begin{DoxyParamCaption}\item[{Button\+Type}]{btn }\end{DoxyParamCaption})}
+
+
+
+Maps a button type to the corresponding motor direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em btn} & The button type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The motor direction associated with the button. 
+\end{DoxyReturn}
+
+
+Definition at line 85 of file request.\+c.
+
+\mbox{\Hypertarget{request_8c_a87d7b129ea92db6cbb2b30cb4583bf6e}\label{request_8c_a87d7b129ea92db6cbb2b30cb4583bf6e}} 
+\index{request.c@{request.c}!extend\_requests@{extend\_requests}}
+\index{extend\_requests@{extend\_requests}!request.c@{request.c}}
+\doxysubsubsection{\texorpdfstring{extend\_requests()}{extend\_requests()}}
+{\footnotesize\ttfamily void extend\+\_\+requests (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRequest}{Request}} $\ast$}]{arr1,  }\item[{size\+\_\+t}]{index,  }\item[{\mbox{\hyperlink{structRequest}{Request}} $\ast$}]{arr2,  }\item[{size\+\_\+t}]{arr2\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Extends an array of requests by inserting elements from another array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr1} & The destination array. \\
+\hline
+{\em index} & The index at which to insert arr2. \\
+\hline
+{\em arr2} & The source array. \\
+\hline
+{\em arr2\+\_\+size} & The size of arr2. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 103 of file request.\+c.
+
+\mbox{\Hypertarget{request_8c_ac65b5c8a6a5fe4c460b482bada4d165d}\label{request_8c_ac65b5c8a6a5fe4c460b482bada4d165d}} 
+\index{request.c@{request.c}!in\_array@{in\_array}}
+\index{in\_array@{in\_array}!request.c@{request.c}}
+\doxysubsubsection{\texorpdfstring{in\_array()}{in\_array()}}
+{\footnotesize\ttfamily bool in\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRequest}{Request}}}]{arr\mbox{[}$\,$\mbox{]},  }\item[{size\+\_\+t}]{size,  }\item[{\mbox{\hyperlink{structRequest}{Request}}}]{req }\end{DoxyParamCaption})}
+
+
+
+Checks if a request exists in an array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & The request array. \\
+\hline
+{\em size} & The size of the array. \\
+\hline
+{\em req} & The request to check for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the request is found, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 240 of file request.\+c.
+
+\mbox{\Hypertarget{request_8c_a56f351f649b8b4dfa899373bbcca4ce3}\label{request_8c_a56f351f649b8b4dfa899373bbcca4ce3}} 
+\index{request.c@{request.c}!int\_to\_button\_type@{int\_to\_button\_type}}
+\index{int\_to\_button\_type@{int\_to\_button\_type}!request.c@{request.c}}
+\doxysubsubsection{\texorpdfstring{int\_to\_button\_type()}{int\_to\_button\_type()}}
+{\footnotesize\ttfamily Button\+Type int\+\_\+to\+\_\+button\+\_\+type (\begin{DoxyParamCaption}\item[{int}]{integer }\end{DoxyParamCaption})}
+
+
+
+Converts an integer to a Button\+Type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em integer} & The integer representing a button type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The corresponding Button\+Type. 
+\end{DoxyReturn}
+
+
+Definition at line 49 of file request.\+c.
+
+\mbox{\Hypertarget{request_8c_ad92bad2f5c7780a8512e0c07340660b7}\label{request_8c_ad92bad2f5c7780a8512e0c07340660b7}} 
+\index{request.c@{request.c}!int\_to\_motor\_direction@{int\_to\_motor\_direction}}
+\index{int\_to\_motor\_direction@{int\_to\_motor\_direction}!request.c@{request.c}}
+\doxysubsubsection{\texorpdfstring{int\_to\_motor\_direction()}{int\_to\_motor\_direction()}}
+{\footnotesize\ttfamily Motor\+Direction int\+\_\+to\+\_\+motor\+\_\+direction (\begin{DoxyParamCaption}\item[{int}]{integer }\end{DoxyParamCaption})}
+
+
+
+Converts an integer to a Motor\+Direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em integer} & The integer representing a motor direction. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The corresponding Motor\+Direction. 
+\end{DoxyReturn}
+
+
+Definition at line 67 of file request.\+c.
+
+\mbox{\Hypertarget{request_8c_a0af0735cee97c788f4c885abfd1d4542}\label{request_8c_a0af0735cee97c788f4c885abfd1d4542}} 
+\index{request.c@{request.c}!motor\_direction\_to\_string@{motor\_direction\_to\_string}}
+\index{motor\_direction\_to\_string@{motor\_direction\_to\_string}!request.c@{request.c}}
+\doxysubsubsection{\texorpdfstring{motor\_direction\_to\_string()}{motor\_direction\_to\_string()}}
+{\footnotesize\ttfamily const char$\ast$ motor\+\_\+direction\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{Motor\+Direction}]{direction }\end{DoxyParamCaption})}
+
+
+
+Converts a Motor\+Direction to a string representation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em direction} & The motor direction to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string representing the motor direction. 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file request.\+c.
+
+\mbox{\Hypertarget{request_8c_ae4d039d77b6c7249c0d522abeebb9860}\label{request_8c_ae4d039d77b6c7249c0d522abeebb9860}} 
+\index{request.c@{request.c}!print\_request@{print\_request}}
+\index{print\_request@{print\_request}!request.c@{request.c}}
+\doxysubsubsection{\texorpdfstring{print\_request()}{print\_request()}}
+{\footnotesize\ttfamily void print\+\_\+request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRequest}{Request}}}]{req }\end{DoxyParamCaption})}
+
+
+
+Prints a single request in a human-\/readable format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The request to print. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 252 of file request.\+c.
+
+\mbox{\Hypertarget{request_8c_a2ec02587266875c87469de7ebfd74d33}\label{request_8c_a2ec02587266875c87469de7ebfd74d33}} 
+\index{request.c@{request.c}!print\_requests@{print\_requests}}
+\index{print\_requests@{print\_requests}!request.c@{request.c}}
+\doxysubsubsection{\texorpdfstring{print\_requests()}{print\_requests()}}
+{\footnotesize\ttfamily void print\+\_\+requests (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRequest}{Request}}}]{arr\mbox{[}$\,$\mbox{]},  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Prints all requests in an array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & The request array. \\
+\hline
+{\em size} & The size of the array. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 257 of file request.\+c.
+
+\mbox{\Hypertarget{request_8c_a6e2c4bfbe7d96a852a0893018eec19f4}\label{request_8c_a6e2c4bfbe7d96a852a0893018eec19f4}} 
+\index{request.c@{request.c}!remove\_request\_by\_floor@{remove\_request\_by\_floor}}
+\index{remove\_request\_by\_floor@{remove\_request\_by\_floor}!request.c@{request.c}}
+\doxysubsubsection{\texorpdfstring{remove\_request\_by\_floor()}{remove\_request\_by\_floor()}}
+{\footnotesize\ttfamily void remove\+\_\+request\+\_\+by\+\_\+floor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRequest}{Request}} $\ast$$\ast$}]{arr,  }\item[{size\+\_\+t $\ast$}]{arr\+\_\+size,  }\item[{size\+\_\+t $\ast$}]{capacity,  }\item[{int}]{floor }\end{DoxyParamCaption})}
+
+
+
+Removes all requests associated with a specific floor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & Pointer to the request array. \\
+\hline
+{\em arr\+\_\+size} & Pointer to the array size. \\
+\hline
+{\em capacity} & Pointer to the array\textquotesingle{}s capacity. \\
+\hline
+{\em floor} & The floor to remove requests for. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 211 of file request.\+c.
+
+\mbox{\Hypertarget{request_8c_a9ef37aefa5313b9f76ff056733aa3327}\label{request_8c_a9ef37aefa5313b9f76ff056733aa3327}} 
+\index{request.c@{request.c}!sort\_requests@{sort\_requests}}
+\index{sort\_requests@{sort\_requests}!request.c@{request.c}}
+\doxysubsubsection{\texorpdfstring{sort\_requests()}{sort\_requests()}}
+{\footnotesize\ttfamily void sort\+\_\+requests (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRequest}{Request}} $\ast$}]{arr,  }\item[{size\+\_\+t}]{arr\+\_\+size,  }\item[{int}]{curr\+\_\+floor,  }\item[{Motor\+Direction}]{moving\+\_\+dir }\end{DoxyParamCaption})}
+
+
+
+Sorts elevator requests based on the current floor and direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & The array of requests. \\
+\hline
+{\em arr\+\_\+size} & The size of the request array. \\
+\hline
+{\em curr\+\_\+floor} & The current floor of the elevator. \\
+\hline
+{\em moving\+\_\+dir} & The current moving direction of the elevator. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 134 of file request.\+c.
+

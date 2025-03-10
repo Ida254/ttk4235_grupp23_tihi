@@ -80,14 +80,18 @@ Include dependency graph for elevator.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="elevator_8c__incl.png" border="0" usemap="#source_2driver_2elevator_8c" alt=""/></div>
 <map name="source_2driver_2elevator_8c" id="source_2driver_2elevator_8c">
-<area shape="rect" title="The implementation file of elevator.h." alt="" coords="118,5,294,32"/>
-<area shape="rect" href="elevator_8h.html" title="The header file for elevator.c." alt="" coords="162,80,250,107"/>
-<area shape="rect" title=" " alt="" coords="5,155,76,181"/>
-<area shape="rect" title=" " alt="" coords="100,155,171,181"/>
-<area shape="rect" href="DestinationRequest_8h.html" title="Header file for DestinationRequest.c." alt="" coords="195,155,358,181"/>
-<area shape="rect" href="elevio_8h_source.html" title=" " alt="" coords="354,229,429,256"/>
-<area shape="rect" title=" " alt="" coords="149,229,215,256"/>
-<area shape="rect" title=" " alt="" coords="239,229,322,256"/>
+<area shape="rect" title="The implementation file of elevator.h." alt="" coords="273,5,449,32"/>
+<area shape="rect" href="elevator_8h.html" title="The header file for elevator.c." alt="" coords="317,80,405,107"/>
+<area shape="rect" title=" " alt="" coords="5,229,72,256"/>
+<area shape="rect" title=" " alt="" coords="96,229,179,256"/>
+<area shape="rect" title=" " alt="" coords="363,155,434,181"/>
+<area shape="rect" title=" " alt="" coords="203,229,274,256"/>
+<area shape="rect" title=" " alt="" coords="459,155,523,181"/>
+<area shape="rect" title=" " alt="" coords="547,155,621,181"/>
+<area shape="rect" title=" " alt="" coords="645,155,720,181"/>
+<area shape="rect" title=" " alt="" coords="745,155,829,181"/>
+<area shape="rect" href="request_8h.html" title="The header file for request.c." alt="" coords="155,155,237,181"/>
+<area shape="rect" href="elevio_8h_source.html" title=" " alt="" coords="299,229,373,256"/>
 </map>
 </div>
 </div>
@@ -95,35 +99,71 @@ Include dependency graph for elevator.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab48e45354999ab17747c7f8fbc404396"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#ab48e45354999ab17747c7f8fbc404396">initialize_elevator</a> (<a class="el" href="structElevator.html">Elevator</a> *elevator, size_t initialCapacity)</td></tr>
-<tr class="memdesc:ab48e45354999ab17747c7f8fbc404396"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes an <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> struct with default values.  <a href="elevator_8c.html#ab48e45354999ab17747c7f8fbc404396">More...</a><br /></td></tr>
-<tr class="separator:ab48e45354999ab17747c7f8fbc404396"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6be99605e3761dee7d4e579978b4d03a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#a6be99605e3761dee7d4e579978b4d03a">initialize_elevator</a> (<a class="el" href="structElevator.html">Elevator</a> *elevator)</td></tr>
+<tr class="memdesc:a6be99605e3761dee7d4e579978b4d03a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes an <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> struct with default values.  <a href="elevator_8c.html#a6be99605e3761dee7d4e579978b4d03a">More...</a><br /></td></tr>
+<tr class="separator:a6be99605e3761dee7d4e579978b4d03a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab45cd18d19af28e6e537c60f244fd19c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#ab45cd18d19af28e6e537c60f244fd19c">free_elevator</a> (<a class="el" href="structElevator.html">Elevator</a> *elevator)</td></tr>
 <tr class="memdesc:ab45cd18d19af28e6e537c60f244fd19c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees memory allocated for the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> struct.  <a href="elevator_8c.html#ab45cd18d19af28e6e537c60f244fd19c">More...</a><br /></td></tr>
 <tr class="separator:ab45cd18d19af28e6e537c60f244fd19c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd5e72590848c54b48b357211223e9b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#afd5e72590848c54b48b357211223e9b4">run_elevator_program</a> (<a class="el" href="structElevator.html">Elevator</a> *elevator)</td></tr>
+<tr class="memdesc:afd5e72590848c54b48b357211223e9b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes and runs the elevator control system.  <a href="elevator_8c.html#afd5e72590848c54b48b357211223e9b4">More...</a><br /></td></tr>
+<tr class="separator:afd5e72590848c54b48b357211223e9b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad89fa0765dcf03d9dd78f9ede9f8c107"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#ad89fa0765dcf03d9dd78f9ede9f8c107">button_listener</a> (void *arg)</td></tr>
+<tr class="memdesc:ad89fa0765dcf03d9dd78f9ede9f8c107"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listens for button presses and updates the elevator queue accordingly.  <a href="elevator_8c.html#ad89fa0765dcf03d9dd78f9ede9f8c107">More...</a><br /></td></tr>
+<tr class="separator:ad89fa0765dcf03d9dd78f9ede9f8c107"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f2ca9f4fcd88ae718dcca47bbcf8b14"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#a1f2ca9f4fcd88ae718dcca47bbcf8b14">floor_listener</a> (void *arg)</td></tr>
+<tr class="memdesc:a1f2ca9f4fcd88ae718dcca47bbcf8b14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Monitors the elevator's current floor and handles stop conditions.  <a href="elevator_8c.html#a1f2ca9f4fcd88ae718dcca47bbcf8b14">More...</a><br /></td></tr>
+<tr class="separator:a1f2ca9f4fcd88ae718dcca47bbcf8b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4429467f1dbcf6c5dd8a57fe9faf395f"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#a4429467f1dbcf6c5dd8a57fe9faf395f">emergency_listener</a> (void *arg)</td></tr>
+<tr class="memdesc:a4429467f1dbcf6c5dd8a57fe9faf395f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Continuously checks for an emergency stop condition.  <a href="elevator_8c.html#a4429467f1dbcf6c5dd8a57fe9faf395f">More...</a><br /></td></tr>
+<tr class="separator:a4429467f1dbcf6c5dd8a57fe9faf395f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f348f1b497c1f050fa390439e96af58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#a4f348f1b497c1f050fa390439e96af58">sort_queue</a> (<a class="el" href="structElevator.html">Elevator</a> *elevator)</td></tr>
 <tr class="memdesc:a4f348f1b497c1f050fa390439e96af58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sorts the destination queue in the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> struct.  <a href="elevator_8c.html#a4f348f1b497c1f050fa390439e96af58">More...</a><br /></td></tr>
 <tr class="separator:a4f348f1b497c1f050fa390439e96af58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae361fb172233e0fc4969ee89127d9509"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#ae361fb172233e0fc4969ee89127d9509">add_request_to_queue</a> (<a class="el" href="structElevator.html">Elevator</a> *elevator, int floor, int direction)</td></tr>
-<tr class="memdesc:ae361fb172233e0fc4969ee89127d9509"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a floor request to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a>'s destination queue.  <a href="elevator_8c.html#ae361fb172233e0fc4969ee89127d9509">More...</a><br /></td></tr>
-<tr class="separator:ae361fb172233e0fc4969ee89127d9509"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa85a67206f0a1badabc1ddffabfc4af4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#aa85a67206f0a1badabc1ddffabfc4af4">add_request_to_queue</a> (<a class="el" href="structElevator.html">Elevator</a> *elevator, <a class="el" href="structRequest.html">Request</a> new_req)</td></tr>
+<tr class="memdesc:aa85a67206f0a1badabc1ddffabfc4af4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a floor request to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a>'s destination queue.  <a href="elevator_8c.html#aa85a67206f0a1badabc1ddffabfc4af4">More...</a><br /></td></tr>
+<tr class="separator:aa85a67206f0a1badabc1ddffabfc4af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e5355790bd87cb643194ce31f3c4ad1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#a8e5355790bd87cb643194ce31f3c4ad1">remove_request_from_queue</a> (<a class="el" href="structElevator.html">Elevator</a> *elevator, int floor)</td></tr>
 <tr class="memdesc:a8e5355790bd87cb643194ce31f3c4ad1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a floor request from the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a>'s destination queue.  <a href="elevator_8c.html#a8e5355790bd87cb643194ce31f3c4ad1">More...</a><br /></td></tr>
 <tr class="separator:a8e5355790bd87cb643194ce31f3c4ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33e9c171606a6681dd7cb43a313ee159"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#a33e9c171606a6681dd7cb43a313ee159">test_sort_queue</a> ()</td></tr>
-<tr class="memdesc:a33e9c171606a6681dd7cb43a313ee159"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs a test for the sorting function.  <a href="elevator_8c.html#a33e9c171606a6681dd7cb43a313ee159">More...</a><br /></td></tr>
-<tr class="separator:a33e9c171606a6681dd7cb43a313ee159"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top"><a id="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
-<tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a010d805d91a0088ce00c31cfb2fd52ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#a010d805d91a0088ce00c31cfb2fd52ef">on_button_press</a> (<a class="el" href="structElevator.html">Elevator</a> *elevator)</td></tr>
+<tr class="memdesc:a010d805d91a0088ce00c31cfb2fd52ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles button press events and updates the elevator queue.  <a href="elevator_8c.html#a010d805d91a0088ce00c31cfb2fd52ef">More...</a><br /></td></tr>
+<tr class="separator:a010d805d91a0088ce00c31cfb2fd52ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af25c41476042d9a9444b1720a6a8f001"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#af25c41476042d9a9444b1720a6a8f001">button_pressed</a> (<a class="el" href="structRequest.html">Request</a> *req)</td></tr>
+<tr class="memdesc:af25c41476042d9a9444b1720a6a8f001"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if any elevator button has been pressed.  <a href="elevator_8c.html#af25c41476042d9a9444b1720a6a8f001">More...</a><br /></td></tr>
+<tr class="separator:af25c41476042d9a9444b1720a6a8f001"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a963a9c8c91c61b409d64159dba112f6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#a963a9c8c91c61b409d64159dba112f6c">moving_elevator</a> (<a class="el" href="structElevator.html">Elevator</a> *elevator)</td></tr>
+<tr class="memdesc:a963a9c8c91c61b409d64159dba112f6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the elevator according to its queue and direction.  <a href="elevator_8c.html#a963a9c8c91c61b409d64159dba112f6c">More...</a><br /></td></tr>
+<tr class="separator:a963a9c8c91c61b409d64159dba112f6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a017499c59660e09e848d80ae42ce91b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#a017499c59660e09e848d80ae42ce91b3">at_right_floor</a> (<a class="el" href="structElevator.html">Elevator</a> *elevator)</td></tr>
+<tr class="memdesc:a017499c59660e09e848d80ae42ce91b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the elevator is at the correct floor and handles stopping logic.  <a href="elevator_8c.html#a017499c59660e09e848d80ae42ce91b3">More...</a><br /></td></tr>
+<tr class="separator:a017499c59660e09e848d80ae42ce91b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5122c7a557779d70de85ee2aa2227cca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#a5122c7a557779d70de85ee2aa2227cca">switch_direction</a> (<a class="el" href="structElevator.html">Elevator</a> *elevator)</td></tr>
+<tr class="memdesc:a5122c7a557779d70de85ee2aa2227cca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switches the moving direction of the elevator when needed.  <a href="elevator_8c.html#a5122c7a557779d70de85ee2aa2227cca">More...</a><br /></td></tr>
+<tr class="separator:a5122c7a557779d70de85ee2aa2227cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09fe0fbc43e9f9e0dfb501b8b7b30220"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#a09fe0fbc43e9f9e0dfb501b8b7b30220">rest_elevator</a> (<a class="el" href="structElevator.html">Elevator</a> *elevator)</td></tr>
+<tr class="memdesc:a09fe0fbc43e9f9e0dfb501b8b7b30220"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the elevator to an idle state.  <a href="elevator_8c.html#a09fe0fbc43e9f9e0dfb501b8b7b30220">More...</a><br /></td></tr>
+<tr class="separator:a09fe0fbc43e9f9e0dfb501b8b7b30220"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ee210d178f3017ab19d98bde6041b48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#a0ee210d178f3017ab19d98bde6041b48">stop_elevator_at_floor</a> (<a class="el" href="structElevator.html">Elevator</a> *elevator, int floor)</td></tr>
+<tr class="memdesc:a0ee210d178f3017ab19d98bde6041b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the elevator when it reaches a requested floor.  <a href="elevator_8c.html#a0ee210d178f3017ab19d98bde6041b48">More...</a><br /></td></tr>
+<tr class="separator:a0ee210d178f3017ab19d98bde6041b48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39717f6ea0a44a21b8c6d1da6eca15b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#a39717f6ea0a44a21b8c6d1da6eca15b9">check_emergency_stop</a> ()</td></tr>
+<tr class="memdesc:a39717f6ea0a44a21b8c6d1da6eca15b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Monitors and handles emergency stop conditions.  <a href="elevator_8c.html#a39717f6ea0a44a21b8c6d1da6eca15b9">More...</a><br /></td></tr>
+<tr class="separator:a39717f6ea0a44a21b8c6d1da6eca15b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a631f4cbd7d3d4f06ec68cd3d7d4f36b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#a631f4cbd7d3d4f06ec68cd3d7d4f36b3">print_elevator</a> (<a class="el" href="structElevator.html">Elevator</a> *elevator)</td></tr>
+<tr class="memdesc:a631f4cbd7d3d4f06ec68cd3d7d4f36b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the memebers of the struct <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a>.  <a href="elevator_8c.html#a631f4cbd7d3d4f06ec68cd3d7d4f36b3">More...</a><br /></td></tr>
+<tr class="separator:a631f4cbd7d3d4f06ec68cd3d7d4f36b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cd952c439e526b08c00d2ad49b58fe8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8c.html#a6cd952c439e526b08c00d2ad49b58fe8">test_elevator</a> (void)</td></tr>
+<tr class="memdesc:a6cd952c439e526b08c00d2ad49b58fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs a test for the sorting function.  <a href="elevator_8c.html#a6cd952c439e526b08c00d2ad49b58fe8">More...</a><br /></td></tr>
+<tr class="separator:a6cd952c439e526b08c00d2ad49b58fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The implementation file of <a class="el" href="elevator_8h.html" title="The header file for elevator.c.">elevator.h</a>. </p>
 
 <p class="definition">Definition in file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="ae361fb172233e0fc4969ee89127d9509"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae361fb172233e0fc4969ee89127d9509">&#9670;&nbsp;</a></span>add_request_to_queue()</h2>
+<a id="aa85a67206f0a1badabc1ddffabfc4af4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa85a67206f0a1badabc1ddffabfc4af4">&#9670;&nbsp;</a></span>add_request_to_queue()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -137,14 +177,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>floor</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>direction</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structRequest.html">Request</a>&#160;</td>
+          <td class="paramname"><em>new_req</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -159,13 +193,183 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">elevator</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> struct. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">floor</td><td>The floor number to be added to the queue. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">direction</td><td>The direction the elevator should move after reaching the floor. It can be either <code>DIRN_UP</code>, <code>DIRN_DOWN</code>, or <code>DIRN_STOP</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">new_req</td><td>The direction request to be added to the queue. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00093">93</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00135">135</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+
+</div>
+</div>
+<a id="a017499c59660e09e848d80ae42ce91b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a017499c59660e09e848d80ae42ce91b3">&#9670;&nbsp;</a></span>at_right_floor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void at_right_floor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElevator.html">Elevator</a> *&#160;</td>
+          <td class="paramname"><em>elevator</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the elevator is at the correct floor and handles stopping logic. </p>
+<p>If the elevator reaches a requested floor, it performs necessary actions like stopping and opening doors.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">elevator</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> structure. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00211">211</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+
+</div>
+</div>
+<a id="ad89fa0765dcf03d9dd78f9ede9f8c107"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad89fa0765dcf03d9dd78f9ede9f8c107">&#9670;&nbsp;</a></span>button_listener()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* button_listener </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>arg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Listens for button presses and updates the elevator queue accordingly. </p>
+<p>This function runs in a separate thread, continuously checking for button presses. When a button is pressed, it adds the corresponding request to the elevator's queue.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arg</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> structure. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Always returns NULL. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00089">89</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+
+</div>
+</div>
+<a id="af25c41476042d9a9444b1720a6a8f001"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af25c41476042d9a9444b1720a6a8f001">&#9670;&nbsp;</a></span>button_pressed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool button_pressed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structRequest.html">Request</a> *&#160;</td>
+          <td class="paramname"><em>req</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if any elevator button has been pressed. </p>
+<p>Iterates through all floors and button types to detect a pressed button. If a button press is found, it updates the given request structure.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">req</td><td>Pointer to a <a class="el" href="structRequest.html" title="Represents an elevator request.">Request</a> structure to store the button press details. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if a button was pressed, false otherwise. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00176">176</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+
+</div>
+</div>
+<a id="a39717f6ea0a44a21b8c6d1da6eca15b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39717f6ea0a44a21b8c6d1da6eca15b9">&#9670;&nbsp;</a></span>check_emergency_stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void check_emergency_stop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Monitors and handles emergency stop conditions. </p>
+<p>If an emergency stop is detected, the elevator stops immediately and takes appropriate safety measures. </p>
+
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00282">282</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+
+</div>
+</div>
+<a id="a4429467f1dbcf6c5dd8a57fe9faf395f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4429467f1dbcf6c5dd8a57fe9faf395f">&#9670;&nbsp;</a></span>emergency_listener()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* emergency_listener </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>arg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Continuously checks for an emergency stop condition. </p>
+<p>This function runs in a separate thread and monitors if an emergency stop has been triggered. If an emergency stop is detected, it handles stopping the elevator safely.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arg</td><td>Unused parameter (can be NULL). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Always returns NULL. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00111">111</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+
+</div>
+</div>
+<a id="a1f2ca9f4fcd88ae718dcca47bbcf8b14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f2ca9f4fcd88ae718dcca47bbcf8b14">&#9670;&nbsp;</a></span>floor_listener()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* floor_listener </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>arg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Monitors the elevator's current floor and handles stop conditions. </p>
+<p>This function runs in a separate thread, continuously checking if the elevator has reached the correct floor and handling the necessary actions, such as stopping.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arg</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> structure. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Always returns NULL. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00100">100</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
 
 </div>
 </div>
@@ -194,12 +398,12 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00020">20</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00043">43</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
 
 </div>
 </div>
-<a id="ab48e45354999ab17747c7f8fbc404396"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab48e45354999ab17747c7f8fbc404396">&#9670;&nbsp;</a></span>initialize_elevator()</h2>
+<a id="a6be99605e3761dee7d4e579978b4d03a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6be99605e3761dee7d4e579978b4d03a">&#9670;&nbsp;</a></span>initialize_elevator()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -208,24 +412,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
           <td class="memname">void initialize_elevator </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structElevator.html">Elevator</a> *&#160;</td>
-          <td class="paramname"><em>elevator</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>elevator</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>initialCapacity</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Initializes an <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> struct with default values. </p>
-<p>This function sets up an elevator with the specified initial capacity for its destination queue.</p>
+<p>This function sets up an elevator and moves it to the first floor.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">elevator</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> struct to be initialized. </td></tr>
@@ -235,6 +429,93 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00008">8</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+
+</div>
+</div>
+<a id="a963a9c8c91c61b409d64159dba112f6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a963a9c8c91c61b409d64159dba112f6c">&#9670;&nbsp;</a></span>moving_elevator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void moving_elevator </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElevator.html">Elevator</a> *&#160;</td>
+          <td class="paramname"><em>elevator</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Moves the elevator according to its queue and direction. </p>
+<p>This function ensures that the elevator moves towards its intended destination based on the queued requests.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">elevator</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> structure. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00194">194</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+
+</div>
+</div>
+<a id="a010d805d91a0088ce00c31cfb2fd52ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a010d805d91a0088ce00c31cfb2fd52ef">&#9670;&nbsp;</a></span>on_button_press()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void on_button_press </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElevator.html">Elevator</a> *&#160;</td>
+          <td class="paramname"><em>elevator</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handles button press events and updates the elevator queue. </p>
+<p>This function checks if any button has been pressed and, if so, adds the request to the elevator's queue.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">elevator</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> structure. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00164">164</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+
+</div>
+</div>
+<a id="a631f4cbd7d3d4f06ec68cd3d7d4f36b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a631f4cbd7d3d4f06ec68cd3d7d4f36b3">&#9670;&nbsp;</a></span>print_elevator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void print_elevator </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElevator.html">Elevator</a> *&#160;</td>
+          <td class="paramname"><em>elevator</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints the memebers of the struct <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a>. </p>
+<p>This function prints the values of an elevator in a nice way that helps with debuging of the code.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">elevator</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> struct. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00291">291</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
 
 </div>
 </div>
@@ -274,7 +555,70 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00106">106</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00156">156</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+
+</div>
+</div>
+<a id="a09fe0fbc43e9f9e0dfb501b8b7b30220"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09fe0fbc43e9f9e0dfb501b8b7b30220">&#9670;&nbsp;</a></span>rest_elevator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rest_elevator </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElevator.html">Elevator</a> *&#160;</td>
+          <td class="paramname"><em>elevator</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resets the elevator to an idle state. </p>
+<p>Stops the elevator and clears any pending requests.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">elevator</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> structure. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00256">256</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+
+</div>
+</div>
+<a id="afd5e72590848c54b48b357211223e9b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd5e72590848c54b48b357211223e9b4">&#9670;&nbsp;</a></span>run_elevator_program()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void run_elevator_program </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElevator.html">Elevator</a> *&#160;</td>
+          <td class="paramname"><em>elevator</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes and runs the elevator control system. </p>
+<p>This function initializes the elevator system and creates separate threads for:</p><ul>
+<li>Button press handling</li>
+<li>Floor monitoring</li>
+<li>Emergency stop checking</li>
+</ul>
+<p>It continuously updates the elevator's current floor while waiting for inputs.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">elevator</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> structure. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00049">49</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
 
 </div>
 </div>
@@ -303,18 +647,87 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00025">25</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00121">121</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
 
 </div>
 </div>
-<a id="a33e9c171606a6681dd7cb43a313ee159"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a33e9c171606a6681dd7cb43a313ee159">&#9670;&nbsp;</a></span>test_sort_queue()</h2>
+<a id="a0ee210d178f3017ab19d98bde6041b48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ee210d178f3017ab19d98bde6041b48">&#9670;&nbsp;</a></span>stop_elevator_at_floor()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void test_sort_queue </td>
+          <td class="memname">void stop_elevator_at_floor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElevator.html">Elevator</a> *&#160;</td>
+          <td class="paramname"><em>elevator</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>floor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stops the elevator when it reaches a requested floor. </p>
+<p>This function handles stopping the elevator and opening its doors.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">elevator</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> structure. </td></tr>
+    <tr><td class="paramname">floor</td><td>The floor at which the elevator should stop. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00266">266</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+
+</div>
+</div>
+<a id="a5122c7a557779d70de85ee2aa2227cca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5122c7a557779d70de85ee2aa2227cca">&#9670;&nbsp;</a></span>switch_direction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void switch_direction </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structElevator.html">Elevator</a> *&#160;</td>
+          <td class="paramname"><em>elevator</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Switches the moving direction of the elevator when needed. </p>
+<p>This function updates the elevator's movement direction based on its current position and queued requests.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">elevator</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> structure. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00235">235</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+
+</div>
+</div>
+<a id="a6cd952c439e526b08c00d2ad49b58fe8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cd952c439e526b08c00d2ad49b58fe8">&#9670;&nbsp;</a></span>test_elevator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void test_elevator </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -325,7 +738,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
 <p>Runs a test for the sorting function. </p>
 <p>This function tests whether the elevator's queue sorting mechanism works correctly. </p>
 
-<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00124">124</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00311">311</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
 
 </div>
 </div>

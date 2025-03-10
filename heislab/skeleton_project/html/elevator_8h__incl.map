@@ -1,9 +1,13 @@
 <map id="source/driver/elevator.h" name="source/driver/elevator.h">
-<area shape="rect" id="node1" title="The header file for elevator.c." alt="" coords="117,5,295,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,76,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="100,80,171,107"/>
-<area shape="rect" id="node4" href="$DestinationRequest_8h.html" title="Header file for DestinationRequest.c." alt="" coords="195,80,358,107"/>
-<area shape="rect" id="node7" href="$elevio_8h_source.html" title=" " alt="" coords="354,155,429,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="149,155,215,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="239,155,322,181"/>
+<area shape="rect" id="node1" title="The header file for elevator.c." alt="" coords="273,5,450,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,155,72,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="96,155,179,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="363,80,434,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="203,155,274,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="459,80,523,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="547,80,621,107"/>
+<area shape="rect" id="node8" title=" " alt="" coords="645,80,720,107"/>
+<area shape="rect" id="node9" title=" " alt="" coords="745,80,829,107"/>
+<area shape="rect" id="node10" href="$request_8h.html" title="The header file for request.c." alt="" coords="155,80,237,107"/>
+<area shape="rect" id="node11" href="$elevio_8h_source.html" title=" " alt="" coords="299,155,373,181"/>
 </map>

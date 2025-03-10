@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief The header file for request.h
+ */
+
 #include "request.h"
 
 const char *button_to_string(ButtonType button)
@@ -107,7 +112,6 @@ void bubble_sort(Request *arr, size_t size, MotorDirection direction)
 {
     if (size <= 1)
     {
-        // printf("Abort: arr_size %zu, no need for sorting \n", size); // db
         return;
     }
 

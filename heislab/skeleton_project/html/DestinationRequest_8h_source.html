@@ -76,24 +76,49 @@ $(function() {
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;elevio.h&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structDestinationRequest.html">   16</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structDestinationRequest.html#a47f1b982e9f114e11e8f58062559d9b0">   18</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structDestinationRequest.html#a47f1b982e9f114e11e8f58062559d9b0">_floor</a>;            </div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structDestinationRequest.html#a50a4d14934b347a289a7f95ad25aaaea">   19</a></span>&#160;    ButtonType <a class="code" href="structDestinationRequest.html#a50a4d14934b347a289a7f95ad25aaaea">_direction</a>; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;} <a class="code" href="structDestinationRequest.html">DestinationRequest</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// /**</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">//  * @brief Represents a destination request in the elevator system.</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">//  *</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">//  * Represents a request for an elevator stop, including the target floor and travel direction.</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">//  */</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">// typedef struct</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">// {</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">//     int _floor;             ///&lt; The requested floor.</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">//     ButtonType _buttonType; ///&lt; The direction of travel (@c DIRN_UP, @c DIRN_DOWN, or @c DIRN_STOP).</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">// } DestinationRequest;</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">void</span> <a class="code" href="DestinationRequest_8h.html#a0ad8a8e1014b7d9bc3eb7bf678a7b548">swap</a>(<a class="code" href="structDestinationRequest.html">DestinationRequest</a> arr[], <span class="keywordtype">size_t</span> i, <span class="keywordtype">size_t</span> j);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">// /**</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">//  * @brief Swaps two elements in a @c DestinationRequest array.</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">//  * @param[in,out] arr The array of @c DestinationRequest elements.</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">//  * @param[in] i The index of the first element to swap.</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">//  * @param[in] j The index of the second element to swap.</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">//  */</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">// void swap(DestinationRequest arr[], size_t i, size_t j);</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">void</span> <a class="code" href="DestinationRequest_8h.html#a01f9bb2a3efd093c7ec3e9379d97a7b1">bubble_sort</a>(<a class="code" href="structDestinationRequest.html">DestinationRequest</a> arr[], <span class="keywordtype">size_t</span> size, MotorDirection dir);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">// /**</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">//  * @brief Sorts a @c DestinationRequest array in the specified direction.</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">//  *</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">//  * If @p dir is @c DIRN_UP, the array is sorted in ascending order (lowest to highest).</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">//  * If @p dir is @c DIRN_DOWN, the array is sorted in descending order (highest to lowest).</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">//  *</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">//  * @param[in,out] arr The array of @c DestinationRequest elements to be sorted.</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">//  * @param[in] size The number of elements in the array.</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">//  * @param[in] dir The @c MotorDirection that determines the sorting order.</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">//  */</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">// void bubble_sort(DestinationRequest arr[], size_t size, MotorDirection dir);</span></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">void</span> <a class="code" href="DestinationRequest_8h.html#ad8be1469cbab1bdb82dc531dd44799ae">print_queue</a>(<a class="code" href="structDestinationRequest.html">DestinationRequest</a> arr[], <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">// bool in_array(DestinationRequest arr[], size_t size, DestinationRequest destinationRequest);</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">// // MotorDirection int_to_motor_direction(int button);</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">// // MotorDirection button_type_to_motor_direction(ButtonType btn);</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">// /**</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">//  * @brief Prints a @c DestinationRequest array for debugging purposes.</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">//  * @param[in] arr The array of @c DestinationRequest elements to be printed.</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">//  * @param[in] size The number of elements in the array.</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">//  */</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">// void print_queue(DestinationRequest arr[], size_t size);</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aDestinationRequest_8h_html_a0ad8a8e1014b7d9bc3eb7bf678a7b548"><div class="ttname"><a href="DestinationRequest_8h.html#a0ad8a8e1014b7d9bc3eb7bf678a7b548">swap</a></div><div class="ttdeci">void swap(DestinationRequest arr[], size_t i, size_t j)</div><div class="ttdoc">Swaps two elements in a DestinationRequest array.</div><div class="ttdef"><b>Definition:</b> <a href="DestinationRequest_8c_source.html#l00008">DestinationRequest.c:8</a></div></div>
-<div class="ttc" id="astructDestinationRequest_html_a50a4d14934b347a289a7f95ad25aaaea"><div class="ttname"><a href="structDestinationRequest.html#a50a4d14934b347a289a7f95ad25aaaea">DestinationRequest::_direction</a></div><div class="ttdeci">ButtonType _direction</div><div class="ttdoc">The direction of travel (DIRN_UP, DIRN_DOWN, or DIRN_STOP).</div><div class="ttdef"><b>Definition:</b> <a href="DestinationRequest_8h_source.html#l00019">DestinationRequest.h:19</a></div></div>
-<div class="ttc" id="aDestinationRequest_8h_html_a01f9bb2a3efd093c7ec3e9379d97a7b1"><div class="ttname"><a href="DestinationRequest_8h.html#a01f9bb2a3efd093c7ec3e9379d97a7b1">bubble_sort</a></div><div class="ttdeci">void bubble_sort(DestinationRequest arr[], size_t size, MotorDirection dir)</div><div class="ttdoc">Sorts a DestinationRequest array in the specified direction.</div><div class="ttdef"><b>Definition:</b> <a href="DestinationRequest_8c_source.html#l00015">DestinationRequest.c:15</a></div></div>
-<div class="ttc" id="aDestinationRequest_8h_html_ad8be1469cbab1bdb82dc531dd44799ae"><div class="ttname"><a href="DestinationRequest_8h.html#ad8be1469cbab1bdb82dc531dd44799ae">print_queue</a></div><div class="ttdeci">void print_queue(DestinationRequest arr[], size_t size)</div><div class="ttdoc">Prints a DestinationRequest array for debugging purposes.</div><div class="ttdef"><b>Definition:</b> <a href="DestinationRequest_8c_source.html#l00039">DestinationRequest.c:39</a></div></div>
-<div class="ttc" id="astructDestinationRequest_html"><div class="ttname"><a href="structDestinationRequest.html">DestinationRequest</a></div><div class="ttdoc">Represents a destination request in the elevator system.</div><div class="ttdef"><b>Definition:</b> <a href="DestinationRequest_8h_source.html#l00016">DestinationRequest.h:16</a></div></div>
-<div class="ttc" id="astructDestinationRequest_html_a47f1b982e9f114e11e8f58062559d9b0"><div class="ttname"><a href="structDestinationRequest.html#a47f1b982e9f114e11e8f58062559d9b0">DestinationRequest::_floor</a></div><div class="ttdeci">int _floor</div><div class="ttdoc">The requested floor.</div><div class="ttdef"><b>Definition:</b> <a href="DestinationRequest_8h_source.html#l00018">DestinationRequest.h:18</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

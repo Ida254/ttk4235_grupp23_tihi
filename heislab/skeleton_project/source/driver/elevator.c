@@ -52,22 +52,70 @@ void run_elevator_program(Elevator *elevator)
     printf("=== Cool Program ===\n");
     initialize_elevator(elevator);
 
+    // while (1)
+    // {
+    //     elevator->current_floor = elevio_floorSensor();
+    //     at_right_floor(elevator);
+
+    //     on_button_press(elevator); // execute if button is pressed, and add to queue
+
+    //     at_right_floor(elevator);
+
+    //     check_emergency_stop();
+
+    //     nanosleep(&(struct timespec){0, 20 * 1000 * 1000}, NULL);
+    // }
+
+    pthread_t button_thread, floor_thread, emergency_thread;
+
+    // Create threads for handling different tasks simultaneously
+    pthread_create(&button_thread, NULL, button_listener, (void *)elevator);
+    pthread_create(&floor_thread, NULL, floor_listener, (void *)elevator);
+    pthread_create(&emergency_thread, NULL, emergency_listener, NULL);
+
     while (1)
     {
-        int floor = elevio_floorSensor();
-        elevator->current_floor = floor;
-        at_right_floor(elevator);
-
-        on_button_press(elevator); // execute if button is pressed, and add to queue
-
-        at_right_floor(elevator);
-
-        check_emergency_stop();
-
-        nanosleep(&(struct timespec){0, 20 * 1000 * 1000}, NULL);
+        elevator->current_floor = elevio_floorSensor();           // Continuously update the floor sensor
+        nanosleep(&(struct timespec){0, 20 * 1000 * 1000}, NULL); // Sleep for 20ms
     }
 
+    pthread_join(button_thread, NULL);
+    pthread_join(floor_thread, NULL);
+    pthread_join(emergency_thread, NULL);
+
     free_elevator(elevator);
+}
+
+void *button_listener(void *arg)
+{
+    Elevator *elevator = (Elevator *)arg;
+    while (1)
+    {
+        on_button_press(elevator);                                // Check if a button is pressed and update queue
+        nanosleep(&(struct timespec){0, 10 * 1000 * 1000}, NULL); // Sleep for 10ms
+    }
+    return NULL;
+}
+
+void *floor_listener(void *arg)
+{
+    Elevator *elevator = (Elevator *)arg;
+    while (1)
+    {
+        at_right_floor(elevator);                                 // Check if the elevator should stop at a floor
+        nanosleep(&(struct timespec){0, 10 * 1000 * 1000}, NULL); // Sleep for 10ms
+    }
+    return NULL;
+}
+
+void *emergency_listener(void *arg)
+{
+    while (1)
+    {
+        check_emergency_stop();                                   // Constantly monitor if the emergency stop is triggered
+        nanosleep(&(struct timespec){0, 10 * 1000 * 1000}, NULL); // Sleep for 10ms
+    }
+    return NULL;
 }
 
 void sort_queue(Elevator *elevator)
@@ -101,8 +149,8 @@ void add_request_to_queue(Elevator *elevator, Request new_req)
 
     sort_queue(elevator);
 
-    printf("\nAdded to queue and sorted\n"); // db
-    print_elevator(elevator);
+    // printf("\nAdded to queue and sorted\n"); // db
+    // print_elevator(elevator); // db
 }
 
 void remove_request_from_queue(Elevator *elevator, int floor)
@@ -113,7 +161,6 @@ void remove_request_from_queue(Elevator *elevator, int floor)
     remove_request_by_floor(&elevator->request_queue, queueSize, queueCapacity, floor);
 }
 
-// thomas sin del
 void on_button_press(Elevator *elevator)
 {
     Request new_req;
@@ -161,85 +208,48 @@ void moving_elevator(Elevator *elevator)
     elevio_motorDirection(direction);
 }
 
-void at_right_floor(Elevator *elevator) // as long as door is closed, check if at right floor
+void at_right_floor(Elevator *elevator)
 {
     if (elevator->queue_size == 0)
     {
         return;
     }
 
-    elevator->current_floor = elevio_floorSensor();
-    int currFloor = elevator->current_floor;
+    int currFloor = elevio_floorSensor();
 
     if (currFloor != -1)
     {
+        elevator->current_floor = currFloor;
         elevio_floorIndicator(currFloor);
     }
 
-    Request req = elevator->request_queue[0];
-
-    if (currFloor == req.floor)
+    if (currFloor == elevator->request_queue[0].floor)
     {
-        // printf("At floor %d \n", currFloor); // db
         stop_elevator_at_floor(elevator, currFloor);
-
-        rest_elevator(elevator);
-
         elevio_doorOpenLamp(0);
     }
 
     moving_elevator(elevator);
 }
 
-// void move_elevator_to_floor(Elevator *elevator, Request destinationRequest)
-// {
-//     MotorDirection direction = button_type_to_motor_direction(destinationRequest.button);
-//     elevator->moving_direction = direction;
-
-//     int floor = destinationRequest.floor;
-//     bool stopped = false;
-
-//     elevio_motorDirection(direction);
-
-//     while (!stopped)
-//     {
-//         if (elevio_floorSensor() == floor)
-//         {
-//             elevio_motorDirection(DIRN_STOP);
-//             elevio_stopLamp(floor);
-//             elevator->current_floor = floor;
-//             stopped = true;
-//         }
-//     }
-// }
-
 void switch_direction(Elevator *elevator)
 {
-    int currFloor = elevator->current_floor;
-    MotorDirection *currDir = &elevator->moving_direction;
-
-    if (currFloor == BOTTOM_FLOOR || currFloor == TOP_FLOOR)
-    {
-        MotorDirection newDir = *currDir == DIRN_DOWN ? DIRN_UP : DIRN_DOWN;
-        *currDir = newDir;
-        sort_queue(elevator);
-        return;
-    }
-
     if (elevator->queue_size == 0)
     {
         return;
     }
 
-    Request new_req = elevator->request_queue[0];
-    if (*currDir != button_type_to_motor_direction(new_req.button))
+    MotorDirection *currDir = &elevator->moving_direction;
+    MotorDirection newDir = button_type_to_motor_direction(elevator->request_queue[0].button);
+
+    if (*currDir == newDir || newDir == DIRN_STOP)
     {
         return;
     }
 
-    *currDir = button_type_to_motor_direction(new_req.button);
+    *currDir = newDir;
     sort_queue(elevator);
-    printf("Switched direction \n");
+    printf("\nSwitched direction \n");
 }
 
 void rest_elevator(Elevator *elevator)
@@ -257,10 +267,15 @@ void stop_elevator_at_floor(Elevator *elevator, int floor)
     elevio_motorDirection(DIRN_STOP);
     elevator->in_motion = false;
     elevio_buttonLamp(floor, elevator->request_queue[0].button, 0);
-    remove_request_from_queue(elevator, floor);
-
     switch_direction(elevator);
+
+    remove_request_from_queue(elevator, floor);
     elevio_doorOpenLamp(1);
+
+    rest_elevator(elevator);
+
+    printf("Destination reached and elevator stopped \n");
+    print_elevator(elevator); // db
 }
 
 void check_emergency_stop()
@@ -336,13 +351,7 @@ void test_elevator(void)
 
     // printf("\nAfter removing ");
     // print_elevator(&elevator);
+    //     // gcc -o elevator_program source/driver/elevator.c source/driver/request.c source/driver/elevio.c
+    //     // ./elevator_program
+    //     // rm ./elevator_program
 }
-
-// int main()
-// {
-//     test_elevator();
-//     // gcc -o elevator_program source/driver/elevator.c source/driver/request.c source/driver/elevio.c
-//     // ./elevator_program
-//     // rm ./elevator_program
-//     return 0;
-// }

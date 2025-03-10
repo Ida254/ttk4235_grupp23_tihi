@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['_5fdirection_34',['_direction',['../structDestinationRequest.html#a50a4d14934b347a289a7f95ad25aaaea',1,'DestinationRequest']]],
-  ['_5ffloor_35',['_floor',['../structDestinationRequest.html#a47f1b982e9f114e11e8f58062559d9b0',1,'DestinationRequest']]]
+  ['button_86',['button',['../structRequest.html#a474cda60f9cb5e88153d77168237ec81',1,'Request']]]
 ];

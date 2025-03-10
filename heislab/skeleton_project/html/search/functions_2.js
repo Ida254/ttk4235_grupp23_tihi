@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['free_5felevator_27',['free_elevator',['../elevator_8c.html#ab45cd18d19af28e6e537c60f244fd19c',1,'free_elevator(Elevator *elevator):&#160;elevator.c'],['../elevator_8h.html#ab45cd18d19af28e6e537c60f244fd19c',1,'free_elevator(Elevator *elevator):&#160;elevator.c']]]
+  ['check_5femergency_5fstop_62',['check_emergency_stop',['../elevator_8c.html#a39717f6ea0a44a21b8c6d1da6eca15b9',1,'check_emergency_stop():&#160;elevator.c'],['../elevator_8h.html#a39717f6ea0a44a21b8c6d1da6eca15b9',1,'check_emergency_stop():&#160;elevator.c']]]
 ];

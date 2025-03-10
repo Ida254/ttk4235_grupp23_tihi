@@ -13,89 +13,8 @@ Include dependency graph for Destination\+Request.\+c\+:\nopagebreak
 \includegraphics[width=284pt]{DestinationRequest_8c__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Functions}
-\begin{DoxyCompactItemize}
-\item 
-void \mbox{\hyperlink{DestinationRequest_8c_a0ad8a8e1014b7d9bc3eb7bf678a7b548}{swap}} (\mbox{\hyperlink{structDestinationRequest}{Destination\+Request}} arr\mbox{[}$\,$\mbox{]}, size\+\_\+t i, size\+\_\+t j)
-\begin{DoxyCompactList}\small\item\em Swaps two elements in a {\ttfamily \mbox{\hyperlink{structDestinationRequest}{Destination\+Request}}} array. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{DestinationRequest_8c_a01f9bb2a3efd093c7ec3e9379d97a7b1}{bubble\+\_\+sort}} (\mbox{\hyperlink{structDestinationRequest}{Destination\+Request}} arr\mbox{[}$\,$\mbox{]}, size\+\_\+t size, Motor\+Direction dir)
-\begin{DoxyCompactList}\small\item\em Sorts a {\ttfamily \mbox{\hyperlink{structDestinationRequest}{Destination\+Request}}} array in the specified direction. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{DestinationRequest_8c_ad8be1469cbab1bdb82dc531dd44799ae}{print\+\_\+queue}} (\mbox{\hyperlink{structDestinationRequest}{Destination\+Request}} arr\mbox{[}$\,$\mbox{]}, size\+\_\+t size)
-\begin{DoxyCompactList}\small\item\em Prints a {\ttfamily \mbox{\hyperlink{structDestinationRequest}{Destination\+Request}}} array for debugging purposes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 The implementation file of \mbox{\hyperlink{DestinationRequest_8h}{Destination\+Request.\+h}}. 
-
-
-
-\doxysubsection{Function Documentation}
-\mbox{\Hypertarget{DestinationRequest_8c_a01f9bb2a3efd093c7ec3e9379d97a7b1}\label{DestinationRequest_8c_a01f9bb2a3efd093c7ec3e9379d97a7b1}} 
-\index{DestinationRequest.c@{DestinationRequest.c}!bubble\_sort@{bubble\_sort}}
-\index{bubble\_sort@{bubble\_sort}!DestinationRequest.c@{DestinationRequest.c}}
-\doxysubsubsection{\texorpdfstring{bubble\_sort()}{bubble\_sort()}}
-{\footnotesize\ttfamily void bubble\+\_\+sort (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDestinationRequest}{Destination\+Request}}}]{arr\mbox{[}$\,$\mbox{]},  }\item[{size\+\_\+t}]{size,  }\item[{Motor\+Direction}]{dir }\end{DoxyParamCaption})}
-
-
-
-Sorts a {\ttfamily \mbox{\hyperlink{structDestinationRequest}{Destination\+Request}}} array in the specified direction. 
-
-If {\ttfamily dir} is {\ttfamily D\+I\+R\+N\+\_\+\+UP}, the array is sorted in ascending order (lowest to highest). If {\ttfamily dir} is {\ttfamily D\+I\+R\+N\+\_\+\+D\+O\+WN}, the array is sorted in descending order (highest to lowest).
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em arr} & The array of {\ttfamily \mbox{\hyperlink{structDestinationRequest}{Destination\+Request}}} elements to be sorted. \\
-\hline
-\mbox{\texttt{ in}}  & {\em size} & The number of elements in the array. \\
-\hline
-\mbox{\texttt{ in}}  & {\em dir} & The {\ttfamily Motor\+Direction} that determines the sorting order. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 15 of file Destination\+Request.\+c.
-
-\mbox{\Hypertarget{DestinationRequest_8c_ad8be1469cbab1bdb82dc531dd44799ae}\label{DestinationRequest_8c_ad8be1469cbab1bdb82dc531dd44799ae}} 
-\index{DestinationRequest.c@{DestinationRequest.c}!print\_queue@{print\_queue}}
-\index{print\_queue@{print\_queue}!DestinationRequest.c@{DestinationRequest.c}}
-\doxysubsubsection{\texorpdfstring{print\_queue()}{print\_queue()}}
-{\footnotesize\ttfamily void print\+\_\+queue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDestinationRequest}{Destination\+Request}}}]{arr\mbox{[}$\,$\mbox{]},  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
-
-
-
-Prints a {\ttfamily \mbox{\hyperlink{structDestinationRequest}{Destination\+Request}}} array for debugging purposes. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em arr} & The array of {\ttfamily \mbox{\hyperlink{structDestinationRequest}{Destination\+Request}}} elements to be printed. \\
-\hline
-\mbox{\texttt{ in}}  & {\em size} & The number of elements in the array. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 39 of file Destination\+Request.\+c.
-
-\mbox{\Hypertarget{DestinationRequest_8c_a0ad8a8e1014b7d9bc3eb7bf678a7b548}\label{DestinationRequest_8c_a0ad8a8e1014b7d9bc3eb7bf678a7b548}} 
-\index{DestinationRequest.c@{DestinationRequest.c}!swap@{swap}}
-\index{swap@{swap}!DestinationRequest.c@{DestinationRequest.c}}
-\doxysubsubsection{\texorpdfstring{swap()}{swap()}}
-{\footnotesize\ttfamily void swap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDestinationRequest}{Destination\+Request}}}]{arr\mbox{[}$\,$\mbox{]},  }\item[{size\+\_\+t}]{i,  }\item[{size\+\_\+t}]{j }\end{DoxyParamCaption})}
-
-
-
-Swaps two elements in a {\ttfamily \mbox{\hyperlink{structDestinationRequest}{Destination\+Request}}} array. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em arr} & The array of {\ttfamily \mbox{\hyperlink{structDestinationRequest}{Destination\+Request}}} elements. \\
-\hline
-\mbox{\texttt{ in}}  & {\em i} & The index of the first element to swap. \\
-\hline
-\mbox{\texttt{ in}}  & {\em j} & The index of the second element to swap. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 8 of file Destination\+Request.\+c.
 
