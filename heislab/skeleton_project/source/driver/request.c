@@ -46,11 +46,11 @@ MotorDirection int_to_motor_direction(int button)
     MotorDirection motorDir;
     switch (button)
     {
-    case 0:
-        motorDir = DIRN_UP;
+    case -1:
+        motorDir = DIRN_DOWN;
         break;
     case 1:
-        motorDir = DIRN_DOWN;
+        motorDir = DIRN_UP;
         break;
     default:
         motorDir = DIRN_STOP;
@@ -87,17 +87,14 @@ void extend_requests(Request *arr1, size_t index, Request *arr2, size_t arr2_siz
 
 void bubble_sort(Request *arr, size_t size, MotorDirection direction)
 {
-    if (size < 2)
+    printf("Queuesize = %zu \n", size);
+    if (size <= 1)
     {
         printf("Abort: arr_size too small, no need for sorting \n");
         return;
     }
 
     int reverse = (direction == DIRN_DOWN); // Sort descending if moving down
-    if (size <= 1)                          // Need to be sure that the size is greater than 1
-    {
-        return;
-    }
     for (size_t i = 0; i < size - 1; i++)
     {
         for (size_t j = 0; j < size - i - 1; j++)
@@ -114,6 +111,12 @@ void bubble_sort(Request *arr, size_t size, MotorDirection direction)
 
 void sort_requests(Request *arr, size_t arr_size, int curr_floor, MotorDirection moving_dir)
 {
+    if (arr_size < 2)
+    {
+        printf("Abort: arr_size = %zu, no need for sorting", arr_size);
+        return;
+    }
+
     Request tempArrAlpha[arr_size], tempArrBravo[arr_size], tempArrCharlie[arr_size];
     int alphaCount = 0, bravoCount = 0, charlieCount = 0;
     MotorDirection otherDir = (moving_dir == DIRN_DOWN) ? DIRN_UP : DIRN_DOWN;

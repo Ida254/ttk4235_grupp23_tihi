@@ -6,8 +6,8 @@
 #pragma once
 
 #define BOTTOM_FLOOR 0
-#define TOP_FLOOR 10 // db, should be 3
-#define INITIAL_FLOOR 3
+#define TOP_FLOOR 3 // db, should be 3
+#define INITIAL_FLOOR 0
 #define INITIAL_DIRECTION DIRN_UP
 
 #include <stdio.h>
@@ -44,6 +44,7 @@ typedef struct
     Request *request_queue;
     size_t queue_size;
     size_t queue_capacity;
+    int last_floor;
 } Elevator;
 
 /**
@@ -105,6 +106,7 @@ void on_button_press(Elevator *elevator);
 void on_button_press(Elevator *elevator);
 void moving_elevator(Elevator *elevator);
 void at_right_floor(Elevator *elevator);
+void switch_direction(Elevator *elevator);
 
 /**
  * @brief Prints the memebers of the struct Elevator.
