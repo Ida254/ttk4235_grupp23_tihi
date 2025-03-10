@@ -40,6 +40,22 @@ void run_elevator_program(Elevator *elevator)
 
         at_right_floor(elevator);
 
+        // checking if elevator goes out of bounce
+        if (floor == BOTTOM_FLOOR && elevator->motor_state < 0)
+        {
+            elevio_motorDirection(DIRN_STOP);
+            printf("Elevator out of bounce \n");
+            elevio_stopLamp(1);
+            kill(getpid(), SIGKILL); // Forcefully stops the program
+        }
+        else if (floor == TOP_FLOOR && elevator->motor_state > 0)
+        {
+            elevio_motorDirection(DIRN_STOP);
+            printf("Elevator out of bounce \n");
+            elevio_stopLamp(1);
+            kill(getpid(), SIGKILL); // Forcefully stops the program
+        }
+
         // if (elevio_obstruction())
         // {
         //     elevio_stopLamp(1);
@@ -52,6 +68,7 @@ void run_elevator_program(Elevator *elevator)
         if (elevio_stopButton())
         {
             elevio_motorDirection(DIRN_STOP);
+            printf("Stop button pressed \n");
             elevio_stopLamp(1);
             kill(getpid(), SIGKILL); // Forcefully stops the program
         }

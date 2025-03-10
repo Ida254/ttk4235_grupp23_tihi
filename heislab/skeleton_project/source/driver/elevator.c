@@ -20,6 +20,7 @@ void initialize_elevator(Elevator *elevator)
     elevator->queue_size = 0;
     elevator->queue_capacity = 0;
     elevator->last_floor = 0;
+    elevator->motor_state = 0;
 
     // move to BOTTOM_FLOOR
     int floor = elevio_floorSensor();
@@ -151,6 +152,7 @@ void moving_elevator(Elevator *elevator)
     // printf("difference in floor = %d \n", differenceInFloors);
     elevio_motorDirection(differenceInFloors);
     elevator->in_motion = true;
+    elevator->motor_state = differenceInFloors;
 }
 
 void at_right_floor(Elevator *elevator)
@@ -179,15 +181,19 @@ void at_right_floor(Elevator *elevator)
         elevio_doorOpenLamp(1);
         if (elevator->current_floor == BOTTOM_FLOOR)
         {
-            elevio_buttonLamp(elevator->current_floor, 0, 0);
+            elevio_buttonLamp(BOTTOM_FLOOR, 0, 0);
+            elevio_buttonLamp(BOTTOM_FLOOR, 2, 0);
         }
         else if (elevator->current_floor == TOP_FLOOR)
         {
-            elevio_buttonLamp(elevator->current_floor, 0, 0);
+            elevio_buttonLamp(TOP_FLOOR, 1, 0);
+            elevio_buttonLamp(TOP_FLOOR, 2, 0);
         }
         else
         {
-            elevio_buttonLamp(elevator->current_floor, elevator->request_queue[0].button, 0);
+            elevio_buttonLamp(elevator->current_floor, 0, 0);
+            elevio_buttonLamp(elevator->current_floor, 1, 0);
+            elevio_buttonLamp(elevator->current_floor, 2, 0);
         }
         time_t start_time = time(NULL);
         while (time(NULL) - start_time < 3)
@@ -196,6 +202,7 @@ void at_right_floor(Elevator *elevator)
             if (elevio_stopButton())
             {
                 elevio_motorDirection(DIRN_STOP);
+                printf("Stop button pressed \n");
                 elevio_stopLamp(1);
                 kill(getpid(), SIGKILL); // Forcefully stops the program
             }
