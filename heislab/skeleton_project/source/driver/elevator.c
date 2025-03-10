@@ -19,6 +19,7 @@ void initialize_elevator(Elevator *elevator)
     elevator->request_queue = NULL;
     elevator->queue_size = 0;
     elevator->queue_capacity = 0;
+    elevator->last_floor = 0;
 
     // move to BOTTOM_FLOOR
     int floor = elevio_floorSensor();
@@ -72,11 +73,12 @@ void add_request_to_queue(Elevator *elevator, Request new_req)
         return;
     }
     add_request(&elevator->request_queue, queueSize, queueCapacity, new_req);
+    // print_elevator(elevator);
 
     sort_queue(elevator);
-    printf("\nAdded to queue and sorted\n");
+
+    printf("\nAdded to queue and sorted\n"); // db
     print_elevator(elevator);
-    // print_requests(elevator->request_queue, *queueSize); // db
 }
 
 void remove_request_from_queue(Elevator *elevator, int floor)
@@ -157,7 +159,7 @@ void at_right_floor(Elevator *elevator)
 
     if (currFloor == req.floor)
     {
-        printf("At floor %d \n", currFloor);
+        printf("At floor %d \n", currFloor); // db
         stop_elevator_at_floor(elevator, currFloor);
 
         rest_elevator(elevator);
@@ -171,6 +173,7 @@ void at_right_floor(Elevator *elevator)
         printf("Queue is empty \n");
         return;
     }
+    switch_direction(elevator);
     moving_elevator(elevator);
 }
 
@@ -253,6 +256,17 @@ void print_elevator(Elevator *elevator)
     printf("Queue capacity: %zu\n", elevator->queue_capacity);
 }
 
+void switch_direction(Elevator *elevator)
+{
+    if (elevator->moving_direction == button_type_to_motor_direction(elevator->request_queue[0].button))
+    {
+        return;
+    }
+
+    elevator->moving_direction = button_type_to_motor_direction(elevator->request_queue[0].button);
+    printf("Direction switched \n"); // db
+}
+
 void test_elevator(void)
 {
     Elevator elevator;
@@ -260,40 +274,43 @@ void test_elevator(void)
     printf("Initial elevator \n");
     print_elevator(&elevator);
 
-    size_t initial_requests_size = 13;
-    Request initial_requests[] = {
-        {5, BUTTON_HALL_UP},
-        {5, BUTTON_CAB},
-        {5, BUTTON_HALL_DOWN},
-        {3, BUTTON_HALL_UP},
-        {8, BUTTON_HALL_DOWN},
-        {2, BUTTON_HALL_UP},
-        {1, BUTTON_HALL_UP},
-        {7, BUTTON_HALL_DOWN},
-        {3, BUTTON_HALL_DOWN},
-        {6, BUTTON_CAB},
-        {8, BUTTON_CAB},
-        {10, BUTTON_HALL_UP},
-        {2, BUTTON_CAB}};
+    // size_t initial_requests_size = 13;
+    // Request initial_requests[] = {
+    //     {5, BUTTON_HALL_UP},
+    //     {5, BUTTON_CAB},
+    //     {5, BUTTON_HALL_DOWN},
+    //     {3, BUTTON_HALL_UP},
+    //     {8, BUTTON_HALL_DOWN},
+    //     {2, BUTTON_HALL_UP},
+    //     {1, BUTTON_HALL_UP},
+    //     {7, BUTTON_HALL_DOWN},
+    //     {3, BUTTON_HALL_DOWN},
+    //     {6, BUTTON_CAB},
+    //     {8, BUTTON_CAB},
+    //     {10, BUTTON_HALL_UP},
+    //     {2, BUTTON_CAB}};
+
+    size_t initial_requests_size = 3;
+    Request initial_requests[] = {{3, BUTTON_HALL_DOWN}, {2, BUTTON_HALL_UP}, {1, BUTTON_HALL_UP}};
 
     for (size_t i = 0; i < initial_requests_size; i++)
     {
         add_request_to_queue(&elevator, initial_requests[i]);
     }
-    printf("\nBefore sorting \n");
+    printf("\nAfter sorting \n");
     print_elevator(&elevator);
 
     // sort_queue(&elevator);
 
-    printf("\nAfter sorting, before removing \n");
-    print_elevator(&elevator);
+    // printf("\nAfter sorting, before removing \n");
+    // print_elevator(&elevator);
 
-    remove_request_from_queue(&elevator, 5);
-    remove_request_from_queue(&elevator, 2);
-    remove_request_from_queue(&elevator, 3);
+    // remove_request_from_queue(&elevator, 5);
+    // remove_request_from_queue(&elevator, 2);
+    // remove_request_from_queue(&elevator, 3);
 
-    printf("\nAfter removing ");
-    print_elevator(&elevator);
+    // printf("\nAfter removing ");
+    // print_elevator(&elevator);
 }
 
 // int main()

@@ -20,6 +20,7 @@ void run_elevator_program(Elevator *elevator)
         // if(floor == N_FLOORS-1){
         //     elevio_motorDirection(DIRN_DOWN);
         // }
+        at_right_floor(elevator);
 
         on_button_press(elevator); // execute if button is pressed, and add to queue
 
@@ -56,7 +57,7 @@ int main()
     Elevator elevator; // Need to define it more
     // size_t queueCapacaty = 10;
     initialize_elevator(&elevator);
-    printf("Done with initializing\n\n");
+
     run_elevator_program(&elevator);
 
     free_elevator(&elevator);

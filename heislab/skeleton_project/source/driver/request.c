@@ -87,7 +87,8 @@ void extend_requests(Request *arr1, size_t index, Request *arr2, size_t arr2_siz
 
 void bubble_sort(Request *arr, size_t size, MotorDirection direction)
 {
-    if (size < 2)
+    printf("Queuesize = %zu \n", size);
+    if (size <= 1)
     {
         // printf("Abort: arr_size %zu, no need for sorting \n", size); // db
         return;
