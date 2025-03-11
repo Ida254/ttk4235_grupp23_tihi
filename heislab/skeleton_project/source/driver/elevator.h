@@ -1,25 +1,29 @@
 /**
  * @file
- * @brief The header file for elevator.c
+ * @brief Header file for the elevator control system.
+ *
+ * This file defines the Elevator structure and declares functions to control
+ * and manage elevator movement, request handling, and system states.
  */
 
 #pragma once
 
-#define BOTTOM_FLOOR 0
-#define TOP_FLOOR 10 // db, should be 3
-#define INITIAL_FLOOR 3
-#define INITIAL_DIRECTION DIRN_UP
-
 #include <stdio.h>
 #include <stdbool.h>
-#include <string.h>
-#include <stdlib.h> // for testing
-#include <time.h>
-#include <signal.h>
+#include <stdlib.h> // for malloc
+#include <time.h>   // for time
+#include <signal.h> // for kill
 #include <unistd.h>
-// #include "DestinationRequest.h"
-#include "request.h"
 #include "elevio.h"
+#include "utilities.h"
+#include "request.h"
+
+#define BOTTOM_FLOOR 0
+#define TOP_FLOOR 3
+#define INITIAL_FLOOR 0
+#define INITIAL_DIRECTION DIRN_UP
+// #define INITIAL_REQUEST \
+//     (Request) { 0, BUTTON_HALL_UP }
 
 /**
  * @brief Defines an Elevator struct to store values.
@@ -39,17 +43,19 @@
 typedef struct
 {
     int current_floor;
+    int last_floor;
     MotorDirection moving_direction;
     bool in_motion;
     Request *request_queue;
     size_t queue_size;
     size_t queue_capacity;
+    // bool initialized;
 } Elevator;
 
 /**
  * @brief Initializes an Elevator struct with default values.
  *
- * This function sets up an elevator with the specified initial capacity for its destination queue.
+ * This function sets up an elevator and moves it to the first floor.
  *
  * @param[in,out] elevator Pointer to the Elevator struct to be initialized.
  * @param[in] initialCapacity The initial capacity of the destination queue.
@@ -65,6 +71,8 @@ void initialize_elevator(Elevator *elevator);
  * @param[in,out] elevator Pointer to the Elevator struct to be freed.
  */
 void free_elevator(Elevator *elevator);
+
+void turn_off_all_lamps();
 
 /**
  * @brief Sorts the destination queue in the Elevator struct.
@@ -98,13 +106,83 @@ void add_request_to_queue(Elevator *elevator, Request new_req);
  */
 void remove_request_from_queue(Elevator *elevator, int floor);
 
+/**
+ * @brief Handles button press events and updates the elevator queue.
+ *
+ * This function checks if any button has been pressed and, if so, adds the request
+ * to the elevator's queue.
+ *
+ * @param elevator Pointer to the Elevator structure.
+ */
 void on_button_press(Elevator *elevator);
 
-// void move_elevator_to_floor(Elevator *elevator, Request destinationRequest);
+/**
+ * @brief Checks if any elevator button has been pressed.
+ *
+ * Iterates through all floors and button types to detect a pressed button.
+ * If a button press is found, it updates the given request structure.
+ *
+ * @param req Pointer to a Request structure to store the button press details.
+ * @return True if a button was pressed, false otherwise.
+ */
+bool button_pressed(Request *req);
 
-void on_button_press(Elevator *elevator);
+/**
+ * @brief Moves the elevator according to its queue and direction.
+ *
+ * This function ensures that the elevator moves towards its intended destination
+ * based on the queued requests.
+ *
+ * @param elevator Pointer to the Elevator structure.
+ */
 void moving_elevator(Elevator *elevator);
+
+/**
+ * @brief Checks if the elevator is at the correct floor and handles stopping logic.
+ *
+ * If the elevator reaches a requested floor, it performs necessary actions like
+ * stopping and opening doors.
+ *
+ * @param elevator Pointer to the Elevator structure.
+ */
 void at_right_floor(Elevator *elevator);
+
+/**
+ * @brief Switches the moving direction of the elevator when needed.
+ *
+ * This function updates the elevator's movement direction based on its current
+ * position and queued requests.
+ *
+ * @param elevator Pointer to the Elevator structure.
+ */
+void switch_direction(Elevator *elevator);
+
+/**
+ * @brief Resets the elevator to an idle state.
+ *
+ * Stops the elevator and clears any pending requests.
+ *
+ * @param elevator Pointer to the Elevator structure.
+ */
+void rest_elevator(Elevator *elevator);
+
+/**
+ * @brief Stops the elevator when it reaches a requested floor.
+ *
+ * This function handles stopping the elevator and opening its doors.
+ *
+ * @param elevator Pointer to the Elevator structure.
+ * @param floor The floor at which the elevator should stop.
+ */
+void stop_elevator_at_floor(Elevator *elevator, int floor);
+
+/**
+ * @brief Monitors and handles emergency stop conditions.
+ *
+ * If an emergency stop is detected, the elevator stops immediately and takes
+ * appropriate safety measures.
+ */
+void check_emergency_stop(Elevator *elevator);
 
 /**
  * @brief Prints the memebers of the struct Elevator.
@@ -114,10 +192,3 @@ void at_right_floor(Elevator *elevator);
  * @param[in] elevator Pointer to the Elevator struct.
  */
 void print_elevator(Elevator *elevator);
-
-/**
- * @brief Runs a test for the sorting function.
- *
- * This function tests whether the elevator's queue sorting mechanism works correctly.
- */
-void test_elevator();

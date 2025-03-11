@@ -77,44 +77,51 @@ Collaboration diagram for Elevator:</div>
 <div class="dyncontent">
 <div class="center"><img src="structElevator__coll__graph.png" border="0" usemap="#Elevator_coll__map" alt="Collaboration graph"/></div>
 <map name="Elevator_coll__map" id="Elevator_coll__map">
-<area shape="rect" title="Defines an Elevator struct to store values." alt="" coords="43,95,119,121"/>
-<area shape="rect" href="structDestinationRequest.html" title="Represents a destination request in the elevator system." alt="" coords="5,5,156,32"/>
+<area shape="rect" title="Defines an Elevator struct to store values." alt="" coords="5,95,81,121"/>
+<area shape="rect" href="structRequest.html" title="Represents an elevator request." alt="" coords="6,5,81,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a4a0c0025a37dea476e7c6d28b66bb534"><td class="memItemLeft" align="right" valign="top"><a id="a4a0c0025a37dea476e7c6d28b66bb534"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>_currentFloor</b></td></tr>
-<tr class="separator:a4a0c0025a37dea476e7c6d28b66bb534"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dbbd5ec5d15410521634f20de3bc936"><td class="memItemLeft" align="right" valign="top"><a id="a2dbbd5ec5d15410521634f20de3bc936"></a>
-MotorDirection&#160;</td><td class="memItemRight" valign="bottom"><b>_movingDirection</b></td></tr>
-<tr class="separator:a2dbbd5ec5d15410521634f20de3bc936"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a506909adb097bee2ed8edcfb91671369"><td class="memItemLeft" align="right" valign="top"><a id="a506909adb097bee2ed8edcfb91671369"></a>
-<a class="el" href="structDestinationRequest.html">DestinationRequest</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_destinationQueue</b></td></tr>
-<tr class="separator:a506909adb097bee2ed8edcfb91671369"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa64853921257dc97d35cb590e07ff12c"><td class="memItemLeft" align="right" valign="top"><a id="aa64853921257dc97d35cb590e07ff12c"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>_queueSize</b></td></tr>
-<tr class="separator:aa64853921257dc97d35cb590e07ff12c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a382adb15352e31380525966860b1df92"><td class="memItemLeft" align="right" valign="top"><a id="a382adb15352e31380525966860b1df92"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>_queueCapacity</b></td></tr>
-<tr class="separator:a382adb15352e31380525966860b1df92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae297f56aca24d7be4518e2b14953015"><td class="memItemLeft" align="right" valign="top"><a id="aae297f56aca24d7be4518e2b14953015"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>current_floor</b></td></tr>
+<tr class="separator:aae297f56aca24d7be4518e2b14953015"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ddce99a8a873502e9231e802b284f1b"><td class="memItemLeft" align="right" valign="top"><a id="a9ddce99a8a873502e9231e802b284f1b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>last_floor</b></td></tr>
+<tr class="separator:a9ddce99a8a873502e9231e802b284f1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81a08874b952491520e46ce744016d17"><td class="memItemLeft" align="right" valign="top"><a id="a81a08874b952491520e46ce744016d17"></a>
+MotorDirection&#160;</td><td class="memItemRight" valign="bottom"><b>moving_direction</b></td></tr>
+<tr class="separator:a81a08874b952491520e46ce744016d17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ca563c2c2ea2fe62b7eb080ece26d49"><td class="memItemLeft" align="right" valign="top"><a id="a6ca563c2c2ea2fe62b7eb080ece26d49"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>in_motion</b></td></tr>
+<tr class="separator:a6ca563c2c2ea2fe62b7eb080ece26d49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8a0a50a2879dfeb5bc9b60cb750612d"><td class="memItemLeft" align="right" valign="top"><a id="ae8a0a50a2879dfeb5bc9b60cb750612d"></a>
+<a class="el" href="structRequest.html">Request</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>request_queue</b></td></tr>
+<tr class="separator:ae8a0a50a2879dfeb5bc9b60cb750612d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9cbaf17ae996f6a02c4b5ee2776e3a1"><td class="memItemLeft" align="right" valign="top"><a id="ac9cbaf17ae996f6a02c4b5ee2776e3a1"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>queue_size</b></td></tr>
+<tr class="separator:ac9cbaf17ae996f6a02c4b5ee2776e3a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08decdabd2f38e0d9654e774c7258c1b"><td class="memItemLeft" align="right" valign="top"><a id="a08decdabd2f38e0d9654e774c7258c1b"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>queue_capacity</b></td></tr>
+<tr class="separator:a08decdabd2f38e0d9654e774c7258c1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines an <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> struct to store values. </p>
 <p>This struct holds information about an elevator, including its current floor, movement direction, and a queue of requested destinations.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_currentFloor</td><td>The current floor of the elevator. </td></tr>
-    <tr><td class="paramname">_movingDirection</td><td>The current movement direction, which can be either <code>DIRN_UP</code> or <code>DIRN_DOWN</code>. </td></tr>
-    <tr><td class="paramname">_destinationQueue</td><td>A queue of destination requests that helps the elevator determine where to go next. </td></tr>
-    <tr><td class="paramname">_queueSize</td><td>The current number of elements in the destination queue. </td></tr>
-    <tr><td class="paramname">_queueCapacity</td><td>The maximum number of destination requests the queue can hold. </td></tr>
+    <tr><td class="paramname">current_floor</td><td>The current floor of the elevator. </td></tr>
+    <tr><td class="paramname">moving_direction</td><td>The current movement direction, which can be either <code>DIRN_UP</code> or <code>DIRN_DOWN</code>. </td></tr>
+    <tr><td class="paramname">in_motion</td><td>Tell whether or not the elevator is in motion at the current moment. </td></tr>
+    <tr><td class="paramname">request_queue</td><td>A queue of destination requests that helps the elevator determine where to go next. </td></tr>
+    <tr><td class="paramname">queue_size</td><td>The current number of elements in the destination queue. </td></tr>
+    <tr><td class="paramname">queue_capacity</td><td>The maximum number of destination requests the queue can hold. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00027">27</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00041">41</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>source/driver/<a class="el" href="elevator_8h_source.html">elevator.h</a></li>
 </ul>

@@ -1,0 +1,179 @@
+\hypertarget{utilities_8h}{}\doxysection{source/driver/utilities.h File Reference}
+\label{utilities_8h}\index{source/driver/utilities.h@{source/driver/utilities.h}}
+
+
+Utility functions for conversions and mappings in the elevator system.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}elevio.\+h\char`\"{}}\newline
+Include dependency graph for utilities.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{utilities_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utilities_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{utilities_8h_adef0f38085d3cff37e91fcdcffac489a}{button\+\_\+to\+\_\+string}} (Button\+Type button)
+\begin{DoxyCompactList}\small\item\em Converts a Button\+Type to a string representation. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{utilities_8h_a0af0735cee97c788f4c885abfd1d4542}{motor\+\_\+direction\+\_\+to\+\_\+string}} (Motor\+Direction direction)
+\begin{DoxyCompactList}\small\item\em Converts a Motor\+Direction to a string representation. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{utilities_8h_a3f7a96bfcf0ad3a5ca1ebb0a52666d68}{bool\+\_\+to\+\_\+string}} (bool true\+\_\+or\+\_\+false)
+\begin{DoxyCompactList}\small\item\em Converts a boolean value to a string (\char`\"{}true\char`\"{} or \char`\"{}false\char`\"{}). \end{DoxyCompactList}\item 
+Button\+Type \mbox{\hyperlink{utilities_8h_a56f351f649b8b4dfa899373bbcca4ce3}{int\+\_\+to\+\_\+button\+\_\+type}} (int integer)
+\begin{DoxyCompactList}\small\item\em Converts an integer to a Button\+Type. \end{DoxyCompactList}\item 
+Motor\+Direction \mbox{\hyperlink{utilities_8h_ad92bad2f5c7780a8512e0c07340660b7}{int\+\_\+to\+\_\+motor\+\_\+direction}} (int integer)
+\begin{DoxyCompactList}\small\item\em Converts an integer to a Motor\+Direction. \end{DoxyCompactList}\item 
+Motor\+Direction \mbox{\hyperlink{utilities_8h_a0f530a564e26ef4cad2baeb7f1c955c0}{button\+\_\+type\+\_\+to\+\_\+motor\+\_\+direction}} (Button\+Type btn)
+\begin{DoxyCompactList}\small\item\em Maps a button type to the corresponding motor direction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Utility functions for conversions and mappings in the elevator system. 
+
+This header file provides functions to convert between different data types used in the elevator system, such as buttons, motor directions, and boolean values. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{utilities_8h_a3f7a96bfcf0ad3a5ca1ebb0a52666d68}\label{utilities_8h_a3f7a96bfcf0ad3a5ca1ebb0a52666d68}} 
+\index{utilities.h@{utilities.h}!bool\_to\_string@{bool\_to\_string}}
+\index{bool\_to\_string@{bool\_to\_string}!utilities.h@{utilities.h}}
+\doxysubsubsection{\texorpdfstring{bool\_to\_string()}{bool\_to\_string()}}
+{\footnotesize\ttfamily const char$\ast$ bool\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{bool}]{true\+\_\+or\+\_\+false }\end{DoxyParamCaption})}
+
+
+
+Converts a boolean value to a string (\char`\"{}true\char`\"{} or \char`\"{}false\char`\"{}). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em true\+\_\+or\+\_\+false} & Boolean value to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string representing \char`\"{}true\char`\"{} or \char`\"{}false\char`\"{}. 
+\end{DoxyReturn}
+
+
+Definition at line 41 of file utilities.\+c.
+
+\mbox{\Hypertarget{utilities_8h_adef0f38085d3cff37e91fcdcffac489a}\label{utilities_8h_adef0f38085d3cff37e91fcdcffac489a}} 
+\index{utilities.h@{utilities.h}!button\_to\_string@{button\_to\_string}}
+\index{button\_to\_string@{button\_to\_string}!utilities.h@{utilities.h}}
+\doxysubsubsection{\texorpdfstring{button\_to\_string()}{button\_to\_string()}}
+{\footnotesize\ttfamily const char$\ast$ button\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{Button\+Type}]{button }\end{DoxyParamCaption})}
+
+
+
+Converts a Button\+Type to a string representation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & The button type to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string representing the button type. 
+\end{DoxyReturn}
+
+
+Definition at line 11 of file utilities.\+c.
+
+\mbox{\Hypertarget{utilities_8h_a0f530a564e26ef4cad2baeb7f1c955c0}\label{utilities_8h_a0f530a564e26ef4cad2baeb7f1c955c0}} 
+\index{utilities.h@{utilities.h}!button\_type\_to\_motor\_direction@{button\_type\_to\_motor\_direction}}
+\index{button\_type\_to\_motor\_direction@{button\_type\_to\_motor\_direction}!utilities.h@{utilities.h}}
+\doxysubsubsection{\texorpdfstring{button\_type\_to\_motor\_direction()}{button\_type\_to\_motor\_direction()}}
+{\footnotesize\ttfamily Motor\+Direction button\+\_\+type\+\_\+to\+\_\+motor\+\_\+direction (\begin{DoxyParamCaption}\item[{Button\+Type}]{btn }\end{DoxyParamCaption})}
+
+
+
+Maps a button type to the corresponding motor direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em btn} & The button type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The motor direction associated with the button. 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file utilities.\+c.
+
+\mbox{\Hypertarget{utilities_8h_a56f351f649b8b4dfa899373bbcca4ce3}\label{utilities_8h_a56f351f649b8b4dfa899373bbcca4ce3}} 
+\index{utilities.h@{utilities.h}!int\_to\_button\_type@{int\_to\_button\_type}}
+\index{int\_to\_button\_type@{int\_to\_button\_type}!utilities.h@{utilities.h}}
+\doxysubsubsection{\texorpdfstring{int\_to\_button\_type()}{int\_to\_button\_type()}}
+{\footnotesize\ttfamily Button\+Type int\+\_\+to\+\_\+button\+\_\+type (\begin{DoxyParamCaption}\item[{int}]{integer }\end{DoxyParamCaption})}
+
+
+
+Converts an integer to a Button\+Type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em integer} & The integer representing a button type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The corresponding Button\+Type. 
+\end{DoxyReturn}
+
+
+Definition at line 52 of file utilities.\+c.
+
+\mbox{\Hypertarget{utilities_8h_ad92bad2f5c7780a8512e0c07340660b7}\label{utilities_8h_ad92bad2f5c7780a8512e0c07340660b7}} 
+\index{utilities.h@{utilities.h}!int\_to\_motor\_direction@{int\_to\_motor\_direction}}
+\index{int\_to\_motor\_direction@{int\_to\_motor\_direction}!utilities.h@{utilities.h}}
+\doxysubsubsection{\texorpdfstring{int\_to\_motor\_direction()}{int\_to\_motor\_direction()}}
+{\footnotesize\ttfamily Motor\+Direction int\+\_\+to\+\_\+motor\+\_\+direction (\begin{DoxyParamCaption}\item[{int}]{integer }\end{DoxyParamCaption})}
+
+
+
+Converts an integer to a Motor\+Direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em integer} & The integer representing a motor direction. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The corresponding Motor\+Direction. 
+\end{DoxyReturn}
+
+
+Definition at line 70 of file utilities.\+c.
+
+\mbox{\Hypertarget{utilities_8h_a0af0735cee97c788f4c885abfd1d4542}\label{utilities_8h_a0af0735cee97c788f4c885abfd1d4542}} 
+\index{utilities.h@{utilities.h}!motor\_direction\_to\_string@{motor\_direction\_to\_string}}
+\index{motor\_direction\_to\_string@{motor\_direction\_to\_string}!utilities.h@{utilities.h}}
+\doxysubsubsection{\texorpdfstring{motor\_direction\_to\_string()}{motor\_direction\_to\_string()}}
+{\footnotesize\ttfamily const char$\ast$ motor\+\_\+direction\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{Motor\+Direction}]{direction }\end{DoxyParamCaption})}
+
+
+
+Converts a Motor\+Direction to a string representation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em direction} & The motor direction to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string representing the motor direction. 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file utilities.\+c.
+
