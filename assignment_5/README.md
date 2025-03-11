@@ -1,18 +1,22 @@
 # Doxygen: Introduction Guide
+
 Doxygen is a tool used for generating documentation from annotated source code. It is widely used for creating detailed documentation for C, C++, and other programming languages. Doxygen can automatically extract documentation from your code, so you don't have to manually write it all out. This README will guide you through how to set up and use Doxygen for your projects.
 
-- [Doxygen: Introduction Guide](#doxygen-introduction-guide)
-  - [Configuration](#configuration)
-    - [1. Generate a Configuration File](#1-generate-a-configuration-file)
-    - [2. Edit the Configuration file](#2-edit-the-configuration-file)
-    - [3. Running Doxygen](#3-running-doxygen)
-  - [Syntax and Commenting Code](#syntax-and-commenting-code)
-    - [NB! Always Include](#nb-always-include)
-    - [Commenting Functions](#commenting-functions)
-  - [Tips](#tips)
-    - [Best Practices](#best-practices)
-    - [Troubleshooting](#troubleshooting)
-  - [Example](#example)
+<details>
+  <summary>📖 Table of Contents</summary>
+
+- [Configuration](#configuration)
+  - [1. Generate a Configuration File](#1-generate-a-configuration-file)
+  - [2. Edit the Configuration file](#2-edit-the-configuration-file)
+  - [3. Running Doxygen](#3-running-doxygen)
+- [Syntax and Commenting Code](#syntax-and-commenting-code)
+  - [NB! Always Include](#nb-always-include)
+  - [Commenting Functions](#commenting-functions)
+- [Tips](#tips)
+  - [Best Practices](#best-practices)
+  - [Troubleshooting](#troubleshooting)
+- [Example](#example)
+</details>
 
 ## Configuration
 
@@ -20,7 +24,7 @@ Before running Doxygen, you need to create a configuration file. This file defin
 
 ### 1. Generate a Configuration File
 
-Navigate to the folder *above* the files you want to document and run the following command:
+Navigate to the folder _above_ the files you want to document and run the following command:
 
 ```bash
 doxygen -g doxconfig
@@ -59,6 +63,7 @@ RECURSIVE = YES
 ```
 
 ### 3. Running Doxygen
+
 After commenting the code, run Doxygen using:
 
 ```bash
@@ -66,20 +71,24 @@ doxygen doxconfig
 ```
 
 ## Syntax and Commenting Code
-Doxygen uses special commands, most of which start with ``@``. Here's a quick guide to some of the most commonly used Doxygen commands:
-* `@brief` - A short description of what a function does
-* `@param` - Describes a function's parameters
-    * You can add `[in]`, `[out]` or `[in,out]` to clarify whether the paramater is input, output, or both.
-    * `[in]` - The function reads the paramater but does not change its value.
-    * `[out]` - The function modifies the paramater
-    * `[in,out]` - The function both read from and modifies the paramater
-* `@return` - Describes the return value of a funciton (not needed for `void` functions).
-* `@warning` - Used to highlight potential issues or side effects.
-* `@c` - Formats text as inline code (monospace font).
-* `@p` - Specifically formats paramaters names and variables, similar to `@c`.
+
+Doxygen uses special commands, most of which start with `@`. Here's a quick guide to some of the most commonly used Doxygen commands:
+
+- `@brief` - A short description of what a function does
+- `@param` - Describes a function's parameters
+  - You can add `[in]`, `[out]` or `[in,out]` to clarify whether the paramater is input, output, or both.
+  - `[in]` - The function reads the paramater but does not change its value.
+  - `[out]` - The function modifies the paramater
+  - `[in,out]` - The function both read from and modifies the paramater
+- `@return` - Describes the return value of a funciton (not needed for `void` functions).
+- `@warning` - Used to highlight potential issues or side effects.
+- `@c` - Formats text as inline code (monospace font).
+- `@p` - Specifically formats paramaters names and variables, similar to `@c`.
 
 ### NB! Always Include
+
 To make sure Doxygen processes your file, always start with the `@file` command at the top of your source code:
+
 ```c
 /**
 * @file
@@ -90,6 +99,7 @@ To make sure Doxygen processes your file, always start with the `@file` command 
 This tells Doxygen that it should generate documentation for this file.
 
 ### Commenting Functions
+
 When commenting functions, use the following structure:
 
 ```c
@@ -111,17 +121,19 @@ This is a typical function comment format that helps generate clear, understanda
 This section provides helpful hints to make your Doxygen documentation more effective and efficient. By following these tips, you can ensure that your code comments are clear, concise, and useful for both developers and documentation users. Whether you're new to Doxygen or a seasoned user, these tips will improve your workflow and the overall quality of your generated documentation.
 
 ### Best Practices
-* Always keep your comments concise and to the point.
-* Use `@brief` for a one-liner description of what a function or file does.
-* Make use of `@param[in]`, `@param[out]`, and `@param[in,out]` to clarify the roles of parameters, especially when pointers are involved.
-* Include `@warning` or `@note` whenever there is a potential risk or important note about the code's behavior.
+
+- Always keep your comments concise and to the point.
+- Use `@brief` for a one-liner description of what a function or file does.
+- Make use of `@param[in]`, `@param[out]`, and `@param[in,out]` to clarify the roles of parameters, especially when pointers are involved.
+- Include `@warning` or `@note` whenever there is a potential risk or important note about the code's behavior.
 
 ### Troubleshooting
-* **Doxygen Doesn’t Generate Documentation:**:
+
+- **Doxygen Doesn’t Generate Documentation:**:
   Ensure you have the @file tag at the top of each source file.
   Check if the INPUT path in your doxconfig points to the correct directories.
 
-* **Recursive Option Not Working:**
+- **Recursive Option Not Working:**
   Ensure you set `RECURSIVE = YES` in your configuration if your files are in subfolders.
 
   ## Example

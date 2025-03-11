@@ -1,17 +1,17 @@
 # Heislab
+
 Just some basics about how to initialize this project. This is mostly from the guide given out with the assignment.
 
 <details>
   <summary>📖 Table of Contents</summary>
-
-- [Heislab](#heislab)
   - [GUI and buttons](#gui-and-buttons)
   - [Run the elevator at the lab](#run-the-elevator-at-the-lab)
   - [Elevatorsimulator ('heissimulator')](#elevatorsimulator-heissimulator)
     - [How to set up the `heissimulator`](#how-to-set-up-the-heissimulator)
 </details>
 
-## GUI and buttons ##
+## GUI and buttons
+
 - `#` - the elevator is right above the `Floor`
 
 - `#>` - the elevator is moving upwards
@@ -28,12 +28,14 @@ Just some basics about how to initialize this project. This is mostly from the g
 
 - `p` - `stop` button
 
-## Run the elevator at the lab ##
+## Run the elevator at the lab
+
 To make the elevator run at the lab:
+
 1. Check if the everything is set up correctly
-   * Turn *on* the PC
-   * Make sure everything is up to date
-   * Toggle to `pc` and `obstruction` on the elevator panel
+   - Turn _on_ the PC
+   - Make sure everything is up to date
+   - Toggle to `pc` and `obstruction` on the elevator panel
 2. On the PC, open the terminal and go to `heislab/skeleton_project`
 3. Run
    ```bash
@@ -47,28 +49,34 @@ To make the elevator run at the lab:
    ```
 5. Now the elevator should run
 
-## Elevatorsimulator ('heissimulator') ##
+## Elevatorsimulator ('heissimulator')
 
-### How to set up the `heissimulator` ###
+### How to set up the `heissimulator`
+
 To initialize the `heissimulator`, do as follows:
+
 1. open the terminal and the `skeleton_project` folder
 
 2. run the command:
-    ```bash
-    chmod +x SimElevatorServer
-    ```
-    to make it possible to run the simulator as a program. This only needs to be done once.
+
+   ```bash
+   chmod +x SimElevatorServer
+   ```
+
+   to make it possible to run the simulator as a program. This only needs to be done once.
 
 3. run the command
-    ```bash
-    ./SimElevatorServer
-    ```
-    in the terminal to start the simulation
+
+   ```bash
+   ./SimElevatorServer
+   ```
+
+   in the terminal to start the simulation
 
 4. open another terminal in the `skeleton_project` folder
 
 5. compile the elevator program in the new terminal as usual with
-    ```bash
-    make
-    ./elevator
-    ```
+   ```bash
+   make
+   ./elevator
+   ```
