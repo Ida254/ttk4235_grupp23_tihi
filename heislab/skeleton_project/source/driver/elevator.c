@@ -16,15 +16,19 @@ void initialize_elevator(Elevator *elevator)
         exit(1);
     }
 
-    elevator->current_floor = INITIAL_FLOOR;
+    elevator->current_floor = elevio_floorSensor();
     elevator->last_floor = INITIAL_FLOOR;
     elevator->moving_direction = INITIAL_DIRECTION;
     elevator->in_motion = false;
     elevator->request_queue = NULL;
     elevator->queue_size = 0;
     elevator->queue_capacity = 0;
+    // elevator->initialized = false;
+
+    turn_off_all_lamps();
 
     // move to BOTTOM_FLOOR
+    // add_request_to_queue(elevator, INITIAL_REQUEST);
     int floor = elevio_floorSensor();
     if (floor == BOTTOM_FLOOR)
     {
@@ -34,19 +38,35 @@ void initialize_elevator(Elevator *elevator)
     elevio_motorDirection(DIRN_DOWN);
     while (floor != BOTTOM_FLOOR)
     {
+        check_emergency_stop(elevator);
         floor = elevio_floorSensor();
+        if (floor != -1)
+        {
+            elevio_floorIndicator(floor);
+        }
     }
     elevio_motorDirection(DIRN_STOP);
     elevator->current_floor = floor;
-
-    printf("Initialized "); // db
-    print_elevator(elevator);
 }
 
 void free_elevator(Elevator *elevator)
 {
     free(elevator->request_queue);
     elevator->request_queue = NULL;
+}
+
+void turn_off_all_lamps()
+{
+    elevio_doorOpenLamp(0);
+    elevio_stopLamp(0);
+
+    for (int floor = BOTTOM_FLOOR; floor <= TOP_FLOOR; floor++)
+    {
+        for (int btn = 0; btn < N_BUTTONS; btn++)
+        {
+            elevio_buttonLamp(floor, btn, 0);
+        }
+    }
 }
 
 void sort_queue(Elevator *elevator)
@@ -86,8 +106,8 @@ void add_request_to_queue(Elevator *elevator, Request new_req)
 
     sort_queue(elevator);
 
-    printf("\nAdded to queue and sorted\n"); // db
-    print_elevator(elevator);                // db
+    // printf("\nAdded to queue and sorted\n"); // db
+    // print_elevator(elevator);                // db
 }
 
 void remove_request_from_queue(Elevator *elevator, int floor)
@@ -220,8 +240,8 @@ void stop_elevator_at_floor(Elevator *elevator, int floor)
 
     rest_elevator(elevator);
 
-    // printf("Destination reached and elevator stopped \n");
-    // print_elevator(elevator); // db
+    printf("Destination reached and elevator stopped \n"); // db
+    print_elevator(elevator);                              // db
 }
 
 void check_emergency_stop(Elevator *elevator)
@@ -232,6 +252,7 @@ void check_emergency_stop(Elevator *elevator)
     if (elevio_stopButton() || invalidMovement)
     {
         elevio_motorDirection(DIRN_STOP);
+        elevio_stopLamp(1);
         kill(getpid(), SIGKILL); // Forcefully stops the program
     }
 }

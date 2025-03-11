@@ -12,26 +12,15 @@ void run_elevator_program(Elevator *elevator)
     printf("=== Cool Program ===\n");
     initialize_elevator(elevator);
 
-    // while (1)
-    // {
-    //     elevator->current_floor = elevio_floorSensor();
-    //     at_right_floor(elevator);
-
-    //     on_button_press(elevator); // execute if button is pressed, and add to queue
-
-    //     at_right_floor(elevator);
-
-    //     check_emergency_stop();
-
-    //     nanosleep(&(struct timespec){0, 20 * 1000 * 1000}, NULL);
-    // }
+    printf("Initialized ");   // db
+    print_elevator(elevator); // db
 
     pthread_t button_thread, floor_thread, emergency_thread;
 
     // Create threads for handling different tasks simultaneously
     pthread_create(&button_thread, NULL, button_listener, (void *)elevator);
     pthread_create(&floor_thread, NULL, floor_listener, (void *)elevator);
-    pthread_create(&emergency_thread, NULL, emergency_listener, NULL);
+    pthread_create(&emergency_thread, NULL, emergency_listener, (void *)elevator);
 
     while (1)
     {

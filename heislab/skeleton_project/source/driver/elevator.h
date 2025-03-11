@@ -8,11 +8,6 @@
 
 #pragma once
 
-#define BOTTOM_FLOOR 0
-#define TOP_FLOOR 3 // db, should be 3
-#define INITIAL_FLOOR 0
-#define INITIAL_DIRECTION DIRN_UP
-
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h> // for malloc
@@ -22,6 +17,13 @@
 #include "elevio.h"
 #include "utilities.h"
 #include "request.h"
+
+#define BOTTOM_FLOOR 0
+#define TOP_FLOOR 3
+#define INITIAL_FLOOR 0
+#define INITIAL_DIRECTION DIRN_UP
+// #define INITIAL_REQUEST \
+//     (Request) { 0, BUTTON_HALL_UP }
 
 /**
  * @brief Defines an Elevator struct to store values.
@@ -47,6 +49,7 @@ typedef struct
     Request *request_queue;
     size_t queue_size;
     size_t queue_capacity;
+    // bool initialized;
 } Elevator;
 
 /**
@@ -69,19 +72,7 @@ void initialize_elevator(Elevator *elevator);
  */
 void free_elevator(Elevator *elevator);
 
-/**
- * @brief Initializes and runs the elevator control system.
- *
- * This function initializes the elevator system and creates separate threads for:
- * - Button press handling
- * - Floor monitoring
- * - Emergency stop checking
- *
- * It continuously updates the elevator's current floor while waiting for inputs.
- *
- * @param elevator Pointer to the Elevator structure.
- */
-void run_elevator_program(Elevator *elevator);
+void turn_off_all_lamps();
 
 /**
  * @brief Sorts the destination queue in the Elevator struct.
