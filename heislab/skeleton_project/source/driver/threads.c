@@ -24,9 +24,19 @@ void *button_listener(void *arg)
         {
             on_button_press(elevator);
         }
+
+        if (elevator->is_stopped && button_pressed())
+        {
+            if (!elevator->initialized)
+            {
+                initialize_elevator(elevator);
+            }
+            elevator->is_stopped = false;
+            elevio_stopLamp(0);
+        }
         pthread_mutex_unlock(&elevator_mtx);
 
-        nanosleep(&(struct timespec){0, 10 * 1000 * 1000}, NULL); // Sleep for 10ms
+        nanosleep(&(struct timespec){0, SLEEP_TIME_NS}, NULL); // Sleep for 10ms
     }
     return NULL;
 }
@@ -55,16 +65,33 @@ void *floor_listener(void *arg)
             elevator->last_floor = elevator->current_floor;
         }
 
+        if (elevator->queue_size == 0)
+        {
+            return NULL;
+        }
         // at_right_floor(elevator);
         if (at_right_floor(elevator) && elevator->in_motion)
         {
+            elevio_motorDirection(DIRN_STOP);
+            elevator->in_motion = false;
 
-            stop_elevator_at_floor(elevator, elevator->current_floor);
+            elevio_buttonLamp(elevator->current_floor, elevator->request_queue[0].button, 0);
+
+            switch_direction(elevator);
+
+            remove_request_from_queue(elevator, elevator->current_floor);
+            elevio_doorOpenLamp(1);
+
+            printf("Destination reached and elevator stopped \n"); // db
+            print_elevator(elevator);                              // db
+
+            rest_elevator(elevator);
+
             elevio_doorOpenLamp(0);
         }
         pthread_mutex_unlock(&elevator_mtx);
 
-        nanosleep(&(struct timespec){0, 10 * 1000 * 1000}, NULL); // Sleep for 10ms
+        nanosleep(&(struct timespec){0, SLEEP_TIME_NS}, NULL); // Sleep for 10ms
     }
     return NULL;
 }
@@ -75,7 +102,7 @@ void *emergency_listener(void *arg)
 
     if (!elevator)
     {
-        // printf("Error: Elevator is NULL in emergency_listener\n");
+        // printf("Error: Elevator is NULL in emergency_listener\n"); // db
         return NULL;
     }
 
@@ -83,17 +110,27 @@ void *emergency_listener(void *arg)
     {
         pthread_mutex_lock(&elevator_mtx);
         // check_emergency_stop(elevator);
-        if (is_emergency_stop(elevator))
+        if (!elevator->is_stopped)
         {
+            elevator->is_stopped = is_emergency_stop(elevator);
+        }
+
+        else
+        {
+            empty_queue(elevator);
+
             elevio_motorDirection(DIRN_STOP);
             elevator->in_motion = false;
+
             elevio_stopLamp(1);
-            print_elevator(elevator);
-            kill(getpid(), SIGKILL); // Forcefully stops the program
+
+            printf("Stopped ");       // db
+            print_elevator(elevator); // db
+            // kill(getpid(), SIGKILL); // Forcefully stops the program
         }
         pthread_mutex_unlock(&elevator_mtx);
 
-        nanosleep(&(struct timespec){0, 10 * 1000 * 1000}, NULL); // Sleep for 10ms
+        nanosleep(&(struct timespec){0, SLEEP_TIME_NS}, NULL); // Sleep for 10ms
     }
     return NULL;
 }

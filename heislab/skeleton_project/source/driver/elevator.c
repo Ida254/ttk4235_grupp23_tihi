@@ -24,6 +24,7 @@ void initialize_elevator(Elevator *elevator)
     elevator->queue_size = 0;
     elevator->queue_capacity = 0;
     elevator->initialized = false;
+    elevator->is_stopped = false;
 
     pthread_mutex_init(&elevator_mtx, NULL);
 
@@ -121,19 +122,28 @@ void remove_request_from_queue(Elevator *elevator, int floor)
     remove_request_by_floor(&elevator->request_queue, queueSize, queueCapacity, floor);
 }
 
-void on_button_press(Elevator *elevator)
+void empty_queue(Elevator *elevator)
 {
-    Request new_req;
-
-    if (button_pressed(&new_req))
+    while (elevator->queue_size != 0)
     {
-        elevio_buttonLamp(new_req.floor, new_req.button, 1);
-
-        add_request_to_queue(elevator, new_req);
+        remove_request_from_queue(elevator, elevator->request_queue[0].floor);
     }
 }
 
-bool button_pressed(Request *req) // db, rather return the button and if none detected, return NULL
+void on_button_press(Elevator *elevator)
+{
+    Request *new_req = button_pressed();
+
+    if (new_req)
+    {
+        elevio_buttonLamp(new_req->floor, new_req->button, 1);
+
+        add_request_to_queue(elevator, *new_req);
+    }
+    free(new_req);
+}
+
+Request *button_pressed() // db, rather return the button and if none detected, return NULL
 {
     for (int floor = 0; floor < N_FLOORS; floor++)
     {
@@ -141,19 +151,24 @@ bool button_pressed(Request *req) // db, rather return the button and if none de
         {
             if (elevio_callButton(floor, btn))
             {
+                Request *req = malloc(sizeof(Request));
+                if (req == NULL)
+                {
+                    printf("Memory allocation failed!\n");
+                    return NULL;
+                }
                 req->floor = floor;
                 req->button = btn;
-                return true;
+                return req;
             }
         }
     }
-
-    return false;
+    return NULL;
 }
 
 void moving_elevator(Elevator *elevator) // db, rather return a direction and make the two last line be another place
 {
-    if (elevator->queue_size == 0 || elevator->in_motion)
+    if (elevator->queue_size == 0 || elevator->in_motion || elevator->is_stopped)
     {
         return;
     }
@@ -163,7 +178,7 @@ void moving_elevator(Elevator *elevator) // db, rather return a direction and ma
     int differenceInFloors = destinationFloor - elevator->last_floor;
     MotorDirection direction = (differenceInFloors > 0) ? DIRN_UP : (differenceInFloors < 0) ? DIRN_DOWN
                                                                                              : DIRN_STOP;
-    printf("\nnew moving dir: %s \n", motor_direction_to_string(direction));
+    printf("new moving dir: %s \n\n", motor_direction_to_string(direction));
     elevator->in_motion = (direction != DIRN_STOP); // db, maybe return direction instead and set new dir somewhere else
     elevio_motorDirection(direction);
 }
@@ -172,7 +187,7 @@ bool at_right_floor(Elevator *elevator)
 {
     if (elevator->queue_size == 0)
     {
-        return true;
+        return false;
     }
 
     int currFloor = elevio_floorSensor();
@@ -191,11 +206,14 @@ bool at_right_floor(Elevator *elevator)
         return true;
     }
 
-    moving_elevator(elevator);
+    if (!elevator->is_stopped)
+    {
+        moving_elevator(elevator);
+    }
     return false;
 }
 
-void switch_direction(Elevator *elevator) // db, return the direction, if not new direction return NULL
+void switch_direction(Elevator *elevator) // db, return the direction, if not new direction return NULL, should this be it's own thread?
 {
     MotorDirection *currDir = &elevator->moving_direction;
     int currFloor = elevator->current_floor;
@@ -220,7 +238,7 @@ void switch_direction(Elevator *elevator) // db, return the direction, if not ne
 
     sort_queue(elevator);
 
-    printf("Switched direction to %s\n", motor_direction_to_string(*currDir));
+    printf("Switched direction to %s\n\n", motor_direction_to_string(*currDir));
 }
 
 void rest_elevator(Elevator *elevator)
@@ -229,29 +247,12 @@ void rest_elevator(Elevator *elevator)
     while (time(NULL) - start_time < 3)
     {
         on_button_press(elevator);
-        // check_emergency_stop(elevator);
+        if (is_emergency_stop(elevator))
+        {
+            printf("stop resting elevator \n");
+            return;
+        }
     }
-}
-
-void stop_elevator_at_floor(Elevator *elevator, int floor)
-{
-    if (elevator->queue_size == 0)
-    {
-        return;
-    }
-
-    elevio_motorDirection(DIRN_STOP);
-    elevator->in_motion = false;
-    elevio_buttonLamp(floor, elevator->request_queue[0].button, 0);
-    switch_direction(elevator);
-
-    remove_request_from_queue(elevator, floor);
-    elevio_doorOpenLamp(1);
-
-    rest_elevator(elevator);
-
-    printf("Destination reached and elevator stopped \n"); // db
-    print_elevator(elevator);                              // db
 }
 
 // void check_emergency_stop(Elevator *elevator)
@@ -263,9 +264,6 @@ bool is_emergency_stop(Elevator *elevator) // db, should not kill ...
     if (elevio_stopButton() || invalidMovement)
     {
         return true;
-        // elevio_motorDirection(DIRN_STOP);
-        // elevio_stopLamp(1);
-        // kill(getpid(), SIGKILL); // Forcefully stops the program
     }
     return false;
 }
@@ -289,5 +287,6 @@ void print_elevator(Elevator *elevator)
 
     printf("Queue size: %zu\n", elevator->queue_size);
     printf("Queue capacity: %zu\n", elevator->queue_capacity);
-    printf("Initialized: %s\n\n", bool_to_string(elevator->initialized));
+    printf("Initialized: %s\n", bool_to_string(elevator->initialized));
+    printf("Is emergency stopped: %s\n\n", bool_to_string(elevator->is_stopped));
 }

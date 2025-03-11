@@ -19,6 +19,7 @@
 #include "utilities.h"
 #include "request.h"
 
+#define SLEEP_TIME_NS 10 * 1000 * 1000
 #define BOTTOM_FLOOR 0
 #define TOP_FLOOR 3
 #define INITIAL_FLOOR TOP_FLOOR
@@ -53,6 +54,7 @@ typedef struct
     size_t queue_size;
     size_t queue_capacity;
     bool initialized;
+    bool is_stopped;
 } Elevator;
 
 /**
@@ -109,6 +111,8 @@ void add_request_to_queue(Elevator *elevator, Request new_req);
  */
 void remove_request_from_queue(Elevator *elevator, int floor);
 
+void empty_queue(Elevator *elevator);
+
 /**
  * @brief Handles button press events and updates the elevator queue.
  *
@@ -128,7 +132,7 @@ void on_button_press(Elevator *elevator);
  * @param req Pointer to a Request structure to store the button press details.
  * @return True if a button was pressed, false otherwise.
  */
-bool button_pressed(Request *req);
+Request *button_pressed();
 
 /**
  * @brief Moves the elevator according to its queue and direction.
@@ -169,16 +173,6 @@ void switch_direction(Elevator *elevator);
  * @param elevator Pointer to the Elevator structure.
  */
 void rest_elevator(Elevator *elevator);
-
-/**
- * @brief Stops the elevator when it reaches a requested floor.
- *
- * This function handles stopping the elevator and opening its doors.
- *
- * @param elevator Pointer to the Elevator structure.
- * @param floor The floor at which the elevator should stop.
- */
-void stop_elevator_at_floor(Elevator *elevator, int floor);
 
 // /**
 //  * @brief Monitors and handles emergency stop conditions.
