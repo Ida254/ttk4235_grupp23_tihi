@@ -12,9 +12,6 @@ void run_elevator_program(Elevator *elevator)
     printf("=== Cool Program ===\n");
     initialize_elevator(elevator);
 
-    printf("Initialized ");   // db
-    print_elevator(elevator); // db
-
     pthread_t button_thread, floor_thread, emergency_thread;
 
     // Create threads for handling different tasks simultaneously
