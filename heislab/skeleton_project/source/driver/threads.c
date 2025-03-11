@@ -49,6 +49,12 @@ void *floor_listener(void *arg)
             printf("Initialized ");   // db
             print_elevator(elevator); // db
         }
+
+        if (elevator->current_floor != -1)
+        {
+            elevator->last_floor = elevator->current_floor;
+        }
+
         // at_right_floor(elevator);
         if (at_right_floor(elevator) && elevator->in_motion)
         {

@@ -133,7 +133,7 @@ void on_button_press(Elevator *elevator)
     }
 }
 
-bool button_pressed(Request *req)
+bool button_pressed(Request *req) // db, rather return the button and if none detected, return NULL
 {
     for (int floor = 0; floor < N_FLOORS; floor++)
     {
@@ -151,7 +151,7 @@ bool button_pressed(Request *req)
     return false;
 }
 
-void moving_elevator(Elevator *elevator)
+void moving_elevator(Elevator *elevator) // db, rather return a direction and make the two last line be another place
 {
     if (elevator->queue_size == 0 || elevator->in_motion)
     {
@@ -164,7 +164,7 @@ void moving_elevator(Elevator *elevator)
     MotorDirection direction = (differenceInFloors > 0) ? DIRN_UP : (differenceInFloors < 0) ? DIRN_DOWN
                                                                                              : DIRN_STOP;
     printf("\nnew moving dir: %s \n", motor_direction_to_string(direction));
-    elevator->in_motion = (direction != DIRN_STOP);
+    elevator->in_motion = (direction != DIRN_STOP); // db, maybe return direction instead and set new dir somewhere else
     elevio_motorDirection(direction);
 }
 
@@ -177,13 +177,13 @@ bool at_right_floor(Elevator *elevator)
 
     int currFloor = elevio_floorSensor();
 
-    if (currFloor != -1)
+    if (currFloor != -1) // db, take this another place
     {
         elevator->current_floor = currFloor;
         elevio_floorIndicator(currFloor);
     }
 
-    if (currFloor == elevator->request_queue[0].floor)
+    if (currFloor == elevator->request_queue[0].floor) // db, currFloor could just be elevio_floorSensor()
     {
         // stop_elevator_at_floor(elevator, currFloor);
         // elevio_doorOpenLamp(0);
@@ -195,7 +195,7 @@ bool at_right_floor(Elevator *elevator)
     return false;
 }
 
-void switch_direction(Elevator *elevator)
+void switch_direction(Elevator *elevator) // db, return the direction, if not new direction return NULL
 {
     MotorDirection *currDir = &elevator->moving_direction;
     int currFloor = elevator->current_floor;
@@ -243,8 +243,7 @@ void stop_elevator_at_floor(Elevator *elevator, int floor)
     elevio_motorDirection(DIRN_STOP);
     elevator->in_motion = false;
     elevio_buttonLamp(floor, elevator->request_queue[0].button, 0);
-    elevator->last_floor = floor;
-    switch_direction(elevator); // db, might be issues here ...
+    switch_direction(elevator);
 
     remove_request_from_queue(elevator, floor);
     elevio_doorOpenLamp(1);
@@ -256,7 +255,7 @@ void stop_elevator_at_floor(Elevator *elevator, int floor)
 }
 
 // void check_emergency_stop(Elevator *elevator)
-bool is_emergency_stop(Elevator *elevator)
+bool is_emergency_stop(Elevator *elevator) // db, should not kill ...
 {
     int currFloor = elevator->current_floor;
     MotorDirection currDir = elevator->moving_direction;
