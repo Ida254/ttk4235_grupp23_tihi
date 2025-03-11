@@ -113,7 +113,8 @@ void on_button_press(Elevator *elevator)
                     add_request_to_queue(elevator, destReq);
                     // printf("after add, sorting \n");
                     // sort_queue(&elevator);
-                    print_requests(elevator->request_queue, elevator->queue_size);
+                    // print_requests(elevator->request_queue, elevator->queue_size);
+                    print_elevator(elevator);
                 }
             }
         }
@@ -210,15 +211,14 @@ void at_right_floor(Elevator *elevator)
         }
         elevio_doorOpenLamp(0);
         remove_request_from_queue(elevator, elevator->current_floor);
-        // elevator->_doorOpen = false;
-        // Ida: make 'remove from queue' function
+        if (elevator->queue_size == 0)
+        {
+            printf("Queue is empty \n");
+            return;
+        }
+        switch_direction(elevator);
+        // sort_queue(elevator);  //Maybe need to sort
     }
-    if (elevator->queue_size == 0)
-    {
-        printf("Queue is empty \n");
-        return;
-    }
-    switch_direction(elevator);
     moving_elevator(elevator);
 }
 
