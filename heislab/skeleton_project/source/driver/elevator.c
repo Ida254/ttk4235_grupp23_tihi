@@ -20,6 +20,7 @@ void initialize_elevator(Elevator *elevator)
     elevator->last_floor = INITIAL_FLOOR;
     elevator->moving_direction = INITIAL_DIRECTION;
     elevator->motorState = DIRN_STOP;
+    elevator->last_motorState = DIRN_STOP;
     elevator->in_motion = false;
     elevator->request_queue = NULL;
     elevator->queue_size = 0;
@@ -160,9 +161,22 @@ void moving_elevator(Elevator *elevator) // db, rather return a direction and ma
     MotorDirection direction = (differenceInFloors > 0) ? DIRN_UP : (differenceInFloors < 0) ? DIRN_DOWN
                                                                                              : DIRN_STOP;
     // printf("new moving dir: %s \n\n", motor_direction_to_string(direction)); // db
+    if (direction == DIRN_STOP && elevator->current_floor == -1){
+        if (elevator->last_motorState == DIRN_UP){
+            direction = DIRN_DOWN;
+        } else if (elevator->last_motorState == DIRN_DOWN){
+            direction = DIRN_UP;
+        }
+        elevio_motorDirection(elevator->last_motorState);
+    }
+
     elevator->in_motion = (direction != DIRN_STOP); // db, maybe return direction instead and set new dir somewhere else
     elevio_motorDirection(direction);
     elevator->motorState = direction;
+    if (direction != DIRN_STOP)
+    {
+        elevator->last_motorState = direction;
+    }
 }
 
 bool at_right_floor(Elevator *elevator)

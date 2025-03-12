@@ -50,6 +50,7 @@ typedef struct
     int last_floor;
     MotorDirection moving_direction;
     MotorDirection motorState;
+    MotorDirection last_motorState;
     bool in_motion;
     Request *request_queue;
     size_t queue_size;
