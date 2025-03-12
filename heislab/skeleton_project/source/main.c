@@ -4,91 +4,41 @@
  */
 #include "driver/elevio.h"
 #include "driver/elevator.h"
+#include "driver/threads.h"
 
 void run_elevator_program(Elevator *elevator)
 {
+    elevio_init();
+    printf("=== Cool Program ===\n");
     initialize_elevator(elevator);
-    elevio_floorIndicator(0);
-    elevio_doorOpenLamp(0);
-    elevio_stopLamp(0);
-    for (int floor = 0; floor < N_FLOORS; floor++)
-    {
-        for (int btn = 0; btn < N_BUTTONS; btn++)
-        {
-            elevio_buttonLamp(floor, btn, 0);
-        }
-    }
-    printf("Done with initializing\n");
-    print_elevator(elevator);
+
+    printf("Initialized ");   // db
+    print_elevator(elevator); // db
+
+    pthread_t button_thread, floor_thread, emergency_thread;
+
+    // Create threads for handling different tasks simultaneously
+    pthread_create(&button_thread, NULL, button_listener, (void *)elevator);
+    pthread_create(&floor_thread, NULL, floor_listener, (void *)elevator);
+    pthread_create(&emergency_thread, NULL, emergency_listener, (void *)elevator);
+
     while (1)
     {
-        int floor = elevio_floorSensor();
-        elevator->current_floor = floor;
-
-        // if (floor1 == 0)
-        // {
-        //     elevio_motorDirection(DIRN_UP);
-        // }
-
-        // if(floor == N_FLOORS-1){
-        //     elevio_motorDirection(DIRN_DOWN);
-        // }
-        at_right_floor(elevator);
-        // elevio_floorIndicator(elevator->last_floor);
-
-        on_button_press(elevator); // execute if button is pressed, and add to queue
-
-        at_right_floor(elevator);
-
-        // checking if elevator goes out of bounce
-        if (floor == BOTTOM_FLOOR && elevator->motor_state < 0)
-        {
-            elevio_motorDirection(DIRN_STOP);
-            printf("Elevator out of bounce \n");
-            elevio_stopLamp(1);
-            kill(getpid(), SIGKILL); // Forcefully stops the program
-        }
-        else if (floor == TOP_FLOOR && elevator->motor_state > 0)
-        {
-            elevio_motorDirection(DIRN_STOP);
-            printf("Elevator out of bounce \n");
-            elevio_stopLamp(1);
-            kill(getpid(), SIGKILL); // Forcefully stops the program
-        }
-
-        // if (elevio_obstruction())
-        // {
-        //     elevio_stopLamp(1);
-        // }
-        // else
-        // {
-        //     elevio_stopLamp(0);
-        // }
-
-        if (elevio_stopButton())
-        {
-            elevio_motorDirection(DIRN_STOP);
-            printf("Stop button pressed \n");
-            elevio_stopLamp(1);
-            kill(getpid(), SIGKILL); // Forcefully stops the program
-        }
-
-        nanosleep(&(struct timespec){0, 20 * 1000 * 1000}, NULL);
+        elevator->current_floor = elevio_floorSensor();           // Continuously update the floor sensor
+        nanosleep(&(struct timespec){0, 20 * 1000 * 1000}, NULL); // Sleep for 20ms
     }
+
+    pthread_join(button_thread, NULL);
+    pthread_join(floor_thread, NULL);
+    pthread_join(emergency_thread, NULL);
+
+    free_elevator(elevator);
 }
 
 int main()
 {
-    elevio_init();
-
-    // printf("=== Example Program ===\n");
-    // printf("Press the stop button on the elevator panel to exit\n");
-
-    // elevio_motorDirection(DIRN_UP);
-    printf("=== Cool Program ===\n");
-    Elevator elevator; // Need to define it more
-    // size_t queueCapacaty = 10;
+    Elevator elevator;
     run_elevator_program(&elevator);
-    free_elevator(&elevator);
+
     return 0;
 }

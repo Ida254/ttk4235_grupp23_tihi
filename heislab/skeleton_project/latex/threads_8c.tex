@@ -1,0 +1,104 @@
+\hypertarget{threads_8c}{}\doxysection{source/driver/threads.c File Reference}
+\label{threads_8c}\index{source/driver/threads.c@{source/driver/threads.c}}
+
+
+Implementation of elevator control threads.  
+
+
+{\ttfamily \#include \char`\"{}threads.\+h\char`\"{}}\newline
+Include dependency graph for threads.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{threads_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{threads_8c_ad89fa0765dcf03d9dd78f9ede9f8c107}{button\+\_\+listener}} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Listens for button presses and updates the elevator queue accordingly. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{threads_8c_a1f2ca9f4fcd88ae718dcca47bbcf8b14}{floor\+\_\+listener}} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Monitors the elevator\textquotesingle{}s current floor and handles stop conditions. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{threads_8c_a4429467f1dbcf6c5dd8a57fe9faf395f}{emergency\+\_\+listener}} (void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em Continuously checks for an emergency stop condition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of elevator control threads. 
+
+This file defines thread functions that continuously monitor and process button presses, track the elevator\textquotesingle{}s floor position, and detect emergency stop conditions. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{threads_8c_ad89fa0765dcf03d9dd78f9ede9f8c107}\label{threads_8c_ad89fa0765dcf03d9dd78f9ede9f8c107}} 
+\index{threads.c@{threads.c}!button\_listener@{button\_listener}}
+\index{button\_listener@{button\_listener}!threads.c@{threads.c}}
+\doxysubsubsection{\texorpdfstring{button\_listener()}{button\_listener()}}
+{\footnotesize\ttfamily void$\ast$ button\+\_\+listener (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Listens for button presses and updates the elevator queue accordingly. 
+
+This function runs in a separate thread, continuously checking for button presses. When a button is pressed, it adds the corresponding request to the elevator\textquotesingle{}s queue.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} structure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Always returns N\+U\+LL. 
+\end{DoxyReturn}
+
+
+Definition at line 11 of file threads.\+c.
+
+\mbox{\Hypertarget{threads_8c_a4429467f1dbcf6c5dd8a57fe9faf395f}\label{threads_8c_a4429467f1dbcf6c5dd8a57fe9faf395f}} 
+\index{threads.c@{threads.c}!emergency\_listener@{emergency\_listener}}
+\index{emergency\_listener@{emergency\_listener}!threads.c@{threads.c}}
+\doxysubsubsection{\texorpdfstring{emergency\_listener()}{emergency\_listener()}}
+{\footnotesize\ttfamily void$\ast$ emergency\+\_\+listener (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Continuously checks for an emergency stop condition. 
+
+This function runs in a separate thread and monitors if an emergency stop has been triggered. If an emergency stop is detected, it handles stopping the elevator safely.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & Unused parameter (can be N\+U\+LL). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Always returns N\+U\+LL. 
+\end{DoxyReturn}
+
+
+Definition at line 33 of file threads.\+c.
+
+\mbox{\Hypertarget{threads_8c_a1f2ca9f4fcd88ae718dcca47bbcf8b14}\label{threads_8c_a1f2ca9f4fcd88ae718dcca47bbcf8b14}} 
+\index{threads.c@{threads.c}!floor\_listener@{floor\_listener}}
+\index{floor\_listener@{floor\_listener}!threads.c@{threads.c}}
+\doxysubsubsection{\texorpdfstring{floor\_listener()}{floor\_listener()}}
+{\footnotesize\ttfamily void$\ast$ floor\+\_\+listener (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+Monitors the elevator\textquotesingle{}s current floor and handles stop conditions. 
+
+This function runs in a separate thread, continuously checking if the elevator has reached the correct floor and handling the necessary actions, such as stopping.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} structure. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Always returns N\+U\+LL. 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file threads.\+c.
+

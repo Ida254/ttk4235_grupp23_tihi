@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['test_5fsort_5fqueue_17',['test_sort_queue',['../elevator_8c.html#a33e9c171606a6681dd7cb43a313ee159',1,'test_sort_queue():&#160;elevator.c'],['../elevator_8h.html#a33e9c171606a6681dd7cb43a313ee159',1,'test_sort_queue():&#160;elevator.c']]]
+  ['threads_2ec_41',['threads.c',['../threads_8c.html',1,'']]],
+  ['threads_2eh_42',['threads.h',['../threads_8h.html',1,'']]]
 ];

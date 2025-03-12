@@ -1,4 +1,9 @@
 var searchData=
 [
-  ['bubble_5fsort_26',['bubble_sort',['../DestinationRequest_8c.html#a01f9bb2a3efd093c7ec3e9379d97a7b1',1,'bubble_sort(DestinationRequest arr[], size_t size, MotorDirection dir):&#160;DestinationRequest.c'],['../DestinationRequest_8h.html#a01f9bb2a3efd093c7ec3e9379d97a7b1',1,'bubble_sort(DestinationRequest arr[], size_t size, MotorDirection dir):&#160;DestinationRequest.c']]]
+  ['bool_5fto_5fstring_59',['bool_to_string',['../utilities_8c.html#a3f7a96bfcf0ad3a5ca1ebb0a52666d68',1,'bool_to_string(bool true_or_false):&#160;utilities.c'],['../utilities_8h.html#a3f7a96bfcf0ad3a5ca1ebb0a52666d68',1,'bool_to_string(bool true_or_false):&#160;utilities.c']]],
+  ['bubble_5fsort_60',['bubble_sort',['../request_8c.html#a01502cf380fa7a467c1276b880d7acc7',1,'bubble_sort(Request *arr, size_t size, MotorDirection direction):&#160;request.c'],['../request_8h.html#a01502cf380fa7a467c1276b880d7acc7',1,'bubble_sort(Request *arr, size_t size, MotorDirection direction):&#160;request.c']]],
+  ['button_5flistener_61',['button_listener',['../threads_8c.html#ad89fa0765dcf03d9dd78f9ede9f8c107',1,'button_listener(void *arg):&#160;threads.c'],['../threads_8h.html#ad89fa0765dcf03d9dd78f9ede9f8c107',1,'button_listener(void *arg):&#160;threads.c']]],
+  ['button_5fpressed_62',['button_pressed',['../elevator_8c.html#af25c41476042d9a9444b1720a6a8f001',1,'button_pressed(Request *req):&#160;elevator.c'],['../elevator_8h.html#af25c41476042d9a9444b1720a6a8f001',1,'button_pressed(Request *req):&#160;elevator.c']]],
+  ['button_5fto_5fstring_63',['button_to_string',['../utilities_8c.html#adef0f38085d3cff37e91fcdcffac489a',1,'button_to_string(ButtonType button):&#160;utilities.c'],['../utilities_8h.html#adef0f38085d3cff37e91fcdcffac489a',1,'button_to_string(ButtonType button):&#160;utilities.c']]],
+  ['button_5ftype_5fto_5fmotor_5fdirection_64',['button_type_to_motor_direction',['../utilities_8c.html#a0f530a564e26ef4cad2baeb7f1c955c0',1,'button_type_to_motor_direction(ButtonType btn):&#160;utilities.c'],['../utilities_8h.html#a0f530a564e26ef4cad2baeb7f1c955c0',1,'button_type_to_motor_direction(ButtonType btn):&#160;utilities.c']]]
 ];
