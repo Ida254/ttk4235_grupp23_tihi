@@ -51,8 +51,8 @@ Listens for button presses and updates the elevator queue accordingly.
 This function runs in a separate thread, continuously checking for button presses. When a button is pressed, it adds the corresponding request to the elevator\textquotesingle{}s queue.
 
 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em arg} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} structure, which will be updated with button requests. \\
+\begin{DoxyParams}{Parameters}
+{\em arg} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} structure. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -72,11 +72,11 @@ Definition at line 11 of file threads.\+c.
 
 Continuously checks for an emergency stop condition. 
 
-This function runs in a separate thread and monitors if an emergency stop has been triggered. If an emergency stop is detected, it handles stopping the elevator safely and initiates appropriate safety measures.
+This function runs in a separate thread and monitors if an emergency stop has been triggered. If an emergency stop is detected, it handles stopping the elevator safely.
 
 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em arg} & Unused parameter (can be N\+U\+LL). \\
+\begin{DoxyParams}{Parameters}
+{\em arg} & Unused parameter (can be N\+U\+LL). \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -84,7 +84,7 @@ Always returns N\+U\+LL.
 \end{DoxyReturn}
 
 
-Definition at line 101 of file threads.\+c.
+Definition at line 134 of file threads.\+c.
 
 \mbox{\Hypertarget{threads_8h_a1f2ca9f4fcd88ae718dcca47bbcf8b14}\label{threads_8h_a1f2ca9f4fcd88ae718dcca47bbcf8b14}} 
 \index{threads.h@{threads.h}!floor\_listener@{floor\_listener}}
@@ -96,11 +96,11 @@ Definition at line 101 of file threads.\+c.
 
 Monitors the elevator\textquotesingle{}s current floor and handles stop conditions. 
 
-This function runs in a separate thread, continuously checking if the elevator has reached the correct floor and handling necessary actions, such as stopping the elevator or opening doors when the right floor is reached.
+This function runs in a separate thread, continuously checking if the elevator has reached the correct floor and handling the necessary actions, such as stopping.
 
 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em arg} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} structure that needs to be monitored. \\
+\begin{DoxyParams}{Parameters}
+{\em arg} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} structure. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -108,5 +108,5 @@ Always returns N\+U\+LL.
 \end{DoxyReturn}
 
 
-Definition at line 49 of file threads.\+c.
+Definition at line 53 of file threads.\+c.
 

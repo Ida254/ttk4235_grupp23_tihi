@@ -146,7 +146,7 @@ Functions</h2></td></tr>
 <p>This function runs in a separate thread, continuously checking for button presses. When a button is pressed, it adds the corresponding request to the elevator's queue.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">arg</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> structure, which will be updated with button requests. </td></tr>
+    <tr><td class="paramname">arg</td><td>Pointer to the <a class="el" href="structElevator.html" title="Structure representing the elevator&#39;s state.">Elevator</a> structure. </td></tr>
   </table>
   </dd>
 </dl>
@@ -173,16 +173,16 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Continuously checks for an emergency stop condition. </p>
-<p>This function runs in a separate thread and monitors if an emergency stop has been triggered. If an emergency stop is detected, it handles stopping the elevator safely and initiates appropriate safety measures.</p>
+<p>This function runs in a separate thread and monitors if an emergency stop has been triggered. If an emergency stop is detected, it handles stopping the elevator safely.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">arg</td><td>Unused parameter (can be NULL). </td></tr>
+    <tr><td class="paramname">arg</td><td>Unused parameter (can be NULL). </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Always returns NULL. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="threads_8c_source.html#l00101">101</a> of file <a class="el" href="threads_8c_source.html">threads.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="threads_8c_source.html#l00134">134</a> of file <a class="el" href="threads_8c_source.html">threads.c</a>.</p>
 
 </div>
 </div>
@@ -203,16 +203,16 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Monitors the elevator's current floor and handles stop conditions. </p>
-<p>This function runs in a separate thread, continuously checking if the elevator has reached the correct floor and handling necessary actions, such as stopping the elevator or opening doors when the right floor is reached.</p>
+<p>This function runs in a separate thread, continuously checking if the elevator has reached the correct floor and handling the necessary actions, such as stopping.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">arg</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> structure that needs to be monitored. </td></tr>
+    <tr><td class="paramname">arg</td><td>Pointer to the <a class="el" href="structElevator.html" title="Structure representing the elevator&#39;s state.">Elevator</a> structure. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Always returns NULL. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="threads_8c_source.html#l00049">49</a> of file <a class="el" href="threads_8c_source.html">threads.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="threads_8c_source.html#l00053">53</a> of file <a class="el" href="threads_8c_source.html">threads.c</a>.</p>
 
 </div>
 </div>

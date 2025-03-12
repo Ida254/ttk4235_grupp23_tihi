@@ -1,11 +1,10 @@
 var indexSectionsWithContent =
 {
-  0: "abcefimoprstu",
+  0: "abcefgilmopqrstu",
   1: "er",
   2: "emrtu",
-  3: "abcefimoprst",
-  4: "bf",
-  5: "bist"
+  3: "abcefgimoprst",
+  4: "bcfilmqr"
 };
 
 var indexSectionNames =
@@ -14,8 +13,7 @@ var indexSectionNames =
   1: "classes",
   2: "files",
   3: "functions",
-  4: "variables",
-  5: "defines"
+  4: "variables"
 };
 
 var indexSectionLabels =
@@ -24,7 +22,6 @@ var indexSectionLabels =
   1: "Data Structures",
   2: "Files",
   3: "Functions",
-  4: "Variables",
-  5: "Macros"
+  4: "Variables"
 };
 

@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['threads_2ec_54',['threads.c',['../threads_8c.html',1,'']]],
-  ['threads_2eh_55',['threads.h',['../threads_8h.html',1,'']]],
-  ['top_5ffloor_56',['TOP_FLOOR',['../elevator_8h.html#a00bda456521a6369be7f072fc4f43d59',1,'elevator.h']]],
-  ['turn_5foff_5fall_5flamps_57',['turn_off_all_lamps',['../elevator_8c.html#a0511d5c90918ca264b6052ddc1018504',1,'turn_off_all_lamps():&#160;elevator.c'],['../elevator_8h.html#a0511d5c90918ca264b6052ddc1018504',1,'turn_off_all_lamps():&#160;elevator.c']]]
+  ['sort_5fqueue_48',['sort_queue',['../elevator_8c.html#a4f348f1b497c1f050fa390439e96af58',1,'sort_queue(Elevator *elevator):&#160;elevator.c'],['../elevator_8h.html#a4f348f1b497c1f050fa390439e96af58',1,'sort_queue(Elevator *elevator):&#160;elevator.c']]],
+  ['sort_5frequests_49',['sort_requests',['../request_8c.html#acba741199a9411046392bdbf8cbb7e84',1,'sort_requests(Request *arr, size_t arr_size, int curr_floor, MotorDirection moving_dir, bool in_motion):&#160;request.c'],['../request_8h.html#acba741199a9411046392bdbf8cbb7e84',1,'sort_requests(Request *arr, size_t arr_size, int curr_floor, MotorDirection moving_dir, bool in_motion):&#160;request.c']]]
 ];

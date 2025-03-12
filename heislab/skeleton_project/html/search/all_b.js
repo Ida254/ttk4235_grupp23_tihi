@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['threads_2ec_46',['threads.c',['../threads_8c.html',1,'']]],
-  ['threads_2eh_47',['threads.h',['../threads_8h.html',1,'']]],
-  ['top_5ffloor_48',['TOP_FLOOR',['../elevator_8h.html#a00bda456521a6369be7f072fc4f43d59',1,'elevator.h']]],
-  ['turn_5foff_5fall_5flamps_49',['turn_off_all_lamps',['../elevator_8c.html#a0511d5c90918ca264b6052ddc1018504',1,'turn_off_all_lamps():&#160;elevator.c'],['../elevator_8h.html#a0511d5c90918ca264b6052ddc1018504',1,'turn_off_all_lamps():&#160;elevator.c']]]
+  ['queue_5fcapacity_39',['queue_capacity',['../structElevator.html#a08decdabd2f38e0d9654e774c7258c1b',1,'Elevator']]],
+  ['queue_5fsize_40',['queue_size',['../structElevator.html#ac9cbaf17ae996f6a02c4b5ee2776e3a1',1,'Elevator']]]
 ];

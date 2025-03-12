@@ -2,7 +2,7 @@
 \label{structElevator}\index{Elevator@{Elevator}}
 
 
-Defines an \mbox{\hyperlink{structElevator}{Elevator}} struct to store values.  
+Structure representing the elevator\textquotesingle{}s state.  
 
 
 
@@ -11,7 +11,8 @@ Defines an \mbox{\hyperlink{structElevator}{Elevator}} struct to store values.
 
 
 
-Collaboration diagram for Elevator\+:\nopagebreak
+Collaboration diagram for Elevator\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,69 +22,149 @@ Collaboration diagram for Elevator\+:\nopagebreak
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{structElevator_aae297f56aca24d7be4518e2b14953015}\label{structElevator_aae297f56aca24d7be4518e2b14953015}} 
-int {\bfseries current\+\_\+floor}
+int \mbox{\hyperlink{structElevator_aae297f56aca24d7be4518e2b14953015}{current\+\_\+floor}}
 \item 
-\mbox{\Hypertarget{structElevator_a9ddce99a8a873502e9231e802b284f1b}\label{structElevator_a9ddce99a8a873502e9231e802b284f1b}} 
-int {\bfseries last\+\_\+floor}
+int \mbox{\hyperlink{structElevator_a9ddce99a8a873502e9231e802b284f1b}{last\+\_\+floor}}
 \item 
-\mbox{\Hypertarget{structElevator_a81a08874b952491520e46ce744016d17}\label{structElevator_a81a08874b952491520e46ce744016d17}} 
-Motor\+Direction {\bfseries moving\+\_\+direction}
+Motor\+Direction \mbox{\hyperlink{structElevator_a81a08874b952491520e46ce744016d17}{moving\+\_\+direction}}
 \item 
-\mbox{\Hypertarget{structElevator_ae48a7963eff78a26b08649ca99b2de95}\label{structElevator_ae48a7963eff78a26b08649ca99b2de95}} 
-Motor\+Direction {\bfseries motor\+State}
+Motor\+Direction \mbox{\hyperlink{structElevator_a106945580d3ed28747bc5bd42575f786}{motor\+\_\+state}}
 \item 
-\mbox{\Hypertarget{structElevator_a6ca563c2c2ea2fe62b7eb080ece26d49}\label{structElevator_a6ca563c2c2ea2fe62b7eb080ece26d49}} 
-bool {\bfseries in\+\_\+motion}
+Motor\+Direction \mbox{\hyperlink{structElevator_a474bec9e5773918e147d8f4f2fafc965}{last\+\_\+motor\+\_\+state}}
 \item 
-\mbox{\Hypertarget{structElevator_ae8a0a50a2879dfeb5bc9b60cb750612d}\label{structElevator_ae8a0a50a2879dfeb5bc9b60cb750612d}} 
-\mbox{\hyperlink{structRequest}{Request}} $\ast$ {\bfseries request\+\_\+queue}
+bool \mbox{\hyperlink{structElevator_a6ca563c2c2ea2fe62b7eb080ece26d49}{in\+\_\+motion}}
 \item 
-\mbox{\Hypertarget{structElevator_ac9cbaf17ae996f6a02c4b5ee2776e3a1}\label{structElevator_ac9cbaf17ae996f6a02c4b5ee2776e3a1}} 
-size\+\_\+t {\bfseries queue\+\_\+size}
+\mbox{\hyperlink{structRequest}{Request}} $\ast$ \mbox{\hyperlink{structElevator_ae8a0a50a2879dfeb5bc9b60cb750612d}{request\+\_\+queue}}
 \item 
-\mbox{\Hypertarget{structElevator_a08decdabd2f38e0d9654e774c7258c1b}\label{structElevator_a08decdabd2f38e0d9654e774c7258c1b}} 
-size\+\_\+t {\bfseries queue\+\_\+capacity}
+size\+\_\+t \mbox{\hyperlink{structElevator_ac9cbaf17ae996f6a02c4b5ee2776e3a1}{queue\+\_\+size}}
 \item 
-\mbox{\Hypertarget{structElevator_a4f0bfec7587f5ff170fb3ed6868626fd}\label{structElevator_a4f0bfec7587f5ff170fb3ed6868626fd}} 
-bool {\bfseries initialized}
+size\+\_\+t \mbox{\hyperlink{structElevator_a08decdabd2f38e0d9654e774c7258c1b}{queue\+\_\+capacity}}
 \item 
-\mbox{\Hypertarget{structElevator_aad840743c5b2a14821e3727766d74e3e}\label{structElevator_aad840743c5b2a14821e3727766d74e3e}} 
-bool {\bfseries is\+\_\+stopped}
+bool \mbox{\hyperlink{structElevator_a4f0bfec7587f5ff170fb3ed6868626fd}{initialized}}
+\item 
+bool \mbox{\hyperlink{structElevator_aad840743c5b2a14821e3727766d74e3e}{is\+\_\+stopped}}
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Defines an \mbox{\hyperlink{structElevator}{Elevator}} struct to store values. 
+Structure representing the elevator\textquotesingle{}s state. 
 
-This struct holds information about an elevator, including its current floor, movement direction, motor state, request queue, and other key attributes that define the state and behavior of the elevator system.
+This struct holds information about the elevator, including its current floor, movement direction, motor state, queue of requested destinations, and various flags. 
 
-
-\begin{DoxyParams}{Parameters}
-{\em current\+\_\+floor} & The current floor of the elevator. \\
-\hline
-{\em last\+\_\+floor} & The last floor the elevator was at. \\
-\hline
-{\em moving\+\_\+direction} & The current movement direction of the elevator, which can be either {\ttfamily D\+I\+R\+N\+\_\+\+UP} or {\ttfamily D\+I\+R\+N\+\_\+\+D\+O\+WN}. \\
-\hline
-{\em motor\+State} & The current state of the motor, which indicates whether the elevator is moving or idle. This state can represent different phases like moving up, moving down, or stationary. \\
-\hline
-{\em in\+\_\+motion} & Flag indicating if the elevator is currently in motion. \\
-\hline
-{\em request\+\_\+queue} & A queue of destination requests that helps the elevator determine where to go next. \\
-\hline
-{\em queue\+\_\+size} & The current number of elements in the destination queue. \\
-\hline
-{\em queue\+\_\+capacity} & The maximum number of destination requests the queue can hold. \\
-\hline
-{\em initialized} & Flag indicating whether the elevator has been initialized and is ready to operate. \\
-\hline
-{\em is\+\_\+stopped} & Flag indicating whether the elevator is stopped. This can be used to check if the elevator is idle or has completed its tasks. \\
-\hline
-\end{DoxyParams}
+Definition at line 38 of file elevator.\+h.
 
 
-Definition at line 55 of file elevator.\+h.
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{structElevator_aae297f56aca24d7be4518e2b14953015}\label{structElevator_aae297f56aca24d7be4518e2b14953015}} 
+\index{Elevator@{Elevator}!current\_floor@{current\_floor}}
+\index{current\_floor@{current\_floor}!Elevator@{Elevator}}
+\doxysubsubsection{\texorpdfstring{current\_floor}{current\_floor}}
+{\footnotesize\ttfamily int Elevator\+::current\+\_\+floor}
+
+The current floor of the elevator. 
+
+Definition at line 40 of file elevator.\+h.
+
+\mbox{\Hypertarget{structElevator_a6ca563c2c2ea2fe62b7eb080ece26d49}\label{structElevator_a6ca563c2c2ea2fe62b7eb080ece26d49}} 
+\index{Elevator@{Elevator}!in\_motion@{in\_motion}}
+\index{in\_motion@{in\_motion}!Elevator@{Elevator}}
+\doxysubsubsection{\texorpdfstring{in\_motion}{in\_motion}}
+{\footnotesize\ttfamily bool Elevator\+::in\+\_\+motion}
+
+Indicates if the elevator is currently moving. 
+
+Definition at line 45 of file elevator.\+h.
+
+\mbox{\Hypertarget{structElevator_a4f0bfec7587f5ff170fb3ed6868626fd}\label{structElevator_a4f0bfec7587f5ff170fb3ed6868626fd}} 
+\index{Elevator@{Elevator}!initialized@{initialized}}
+\index{initialized@{initialized}!Elevator@{Elevator}}
+\doxysubsubsection{\texorpdfstring{initialized}{initialized}}
+{\footnotesize\ttfamily bool Elevator\+::initialized}
+
+Indicates whether the elevator has been initialized. 
+
+Definition at line 49 of file elevator.\+h.
+
+\mbox{\Hypertarget{structElevator_aad840743c5b2a14821e3727766d74e3e}\label{structElevator_aad840743c5b2a14821e3727766d74e3e}} 
+\index{Elevator@{Elevator}!is\_stopped@{is\_stopped}}
+\index{is\_stopped@{is\_stopped}!Elevator@{Elevator}}
+\doxysubsubsection{\texorpdfstring{is\_stopped}{is\_stopped}}
+{\footnotesize\ttfamily bool Elevator\+::is\+\_\+stopped}
+
+Indicates if the elevator is currently stopped. 
+
+Definition at line 50 of file elevator.\+h.
+
+\mbox{\Hypertarget{structElevator_a9ddce99a8a873502e9231e802b284f1b}\label{structElevator_a9ddce99a8a873502e9231e802b284f1b}} 
+\index{Elevator@{Elevator}!last\_floor@{last\_floor}}
+\index{last\_floor@{last\_floor}!Elevator@{Elevator}}
+\doxysubsubsection{\texorpdfstring{last\_floor}{last\_floor}}
+{\footnotesize\ttfamily int Elevator\+::last\+\_\+floor}
+
+The last registered floor of the elevator. 
+
+Definition at line 41 of file elevator.\+h.
+
+\mbox{\Hypertarget{structElevator_a474bec9e5773918e147d8f4f2fafc965}\label{structElevator_a474bec9e5773918e147d8f4f2fafc965}} 
+\index{Elevator@{Elevator}!last\_motor\_state@{last\_motor\_state}}
+\index{last\_motor\_state@{last\_motor\_state}!Elevator@{Elevator}}
+\doxysubsubsection{\texorpdfstring{last\_motor\_state}{last\_motor\_state}}
+{\footnotesize\ttfamily Motor\+Direction Elevator\+::last\+\_\+motor\+\_\+state}
+
+The previous state of the motor before stopping. 
+
+Definition at line 44 of file elevator.\+h.
+
+\mbox{\Hypertarget{structElevator_a106945580d3ed28747bc5bd42575f786}\label{structElevator_a106945580d3ed28747bc5bd42575f786}} 
+\index{Elevator@{Elevator}!motor\_state@{motor\_state}}
+\index{motor\_state@{motor\_state}!Elevator@{Elevator}}
+\doxysubsubsection{\texorpdfstring{motor\_state}{motor\_state}}
+{\footnotesize\ttfamily Motor\+Direction Elevator\+::motor\+\_\+state}
+
+The current state of the motor (UP, D\+O\+WN, or S\+T\+OP). 
+
+Definition at line 43 of file elevator.\+h.
+
+\mbox{\Hypertarget{structElevator_a81a08874b952491520e46ce744016d17}\label{structElevator_a81a08874b952491520e46ce744016d17}} 
+\index{Elevator@{Elevator}!moving\_direction@{moving\_direction}}
+\index{moving\_direction@{moving\_direction}!Elevator@{Elevator}}
+\doxysubsubsection{\texorpdfstring{moving\_direction}{moving\_direction}}
+{\footnotesize\ttfamily Motor\+Direction Elevator\+::moving\+\_\+direction}
+
+The direction the elevator is moving (UP, D\+O\+WN, or S\+T\+OP). 
+
+Definition at line 42 of file elevator.\+h.
+
+\mbox{\Hypertarget{structElevator_a08decdabd2f38e0d9654e774c7258c1b}\label{structElevator_a08decdabd2f38e0d9654e774c7258c1b}} 
+\index{Elevator@{Elevator}!queue\_capacity@{queue\_capacity}}
+\index{queue\_capacity@{queue\_capacity}!Elevator@{Elevator}}
+\doxysubsubsection{\texorpdfstring{queue\_capacity}{queue\_capacity}}
+{\footnotesize\ttfamily size\+\_\+t Elevator\+::queue\+\_\+capacity}
+
+The maximum number of elements the queue can hold. 
+
+Definition at line 48 of file elevator.\+h.
+
+\mbox{\Hypertarget{structElevator_ac9cbaf17ae996f6a02c4b5ee2776e3a1}\label{structElevator_ac9cbaf17ae996f6a02c4b5ee2776e3a1}} 
+\index{Elevator@{Elevator}!queue\_size@{queue\_size}}
+\index{queue\_size@{queue\_size}!Elevator@{Elevator}}
+\doxysubsubsection{\texorpdfstring{queue\_size}{queue\_size}}
+{\footnotesize\ttfamily size\+\_\+t Elevator\+::queue\+\_\+size}
+
+The current number of elements in the request queue. 
+
+Definition at line 47 of file elevator.\+h.
+
+\mbox{\Hypertarget{structElevator_ae8a0a50a2879dfeb5bc9b60cb750612d}\label{structElevator_ae8a0a50a2879dfeb5bc9b60cb750612d}} 
+\index{Elevator@{Elevator}!request\_queue@{request\_queue}}
+\index{request\_queue@{request\_queue}!Elevator@{Elevator}}
+\doxysubsubsection{\texorpdfstring{request\_queue}{request\_queue}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structRequest}{Request}}$\ast$ Elevator\+::request\+\_\+queue}
+
+The queue storing floor requests. 
+
+Definition at line 46 of file elevator.\+h.
 
 
 

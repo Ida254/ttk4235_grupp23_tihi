@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['on_5fbutton_5fpress_32',['on_button_press',['../elevator_8c.html#a010d805d91a0088ce00c31cfb2fd52ef',1,'on_button_press(Elevator *elevator):&#160;elevator.c'],['../elevator_8h.html#a010d805d91a0088ce00c31cfb2fd52ef',1,'on_button_press(Elevator *elevator):&#160;elevator.c']]]
+  ['last_5ffloor_29',['last_floor',['../structElevator.html#a9ddce99a8a873502e9231e802b284f1b',1,'Elevator']]],
+  ['last_5fmotor_5fstate_30',['last_motor_state',['../structElevator.html#a474bec9e5773918e147d8f4f2fafc965',1,'Elevator']]]
 ];

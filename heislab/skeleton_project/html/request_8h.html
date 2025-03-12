@@ -122,22 +122,22 @@ Functions</h2></td></tr>
 <tr class="memdesc:a87d7b129ea92db6cbb2b30cb4583bf6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extends an array of requests by inserting elements from another array.  <a href="request_8h.html#a87d7b129ea92db6cbb2b30cb4583bf6e">More...</a><br /></td></tr>
 <tr class="separator:a87d7b129ea92db6cbb2b30cb4583bf6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0d8a4446d2b409d1054b718ba4d293b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8h.html#aa0d8a4446d2b409d1054b718ba4d293b">compare_requests</a> (const void *a, const void *b)</td></tr>
-<tr class="memdesc:aa0d8a4446d2b409d1054b718ba4d293b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two elevator requests for sorting.  <a href="request_8h.html#aa0d8a4446d2b409d1054b718ba4d293b">More...</a><br /></td></tr>
+<tr class="memdesc:aa0d8a4446d2b409d1054b718ba4d293b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two requests for sorting purposes.  <a href="request_8h.html#aa0d8a4446d2b409d1054b718ba4d293b">More...</a><br /></td></tr>
 <tr class="separator:aa0d8a4446d2b409d1054b718ba4d293b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01502cf380fa7a467c1276b880d7acc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8h.html#a01502cf380fa7a467c1276b880d7acc7">bubble_sort</a> (<a class="el" href="structRequest.html">Request</a> *arr, size_t size, MotorDirection direction)</td></tr>
-<tr class="memdesc:a01502cf380fa7a467c1276b880d7acc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sorts an array of elevator requests using the bubble sort algorithm.  <a href="request_8h.html#a01502cf380fa7a467c1276b880d7acc7">More...</a><br /></td></tr>
+<tr class="memdesc:a01502cf380fa7a467c1276b880d7acc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sorts an array of requests using the bubble sort algorithm.  <a href="request_8h.html#a01502cf380fa7a467c1276b880d7acc7">More...</a><br /></td></tr>
 <tr class="separator:a01502cf380fa7a467c1276b880d7acc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acba741199a9411046392bdbf8cbb7e84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8h.html#acba741199a9411046392bdbf8cbb7e84">sort_requests</a> (<a class="el" href="structRequest.html">Request</a> *arr, size_t arr_size, int curr_floor, MotorDirection moving_dir, bool in_motion)</td></tr>
-<tr class="memdesc:acba741199a9411046392bdbf8cbb7e84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sorts elevator requests based on the current floor and direction.  <a href="request_8h.html#acba741199a9411046392bdbf8cbb7e84">More...</a><br /></td></tr>
+<tr class="memdesc:acba741199a9411046392bdbf8cbb7e84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sorts elevator requests based on the current floor and movement direction.  <a href="request_8h.html#acba741199a9411046392bdbf8cbb7e84">More...</a><br /></td></tr>
 <tr class="separator:acba741199a9411046392bdbf8cbb7e84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f95978399df01cc749cbd9f26dce6db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8h.html#a3f95978399df01cc749cbd9f26dce6db">add_request</a> (<a class="el" href="structRequest.html">Request</a> **arr, size_t *arr_size, size_t *capacity, <a class="el" href="structRequest.html">Request</a> req)</td></tr>
-<tr class="memdesc:a3f95978399df01cc749cbd9f26dce6db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a request to a dynamically allocated request array.  <a href="request_8h.html#a3f95978399df01cc749cbd9f26dce6db">More...</a><br /></td></tr>
+<tr class="memdesc:a3f95978399df01cc749cbd9f26dce6db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new request to a dynamically allocated request array.  <a href="request_8h.html#a3f95978399df01cc749cbd9f26dce6db">More...</a><br /></td></tr>
 <tr class="separator:a3f95978399df01cc749cbd9f26dce6db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e2c4bfbe7d96a852a0893018eec19f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8h.html#a6e2c4bfbe7d96a852a0893018eec19f4">remove_request_by_floor</a> (<a class="el" href="structRequest.html">Request</a> **arr, size_t *arr_size, size_t *capacity, int floor)</td></tr>
 <tr class="memdesc:a6e2c4bfbe7d96a852a0893018eec19f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all requests associated with a specific floor.  <a href="request_8h.html#a6e2c4bfbe7d96a852a0893018eec19f4">More...</a><br /></td></tr>
 <tr class="separator:a6e2c4bfbe7d96a852a0893018eec19f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac65b5c8a6a5fe4c460b482bada4d165d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8h.html#ac65b5c8a6a5fe4c460b482bada4d165d">in_array</a> (<a class="el" href="structRequest.html">Request</a> arr[], size_t size, <a class="el" href="structRequest.html">Request</a> req)</td></tr>
-<tr class="memdesc:ac65b5c8a6a5fe4c460b482bada4d165d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a request exists in an array.  <a href="request_8h.html#ac65b5c8a6a5fe4c460b482bada4d165d">More...</a><br /></td></tr>
+<tr class="memdesc:ac65b5c8a6a5fe4c460b482bada4d165d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a specific request exists in an array.  <a href="request_8h.html#ac65b5c8a6a5fe4c460b482bada4d165d">More...</a><br /></td></tr>
 <tr class="separator:ac65b5c8a6a5fe4c460b482bada4d165d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4d039d77b6c7249c0d522abeebb9860"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8h.html#ae4d039d77b6c7249c0d522abeebb9860">print_request</a> (<a class="el" href="structRequest.html">Request</a> req)</td></tr>
 <tr class="memdesc:ae4d039d77b6c7249c0d522abeebb9860"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a single request in a human-readable format.  <a href="request_8h.html#ae4d039d77b6c7249c0d522abeebb9860">More...</a><br /></td></tr>
@@ -190,19 +190,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adds a request to a dynamically allocated request array. </p>
-<p>Resizes the array if necessary. If reallocation fails, the program exits.</p>
+<p>Adds a new request to a dynamically allocated request array. </p>
+<p>The array is resized if necessary to accommodate the new request.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">arr</td><td>Pointer to the request array. </td></tr>
-    <tr><td class="paramname">arr_size</td><td>Pointer to the current array size. </td></tr>
-    <tr><td class="paramname">capacity</td><td>Pointer to the array's capacity. </td></tr>
-    <tr><td class="paramname">req</td><td>The request to add. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">arr</td><td>Pointer to the request array. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">arr_size</td><td>Pointer to the current number of requests in the array. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">capacity</td><td>Pointer to the array's capacity (may be increased if needed). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">req</td><td>The request to be added. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00141">141</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00118">118</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
 
 </div>
 </div>
@@ -238,26 +238,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sorts an array of elevator requests using the bubble sort algorithm. </p>
-<p>This function sorts an array of elevator requests based on their floor numbers. The sorting order is determined by the current direction of the elevator:</p><ul>
-<li>If the elevator is moving down (i.e., <code>DIRN_DOWN</code>), the requests are sorted in descending order.</li>
-<li>If the elevator is moving up (i.e., <code>DIRN_UP</code>), the requests are sorted in ascending order.</li>
-</ul>
-<p>The function uses the <code>qsort()</code> function for sorting and then reverses the order if the elevator is moving down. The bubble sort algorithm is conceptually followed, but it is implemented using the more efficient <code>qsort()</code> for initial sorting.</p>
+<p>Sorts an array of requests using the bubble sort algorithm. </p>
+<p>Requests are sorted in ascending or descending order based on the elevator's movement direction.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">arr</td><td>Pointer to the array of requests to be sorted. </td></tr>
-    <tr><td class="paramname">size</td><td>The size of the request array (i.e., the number of requests in the array). </td></tr>
-    <tr><td class="paramname">direction</td><td>The direction of the elevator movement, which affects the sorting order:<ul>
-<li><code>DIRN_DOWN</code>: Sorts the array in descending order (from high to low floor).</li>
-<li><code>DIRN_UP</code>: Sorts the array in ascending order (from low to high floor). </li>
-</ul>
-</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">arr</td><td>The array of requests to be sorted. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>The number of requests in the array. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">direction</td><td>The sorting order based on the motor direction (DIRN_UP or DIRN_DOWN). </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00056">56</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00033">33</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
 
 </div>
 </div>
@@ -287,18 +279,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Compares two elevator requests for sorting. </p>
-<p>This function compares two requests based on their floor number. It is used by sorting algorithms to order requests in an array. The comparison is based solely on the floor numbers, with no regard for the direction of movement.</p>
+<p>Compares two requests for sorting purposes. </p>
+<p>Used as a comparator function in sorting algorithms.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>Pointer to the first request to compare. </td></tr>
-    <tr><td class="paramname">b</td><td>Pointer to the second request to compare. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Pointer to the first request. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">b</td><td>Pointer to the second request. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>-1 if the floor of the first request is less than that of the second request, 1 if the floor of the first request is greater than that of the second request, 0 if both requests are for the same floor. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>An integer less than, equal to, or greater than zero if <code>a</code> is less than, equal to, or greater than <code>b</code>, respectively. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00042">42</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00019">19</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
 
 </div>
 </div>
@@ -341,13 +333,13 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Extends an array of requests by inserting elements from another array. </p>
-<p>This function inserts the elements of <code>arr2</code> into <code>arr1</code> starting at the given <code>index</code>.</p>
+<p>This function inserts elements from one request array (<code>arr2</code>) into another (<code>arr1</code>) at a specified index. The destination array must have enough allocated space.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">arr1</td><td>The destination array. </td></tr>
-    <tr><td class="paramname">index</td><td>The index at which to insert arr2. </td></tr>
-    <tr><td class="paramname">arr2</td><td>The source array. </td></tr>
-    <tr><td class="paramname">arr2_size</td><td>The size of arr2. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">arr1</td><td>The destination array to be extended. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>The index at which to insert <code>arr2</code> into <code>arr1</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">arr2</td><td>The source array containing requests to be inserted. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">arr2_size</td><td>The number of elements in <code>arr2</code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -388,19 +380,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Checks if a request exists in an array. </p>
-<p>This function checks if a given request exists in the provided array.</p>
+<p>Checks if a specific request exists in an array. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">arr</td><td>The request array. </td></tr>
-    <tr><td class="paramname">size</td><td>The size of the array. </td></tr>
-    <tr><td class="paramname">req</td><td>The request to check for. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">arr</td><td>The request array. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>The number of requests in the array. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">req</td><td>The request to search for. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the request is found, false otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if the request exists in the array, <code>false</code> otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00196">196</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00173">173</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
 
 </div>
 </div>
@@ -421,15 +412,15 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Prints a single request in a human-readable format. </p>
-<p>This function outputs the details of the request (floor and button type) to the console.</p>
+<p>The function displays the requested floor and button type.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">req</td><td>The request to print. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">req</td><td>The request to print. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00208">208</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00185">185</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
 
 </div>
 </div>
@@ -460,16 +451,16 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Prints all requests in an array. </p>
-<p>This function prints the details of all requests in the array to the console.</p>
+<p>Displays a list of all requests in the given array.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">arr</td><td>The request array. </td></tr>
-    <tr><td class="paramname">size</td><td>The size of the array. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">arr</td><td>The request array. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>The number of requests in the array. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00213">213</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00190">190</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
 
 </div>
 </div>
@@ -512,18 +503,18 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Removes all requests associated with a specific floor. </p>
-<p>This function shifts all subsequent requests down after removing the requests for the specified floor.</p>
+<p>This function scans the request array and removes any requests for the specified floor. If necessary, the array is resized to free unused memory.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">arr</td><td>Pointer to the request array. </td></tr>
-    <tr><td class="paramname">arr_size</td><td>Pointer to the array size. </td></tr>
-    <tr><td class="paramname">capacity</td><td>Pointer to the array's capacity. </td></tr>
-    <tr><td class="paramname">floor</td><td>The floor to remove requests for. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">arr</td><td>Pointer to the request array. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">arr_size</td><td>Pointer to the current number of requests in the array. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">capacity</td><td>Pointer to the array's capacity (may be decreased if needed). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">floor</td><td>The floor number whose requests should be removed. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00159">159</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00136">136</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
 
 </div>
 </div>
@@ -571,20 +562,20 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sorts elevator requests based on the current floor and direction. </p>
-<p>This function orders requests based on the elevator’s current floor and moving direction.</p>
+<p>Sorts elevator requests based on the current floor and movement direction. </p>
+<p>Requests are ordered to optimize elevator travel efficiency.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">arr</td><td>The array of requests. </td></tr>
-    <tr><td class="paramname">arr_size</td><td>The size of the request array. </td></tr>
-    <tr><td class="paramname">curr_floor</td><td>The current floor of the elevator. </td></tr>
-    <tr><td class="paramname">moving_dir</td><td>The current moving direction of the elevator. </td></tr>
-    <tr><td class="paramname">in_motion</td><td>A flag indicating whether the elevator is in motion. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">arr</td><td>The array of requests. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">arr_size</td><td>The size of the request array. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">curr_floor</td><td>The current floor of the elevator. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">moving_dir</td><td>The current moving direction of the elevator. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">in_motion</td><td>Whether the elevator is currently moving. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00082">82</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00059">59</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
 
 </div>
 </div>

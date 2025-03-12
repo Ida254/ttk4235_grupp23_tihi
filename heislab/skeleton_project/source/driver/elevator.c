@@ -149,40 +149,6 @@ Request *button_pressed() // db, rather return the button and if none detected, 
     return NULL;
 }
 
-// void moving_elevator(Elevator *elevator) // db, rather return a direction and make the two last line be another place
-// {
-//     if (elevator->queue_size == 0 || elevator->in_motion || elevator->is_stopped)
-//     {
-//         return;
-//     }
-
-//     int destinationFloor = elevator->request_queue[0].floor;
-//     int differenceInFloors = destinationFloor - elevator->last_floor;
-//     MotorDirection direction = (differenceInFloors > 0) ? DIRN_UP : (differenceInFloors < 0) ? DIRN_DOWN
-//                                                                                              : DIRN_STOP;
-//     // printf("new moving dir: %s \n\n", motor_direction_to_string(direction)); // db
-//     if (direction == DIRN_STOP && elevator->current_floor == -1)
-//     {
-//         if (elevator->last_motor_state == DIRN_UP)
-//         {
-//             direction = DIRN_DOWN;
-//         }
-//         else if (elevator->last_motor_state == DIRN_DOWN)
-//         {
-//             direction = DIRN_UP;
-//         }
-//         elevio_motorDirection(elevator->last_motor_state);
-//     }
-
-//     elevator->in_motion = (direction != DIRN_STOP); // db, maybe return direction instead and set new dir somewhere else
-//     elevio_motorDirection(direction);
-//     elevator->motor_state = direction;
-//     if (direction != DIRN_STOP)
-//     {
-//         elevator->last_motor_state = direction;
-//     }
-// }
-
 bool at_right_floor(Elevator *elevator)
 {
     if (elevator->queue_size == 0)
@@ -200,37 +166,6 @@ bool at_right_floor(Elevator *elevator)
     return false;
 }
 
-// bool at_right_floor(Elevator *elevator)
-// {
-//     if (elevator->queue_size == 0)
-//     {
-//         return false;
-//     }
-
-//     int currFloor = elevio_floorSensor();
-
-//     if (currFloor != -1) // db, take this another place
-//     {
-//         elevator->current_floor = currFloor;
-//         elevio_floorIndicator(currFloor);
-//     }
-
-//     if (currFloor == elevator->request_queue[0].floor) // db, currFloor could just be elevio_floorSensor()
-//     {
-//         // stop_elevator_at_floor(elevator, currFloor);
-//         // elevio_doorOpenLamp(0);
-//         // printf("At right floor \n"); // db
-//         elevator->motor_state = DIRN_STOP;
-//         return true;
-//     }
-
-//     if (!elevator->is_stopped)
-//     {
-//         moving_elevator(elevator);
-//     }
-//     return false;
-// }
-
 MotorDirection get_new_motor_direction(Elevator *elevator) // db, returns direction, decides movement
 {
     MotorDirection newDir = DIRN_STOP;
@@ -241,18 +176,6 @@ MotorDirection get_new_motor_direction(Elevator *elevator) // db, returns direct
     }
 
     int destinationFloor = elevator->request_queue[0].floor;
-
-    // Determine direction based on the current floor and destination floor
-    // if (currFloor == TOP_FLOOR)
-    // {
-    //     newDir = DIRN_DOWN;
-    //     return newDir;
-    // }
-    // else if (currFloor == BOTTOM_FLOOR)
-    // {
-    //     newDir = DIRN_UP;
-    //     return newDir;
-    // }
 
     // If there are requests, determine direction based on the first request
     int dirInInt = destinationFloor - elevator->last_floor;
@@ -268,43 +191,8 @@ MotorDirection get_new_motor_direction(Elevator *elevator) // db, returns direct
 
     newDir = (dirInInt > 0) ? DIRN_UP : (dirInInt < 0) ? DIRN_DOWN
                                                        : DIRN_STOP;
-
-    // if (newDir == DIRN_UP)
-    // {
-    //     printf("diff = %d \n", dirInInt);
-    //     printf("dirn at kill: %s \n", motor_direction_to_string(newDir));
-    //     kill(getpid(), SIGKILL);
-    // }
     return newDir;
 }
-
-// void switch_direction(Elevator *elevator) // db, return the direction, if not new direction return NULL, should this be it's own thread?
-// {
-//     MotorDirection *currDir = &elevator->moving_direction;
-//     int currFloor = elevator->current_floor;
-
-//     if (currFloor == TOP_FLOOR)
-//     {
-//         *currDir = DIRN_DOWN;
-//     }
-//     else if (currFloor == BOTTOM_FLOOR)
-//     {
-//         *currDir = DIRN_UP;
-//     }
-//     else if (elevator->queue_size > 0)
-//     {
-//         MotorDirection newDir = button_type_to_motor_direction(elevator->request_queue[0].button);
-
-//         if (*currDir != newDir && newDir != DIRN_STOP)
-//         {
-//             *currDir = newDir;
-//         }
-//     }
-
-//     sort_queue(elevator);
-
-//     printf("Switched direction to %s\n\n", motor_direction_to_string(*currDir));
-// }
 
 void rest_elevator(Elevator *elevator)
 {
@@ -324,29 +212,6 @@ void rest_elevator(Elevator *elevator)
         rest_elevator(elevator);
     }
 }
-
-// void check_emergency_stop(Elevator *elevator)
-// bool is_emergency_stop(Elevator *elevator) // db, should not kill ...
-// {
-//     // int lastFloor = elevator->current_floor;
-//     // MotorDirection currDir = elevator->motor_state;
-//     // bool invalidMovement = (lastFloor == BOTTOM_FLOOR && currDir == DIRN_DOWN) || (lastFloor == TOP_FLOOR && currDir == DIRN_UP);
-
-//     // if (invalidMovement) // db, should be handled elsewhere, but not sure it is
-//     // {
-//     //     // switch_direction(elevator);
-//     //     printf("Invalid movement: %s\n\n", bool_to_string(invalidMovement)); // db
-//     //     return true;
-//     // }
-
-//     if (!elevio_stopButton())
-//     // if (!elevio_stopButton() && !invalidMovement)
-//     {
-//         return false;
-//     }
-
-//     return true;
-// }
 
 void print_elevator(Elevator *elevator)
 {
