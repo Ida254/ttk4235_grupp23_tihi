@@ -36,8 +36,17 @@ void *button_listener(void *arg)
             {
                 initialize_elevator(elevator);
             }
-            elevator->is_stopped = false;
-            elevio_stopLamp(0);
+            if (elevator->is_stopped){
+                elevator->is_stopped = false;
+                elevio_stopLamp(0);
+                if (elevator->current_floor != -1)
+                {
+                    rest_elevator(elevator);
+                    elevio_doorOpenLamp(0);
+                }
+            }
+            // elevator->is_stopped = false;
+            // elevio_stopLamp(0);
         }
         pthread_mutex_unlock(&elevator_mtx);
 
@@ -124,6 +133,11 @@ void *emergency_listener(void *arg)
                 elevator->motorState = DIRN_STOP;
     
                 elevio_stopLamp(1);
+
+                if (elevator->current_floor != -1)
+                {
+                    elevio_doorOpenLamp(1);
+                }
     
                 // kill(getpid(), SIGKILL); // Forcefully stops the program
 
