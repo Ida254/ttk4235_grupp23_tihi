@@ -49,7 +49,7 @@ typedef struct
     int current_floor;
     int last_floor;
     MotorDirection moving_direction;
-    MotorDirection motorState;
+    MotorDirection motor_state;
     bool in_motion;
     Request *request_queue;
     size_t queue_size;
@@ -164,7 +164,7 @@ bool at_right_floor(Elevator *elevator);
  *
  * @param elevator Pointer to the Elevator structure.
  */
-void switch_direction(Elevator *elevator);
+MotorDirection switch_direction(Elevator *elevator);
 
 /**
  * @brief Resets the elevator to an idle state.
