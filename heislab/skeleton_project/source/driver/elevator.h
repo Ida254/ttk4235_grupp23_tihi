@@ -49,8 +49,8 @@ typedef struct
     int current_floor;
     int last_floor;
     MotorDirection moving_direction;
-    MotorDirection motorState;
-    MotorDirection last_motorState;
+    MotorDirection motor_state;
+    MotorDirection last_motor_state;
     bool in_motion;
     Request *request_queue;
     size_t queue_size;
@@ -136,15 +136,15 @@ void on_button_press(Elevator *elevator);
  */
 Request *button_pressed();
 
-/**
- * @brief Moves the elevator according to its queue and direction.
- *
- * This function ensures that the elevator moves towards its intended destination
- * based on the queued requests.
- *
- * @param elevator Pointer to the Elevator structure.
- */
-void moving_elevator(Elevator *elevator);
+// /**
+//  * @brief Moves the elevator according to its queue and direction.
+//  *
+//  * This function ensures that the elevator moves towards its intended destination
+//  * based on the queued requests.
+//  *
+//  * @param elevator Pointer to the Elevator structure.
+//  */
+// void moving_elevator(Elevator *elevator);
 
 /**
  * @brief Checks if the elevator is at the correct floor and handles stopping logic.
@@ -157,17 +157,17 @@ void moving_elevator(Elevator *elevator);
  */
 bool at_right_floor(Elevator *elevator);
 
-MotorDirection update_moving_direction(Elevator *elevator);
+MotorDirection get_new_motor_direction(Elevator *elevator);
 
-/**
- * @brief Switches the moving direction of the elevator when needed.
- *
- * This function updates the elevator's movement direction based on its current
- * position and queued requests.
- *
- * @param elevator Pointer to the Elevator structure.
- */
-void switch_direction(Elevator *elevator);
+// /**
+//  * @brief Switches the moving direction of the elevator when needed.
+//  *
+//  * This function updates the elevator's movement direction based on its current
+//  * position and queued requests.
+//  *
+//  * @param elevator Pointer to the Elevator structure.
+//  */
+// void switch_direction(Elevator *elevator);
 
 /**
  * @brief Resets the elevator to an idle state.
@@ -186,13 +186,13 @@ void rest_elevator(Elevator *elevator);
 //  */
 // void check_emergency_stop(Elevator *elevator);
 
-/**
- * @brief Monitors emergency stop conditions.
- *
- * If an emergency stop is detected, the elevator stops immediately and takes
- * appropriate safety measures.
- */
-bool is_emergency_stop(Elevator *elevator);
+// /**
+//  * @brief Monitors emergency stop conditions.
+//  *
+//  * If an emergency stop is detected, the elevator stops immediately and takes
+//  * appropriate safety measures.
+//  */
+// bool is_emergency_stop(Elevator *elevator);
 
 /**
  * @brief Prints the memebers of the struct Elevator.
