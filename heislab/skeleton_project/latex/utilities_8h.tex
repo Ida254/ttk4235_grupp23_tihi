@@ -55,9 +55,11 @@ This header file provides functions to convert between different data types used
 
 Converts a boolean value to a string (\char`\"{}true\char`\"{} or \char`\"{}false\char`\"{}). 
 
+This function takes a boolean value and returns a string representation of it. It returns either \char`\"{}true\char`\"{} or \char`\"{}false\char`\"{} based on the input value.
 
-\begin{DoxyParams}{Parameters}
-{\em true\+\_\+or\+\_\+false} & Boolean value to convert. \\
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em true\+\_\+or\+\_\+false} & The boolean value to convert. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -77,9 +79,11 @@ Definition at line 41 of file utilities.\+c.
 
 Converts a Button\+Type to a string representation. 
 
+This function takes a Button\+Type value and converts it to a corresponding string that represents the button type (e.\+g., \char`\"{}\+B\+U\+T\+T\+O\+N\+\_\+\+C\+A\+B\char`\"{}, \char`\"{}\+B\+U\+T\+T\+O\+N\+\_\+\+U\+P\char`\"{}).
 
-\begin{DoxyParams}{Parameters}
-{\em button} & The button type to convert. \\
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em button} & The button type to convert. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -99,9 +103,11 @@ Definition at line 11 of file utilities.\+c.
 
 Maps a button type to the corresponding motor direction. 
 
+This function maps a given button type (up, down, or command) to the motor direction that corresponds to that button type. For example, the \char`\"{}\+U\+P\char`\"{} button maps to the D\+I\+R\+N\+\_\+\+UP direction.
 
-\begin{DoxyParams}{Parameters}
-{\em btn} & The button type. \\
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em btn} & The button type to map. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -121,9 +127,11 @@ Definition at line 88 of file utilities.\+c.
 
 Converts an integer to a Button\+Type. 
 
+This function converts an integer value into a corresponding Button\+Type. The integer should represent one of the predefined button types (e.\+g., 0 for B\+U\+T\+T\+O\+N\+\_\+\+C\+AB).
 
-\begin{DoxyParams}{Parameters}
-{\em integer} & The integer representing a button type. \\
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em integer} & The integer representing a button type. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -143,9 +151,11 @@ Definition at line 52 of file utilities.\+c.
 
 Converts an integer to a Motor\+Direction. 
 
+This function converts an integer value into a corresponding Motor\+Direction. The integer should represent one of the predefined motor directions (e.\+g., 0 for D\+I\+R\+N\+\_\+\+UP).
 
-\begin{DoxyParams}{Parameters}
-{\em integer} & The integer representing a motor direction. \\
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em integer} & The integer representing a motor direction. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -165,9 +175,11 @@ Definition at line 70 of file utilities.\+c.
 
 Converts a Motor\+Direction to a string representation. 
 
+This function takes a Motor\+Direction value and returns a string corresponding to the direction, such as \char`\"{}\+D\+I\+R\+N\+\_\+\+U\+P\char`\"{} or \char`\"{}\+D\+I\+R\+N\+\_\+\+D\+O\+W\+N\char`\"{}.
 
-\begin{DoxyParams}{Parameters}
-{\em direction} & The motor direction to convert. \\
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em direction} & The motor direction to convert. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

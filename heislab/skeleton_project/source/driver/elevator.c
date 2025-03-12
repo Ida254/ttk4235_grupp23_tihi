@@ -71,7 +71,7 @@ void sort_queue(Elevator *elevator)
 
     int lastFloor = elevator->last_floor;
     MotorDirection currMovingDir = elevator->moving_direction;
-    sort_requests(elevator->request_queue, queueSize, lastFloor, currMovingDir);
+    sort_requests(elevator->request_queue, queueSize, lastFloor, currMovingDir, elevator->in_motion);
 }
 
 void add_request_to_queue(Elevator *elevator, Request new_req)

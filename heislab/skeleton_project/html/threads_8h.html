@@ -81,18 +81,18 @@ Include dependency graph for threads.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="threads_8h__incl.png" border="0" usemap="#source_2driver_2threads_8h" alt=""/></div>
 <map name="source_2driver_2threads_8h" id="source_2driver_2threads_8h">
-<area shape="rect" title="Header file for elevator control threads." alt="" coords="210,5,382,32"/>
-<area shape="rect" title=" " alt="" coords="199,80,283,107"/>
-<area shape="rect" href="elevator_8h.html" title="Header file for the elevator control system." alt="" coords="308,80,396,107"/>
-<area shape="rect" title=" " alt="" coords="128,304,195,331"/>
-<area shape="rect" title=" " alt="" coords="219,304,301,331"/>
-<area shape="rect" title=" " alt="" coords="390,155,461,181"/>
-<area shape="rect" title=" " alt="" coords="485,155,549,181"/>
-<area shape="rect" title=" " alt="" coords="574,155,647,181"/>
-<area shape="rect" title=" " alt="" coords="672,155,747,181"/>
-<area shape="rect" href="elevio_8h_source.html" title=" " alt="" coords="5,304,80,331"/>
-<area shape="rect" href="utilities_8h.html" title="Utility functions for conversions and mappings in the elevator system." alt="" coords="131,229,213,256"/>
-<area shape="rect" href="request_8h.html" title="Header file for managing elevator requests." alt="" coords="131,155,213,181"/>
+<area shape="rect" title="Header file for elevator control threads." alt="" coords="87,5,259,32"/>
+<area shape="rect" title=" " alt="" coords="5,155,89,181"/>
+<area shape="rect" href="elevator_8h.html" title="Header file for the elevator control system." alt="" coords="254,80,342,107"/>
+<area shape="rect" title=" " alt="" coords="327,304,394,331"/>
+<area shape="rect" title=" " alt="" coords="418,304,501,331"/>
+<area shape="rect" title=" " alt="" coords="621,229,692,256"/>
+<area shape="rect" title=" " alt="" coords="266,155,330,181"/>
+<area shape="rect" title=" " alt="" coords="355,155,428,181"/>
+<area shape="rect" title=" " alt="" coords="453,155,527,181"/>
+<area shape="rect" href="elevio_8h_source.html" title=" " alt="" coords="546,304,621,331"/>
+<area shape="rect" href="utilities_8h.html" title="Utility functions for conversions and mappings in the elevator system." alt="" coords="413,229,495,256"/>
+<area shape="rect" href="request_8h.html" title="Header file for managing elevator requests." alt="" coords="551,155,634,181"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -146,7 +146,7 @@ Functions</h2></td></tr>
 <p>This function runs in a separate thread, continuously checking for button presses. When a button is pressed, it adds the corresponding request to the elevator's queue.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">arg</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> structure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">arg</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> structure, which will be updated with button requests. </td></tr>
   </table>
   </dd>
 </dl>
@@ -173,16 +173,16 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Continuously checks for an emergency stop condition. </p>
-<p>This function runs in a separate thread and monitors if an emergency stop has been triggered. If an emergency stop is detected, it handles stopping the elevator safely.</p>
+<p>This function runs in a separate thread and monitors if an emergency stop has been triggered. If an emergency stop is detected, it handles stopping the elevator safely and initiates appropriate safety measures.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">arg</td><td>Unused parameter (can be NULL). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">arg</td><td>Unused parameter (can be NULL). </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Always returns NULL. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="threads_8c_source.html#l00033">33</a> of file <a class="el" href="threads_8c_source.html">threads.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="threads_8c_source.html#l00099">99</a> of file <a class="el" href="threads_8c_source.html">threads.c</a>.</p>
 
 </div>
 </div>
@@ -203,16 +203,16 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Monitors the elevator's current floor and handles stop conditions. </p>
-<p>This function runs in a separate thread, continuously checking if the elevator has reached the correct floor and handling the necessary actions, such as stopping.</p>
+<p>This function runs in a separate thread, continuously checking if the elevator has reached the correct floor and handling necessary actions, such as stopping the elevator or opening doors when the right floor is reached.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">arg</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> structure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">arg</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> structure that needs to be monitored. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Always returns NULL. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="threads_8c_source.html#l00022">22</a> of file <a class="el" href="threads_8c_source.html">threads.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="threads_8c_source.html#l00049">49</a> of file <a class="el" href="threads_8c_source.html">threads.c</a>.</p>
 
 </div>
 </div>

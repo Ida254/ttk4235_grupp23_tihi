@@ -17,7 +17,7 @@
  * This function runs in a separate thread, continuously checking for button presses.
  * When a button is pressed, it adds the corresponding request to the elevator's queue.
  *
- * @param arg Pointer to the Elevator structure.
+ * @param[in] arg Pointer to the Elevator structure, which will be updated with button requests.
  * @return Always returns NULL.
  */
 void *button_listener(void *arg);
@@ -26,9 +26,10 @@ void *button_listener(void *arg);
  * @brief Monitors the elevator's current floor and handles stop conditions.
  *
  * This function runs in a separate thread, continuously checking if the elevator
- * has reached the correct floor and handling the necessary actions, such as stopping.
+ * has reached the correct floor and handling necessary actions, such as stopping the elevator
+ * or opening doors when the right floor is reached.
  *
- * @param arg Pointer to the Elevator structure.
+ * @param[in] arg Pointer to the Elevator structure that needs to be monitored.
  * @return Always returns NULL.
  */
 void *floor_listener(void *arg);
@@ -37,9 +38,10 @@ void *floor_listener(void *arg);
  * @brief Continuously checks for an emergency stop condition.
  *
  * This function runs in a separate thread and monitors if an emergency stop has been triggered.
- * If an emergency stop is detected, it handles stopping the elevator safely.
+ * If an emergency stop is detected, it handles stopping the elevator safely and initiates
+ * appropriate safety measures.
  *
- * @param arg Unused parameter (can be NULL).
+ * @param[in] arg Unused parameter (can be NULL).
  * @return Always returns NULL.
  */
 void *emergency_listener(void *arg);
