@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['emergency_5flistener_80',['emergency_listener',['../threads_8c.html#a4429467f1dbcf6c5dd8a57fe9faf395f',1,'emergency_listener(void *arg):&#160;threads.c'],['../threads_8h.html#a4429467f1dbcf6c5dd8a57fe9faf395f',1,'emergency_listener(void *arg):&#160;threads.c']]],
-  ['empty_5fqueue_81',['empty_queue',['../elevator_8c.html#a3171c5ef60df58df40a6c1cf8b48475b',1,'empty_queue(Elevator *elevator):&#160;elevator.c'],['../elevator_8h.html#a3171c5ef60df58df40a6c1cf8b48475b',1,'empty_queue(Elevator *elevator):&#160;elevator.c']]],
-  ['extend_5frequests_82',['extend_requests',['../request_8c.html#a87d7b129ea92db6cbb2b30cb4583bf6e',1,'extend_requests(Request *arr1, size_t index, Request *arr2, size_t arr2_size):&#160;request.c'],['../request_8h.html#a87d7b129ea92db6cbb2b30cb4583bf6e',1,'extend_requests(Request *arr1, size_t index, Request *arr2, size_t arr2_size):&#160;request.c']]]
+  ['compare_5frequests_72',['compare_requests',['../request_8c.html#aa0d8a4446d2b409d1054b718ba4d293b',1,'compare_requests(const void *a, const void *b):&#160;request.c'],['../request_8h.html#aa0d8a4446d2b409d1054b718ba4d293b',1,'compare_requests(const void *a, const void *b):&#160;request.c']]]
 ];

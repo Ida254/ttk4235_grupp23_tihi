@@ -97,12 +97,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a87d7b129ea92db6cbb2b30cb4583bf6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8c.html#a87d7b129ea92db6cbb2b30cb4583bf6e">extend_requests</a> (<a class="el" href="structRequest.html">Request</a> *arr1, size_t index, <a class="el" href="structRequest.html">Request</a> *arr2, size_t arr2_size)</td></tr>
 <tr class="memdesc:a87d7b129ea92db6cbb2b30cb4583bf6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extends an array of requests by inserting elements from another array.  <a href="request_8c.html#a87d7b129ea92db6cbb2b30cb4583bf6e">More...</a><br /></td></tr>
 <tr class="separator:a87d7b129ea92db6cbb2b30cb4583bf6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0d8a4446d2b409d1054b718ba4d293b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8c.html#aa0d8a4446d2b409d1054b718ba4d293b">compare_requests</a> (const void *a, const void *b)</td></tr>
+<tr class="memdesc:aa0d8a4446d2b409d1054b718ba4d293b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two elevator requests for sorting.  <a href="request_8c.html#aa0d8a4446d2b409d1054b718ba4d293b">More...</a><br /></td></tr>
+<tr class="separator:aa0d8a4446d2b409d1054b718ba4d293b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01502cf380fa7a467c1276b880d7acc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8c.html#a01502cf380fa7a467c1276b880d7acc7">bubble_sort</a> (<a class="el" href="structRequest.html">Request</a> *arr, size_t size, MotorDirection direction)</td></tr>
-<tr class="memdesc:a01502cf380fa7a467c1276b880d7acc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sorts an array of requests using the bubble sort algorithm.  <a href="request_8c.html#a01502cf380fa7a467c1276b880d7acc7">More...</a><br /></td></tr>
+<tr class="memdesc:a01502cf380fa7a467c1276b880d7acc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sorts an array of elevator requests using the bubble sort algorithm.  <a href="request_8c.html#a01502cf380fa7a467c1276b880d7acc7">More...</a><br /></td></tr>
 <tr class="separator:a01502cf380fa7a467c1276b880d7acc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ef37aefa5313b9f76ff056733aa3327"><td class="memItemLeft" align="right" valign="top"><a id="a9ef37aefa5313b9f76ff056733aa3327"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sort_requests</b> (<a class="el" href="structRequest.html">Request</a> *arr, size_t arr_size, int curr_floor, MotorDirection moving_dir)</td></tr>
-<tr class="separator:a9ef37aefa5313b9f76ff056733aa3327"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acba741199a9411046392bdbf8cbb7e84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8c.html#acba741199a9411046392bdbf8cbb7e84">sort_requests</a> (<a class="el" href="structRequest.html">Request</a> *arr, size_t arr_size, int curr_floor, MotorDirection moving_dir, bool in_motion)</td></tr>
+<tr class="memdesc:acba741199a9411046392bdbf8cbb7e84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sorts elevator requests based on the current floor and direction.  <a href="request_8c.html#acba741199a9411046392bdbf8cbb7e84">More...</a><br /></td></tr>
+<tr class="separator:acba741199a9411046392bdbf8cbb7e84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b1ae8ed1c2ccc4282f2f22c82e55da6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request_8c.html#a2b1ae8ed1c2ccc4282f2f22c82e55da6">add_request</a> (<a class="el" href="structRequest.html">Request</a> **arr, size_t *arr_size, size_t *capacity, <a class="el" href="structRequest.html">Request</a> new_req)</td></tr>
 <tr class="memdesc:a2b1ae8ed1c2ccc4282f2f22c82e55da6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a request to a dynamically allocated request array.  <a href="request_8c.html#a2b1ae8ed1c2ccc4282f2f22c82e55da6">More...</a><br /></td></tr>
 <tr class="separator:a2b1ae8ed1c2ccc4282f2f22c82e55da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,7 +178,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sort_requests</b> (<a
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00100">100</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00141">141</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
 
 </div>
 </div>
@@ -211,18 +214,67 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sort_requests</b> (<a
       </table>
 </div><div class="memdoc">
 
-<p>Sorts an array of requests using the bubble sort algorithm. </p>
-<p>This function repeatedly compares adjacent elements and swaps them if they are in the wrong order.</p>
+<p>Sorts an array of elevator requests using the bubble sort algorithm. </p>
+<p>This function sorts an array of elevator requests based on their floor numbers. The sorting order is determined by the current direction of the elevator:</p><ul>
+<li>If the elevator is moving down (i.e., <code>DIRN_DOWN</code>), the requests are sorted in descending order.</li>
+<li>If the elevator is moving up (i.e., <code>DIRN_UP</code>), the requests are sorted in ascending order.</li>
+</ul>
+<p>The function uses the <code>qsort()</code> function for sorting and then reverses the order if the elevator is moving down. The bubble sort algorithm is conceptually followed, but it is implemented using the more efficient <code>qsort()</code> for initial sorting.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">arr</td><td>The array of requests. </td></tr>
-    <tr><td class="paramname">size</td><td>The size of the array. </td></tr>
-    <tr><td class="paramname">direction</td><td>The sorting order based on motor direction (e.g., up or down). </td></tr>
+    <tr><td class="paramname">arr</td><td>Pointer to the array of requests to be sorted. </td></tr>
+    <tr><td class="paramname">size</td><td>The size of the request array (i.e., the number of requests in the array). </td></tr>
+    <tr><td class="paramname">direction</td><td>The direction of the elevator movement, which affects the sorting order:<ul>
+<li><code>DIRN_DOWN</code>: Sorts the array in descending order (from high to low floor).</li>
+<li><code>DIRN_UP</code>: Sorts the array in ascending order (from low to high floor). </li>
+</ul>
+</td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00019">19</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00056">56</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
+
+</div>
+</div>
+<a id="aa0d8a4446d2b409d1054b718ba4d293b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0d8a4446d2b409d1054b718ba4d293b">&#9670;&nbsp;</a></span>compare_requests()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int compare_requests </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compares two elevator requests for sorting. </p>
+<p>This function compares two requests based on their floor number. It is used by sorting algorithms to order requests in an array. The comparison is based solely on the floor numbers, with no regard for the direction of movement.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>Pointer to the first request to compare. </td></tr>
+    <tr><td class="paramname">b</td><td>Pointer to the second request to compare. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>-1 if the floor of the first request is less than that of the second request, 1 if the floor of the first request is greater than that of the second request, 0 if both requests are for the same floor. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00042">42</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
 
 </div>
 </div>
@@ -324,7 +376,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sort_requests</b> (<a
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the request is found, false otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00155">155</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00196">196</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
 
 </div>
 </div>
@@ -353,7 +405,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sort_requests</b> (<a
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00167">167</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00208">208</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
 
 </div>
 </div>
@@ -393,7 +445,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sort_requests</b> (<a
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00172">172</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00213">213</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
 
 </div>
 </div>
@@ -447,7 +499,68 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>sort_requests</b> (<a
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00118">118</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00159">159</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
+
+</div>
+</div>
+<a id="acba741199a9411046392bdbf8cbb7e84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acba741199a9411046392bdbf8cbb7e84">&#9670;&nbsp;</a></span>sort_requests()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sort_requests </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structRequest.html">Request</a> *&#160;</td>
+          <td class="paramname"><em>arr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>arr_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>curr_floor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">MotorDirection&#160;</td>
+          <td class="paramname"><em>moving_dir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>in_motion</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sorts elevator requests based on the current floor and direction. </p>
+<p>This function orders requests based on the elevator’s current floor and moving direction.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arr</td><td>The array of requests. </td></tr>
+    <tr><td class="paramname">arr_size</td><td>The size of the request array. </td></tr>
+    <tr><td class="paramname">curr_floor</td><td>The current floor of the elevator. </td></tr>
+    <tr><td class="paramname">moving_dir</td><td>The current moving direction of the elevator. </td></tr>
+    <tr><td class="paramname">in_motion</td><td>A flag indicating whether the elevator is in motion. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="request_8c_source.html#l00082">82</a> of file <a class="el" href="request_8c_source.html">request.c</a>.</p>
 
 </div>
 </div>
