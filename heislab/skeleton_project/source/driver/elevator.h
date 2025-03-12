@@ -19,45 +19,38 @@
 #include "utilities.h"
 #include "request.h"
 
-#define SLEEP_TIME_NS 10 * 1000 * 1000 /**< The time interval in nanoseconds for elevator sleep. */
-#define BOTTOM_FLOOR 0                 /**< The lowest floor in the system. */
-#define TOP_FLOOR 3                    /**< The highest floor in the system. */
-#define INITIAL_FLOOR TOP_FLOOR        /**< The initial floor of the elevator. */
-#define INITIAL_DIRECTION DIRN_DOWN    /**< The initial direction the elevator is moving. */
+#define SLEEP_TIME_NS 10 * 1000 * 1000
+#define BOTTOM_FLOOR 0
+#define TOP_FLOOR 3
+#define INITIAL_FLOOR TOP_FLOOR
+#define INITIAL_DIRECTION DIRN_DOWN
 #define INITIAL_REQUEST \
-    (Request) { BOTTOM_FLOOR, BUTTON_CAB } /**< The initial request for the elevator to go to the bottom floor. */
+    (Request) { BOTTOM_FLOOR, BUTTON_CAB }
 
-static pthread_mutex_t elevator_mtx; /**< Mutex to control access to shared elevator resources. */
+static pthread_mutex_t elevator_mtx;
 
 /**
  * @brief Defines an Elevator struct to store values.
  *
  * This struct holds information about an elevator, including its current floor,
- * movement direction, motor state, request queue, and other key attributes that
- * define the state and behavior of the elevator system.
+ * movement direction, and a queue of requested destinations.
  *
  * @param current_floor The current floor of the elevator.
- * @param last_floor The last floor the elevator was at.
- * @param moving_direction The current movement direction of the elevator, which can be either
+ * @param moving_direction The current movement direction, which can be either
  *        @c DIRN_UP or @c DIRN_DOWN.
- * @param motorState The current state of the motor, which indicates whether the elevator
- *        is moving or idle. This state can represent different phases like moving up,
- *        moving down, or stationary.
- * @param in_motion Flag indicating if the elevator is currently in motion.
+ * @param in_motion Tell whether or not the elevator is in motion at the current moment.
  * @param request_queue A queue of destination requests that helps the elevator
  *        determine where to go next.
  * @param queue_size The current number of elements in the destination queue.
- * @param queue_capacity The maximum number of destination requests the queue can hold.
- * @param initialized Flag indicating whether the elevator has been initialized and is ready to operate.
- * @param is_stopped Flag indicating whether the elevator is stopped. This can be used to check if
- *        the elevator is idle or has completed its tasks.
+//  * @param queue_capacity The maximum number of destination requests the queue can hold.
  */
 typedef struct
 {
     int current_floor;
     int last_floor;
     MotorDirection moving_direction;
-    MotorDirection motor_state;
+    MotorDirection motorState;
+    MotorDirection last_motorState;
     bool in_motion;
     Request *request_queue;
     size_t queue_size;
@@ -86,11 +79,6 @@ void initialize_elevator(Elevator *elevator);
  */
 void free_elevator(Elevator *elevator);
 
-/**
- * @brief Turns off all elevator lamps.
- *
- * This function ensures that all the button lamps in the elevator are turned off.
- */
 void turn_off_all_lamps();
 
 /**
@@ -125,13 +113,6 @@ void add_request_to_queue(Elevator *elevator, Request new_req);
  */
 void remove_request_from_queue(Elevator *elevator, int floor);
 
-/**
- * @brief Empties the elevator's request queue.
- *
- * This function clears all requests from the elevator's queue, effectively resetting it.
- *
- * @param[in,out] elevator Pointer to the Elevator struct.
- */
 void empty_queue(Elevator *elevator);
 
 /**
@@ -140,7 +121,7 @@ void empty_queue(Elevator *elevator);
  * This function checks if any button has been pressed and, if so, adds the request
  * to the elevator's queue.
  *
- * @param[in,out] elevator Pointer to the Elevator structure.
+ * @param elevator Pointer to the Elevator structure.
  */
 void on_button_press(Elevator *elevator);
 
@@ -150,7 +131,7 @@ void on_button_press(Elevator *elevator);
  * Iterates through all floors and button types to detect a pressed button.
  * If a button press is found, it updates the given request structure.
  *
- * @param[out] req Pointer to a Request structure to store the button press details.
+ * @param req Pointer to a Request structure to store the button press details.
  * @return True if a button was pressed, false otherwise.
  */
 Request *button_pressed();
@@ -161,7 +142,7 @@ Request *button_pressed();
  * This function ensures that the elevator moves towards its intended destination
  * based on the queued requests.
  *
- * @param[in,out] elevator Pointer to the Elevator structure.
+ * @param elevator Pointer to the Elevator structure.
  */
 void moving_elevator(Elevator *elevator);
 
@@ -171,10 +152,12 @@ void moving_elevator(Elevator *elevator);
  * If the elevator reaches a requested floor, it performs necessary actions like
  * stopping and opening doors.
  *
- * @param[in,out] elevator Pointer to the Elevator structure.
- * @return True if the elevator is at the correct floor, false otherwise.
+ * @param elevator Pointer to the Elevator structure.
+ * @return True or false depending on whether you are on the right floor or not.
  */
 bool at_right_floor(Elevator *elevator);
+
+MotorDirection update_moving_direction(Elevator *elevator);
 
 /**
  * @brief Switches the moving direction of the elevator when needed.
@@ -182,35 +165,39 @@ bool at_right_floor(Elevator *elevator);
  * This function updates the elevator's movement direction based on its current
  * position and queued requests.
  *
- * @param[in,out] elevator Pointer to the Elevator structure.
+ * @param elevator Pointer to the Elevator structure.
  */
-MotorDirection switch_direction(Elevator *elevator);
+void switch_direction(Elevator *elevator);
 
 /**
  * @brief Resets the elevator to an idle state.
  *
  * Stops the elevator and clears any pending requests.
  *
- * @param[in,out] elevator Pointer to the Elevator structure.
+ * @param elevator Pointer to the Elevator structure.
  */
 void rest_elevator(Elevator *elevator);
+
+// /**
+//  * @brief Monitors and handles emergency stop conditions.
+//  *
+//  * If an emergency stop is detected, the elevator stops immediately and takes
+//  * appropriate safety measures.
+//  */
+// void check_emergency_stop(Elevator *elevator);
 
 /**
  * @brief Monitors emergency stop conditions.
  *
  * If an emergency stop is detected, the elevator stops immediately and takes
  * appropriate safety measures.
- *
- * @param[in,out] elevator Pointer to the Elevator structure.
- * @return True if an emergency stop is detected, false otherwise.
  */
 bool is_emergency_stop(Elevator *elevator);
 
 /**
- * @brief Prints the members of the Elevator struct.
+ * @brief Prints the memebers of the struct Elevator.
  *
- * This function prints the values of an elevator in a human-readable format,
- * useful for debugging and inspection.
+ * This function prints the values of an elevator in a nice way that helps with debuging of the code.
  *
  * @param[in] elevator Pointer to the Elevator struct.
  */

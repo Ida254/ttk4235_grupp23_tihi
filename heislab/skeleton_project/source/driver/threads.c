@@ -32,7 +32,6 @@ void *button_listener(void *arg)
         // }
         if (button_pressed())
         {
-            printf("hei \n"); // db
             if (!elevator->initialized)
             {
                 initialize_elevator(elevator);
@@ -56,16 +55,9 @@ void *floor_listener(void *arg)
         return NULL;
     }
 
-    MotorDirection newDir = switch_direction(elevator);
-
     while (1)
     {
         pthread_mutex_lock(&elevator_mtx);
-        if (elevator->is_stopped)
-        {
-            continue;
-        }
-
         if (!elevator->initialized && at_right_floor(elevator))
         {
             elevator->initialized = true;
@@ -73,20 +65,22 @@ void *floor_listener(void *arg)
             print_elevator(elevator); // db
         }
 
+        // if (elevator->queue_size == 0)
+        // {
+        //     return NULL;
+        // }
+        // at_right_floor(elevator);
         if (at_right_floor(elevator))
         {
             if (elevator->in_motion)
             {
                 elevio_motorDirection(DIRN_STOP);
                 elevator->in_motion = false;
-                elevator->motor_state = DIRN_STOP;
             }
 
-            printf("1 new dir: %s \n", motor_direction_to_string(newDir));
-            newDir = switch_direction(elevator);
-            printf("2 new dir: %s \n", motor_direction_to_string(newDir));
-
             elevio_buttonLamp(elevator->current_floor, elevator->request_queue[0].button, 0);
+
+            switch_direction(elevator);
 
             remove_request_from_queue(elevator, elevator->current_floor);
             elevio_doorOpenLamp(1);
@@ -98,24 +92,6 @@ void *floor_listener(void *arg)
 
             elevio_doorOpenLamp(0);
         }
-
-        if (elevator->queue_size != 0 && !elevator->in_motion)
-        {
-            newDir = switch_direction(elevator);
-        }
-
-        if (elevator->motor_state != newDir)
-        {
-            elevator->motor_state = newDir;
-            if (newDir != DIRN_STOP)
-            {
-                elevator->moving_direction = newDir;
-                elevator->in_motion = true;
-            }
-        }
-
-        elevio_motorDirection(newDir);
-
         pthread_mutex_unlock(&elevator_mtx);
 
         nanosleep(&(struct timespec){0, SLEEP_TIME_NS}, NULL); // Sleep for 10ms
@@ -146,7 +122,7 @@ void *emergency_listener(void *arg)
 
                 elevio_motorDirection(DIRN_STOP);
                 elevator->in_motion = false;
-                elevator->motor_state = DIRN_STOP;
+                elevator->motorState = DIRN_STOP;
 
                 elevio_stopLamp(1);
 
