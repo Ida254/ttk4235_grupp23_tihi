@@ -65,11 +65,6 @@ void *floor_listener(void *arg)
             print_elevator(elevator); // db
         }
 
-        if (elevator->current_floor != -1)
-        {
-            elevator->last_floor = elevator->current_floor;
-        }
-
         // if (elevator->queue_size == 0)
         // {
         //     return NULL;
