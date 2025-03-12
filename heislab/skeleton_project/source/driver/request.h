@@ -38,16 +38,39 @@ typedef struct
  */
 void extend_requests(Request *arr1, size_t index, Request *arr2, size_t arr2_size);
 
+/**
+ * @brief Compares two elevator requests for sorting.
+ *
+ * This function compares two requests based on their floor number. It is used by sorting algorithms
+ * to order requests in an array. The comparison is based solely on the floor numbers, with no regard
+ * for the direction of movement.
+ *
+ * @param a Pointer to the first request to compare.
+ * @param b Pointer to the second request to compare.
+ * @return
+ * -1 if the floor of the first request is less than that of the second request,
+ *  1 if the floor of the first request is greater than that of the second request,
+ *  0 if both requests are for the same floor.
+ */
 int compare_requests(const void *a, const void *b);
 
 /**
- * @brief Sorts an array of requests using the bubble sort algorithm.
+ * @brief Sorts an array of elevator requests using the bubble sort algorithm.
  *
- * This function repeatedly compares adjacent elements and swaps them if they are in the wrong order.
+ * This function sorts an array of elevator requests based on their floor numbers. The sorting order
+ * is determined by the current direction of the elevator:
+ * - If the elevator is moving down (i.e., `DIRN_DOWN`), the requests are sorted in descending order.
+ * - If the elevator is moving up (i.e., `DIRN_UP`), the requests are sorted in ascending order.
  *
- * @param arr The array of requests.
- * @param size The size of the array.
- * @param direction The sorting order based on motor direction (e.g., up or down).
+ * The function uses the `qsort()` function for sorting and then reverses the order if the elevator is
+ * moving down. The bubble sort algorithm is conceptually followed, but it is implemented using the more
+ * efficient `qsort()` for initial sorting.
+ *
+ * @param arr Pointer to the array of requests to be sorted.
+ * @param size The size of the request array (i.e., the number of requests in the array).
+ * @param direction The direction of the elevator movement, which affects the sorting order:
+ * - `DIRN_DOWN`: Sorts the array in descending order (from high to low floor).
+ * - `DIRN_UP`: Sorts the array in ascending order (from low to high floor).
  */
 void bubble_sort(Request *arr, size_t size, MotorDirection direction);
 

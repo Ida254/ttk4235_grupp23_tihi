@@ -49,15 +49,16 @@ static pthread_mutex_t elevator_mtx; /**< Mutex to control access to shared elev
  */
 typedef struct
 {
-    int current_floor;               /**< The current floor the elevator is on. */
-    int last_floor;                  /**< The last floor the elevator was at. */
-    MotorDirection moving_direction; /**< The direction of movement (DIRN_UP or DIRN_DOWN). */
-    bool in_motion;                  /**< Flag indicating whether the elevator is in motion. */
-    Request *request_queue;          /**< Array of destination requests for the elevator. */
-    size_t queue_size;               /**< Number of requests in the queue. */
-    size_t queue_capacity;           /**< Maximum capacity of the request queue. */
-    bool initialized;                /**< Flag indicating if the elevator has been initialized. */
-    bool is_stopped;                 /**< Flag indicating whether the elevator is stopped. */
+    int current_floor;
+    int last_floor;
+    MotorDirection moving_direction;
+    MotorDirection motorState;
+    bool in_motion;
+    Request *request_queue;
+    size_t queue_size;
+    size_t queue_capacity;
+    bool initialized;
+    bool is_stopped;
 } Elevator;
 
 /**

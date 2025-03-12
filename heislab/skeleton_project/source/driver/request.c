@@ -79,7 +79,7 @@ void bubble_sort(Request *arr, size_t size, MotorDirection direction)
     }
 }
 
-void sort_requests(Request *arr, size_t arr_size, int curr_floor, MotorDirection moving_dir)
+void sort_requests(Request *arr, size_t arr_size, int curr_floor, MotorDirection moving_dir, bool in_motion)
 {
     if (arr_size < 2)
     {
@@ -107,7 +107,8 @@ void sort_requests(Request *arr, size_t arr_size, int curr_floor, MotorDirection
             int inFront = (buttonUp && floor > curr_floor) ||
                           (buttonDown && floor < curr_floor) ||
                           (movingUp && isStop && floor > curr_floor) ||
-                          (movingDown && isStop && floor < curr_floor);
+                          (movingDown && isStop && floor < curr_floor) ||
+                          (!(in_motion) && floor == curr_floor);
             if (!inFront)
             {
                 tempArrCharlie[charlieCount++] = el;

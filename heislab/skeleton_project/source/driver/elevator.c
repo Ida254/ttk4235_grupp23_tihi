@@ -19,6 +19,7 @@ void initialize_elevator(Elevator *elevator)
     elevator->current_floor = elevio_floorSensor();
     elevator->last_floor = INITIAL_FLOOR;
     elevator->moving_direction = INITIAL_DIRECTION;
+    elevator->motorState = DIRN_STOP;
     elevator->in_motion = false;
     elevator->request_queue = NULL;
     elevator->queue_size = 0;
@@ -161,6 +162,7 @@ void moving_elevator(Elevator *elevator) // db, rather return a direction and ma
     // printf("new moving dir: %s \n\n", motor_direction_to_string(direction)); // db
     elevator->in_motion = (direction != DIRN_STOP); // db, maybe return direction instead and set new dir somewhere else
     elevio_motorDirection(direction);
+    elevator->motorState = direction;
 }
 
 bool at_right_floor(Elevator *elevator)
@@ -183,6 +185,7 @@ bool at_right_floor(Elevator *elevator)
         // stop_elevator_at_floor(elevator, currFloor);
         // elevio_doorOpenLamp(0);
         // printf("At right floor \n"); // db
+        elevator->motorState = DIRN_STOP;
         return true;
     }
 
@@ -238,13 +241,19 @@ void rest_elevator(Elevator *elevator)
 bool is_emergency_stop(Elevator *elevator) // db, should not kill ...
 {
     int lastFloor = elevator->current_floor;
-    MotorDirection currDir = elevator->moving_direction;
-    bool invalidMovement = (lastFloor == BOTTOM_FLOOR && lastFloor == DIRN_DOWN) || (lastFloor == TOP_FLOOR && currDir == DIRN_UP);
-    if (elevio_stopButton() || invalidMovement)
-    {
-        return true;
+    MotorDirection currDir = elevator->motorState;
+    bool invalidMovement = (lastFloor == BOTTOM_FLOOR && currDir == DIRN_DOWN) || (lastFloor == TOP_FLOOR && currDir == DIRN_UP);
+
+    if(invalidMovement){
+        switch_direction(elevator);
+        printf("Invalid movement: %s\n", bool_to_string(invalidMovement)); // db
     }
-    return false;
+
+    if(!elevio_stopButton() && !invalidMovement){
+        return false;
+    }
+    
+    return true;
 }
 
 void print_elevator(Elevator *elevator)
@@ -253,6 +262,7 @@ void print_elevator(Elevator *elevator)
     printf("Current floor: %d\n", elevator->current_floor);
     printf("Last floor: %d\n", elevator->last_floor);
     printf("Current moving direction: %s\n", motor_direction_to_string(elevator->moving_direction));
+    printf("Current motor state: %s\n", motor_direction_to_string(elevator->motorState));
     printf("In motion: %s\n", bool_to_string(elevator->in_motion));
 
     if (elevator->queue_size > 0)
