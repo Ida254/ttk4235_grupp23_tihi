@@ -158,7 +158,7 @@ void moving_elevator(Elevator *elevator) // db, rather return a direction and ma
     int differenceInFloors = destinationFloor - elevator->last_floor;
     MotorDirection direction = (differenceInFloors > 0) ? DIRN_UP : (differenceInFloors < 0) ? DIRN_DOWN
                                                                                              : DIRN_STOP;
-    printf("new moving dir: %s \n\n", motor_direction_to_string(direction));
+    // printf("new moving dir: %s \n\n", motor_direction_to_string(direction)); // db
     elevator->in_motion = (direction != DIRN_STOP); // db, maybe return direction instead and set new dir somewhere else
     elevio_motorDirection(direction);
 }

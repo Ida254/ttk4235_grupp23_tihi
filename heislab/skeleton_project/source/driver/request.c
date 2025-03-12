@@ -137,7 +137,7 @@ void remove_request_by_floor(Request **arr, size_t *arr_size, size_t *capacity, 
     // if (*capacity > (*arr_size * 2))
     if (*arr_size < *capacity / 4)
     {
-        *capacity = *arr_size;
+        *capacity = (*arr_size > 0) ? *arr_size : 1;
         Request *new_arr = realloc(*arr, (*capacity) * sizeof(Request));
 
         if (new_arr)
