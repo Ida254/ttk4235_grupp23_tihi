@@ -68,7 +68,7 @@ typedef struct
  * @param[in,out] elevator Pointer to the Elevator struct to be initialized.
  * @param[in] initialCapacity The initial capacity of the destination queue.
  */
-void initialize_elevator(Elevator *elevator, size_t initialCapacity);
+void initialize_elevator(Elevator *elevator);
 
 /**
  * @brief Frees memory allocated for the Elevator struct.

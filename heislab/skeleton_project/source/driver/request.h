@@ -38,6 +38,8 @@ typedef struct
  */
 void extend_requests(Request *arr1, size_t index, Request *arr2, size_t arr2_size);
 
+int compare_requests(const void *a, const void *b);
+
 /**
  * @brief Sorts an array of requests using the bubble sort algorithm.
  *

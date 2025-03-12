@@ -16,6 +16,43 @@ void extend_requests(Request *arr1, size_t index, Request *arr2, size_t arr2_siz
     }
 }
 
+// void bubble_sort(Request *arr, size_t size, MotorDirection direction)
+// {
+//     if (size <= 1)
+//     {
+//         return;
+//     }
+
+//     int reverse = (direction == DIRN_DOWN); // Sort descending if moving down
+
+//     for (size_t i = 0; i < size - 1; i++)
+//     {
+//         for (size_t j = 0; j < size - i - 1; j++)
+//         {
+//             if ((reverse && arr[j].floor < arr[j + 1].floor) || (!reverse && arr[j].floor > arr[j + 1].floor))
+//             {
+//                 Request temp = arr[j];
+//                 arr[j] = arr[j + 1];
+//                 arr[j + 1] = temp;
+//             }
+//         }
+//     }
+// }
+
+int compare_requests(const void *a, const void *b)
+{
+    Request *req_a = (Request *)a;
+    Request *req_b = (Request *)b;
+
+    // Compare based on the floor and the desired direction
+    if (req_a->floor < req_b->floor)
+        return -1;
+    if (req_a->floor > req_b->floor)
+        return 1;
+
+    return 0;
+}
+
 void bubble_sort(Request *arr, size_t size, MotorDirection direction)
 {
     if (size <= 1)
@@ -23,19 +60,22 @@ void bubble_sort(Request *arr, size_t size, MotorDirection direction)
         return;
     }
 
-    int reverse = (direction == DIRN_DOWN); // Sort descending if moving down
-
-    for (size_t i = 0; i < size - 1; i++)
+    if (direction == DIRN_DOWN)
     {
-        for (size_t j = 0; j < size - i - 1; j++)
+        // Reverse order for sorting when going down
+        qsort(arr, size, sizeof(Request), compare_requests);
+        // Reverse the array to sort in descending order
+        for (size_t i = 0; i < size / 2; i++)
         {
-            if ((reverse && arr[j].floor < arr[j + 1].floor) || (!reverse && arr[j].floor > arr[j + 1].floor))
-            {
-                Request temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
+            Request temp = arr[i];
+            arr[i] = arr[size - i - 1];
+            arr[size - i - 1] = temp;
         }
+    }
+    else
+    {
+        // Default sorting order for sorting when going up
+        qsort(arr, size, sizeof(Request), compare_requests);
     }
 }
 
