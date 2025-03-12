@@ -70,10 +70,12 @@ void *floor_listener(void *arg)
         //     return NULL;
         // }
         // at_right_floor(elevator);
-        if (at_right_floor(elevator) && elevator->in_motion)
+        if (at_right_floor(elevator))
         {
-            elevio_motorDirection(DIRN_STOP);
-            elevator->in_motion = false;
+            if (elevator->in_motion){
+                elevio_motorDirection(DIRN_STOP);
+                elevator->in_motion = false;
+            }
 
             elevio_buttonLamp(elevator->current_floor, elevator->request_queue[0].button, 0);
 
@@ -113,6 +115,11 @@ void *emergency_listener(void *arg)
         if (!elevator->is_stopped)
         {
             elevator->is_stopped = is_emergency_stop(elevator);
+            if (elevator->is_stopped)
+            {
+                printf("Stopped ");       // db
+                print_elevator(elevator); // db
+            }
         }
 
         else
@@ -124,8 +131,6 @@ void *emergency_listener(void *arg)
 
             elevio_stopLamp(1);
 
-            printf("Stopped ");       // db
-            print_elevator(elevator); // db
             // kill(getpid(), SIGKILL); // Forcefully stops the program
         }
         pthread_mutex_unlock(&elevator_mtx);

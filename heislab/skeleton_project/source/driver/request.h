@@ -53,7 +53,7 @@ void bubble_sort(Request *arr, size_t size, MotorDirection direction);
  * @param curr_floor The current floor of the elevator.
  * @param moving_dir The current moving direction of the elevator.
  */
-void sort_requests(Request *arr, size_t arr_size, int curr_floor, MotorDirection moving_dir);
+void sort_requests(Request *arr, size_t arr_size, int curr_floor, MotorDirection moving_dir, bool in_motion);
 
 /**
  * @brief Adds a request to a dynamically allocated request array.

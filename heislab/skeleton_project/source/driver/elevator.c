@@ -71,7 +71,7 @@ void sort_queue(Elevator *elevator)
 
     int lastFloor = elevator->last_floor;
     MotorDirection currMovingDir = elevator->moving_direction;
-    sort_requests(elevator->request_queue, queueSize, lastFloor, currMovingDir);
+    sort_requests(elevator->request_queue, queueSize, lastFloor, currMovingDir, elevator->in_motion);
 }
 
 void add_request_to_queue(Elevator *elevator, Request new_req)
@@ -242,6 +242,7 @@ bool is_emergency_stop(Elevator *elevator) // db, should not kill ...
     bool invalidMovement = (lastFloor == BOTTOM_FLOOR && lastFloor == DIRN_DOWN) || (lastFloor == TOP_FLOOR && currDir == DIRN_UP);
     if (elevio_stopButton() || invalidMovement)
     {
+        printf("Invalid movement: %s\n", bool_to_string(invalidMovement)); // db
         return true;
     }
     return false;
