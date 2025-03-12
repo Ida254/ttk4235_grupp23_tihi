@@ -237,9 +237,9 @@ void rest_elevator(Elevator *elevator)
 // void check_emergency_stop(Elevator *elevator)
 bool is_emergency_stop(Elevator *elevator) // db, should not kill ...
 {
-    int currFloor = elevator->current_floor;
+    int lastFloor = elevator->current_floor;
     MotorDirection currDir = elevator->moving_direction;
-    bool invalidMovement = (currFloor == BOTTOM_FLOOR && currDir == DIRN_DOWN) || (currFloor == TOP_FLOOR && currDir == DIRN_UP);
+    bool invalidMovement = (lastFloor == BOTTOM_FLOOR && lastFloor == DIRN_DOWN) || (lastFloor == TOP_FLOOR && currDir == DIRN_UP);
     if (elevio_stopButton() || invalidMovement)
     {
         return true;
