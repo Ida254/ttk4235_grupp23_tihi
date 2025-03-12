@@ -119,32 +119,32 @@ void *emergency_listener(void *arg)
 
     while (1)
     {
-        pthread_mutex_lock(&elevator_mtx);
-        // check_emergency_stop(elevator);
-        if (!elevator->is_stopped)
+    pthread_mutex_lock(&elevator_mtx);
+    // check_emergency_stop(elevator);
+    if (!elevator->is_stopped)
+    {
+        elevator->is_stopped = is_emergency_stop(elevator);
+        if (elevator->is_stopped)
         {
-            elevator->is_stopped = is_emergency_stop(elevator);
-            if (elevator->is_stopped)
+            empty_queue(elevator);
+
+            elevio_motorDirection(DIRN_STOP);
+            elevator->in_motion = false;
+            elevator->motorState = DIRN_STOP;
+
+            elevio_stopLamp(1);
+
+            if (elevator->current_floor != -1)
             {
-                empty_queue(elevator);
-
-                elevio_motorDirection(DIRN_STOP);
-                elevator->in_motion = false;
-                elevator->motorState = DIRN_STOP;
-    
-                elevio_stopLamp(1);
-
-                if (elevator->current_floor != -1)
-                {
-                    elevio_doorOpenLamp(1);
-                }
-    
-                // kill(getpid(), SIGKILL); // Forcefully stops the program
-
-                printf("Stopped ");       // db
-                print_elevator(elevator); // db
+                elevio_doorOpenLamp(1);
             }
+
+            // kill(getpid(), SIGKILL); // Forcefully stops the program
+
+            printf("Stopped ");       // db
+            print_elevator(elevator); // db
         }
+    }
 
         pthread_mutex_unlock(&elevator_mtx);
 

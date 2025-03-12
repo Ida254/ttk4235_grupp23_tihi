@@ -240,14 +240,22 @@ void switch_direction(Elevator *elevator) // db, return the direction, if not ne
 
 void rest_elevator(Elevator *elevator)
 {
+    bool obstruction_was_detected = false;
     time_t start_time = time(NULL);
-    while (time(NULL) - start_time < 3)
+    while ((time(NULL) - start_time < 3) || elevio_obstruction())
     {
         on_button_press(elevator);
         if (is_emergency_stop(elevator))
         {
             return;
         }
+        if (elevio_obstruction()){
+            obstruction_was_detected = true;
+        }
+    }
+    if (obstruction_was_detected){
+        obstruction_was_detected = false;
+        rest_elevator(elevator);
     }
 }
 
