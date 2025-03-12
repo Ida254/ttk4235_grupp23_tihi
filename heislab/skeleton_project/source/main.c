@@ -12,9 +12,6 @@ void run_elevator_program(Elevator *elevator)
     printf("=== Cool Program ===\n");
     initialize_elevator(elevator);
 
-    printf("Initialized ");   // db
-    print_elevator(elevator); // db
-
     pthread_t button_thread, floor_thread, emergency_thread;
 
     // Create threads for handling different tasks simultaneously
@@ -24,7 +21,11 @@ void run_elevator_program(Elevator *elevator)
 
     while (1)
     {
-        elevator->current_floor = elevio_floorSensor();           // Continuously update the floor sensor
+        elevator->current_floor = elevio_floorSensor(); // Continuously update the floor sensor
+        if (elevator->current_floor != -1)
+        {
+            elevator->last_floor = elevator->current_floor;
+        }
         nanosleep(&(struct timespec){0, 20 * 1000 * 1000}, NULL); // Sleep for 20ms
     }
 

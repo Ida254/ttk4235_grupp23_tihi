@@ -103,7 +103,6 @@ void add_request(Request **arr, size_t *arr_size, size_t *capacity, Request new_
     {
         *capacity = (*capacity == 0) ? 1 : (*capacity * 2);
         // printf("Resizing capacity to: %zu\n", *capacity); // db
-
         Request *newQueue = realloc(*arr, (*capacity) * sizeof(Request));
         if (!newQueue)
         {
@@ -125,21 +124,29 @@ void remove_request_by_floor(Request **arr, size_t *arr_size, size_t *capacity, 
         {
             elevio_buttonLamp(req_el.floor, req_el.button, 0);
 
+            // Shift elements left
             for (size_t j = i; j < (*arr_size) - 1; j++)
             {
-                (*arr)[j] = (*arr)[j + 1]; // Shift left
+                (*arr)[j] = (*arr)[j + 1];
             }
             (*arr_size)--;
             i--;
         }
     }
 
-    if (*capacity > (*arr_size * 2))
+    // if (*capacity > (*arr_size * 2))
+    if (*arr_size < *capacity / 4)
     {
-        *capacity = *arr_size;
-        *arr = realloc(*arr, (*capacity) * sizeof(Request));
-        if (!*arr && *capacity > 0)
+        *capacity = (*arr_size > 0) ? *arr_size : 1;
+        Request *new_arr = realloc(*arr, (*capacity) * sizeof(Request));
+
+        if (new_arr)
         {
+            *arr = new_arr; // Assign only if realloc is successful
+        }
+        else if (*capacity > 0)
+        {
+            // Handle reallocation failure (no memory reallocation)
             printf("Memory reallocation failed!\n");
         }
     }
