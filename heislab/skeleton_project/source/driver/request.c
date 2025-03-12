@@ -103,7 +103,6 @@ void add_request(Request **arr, size_t *arr_size, size_t *capacity, Request new_
     {
         *capacity = (*capacity == 0) ? 1 : (*capacity * 2);
         // printf("Resizing capacity to: %zu\n", *capacity); // db
-
         Request *newQueue = realloc(*arr, (*capacity) * sizeof(Request));
         if (!newQueue)
         {
