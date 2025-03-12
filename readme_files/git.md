@@ -8,6 +8,7 @@
   - [🔑 How to make SSH key](#-how-to-make-ssh-key)
     - [🛠️ This is a tutorial for how to make a `SSH key`](#️-this-is-a-tutorial-for-how-to-make-a-ssh-key)
     - [🎯 Summary of Commands](#-summary-of-commands)
+    - [How to Add SSH Key to a Custom Location](#how-to-add-ssh-key-to-a-custom-location)
   - [📝 How to Create and Use a `.gitignore` File](#-how-to-create-and-use-a-gitignore-file)
 </details>
 
@@ -269,6 +270,54 @@ cat ~/.ssh/id_ed25519.pub # Copy this key
 ssh -T git@github.com
 git remote set-url origin git@github.com:username/repository.git
 ```
+
+### How to Add SSH Key to a Custom Location
+
+1. If not existing, make the folders where you want to store the key. It is preferrable that this folder contains a `.ssh`, which should be a part of the `custom_location`.
+   
+    ```bash
+    ssh-keygen -t ed25519 -f ~/path/to/custom_location/id_ed25519
+    ```
+
+    **Example**
+
+    ```bash
+    ssh-keygen -t ed25519 -f ~/Desktop/gruppe23_tihi/.ssh/id_ed25519
+    ```
+
+2. Add the SSH Key to the SSH Agent
+   
+   ```bash
+    eval "$(ssh-agent -s)"
+    ssh-add ~/path/to/custom_location/id_ed25519
+    ```
+
+3. In Github.com, add the key
+
+    ```bash
+    cat ~/path/to/custom_location/id_ed25519.pub
+    ```
+   
+   * Add the SSH key to GitHub
+
+   1. Go to **GitHub** → SSH Keys Settings.
+   2. Click **New SSH Key**.
+   3. **Title**: Enter a descriptive name (e.g., "Laptop SSH Key").
+   4. **Key Type**: Keep it as **Authentication Key**.
+   5. **Key**: Paste your copied SSH key (`id_ed25519.pub`)
+   6. Click **Add SSH Key**.
+4. Test the connection
+   
+    ```bash
+    ssh -T git@github.com
+    ```
+
+    Which should output
+
+    ```bash
+    Hi <your-username>! You've successfully authenticated, but GitHub does not provide shell access.
+    ```
+
 
 ## 📝 How to Create and Use a `.gitignore` File
 The `.gitignore` file tells Git which files or directories to ignore so they won’t be tracked in the repository. This helps keep your repository clean by avoiding unnecessary files like compiled binaries, logs, or temporary files.
