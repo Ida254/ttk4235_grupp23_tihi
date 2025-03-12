@@ -32,6 +32,7 @@ void *button_listener(void *arg)
         // }
         if (button_pressed())
         {
+            printf("hei \n"); // db
             if (!elevator->initialized)
             {
                 initialize_elevator(elevator);
@@ -60,6 +61,11 @@ void *floor_listener(void *arg)
     while (1)
     {
         pthread_mutex_lock(&elevator_mtx);
+        if (elevator->is_stopped)
+        {
+            continue;
+        }
+
         if (!elevator->initialized && at_right_floor(elevator))
         {
             elevator->initialized = true;
@@ -76,26 +82,26 @@ void *floor_listener(void *arg)
                 elevator->motor_state = DIRN_STOP;
             }
 
-            newDir = switch_direction(elevator);
-            
-            elevio_buttonLamp(elevator->current_floor, elevator->request_queue[0].button, 0);
-            
-            remove_request_from_queue(elevator, elevator->current_floor);
-            elevio_doorOpenLamp(1);
-            
-            printf("Destination reached and elevator stopped \n"); // db
-            print_elevator(elevator);                              // db
-            
-            rest_elevator(elevator);
-            
-            elevio_doorOpenLamp(0);
-        }
-        
-        if (elevator->queue_size != 0)
-        {
             printf("1 new dir: %s \n", motor_direction_to_string(newDir));
             newDir = switch_direction(elevator);
             printf("2 new dir: %s \n", motor_direction_to_string(newDir));
+
+            elevio_buttonLamp(elevator->current_floor, elevator->request_queue[0].button, 0);
+
+            remove_request_from_queue(elevator, elevator->current_floor);
+            elevio_doorOpenLamp(1);
+
+            printf("Destination reached and elevator stopped \n"); // db
+            print_elevator(elevator);                              // db
+
+            rest_elevator(elevator);
+
+            elevio_doorOpenLamp(0);
+        }
+
+        if (elevator->queue_size != 0 && !elevator->in_motion)
+        {
+            newDir = switch_direction(elevator);
         }
 
         if (elevator->motor_state != newDir)
@@ -108,12 +114,6 @@ void *floor_listener(void *arg)
             }
         }
 
-        if (newDir == DIRN_STOP) // db
-        {
-            printf("killed new dir: %s \n", motor_direction_to_string(newDir));
-            print_elevator(elevator);
-            kill(getpid(), SIGKILL);
-        }
         elevio_motorDirection(newDir);
 
         pthread_mutex_unlock(&elevator_mtx);
