@@ -4,14 +4,15 @@
  <summary>📖 Table of Contents</summary>
  
 - [Git](#git)
-  - [Commands](#commands)
-  - [How to make SSH key](#how-to-make-ssh-key)
-    - [This is a tutorial for how to make a `SSH key`](#this-is-a-tutorial-for-how-to-make-a-ssh-key)
+  - [💻 Commands](#-commands)
+  - [🔑 How to make SSH key](#-how-to-make-ssh-key)
+    - [🛠️ This is a tutorial for how to make a `SSH key`](#️-this-is-a-tutorial-for-how-to-make-a-ssh-key)
     - [🎯 Summary of Commands](#-summary-of-commands)
+  - [📝 How to Create and Use a `.gitignore` File](#-how-to-create-and-use-a-gitignore-file)
 </details>
 
 
-## Commands
+## 💻 Commands
 1. `git status` - Shows the current status of your working directory.
      
       ```bash
@@ -156,9 +157,9 @@
     | `git pull`  | Downloads new commits and automatically merges them into your current branch. | When you want to update your local branch with the latest changes. | ✅ Yes         | ✅ Yes              |
     | `git merge` | Combines changes from one branch into another. Usually follows `git fetch`. | When you want to manually merge changes from another branch. | ❌ No          | ✅ Yes (if needed)   |
 
-## How to make SSH key
+## 🔑 How to make SSH key
 
-### This is a tutorial for how to make a `SSH key`
+### 🛠️ This is a tutorial for how to make a `SSH key`
 
 1. Check if you already have a `SSH key`
 
@@ -268,3 +269,34 @@ cat ~/.ssh/id_ed25519.pub # Copy this key
 ssh -T git@github.com
 git remote set-url origin git@github.com:username/repository.git
 ```
+
+## 📝 How to Create and Use a `.gitignore` File
+The `.gitignore` file tells Git which files or directories to ignore so they won’t be tracked in the repository. This helps keep your repository clean by avoiding unnecessary files like compiled binaries, logs, or temporary files.
+
+1. Navigte to **root folder** and create a `.gitignore` file
+
+   ```bash
+   touch .gitignore
+    ```
+
+2. Open it  in a text editor and make changes like
+
+   ```text
+    # Ignore compiled object files  
+    *.o  
+    *.out  
+    *.exe  
+
+    # Ignore all files in the `build/` directory  
+    build/  
+
+    # Ignore VS Code settings  
+    .vscode/  
+
+    # Ignore log files  
+    *.log  
+
+    # Ignore temporary files  
+    *.tmp  
+    .DS_Store  # macOS system file
+    ```
