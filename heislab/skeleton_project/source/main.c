@@ -25,6 +25,7 @@ void run_elevator_program(Elevator *elevator)
         if (elevator->current_floor != -1)
         {
             elevator->last_floor = elevator->current_floor;
+            // print_elevator(elevator);
         }
         nanosleep(&(struct timespec){0, 20 * 1000 * 1000}, NULL); // Sleep for 20ms
     }
