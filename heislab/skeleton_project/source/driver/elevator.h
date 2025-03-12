@@ -33,19 +33,24 @@ static pthread_mutex_t elevator_mtx; /**< Mutex to control access to shared elev
  * @brief Defines an Elevator struct to store values.
  *
  * This struct holds information about an elevator, including its current floor,
- * movement direction, and a queue of requested destinations.
+ * movement direction, motor state, request queue, and other key attributes that
+ * define the state and behavior of the elevator system.
  *
  * @param current_floor The current floor of the elevator.
  * @param last_floor The last floor the elevator was at.
- * @param moving_direction The current movement direction, which can be either
+ * @param moving_direction The current movement direction of the elevator, which can be either
  *        @c DIRN_UP or @c DIRN_DOWN.
+ * @param motorState The current state of the motor, which indicates whether the elevator
+ *        is moving or idle. This state can represent different phases like moving up,
+ *        moving down, or stationary.
  * @param in_motion Flag indicating if the elevator is currently in motion.
  * @param request_queue A queue of destination requests that helps the elevator
  *        determine where to go next.
  * @param queue_size The current number of elements in the destination queue.
  * @param queue_capacity The maximum number of destination requests the queue can hold.
- * @param initialized Flag indicating whether the elevator has been initialized.
- * @param is_stopped Flag indicating whether the elevator is stopped.
+ * @param initialized Flag indicating whether the elevator has been initialized and is ready to operate.
+ * @param is_stopped Flag indicating whether the elevator is stopped. This can be used to check if
+ *        the elevator is idle or has completed its tasks.
  */
 typedef struct
 {
