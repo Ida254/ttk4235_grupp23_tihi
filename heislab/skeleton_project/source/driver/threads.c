@@ -25,7 +25,12 @@ void *button_listener(void *arg)
             on_button_press(elevator);
         }
 
-        if (elevator->is_stopped && button_pressed())
+        // if (button_pressed())
+        // {
+        //     printf("btn pressed: ");
+        //     print_request(*button_pressed());
+        // }
+        if (button_pressed())
         {
             if (!elevator->initialized)
             {
@@ -65,10 +70,10 @@ void *floor_listener(void *arg)
             elevator->last_floor = elevator->current_floor;
         }
 
-        if (elevator->queue_size == 0)
-        {
-            return NULL;
-        }
+        // if (elevator->queue_size == 0)
+        // {
+        //     return NULL;
+        // }
         // at_right_floor(elevator);
         if (at_right_floor(elevator) && elevator->in_motion)
         {

@@ -32,25 +32,6 @@ void initialize_elevator(Elevator *elevator)
 
     // move to BOTTOM_FLOOR
     add_request_to_queue(elevator, INITIAL_REQUEST);
-    // print_elevator(elevator); // db
-    // int floor = elevio_floorSensor();
-    // if (floor == BOTTOM_FLOOR)
-    // {
-    //     return;
-    // }
-
-    // elevio_motorDirection(DIRN_DOWN);
-    // while (floor != BOTTOM_FLOOR)
-    // {
-    //     check_emergency_stop(elevator);
-    //     floor = elevio_floorSensor();
-    //     if (floor != -1)
-    //     {
-    //         elevio_floorIndicator(floor);
-    //     }
-    // }
-    // elevio_motorDirection(DIRN_STOP);
-    // elevator->current_floor = floor;
 }
 
 void free_elevator(Elevator *elevator)
@@ -174,11 +155,10 @@ void moving_elevator(Elevator *elevator) // db, rather return a direction and ma
     }
 
     int destinationFloor = elevator->request_queue[0].floor;
-
     int differenceInFloors = destinationFloor - elevator->last_floor;
     MotorDirection direction = (differenceInFloors > 0) ? DIRN_UP : (differenceInFloors < 0) ? DIRN_DOWN
                                                                                              : DIRN_STOP;
-    printf("new moving dir: %s \n\n", motor_direction_to_string(direction));
+    // printf("new moving dir: %s \n\n", motor_direction_to_string(direction)); // db
     elevator->in_motion = (direction != DIRN_STOP); // db, maybe return direction instead and set new dir somewhere else
     elevio_motorDirection(direction);
 }
@@ -249,7 +229,6 @@ void rest_elevator(Elevator *elevator)
         on_button_press(elevator);
         if (is_emergency_stop(elevator))
         {
-            printf("stop resting elevator \n");
             return;
         }
     }
