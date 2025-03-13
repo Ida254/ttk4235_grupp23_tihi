@@ -3,83 +3,86 @@
 <details>
  <summary>📖 Table of Contents</summary>
  
-- [Git](#git)
   - [💻 Commands](#-commands)
-  - [🔑 How to make SSH key](#-how-to-make-ssh-key)
-    - [🛠️ This is a tutorial for how to make a `SSH key`](#️-this-is-a-tutorial-for-how-to-make-a-ssh-key)
-    - [🎯 Summary of Commands](#-summary-of-commands)
-    - [How to Add SSH Key to a Custom Location](#how-to-add-ssh-key-to-a-custom-location)
-  - [📝 How to Create and Use a `.gitignore` File](#-how-to-create-and-use-a-gitignore-file)
+  - [🔑 How to Make SSH key](#-how-to-make-ssh-key)
+    - [🛠️ This is a Tutorial for How to Make a `SSH key`](#️-this-is-a-tutorial-for-how-to-make-a-ssh-key)
+    - [📌 Summary of Commands](#-summary-of-commands)
+    - [🎯 How to Add SSH Key to a Custom Location](#-how-to-add-ssh-key-to-a-custom-location)
+  - [📝 How to Make a `.gitignore` file](#-how-to-make-a-gitignore-File)
+  - [📂 How to `.zip` All that is Published to `Git`](#-how-to-zip-all-that-is-published-to-git)
 </details>
 
-
 ## 💻 Commands
+
 1. `git status` - Shows the current status of your working directory.
-     
-      ```bash
-      git status
-      ```
+
+   ```bash
+   git status
+   ```
 
 2. `git add <file>` - Stages changes for commit.
- 
-      ```bash
-      git add <file>
-      ```
 
-      To add all changes: `git add .`
+   ```bash
+   git add <file>
+   ```
+
+   To add all changes: `git add .`
 
 3. `git commit -m "<message>"` - Commits changes with a message.
-      ```bash
-      git commit -m "Commit message here"
-      ```
-  
-4. `git log` - Displays the commit history.
-      ```bash
-      git log
-      ```
 
-      **Common flags**:
-    * `git log --online` (shows a brief commit history)
-    * `git log --graph` (shows commit history as a graph)
+   ```bash
+   git commit -m "Commit message here"
+   ```
+
+4. `git log` - Displays the commit history.
+
+   ```bash
+   git log
+   ```
+
+   **Common flags**:
+
+   - `git log --online` (shows a brief commit history)
+   - `git log --graph` (shows commit history as a graph)
 
 5. `git checkout <branch>` - Switch to a different branch.
+
    ```bash
    git checkout <branch>
    ```
 
    Create and switch to a new branch: `git checkout -b new-branch`
-  
+
 6. `git branch` - List or manage branches.
 
+   ```bash
+   git branch          # List all branches
+   git branch <name>   # Create a new branch
+   git branch -d <name>  # Delete a branch
+   ```
 
-    ```bash
-    git branch          # List all branches
-    git branch <name>   # Create a new branch
-    git branch -d <name>  # Delete a branch
-    ```
+   **Common flags**:
 
-    **Common flags**:
-   * `git log --online` (shows a brief commit history)
-   * `git log --graph` (shows commit history as a graph)
-
+   - `git log --online` (shows a brief commit history)
+   - `git log --graph` (shows commit history as a graph)
 
 7. `git pull` - Fetches and merges changes from a remote repository.
 
-    ```bash
-    git pull origin main
-    ```
+   ```bash
+   git pull origin main
+   ```
 
 8. `git push` - Pushes committed changes to a remote repository.
 
-    ```bash
-    git push origin branch_name
-    ```
+   ```bash
+   git push origin branch_name
+   ```
 
-9.  `git fetch` - Fetches changes from a remote repository without merging.
+9. `git fetch` - Fetches changes from a remote repository without merging.
 
-    ```bash
-    git fetch origin
-    ```
+   ```bash
+   git fetch origin
+   ```
 
 10. `git merge <branch>` - Merges changes from one branch into another.
 
@@ -110,57 +113,59 @@
     ```
 
 14. `.gitignore` - A file with lists of files that git should ignore when pushing
-    
+
     **Common flags**:
-    * Ignoring Specific Files:
-  
-        ```bash
-        secret_config.json  # Ignore a specific file
-        database.db         # Ignore a database file
-        ```
 
-    * Ignoring All Files of a Certain Type:
+    - Ignoring Specific Files:
 
-        ```bash
-        *.log     # Ignore all log files
-        *.tmp     # Ignore all temporary files
-        *.bak     # Ignore all backup files
-        ```
-    
-    * Ignoring Entire Directories:
+      ```bash
+      secret_config.json  # Ignore a specific file
+      database.db         # Ignore a database file
+      ```
 
-        ```bash
-       /node_modules/      # Ignore the node_modules folder (common in Node.js projects)
-        __pycache__/        # Ignore Python cache files
-        build/              # Ignore compiled files in a build directory
-        dist/               # Ignore distribution files
-        ```
+    - Ignoring All Files of a Certain Type:
 
-    * Ignoring System Files (OS-Specific):
+      ```bash
+      *.log     # Ignore all log files
+      *.tmp     # Ignore all temporary files
+      *.bak     # Ignore all backup files
+      ```
 
-        ```bash
-        .DS_Store  # macOS Finder metadata
-        Thumbs.db  # Windows thumbnail database
-        ```
+    - Ignoring Entire Directories:
 
-    *   Ignoring IDE & Editor-Specific Files:
+      ```bash
+      /node_modules/      # Ignore the node_modules folder (common in Node.js projects)
+      __pycache__/        # Ignore Python cache files
+      build/              # Ignore compiled files in a build directory
+      dist/               # Ignore distribution files
+      ```
 
-        ```bash
-        .vscode/        # VS Code settings
-        .idea/          # JetBrains IDEs (e.g., PyCharm, WebStorm)
-        *.swp           # Vim swap files
-        ```
+    - Ignoring System Files (OS-Specific):
+
+      ```bash
+      .DS_Store  # macOS Finder metadata
+      Thumbs.db  # Windows thumbnail database
+      ```
+
+    - Ignoring IDE & Editor-Specific Files:
+
+      ```bash
+      .vscode/        # VS Code settings
+      .idea/          # JetBrains IDEs (e.g., PyCharm, WebStorm)
+      *.swp           # Vim swap files
+      ```
 
     ### `Pull`, `fetch` and `merge`
-    | Command    | Description                                                         | When to Use?                                              | Fetch Changes | Merge Automatically |
-    |------------|---------------------------------------------------------------------|-----------------------------------------------------------|---------------|---------------------|
-    | `git fetch` | Downloads new commits from the remote but does not update your working directory. | When you want to check for updates without merging yet.    | ✅ Yes         | ❌ No               |
-    | `git pull`  | Downloads new commits and automatically merges them into your current branch. | When you want to update your local branch with the latest changes. | ✅ Yes         | ✅ Yes              |
-    | `git merge` | Combines changes from one branch into another. Usually follows `git fetch`. | When you want to manually merge changes from another branch. | ❌ No          | ✅ Yes (if needed)   |
 
-## 🔑 How to make SSH key
+    | Command     | Description                                                                       | When to Use?                                                       | Fetch Changes | Merge Automatically |
+    | ----------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------- | ------------------- |
+    | `git fetch` | Downloads new commits from the remote but does not update your working directory. | When you want to check for updates without merging yet.            | ✅ Yes        | ❌ No               |
+    | `git pull`  | Downloads new commits and automatically merges them into your current branch.     | When you want to update your local branch with the latest changes. | ✅ Yes        | ✅ Yes              |
+    | `git merge` | Combines changes from one branch into another. Usually follows `git fetch`.       | When you want to manually merge changes from another branch.       | ❌ No         | ✅ Yes (if needed)  |
 
-### 🛠️ This is a tutorial for how to make a `SSH key`
+## 🔑 How to Make SSH key
+
+### 🛠️ This is a Tutorial for How to Make a `SSH key`
 
 1. Check if you already have a `SSH key`
 
@@ -260,7 +265,7 @@
    origin  git@github.com:username/repository.git (push)
    ```
 
-### 🎯 Summary of Commands
+### 📌 Summary of Commands
 
 ```bash
 ssh-keygen -t ed25519 -C "your_email@example.com"
@@ -271,34 +276,34 @@ ssh -T git@github.com
 git remote set-url origin git@github.com:username/repository.git
 ```
 
-### How to Add SSH Key to a Custom Location
+### 🎯 How to Add SSH Key to a Custom Location
 
 1. If not existing, make the folders where you want to store the key. It is preferrable that this folder contains a `.ssh`, which should be a part of the `custom_location`.
-   
-    ```bash
-    ssh-keygen -t ed25519 -f ~/path/to/custom_location/id_ed25519
-    ```
 
-    **Example**
+   ```bash
+   ssh-keygen -t ed25519 -f ~/path/to/custom_location/id_ed25519
+   ```
 
-    ```bash
-    ssh-keygen -t ed25519 -f ~/Desktop/gruppe23_tihi/.ssh/id_ed25519
-    ```
+   **Example**
+
+   ```bash
+   ssh-keygen -t ed25519 -f ~/Desktop/gruppe23_tihi/.ssh/id_ed25519
+   ```
 
 2. Add the SSH Key to the SSH Agent
-   
+
    ```bash
     eval "$(ssh-agent -s)"
     ssh-add ~/path/to/custom_location/id_ed25519
-    ```
+   ```
 
 3. In Github.com, add the key
 
-    ```bash
-    cat ~/path/to/custom_location/id_ed25519.pub
-    ```
-   
-   * Add the SSH key to GitHub
+   ```bash
+   cat ~/path/to/custom_location/id_ed25519.pub
+   ```
+
+   - Add the SSH key to GitHub
 
    1. Go to **GitHub** → SSH Keys Settings.
    2. Click **New SSH Key**.
@@ -306,49 +311,50 @@ git remote set-url origin git@github.com:username/repository.git
    4. **Key Type**: Keep it as **Authentication Key**.
    5. **Key**: Paste your copied SSH key (`id_ed25519.pub`)
    6. Click **Add SSH Key**.
+
 4. Test the connection
-   
-    ```bash
-    ssh -T git@github.com
-    ```
 
-    Which should output
+   ```bash
+   ssh -T git@github.com
+   ```
 
-    ```bash
-    Hi <your-username>! You've successfully authenticated, but GitHub does not provide shell access.
-    ```
+   Which should output
 
+   ```bash
+   Hi <your-username>! You've successfully authenticated, but GitHub does not provide shell access.
+   ```
 
-## 📝 How to Create and Use a `.gitignore` File
+## 📝 How to Make a `.gitignore` file
+
 The `.gitignore` file tells Git which files or directories to ignore so they won’t be tracked in the repository. This helps keep your repository clean by avoiding unnecessary files like compiled binaries, logs, or temporary files.
 
 1. Navigte to **root folder** and create a `.gitignore` file
 
    ```bash
    touch .gitignore
-    ```
+   ```
 
-2. Open it  in a text editor and make changes like
+2. Open it in a text editor and make changes like
 
    ```text
-    # Ignore compiled object files  
-    *.o  
-    *.out  
-    *.exe  
+    # Ignore compiled object files
+    *.o
+    *.out
+    *.exe
 
-    # Ignore all files in the `build/` directory  
-    build/  
+    # Ignore all files in the `build/` directory
+    build/
 
-    # Ignore VS Code settings  
-    .vscode/  
+    # Ignore VS Code settings
+    .vscode/
 
-    # Ignore log files  
-    *.log  
+    # Ignore log files
+    *.log
 
-    # Ignore temporary files  
-    *.tmp  
+    # Ignore temporary files
+    *.tmp
     .DS_Store  # macOS system file
-    ```
+   ```
 
    ### Example
 
@@ -361,14 +367,14 @@ The `.gitignore` file tells Git which files or directories to ignore so they won
    **/*.so
    **/*.a
    **/*.exe
-   
+
    # IDE and editor-specific files
    .vscode/
    .idea/
    *.swp
    *.swo
    *.bak
-   
+
    # Temporary files
    *.tmp
    *.log
@@ -377,23 +383,23 @@ The `.gitignore` file tells Git which files or directories to ignore so they won
    Thumbs.db
    *.lock
    *.pid
-   
+
    # Compressed files
    *.zip
-   
+
    # Python virtual environments
    venv/
    __pycache__/
    *.pyc
    *.pyo
-   
+
    # Node.js dependencies (if applicable)
    node_modules/
    npm-debug.log
    yarn.lock
    ```
 
-## How to `.zip` All that is Published to `Git`
+## 📂 How to `.zip` All that is Published to `Git`
 
 Navigate to the folder you want to zip, the new `.zip` will be placed here
 
