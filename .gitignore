@@ -23,6 +23,9 @@ Thumbs.db
 *.lock
 *.pid
 
+# Compressed files
+*.zip
+
 # Python virtual environments
 venv/
 __pycache__/
