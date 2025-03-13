@@ -20,7 +20,6 @@ void initialize_elevator(Elevator *elevator)
     elevator->last_floor = INITIAL_FLOOR;
     elevator->moving_direction = INITIAL_DIRECTION;
     elevator->motor_state = DIRN_STOP;
-    elevator->last_motor_state = DIRN_STOP;
     elevator->in_motion = false;
     elevator->request_queue = NULL;
     elevator->queue_size = 0;

@@ -41,7 +41,6 @@ typedef struct
     int last_floor;                  /**< The last registered floor of the elevator. */
     MotorDirection moving_direction; /**< The direction the elevator is moving (UP, DOWN, or STOP). */
     MotorDirection motor_state;      /**< The current state of the motor (UP, DOWN, or STOP). */
-    MotorDirection last_motor_state; /**< The previous state of the motor before stopping. */
     bool in_motion;                  /**< Indicates if the elevator is currently moving. */
     Request *request_queue;          /**< The queue storing floor requests. */
     size_t queue_size;               /**< The current number of elements in the request queue. */
