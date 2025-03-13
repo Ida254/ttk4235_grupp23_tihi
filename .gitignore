@@ -1,3 +1,35 @@
+# Build artifacts
+**/build/
+**/dist/
+**/out/
+**/*.o
+**/*.so
+**/*.a
+**/*.exe
+
+# IDE and editor-specific files
 .vscode/
-build/
-*.o
+.idea/
+*.swp
+*.swo
+*.bak
+
+# Temporary files
+*.tmp
+*.log
+*.cache
+.DS_Store
+Thumbs.db
+*.lock
+*.pid
+
+# Python virtual environments
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Node.js dependencies (if applicable)
+node_modules/
+npm-debug.log
+yarn.lock
