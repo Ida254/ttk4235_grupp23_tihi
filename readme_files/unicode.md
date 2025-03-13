@@ -18,7 +18,7 @@
 ## Arrows (for navigation)
 
 | Symbol | Unicode | Meaning                        |
-| ------ | ------- | ------------------------------ |
+| ------ | ------- | :------------------------------ |
 | ➜      | U+279C  | Right arrow (common for links) |
 | ➠      | U+27A0  | Right arrow (alternative)      |
 | ➥      | U+27A5  | Down-right arrow               |
