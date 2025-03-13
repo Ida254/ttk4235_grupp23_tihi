@@ -18,7 +18,7 @@
 ## Arrows (for navigation)
 
 | Symbol | Unicode | Meaning                        |
-| ------ | ------- | ------------------------------ |
+| ------ | ------- | :------------------------------ |
 | ➜      | U+279C  | Right arrow (common for links) |
 | ➠      | U+27A0  | Right arrow (alternative)      |
 | ➥      | U+27A5  | Down-right arrow               |
@@ -30,7 +30,7 @@
 ## Checkmarks & Crosses (For Task Lists & Status)
 
 | Symbol | Unicode | Meaning                |
-| ------ | ------- | ---------------------- |
+| ------ | ------- | :---------------------- |
 | ✔      | U+2714  | Check (completed task) |
 | ✅     | U+2705  | Green check (success)  |
 | ✖      | U+2716  | Cross (cancel, error)  |
@@ -41,7 +41,7 @@
 ## Stars & Ratings
 
 | Symbol | Unicode | Meaning                           |
-| ------ | ------- | --------------------------------- |
+| ------ | ------- | :--------------------------------- |
 | ★      | U+2605  | Filled star                       |
 | ☆      | U+2606  | Empty star                        |
 | ✨     | U+2728  | Sparkles (highlight, new feature) |
@@ -49,7 +49,7 @@
 ## Warnings & Alerts
 
 | Symbol | Unicode | Meaning                     |
-| ------ | ------- | --------------------------- |
+| ------ | ------- | :--------------------------- |
 | ⚠      | U+26A0  | Warning                     |
 | 🔥     | U+1F525 | Fire (hot topic)            |
 | 🚨     | U+1F6A8 | Emergency/alert             |
@@ -60,7 +60,7 @@
 ## Common Symbols for Documentation
 
 | Symbol | Unicode | Meaning                |
-| ------ | ------- | ---------------------- |
+| ------ | ------- | :---------------------- |
 | 📌     | U+1F4CC | Pin (important note)   |
 | 📎     | U+1F4CE | Paperclip (attachment) |
 | 📄     | U+1F4C4 | Document               |
@@ -70,7 +70,7 @@
 ## Coding & Development Symbols
 
 | Symbol | Unicode | Meaning                        |
-| ------ | ------- | ------------------------------ |
+| ------ | ------- | :------------------------------ |
 | 💻     | U+1F4BB | Computer                       |
 | 🖥      | U+1F5A5 | Desktop                        |
 | 📝     | U+1F4DD | Edit (writing, commit message) |
@@ -79,7 +79,7 @@
 ## Clocks & Time Indicators
 
 | Symbol | Unicode | Meaning                    |
-| ------ | ------- | -------------------------- |
+| ------ | ------- | :-------------------------- |
 | ⏳     | U+23F3  | Loading (pending task)     |
 | ⏰     | U+23F0  | Alarm clock                |
 | 🕒     | U+1F552 | Time indicator (3 o'clock) |
@@ -87,7 +87,7 @@
 ## Currency & Money
 
 | Symbol | Unicode | Meaning      |
-| ------ | ------- | ------------ |
+| ------ | ------- | :------------ |
 | 💰     | U+1F4B0 | Money bag    |
 | 💵     | U+1F4B5 | Dollar bills |
 | 💳     | U+1F4B3 | Credit card  |
@@ -95,7 +95,7 @@
 ## Miscellaneous Useful Symbols
 
 | Symbol | Unicode | Meaning              |
-| ------ | ------- | -------------------- |
+| ------ | ------- | :-------------------- |
 | 🎯     | U+1F3AF | Target (goal)        |
 | 🏆     | U+1F3C6 | Trophy (achievement) |
 | 🎉     | U+1F389 | Celebration          |
