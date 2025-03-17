@@ -56,14 +56,15 @@ void bubble_sort(Request *arr, size_t size, MotorDirection direction);
 void sort_requests(Request *arr, size_t arr_size, int curr_floor, MotorDirection moving_dir, bool in_motion);
 
 /**
- * @brief Adds a request to a dynamically allocated request array.
+ * @brief Adds a new request to a dynamically allocated request array.
  *
- * Resizes the array if necessary.
+ * If the array reaches capacity, it is resized to accommodate the new request.
+ * The request is added to the end of the array.
  *
- * @param arr Pointer to the request array.
- * @param arr_size Pointer to the current array size.
- * @param capacity Pointer to the array's capacity.
- * @param req The request to add.
+ * @param[in,out] arr Pointer to the dynamically allocated request array.
+ * @param[in,out] arr_size Pointer to the current number of elements in the array.
+ * @param[in,out] capacity Pointer to the total allocated capacity of the array.
+ * @param[in] req The new request to be added.
  */
 void add_request(Request **arr, size_t *arr_size, size_t *capacity, Request req);
 

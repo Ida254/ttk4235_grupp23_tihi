@@ -1,15 +1,15 @@
 <map id="source/main.c" name="source/main.c">
-<area shape="rect" id="node1" title="The main file of the elevator application." alt="" coords="138,5,251,32"/>
-<area shape="rect" id="node2" href="$elevio_8h_source.html" title=" " alt="" coords="185,379,301,405"/>
-<area shape="rect" id="node3" href="$elevator_8h.html" title="Header file for the elevator control system." alt="" coords="253,155,384,181"/>
-<area shape="rect" id="node12" href="$threads_8h.html" title="Header file for elevator control threads." alt="" coords="132,80,257,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="487,379,553,405"/>
-<area shape="rect" id="node5" title=" " alt="" coords="577,379,660,405"/>
-<area shape="rect" id="node6" title=" " alt="" coords="145,229,215,256"/>
-<area shape="rect" id="node7" title=" " alt="" coords="240,229,304,256"/>
-<area shape="rect" id="node8" title=" " alt="" coords="329,229,402,256"/>
-<area shape="rect" id="node9" title=" " alt="" coords="427,229,501,256"/>
-<area shape="rect" id="node10" href="$utilities_8h.html" title="Utility functions for conversions and mappings in the elevator system." alt="" coords="424,304,507,331"/>
-<area shape="rect" id="node11" href="$request_8h.html" title="Header file for managing elevator requests." alt="" coords="525,229,608,256"/>
-<area shape="rect" id="node13" title=" " alt="" coords="145,155,229,181"/>
+<area shape="rect" id="node1" title="The main file of the elevator application." alt="" coords="555,5,668,32"/>
+<area shape="rect" id="node2" href="$elevio_8h_source.html" title=" " alt="" coords="588,379,704,405"/>
+<area shape="rect" id="node3" href="$elevator_8h.html" title="Header file for the elevator control system." alt="" coords="341,155,471,181"/>
+<area shape="rect" id="node13" href="$threads_8h.html" title="Header file for elevator control threads." alt="" coords="549,80,674,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="347,379,414,405"/>
+<area shape="rect" id="node5" title=" " alt="" coords="438,379,521,405"/>
+<area shape="rect" id="node6" title=" " alt="" coords="304,304,375,331"/>
+<area shape="rect" id="node7" title=" " alt="" coords="35,229,99,256"/>
+<area shape="rect" id="node8" title=" " alt="" coords="124,229,197,256"/>
+<area shape="rect" id="node9" title=" " alt="" coords="222,229,297,256"/>
+<area shape="rect" id="node10" title=" " alt="" coords="631,229,715,256"/>
+<area shape="rect" id="node11" href="$utilities_8h.html" title="Utility functions for conversions and mappings in the elevator system." alt="" coords="501,304,583,331"/>
+<area shape="rect" id="node12" href="$request_8h.html" title="Header file for managing elevator requests." alt="" coords="422,229,505,256"/>
 </map>

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['main_2ec_23',['main.c',['../main_8c.html',1,'']]],
-  ['motor_5fdirection_5fto_5fstring_24',['motor_direction_to_string',['../utilities_8c.html#a0af0735cee97c788f4c885abfd1d4542',1,'motor_direction_to_string(MotorDirection direction):&#160;utilities.c'],['../utilities_8h.html#a0af0735cee97c788f4c885abfd1d4542',1,'motor_direction_to_string(MotorDirection direction):&#160;utilities.c']]],
-  ['moving_5felevator_25',['moving_elevator',['../elevator_8c.html#a963a9c8c91c61b409d64159dba112f6c',1,'moving_elevator(Elevator *elevator):&#160;elevator.c'],['../elevator_8h.html#a963a9c8c91c61b409d64159dba112f6c',1,'moving_elevator(Elevator *elevator):&#160;elevator.c']]]
+  ['last_5ffloor_32',['last_floor',['../structElevator.html#a9ddce99a8a873502e9231e802b284f1b',1,'Elevator']]],
+  ['last_5fmotorstate_33',['last_motorState',['../structElevator.html#aeb116f98753498153360e4e79e7bb184',1,'Elevator']]]
 ];

@@ -1,4 +1,4 @@
 <map id="Elevator" name="Elevator">
-<area shape="rect" id="node1" title="Defines an Elevator struct to store values." alt="" coords="5,95,81,121"/>
+<area shape="rect" id="node1" title="Represents an elevator and its state." alt="" coords="5,95,81,121"/>
 <area shape="rect" id="node2" href="$structRequest.html" title="Represents an elevator request." alt="" coords="6,5,81,32"/>
 </map>
