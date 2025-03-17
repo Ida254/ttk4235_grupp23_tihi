@@ -32,14 +32,14 @@ void *button_listener(void *arg)
                 initialize_elevator(elevator);
             }
 
-            if (elevator->is_stopped)
+            if (elevator->is_emergency_stopped)
             {
                 if (elevator->current_floor != -1)
                 {
                     rest_elevator(elevator);
                 }
 
-                elevator->is_stopped = false;
+                elevator->is_emergency_stopped = false;
                 elevio_stopLamp(0);
             }
         }
@@ -62,7 +62,7 @@ void *floor_listener(void *arg)
     while (1)
     {
         pthread_mutex_lock(&elevator_mtx);
-        if (elevator->is_stopped)
+        if (elevator->is_emergency_stopped)
         {
             pthread_mutex_unlock(&elevator_mtx);
             continue;
@@ -144,11 +144,11 @@ void *emergency_listener(void *arg)
     while (1)
     {
         pthread_mutex_lock(&elevator_mtx);
-        if (!elevator->is_stopped && elevator->initialized)
+        if (!elevator->is_emergency_stopped && elevator->initialized)
         {
             if (elevio_stopButton())
             {
-                elevator->is_stopped = true;
+                elevator->is_emergency_stopped = true;
                 empty_queue(elevator);
 
                 elevio_motorDirection(DIRN_STOP);

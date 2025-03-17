@@ -102,14 +102,14 @@ Data Fields</h2></td></tr>
 <tr class="separator:a08decdabd2f38e0d9654e774c7258c1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f0bfec7587f5ff170fb3ed6868626fd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structElevator.html#a4f0bfec7587f5ff170fb3ed6868626fd">initialized</a></td></tr>
 <tr class="separator:a4f0bfec7587f5ff170fb3ed6868626fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad840743c5b2a14821e3727766d74e3e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structElevator.html#aad840743c5b2a14821e3727766d74e3e">is_stopped</a></td></tr>
-<tr class="separator:aad840743c5b2a14821e3727766d74e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdcc83a34701ed2e61eccf284d5ebc20"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structElevator.html#abdcc83a34701ed2e61eccf284d5ebc20">is_emergency_stopped</a></td></tr>
+<tr class="separator:abdcc83a34701ed2e61eccf284d5ebc20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Structure representing the elevator's state. </p>
 <p>This struct holds information about the elevator, including its current floor, movement direction, motor state, queue of requested destinations, and various flags. </p>
 
-<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00038">38</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00045">45</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="aae297f56aca24d7be4518e2b14953015"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aae297f56aca24d7be4518e2b14953015">&#9670;&nbsp;</a></span>current_floor</h2>
@@ -124,7 +124,7 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 <p>The current floor of the elevator. </p>
 
-<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00040">40</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00047">47</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
 
 </div>
 </div>
@@ -141,7 +141,7 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 <p>Indicates if the elevator is currently moving. </p>
 
-<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00044">44</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00051">51</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
 
 </div>
 </div>
@@ -158,24 +158,24 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 <p>Indicates whether the elevator has been initialized. </p>
 
-<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00048">48</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00055">55</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
 
 </div>
 </div>
-<a id="aad840743c5b2a14821e3727766d74e3e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad840743c5b2a14821e3727766d74e3e">&#9670;&nbsp;</a></span>is_stopped</h2>
+<a id="abdcc83a34701ed2e61eccf284d5ebc20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdcc83a34701ed2e61eccf284d5ebc20">&#9670;&nbsp;</a></span>is_emergency_stopped</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Elevator::is_stopped</td>
+          <td class="memname">bool Elevator::is_emergency_stopped</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Indicates if the elevator is currently stopped. </p>
 
-<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00049">49</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00056">56</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
 
 </div>
 </div>
@@ -192,7 +192,7 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 <p>The last registered floor of the elevator. </p>
 
-<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00041">41</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00048">48</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
 
 </div>
 </div>
@@ -209,7 +209,7 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 <p>The current state of the motor (UP, DOWN, or STOP). </p>
 
-<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00043">43</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00050">50</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
 
 </div>
 </div>
@@ -226,7 +226,7 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 <p>The direction the elevator is moving (UP, DOWN, or STOP). </p>
 
-<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00042">42</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00049">49</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
 
 </div>
 </div>
@@ -243,7 +243,7 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 <p>The maximum number of elements the queue can hold. </p>
 
-<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00047">47</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00054">54</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
 
 </div>
 </div>
@@ -260,7 +260,7 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 <p>The current number of elements in the request queue. </p>
 
-<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00046">46</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00053">53</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
 
 </div>
 </div>
@@ -277,7 +277,7 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 <p>The queue storing floor requests. </p>
 
-<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00045">45</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator_8h_source.html#l00052">52</a> of file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
 
 </div>
 </div>

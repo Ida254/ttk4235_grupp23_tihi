@@ -128,22 +128,28 @@ Data Structures</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a3db44cad9cecb8208d264bcd873bd01b"><td class="memItemLeft" align="right" valign="top"><a id="a3db44cad9cecb8208d264bcd873bd01b"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SLEEP_TIME_NS</b>&#160;&#160;&#160;10 * 1000 * 1000</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8h.html#a3db44cad9cecb8208d264bcd873bd01b">SLEEP_TIME_NS</a>&#160;&#160;&#160;10 * 1000 * 1000</td></tr>
+<tr class="memdesc:a3db44cad9cecb8208d264bcd873bd01b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sleep time in nanoseconds (10ms). <br /></td></tr>
 <tr class="separator:a3db44cad9cecb8208d264bcd873bd01b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a360c832a52f523babde28630fe5561d3"><td class="memItemLeft" align="right" valign="top"><a id="a360c832a52f523babde28630fe5561d3"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BOTTOM_FLOOR</b>&#160;&#160;&#160;0</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8h.html#a360c832a52f523babde28630fe5561d3">BOTTOM_FLOOR</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memdesc:a360c832a52f523babde28630fe5561d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the lowest floor number. <br /></td></tr>
 <tr class="separator:a360c832a52f523babde28630fe5561d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00bda456521a6369be7f072fc4f43d59"><td class="memItemLeft" align="right" valign="top"><a id="a00bda456521a6369be7f072fc4f43d59"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOP_FLOOR</b>&#160;&#160;&#160;3</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8h.html#a00bda456521a6369be7f072fc4f43d59">TOP_FLOOR</a>&#160;&#160;&#160;3</td></tr>
+<tr class="memdesc:a00bda456521a6369be7f072fc4f43d59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the highest floor number. <br /></td></tr>
 <tr class="separator:a00bda456521a6369be7f072fc4f43d59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3147e85e20accdd9289d7a47cca62a68"><td class="memItemLeft" align="right" valign="top"><a id="a3147e85e20accdd9289d7a47cca62a68"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>INITIAL_FLOOR</b>&#160;&#160;&#160;TOP_FLOOR</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8h.html#a3147e85e20accdd9289d7a47cca62a68">INITIAL_FLOOR</a>&#160;&#160;&#160;<a class="el" href="elevator_8h.html#a00bda456521a6369be7f072fc4f43d59">TOP_FLOOR</a></td></tr>
+<tr class="memdesc:a3147e85e20accdd9289d7a47cca62a68"><td class="mdescLeft">&#160;</td><td class="mdescRight">The initial floor where the elevator starts. <br /></td></tr>
 <tr class="separator:a3147e85e20accdd9289d7a47cca62a68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72dd5b5bbcf73f7f9fb5ffbd69d432d3"><td class="memItemLeft" align="right" valign="top"><a id="a72dd5b5bbcf73f7f9fb5ffbd69d432d3"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>INITIAL_DIRECTION</b>&#160;&#160;&#160;DIRN_DOWN</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8h.html#a72dd5b5bbcf73f7f9fb5ffbd69d432d3">INITIAL_DIRECTION</a>&#160;&#160;&#160;DIRN_DOWN</td></tr>
+<tr class="memdesc:a72dd5b5bbcf73f7f9fb5ffbd69d432d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default direction when initializing the elevator. <br /></td></tr>
 <tr class="separator:a72dd5b5bbcf73f7f9fb5ffbd69d432d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74e692e3271fe95467a0c9f6296207ad"><td class="memItemLeft" align="right" valign="top"><a id="a74e692e3271fe95467a0c9f6296207ad"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>INITIAL_REQUEST</b>&#160;&#160;&#160;(<a class="el" href="structRequest.html">Request</a>) { BOTTOM_FLOOR, BUTTON_CAB }</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8h.html#a74e692e3271fe95467a0c9f6296207ad">INITIAL_REQUEST</a>&#160;&#160;&#160;(<a class="el" href="structRequest.html">Request</a>) { <a class="el" href="elevator_8h.html#a360c832a52f523babde28630fe5561d3">BOTTOM_FLOOR</a>, BUTTON_CAB }</td></tr>
+<tr class="memdesc:a74e692e3271fe95467a0c9f6296207ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default initial request assigned to the elevator. <br /></td></tr>
 <tr class="separator:a74e692e3271fe95467a0c9f6296207ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>

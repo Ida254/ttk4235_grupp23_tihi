@@ -19,14 +19,21 @@
 #include "utilities.h"
 #include "request.h"
 
+/** @brief Sleep time in nanoseconds (10ms). */
 #define SLEEP_TIME_NS 10 * 1000 * 1000
+/** @brief Defines the lowest floor number. */
 #define BOTTOM_FLOOR 0
+/** @brief Defines the highest floor number. */
 #define TOP_FLOOR 3
+/** @brief The initial floor where the elevator starts. */
 #define INITIAL_FLOOR TOP_FLOOR
+/** @brief The default direction when initializing the elevator. */
 #define INITIAL_DIRECTION DIRN_DOWN
+/** @brief The default initial request assigned to the elevator. */
 #define INITIAL_REQUEST \
     (Request) { BOTTOM_FLOOR, BUTTON_CAB }
 
+/** @brief Mutex for protecting access to the Elevator struct. */
 static pthread_mutex_t elevator_mtx;
 
 /**
@@ -46,7 +53,7 @@ typedef struct
     size_t queue_size;               /**< The current number of elements in the request queue. */
     size_t queue_capacity;           /**< The maximum number of elements the queue can hold. */
     bool initialized;                /**< Indicates whether the elevator has been initialized. */
-    bool is_stopped;                 /**< Indicates if the elevator is currently stopped. */
+    bool is_emergency_stopped;       /**< Indicates if the elevator is currently stopped. */
 } Elevator;
 
 /**

@@ -25,7 +25,7 @@ void initialize_elevator(Elevator *elevator)
     elevator->queue_size = 0;
     elevator->queue_capacity = 0;
     elevator->initialized = false;
-    elevator->is_stopped = false;
+    elevator->is_emergency_stopped = false;
 
     pthread_mutex_init(&elevator_mtx, NULL);
 
@@ -169,7 +169,7 @@ MotorDirection get_new_motor_direction(Elevator *elevator) // db, returns direct
 {
     MotorDirection newDir = DIRN_STOP;
 
-    if (elevator->is_stopped || elevator->queue_size == 0 || elevator->current_floor == elevator->request_queue[0].floor)
+    if (elevator->is_emergency_stopped || elevator->queue_size == 0 || elevator->current_floor == elevator->request_queue[0].floor)
     {
         return newDir;
     }
@@ -233,5 +233,5 @@ void print_elevator(Elevator *elevator)
     printf("Queue size: %zu\n", elevator->queue_size);
     printf("Queue capacity: %zu\n", elevator->queue_capacity);
     printf("Initialized: %s\n", bool_to_string(elevator->initialized));
-    printf("Is emergency stopped: %s\n\n", bool_to_string(elevator->is_stopped));
+    printf("Is emergency stopped: %s\n\n", bool_to_string(elevator->is_emergency_stopped));
 }
