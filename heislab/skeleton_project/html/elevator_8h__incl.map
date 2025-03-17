@@ -1,12 +1,13 @@
 <map id="source/driver/elevator.h" name="source/driver/elevator.h">
-<area shape="rect" id="node1" title="Header file for the elevator control system." alt="" coords="263,5,441,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="128,229,195,256"/>
-<area shape="rect" id="node3" title=" " alt="" coords="219,229,301,256"/>
-<area shape="rect" id="node4" title=" " alt="" coords="390,80,461,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="485,80,549,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="574,80,647,107"/>
-<area shape="rect" id="node7" title=" " alt="" coords="672,80,747,107"/>
-<area shape="rect" id="node8" href="$elevio_8h_source.html" title=" " alt="" coords="5,229,80,256"/>
-<area shape="rect" id="node9" href="$utilities_8h.html" title="Utility functions for conversions and mappings in the elevator system." alt="" coords="131,155,213,181"/>
-<area shape="rect" id="node10" href="$request_8h.html" title="Header file for managing elevator requests." alt="" coords="131,80,213,107"/>
+<area shape="rect" id="node1" title="Header file for the elevator control system." alt="" coords="267,5,445,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,229,72,256"/>
+<area shape="rect" id="node3" title=" " alt="" coords="96,229,179,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="295,155,366,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="419,80,483,107"/>
+<area shape="rect" id="node6" title=" " alt="" coords="507,80,581,107"/>
+<area shape="rect" id="node7" title=" " alt="" coords="605,80,680,107"/>
+<area shape="rect" id="node8" title=" " alt="" coords="705,80,789,107"/>
+<area shape="rect" id="node9" href="$elevio_8h_source.html" title=" " alt="" coords="220,229,295,256"/>
+<area shape="rect" id="node10" href="$utilities_8h.html" title="Utility functions for conversions and mappings in the elevator system." alt="" coords="87,155,169,181"/>
+<area shape="rect" id="node11" href="$request_8h.html" title="Header file for managing elevator requests." alt="" coords="188,80,271,107"/>
 </map>

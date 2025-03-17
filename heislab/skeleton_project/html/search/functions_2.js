@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['check_5femergency_5fstop_65',['check_emergency_stop',['../elevator_8c.html#a2d233ebc137805f20b09b544442071df',1,'check_emergency_stop(Elevator *elevator):&#160;elevator.c'],['../elevator_8h.html#a2d233ebc137805f20b09b544442071df',1,'check_emergency_stop(Elevator *elevator):&#160;elevator.c']]]
+  ['compare_5frequests_80',['compare_requests',['../request_8c.html#aa0d8a4446d2b409d1054b718ba4d293b',1,'compare_requests(const void *a, const void *b):&#160;request.c'],['../request_8h.html#aa0d8a4446d2b409d1054b718ba4d293b',1,'compare_requests(const void *a, const void *b):&#160;request.c']]]
 ];

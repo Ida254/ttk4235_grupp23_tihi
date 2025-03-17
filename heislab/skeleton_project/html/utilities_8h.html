@@ -151,9 +151,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Converts a boolean value to a string ("true" or "false"). </p>
+<p>This function takes a boolean value and returns a string representation of it. It returns either "true" or "false" based on the input value.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">true_or_false</td><td>Boolean value to convert. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">true_or_false</td><td>The boolean value to convert. </td></tr>
   </table>
   </dd>
 </dl>
@@ -180,9 +181,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Converts a ButtonType to a string representation. </p>
+<p>This function takes a ButtonType value and converts it to a corresponding string that represents the button type (e.g., "BUTTON_CAB", "BUTTON_UP").</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">button</td><td>The button type to convert. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">button</td><td>The button type to convert. </td></tr>
   </table>
   </dd>
 </dl>
@@ -209,9 +211,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Maps a button type to the corresponding motor direction. </p>
+<p>This function maps a given button type (up, down, or command) to the motor direction that corresponds to that button type. For example, the "UP" button maps to the DIRN_UP direction.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">btn</td><td>The button type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">btn</td><td>The button type to map. </td></tr>
   </table>
   </dd>
 </dl>
@@ -238,9 +241,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Converts an integer to a ButtonType. </p>
+<p>This function converts an integer value into a corresponding ButtonType. The integer should represent one of the predefined button types (e.g., 0 for BUTTON_CAB).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">integer</td><td>The integer representing a button type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">integer</td><td>The integer representing a button type. </td></tr>
   </table>
   </dd>
 </dl>
@@ -267,9 +271,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Converts an integer to a MotorDirection. </p>
+<p>This function converts an integer value into a corresponding MotorDirection. The integer should represent one of the predefined motor directions (e.g., 0 for DIRN_UP).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">integer</td><td>The integer representing a motor direction. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">integer</td><td>The integer representing a motor direction. </td></tr>
   </table>
   </dd>
 </dl>
@@ -296,9 +301,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Converts a MotorDirection to a string representation. </p>
+<p>This function takes a MotorDirection value and returns a string corresponding to the direction, such as "DIRN_UP" or "DIRN_DOWN".</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">direction</td><td>The motor direction to convert. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">direction</td><td>The motor direction to convert. </td></tr>
   </table>
   </dd>
 </dl>
