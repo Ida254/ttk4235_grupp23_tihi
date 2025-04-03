@@ -25,20 +25,23 @@ void *button_listener(void *arg)
             on_button_press(elevator);
         }
 
-        // if (button_pressed())
-        // {
-        //     printf("btn pressed: ");
-        //     print_request(*button_pressed());
-        // }
         if (button_pressed())
         {
-            printf("hei \n"); // db
             if (!elevator->initialized)
             {
                 initialize_elevator(elevator);
             }
-            elevator->is_stopped = false;
-            elevio_stopLamp(0);
+
+            if (elevator->is_emergency_stopped)
+            {
+                if (elevator->current_floor != -1)
+                {
+                    rest_elevator(elevator);
+                }
+
+                elevator->is_emergency_stopped = false;
+                elevio_stopLamp(0);
+            }
         }
         pthread_mutex_unlock(&elevator_mtx);
 
@@ -56,65 +59,70 @@ void *floor_listener(void *arg)
         return NULL;
     }
 
-    MotorDirection newDir = switch_direction(elevator);
-
     while (1)
     {
         pthread_mutex_lock(&elevator_mtx);
-        if (elevator->is_stopped)
+        if (elevator->is_emergency_stopped)
         {
+            pthread_mutex_unlock(&elevator_mtx);
             continue;
         }
 
-        if (!elevator->initialized && at_right_floor(elevator))
+        elevio_doorOpenLamp(0);
+
+        elevator->current_floor = elevio_floorSensor();
+        if (elevator->current_floor != -1)
         {
-            elevator->initialized = true;
-            printf("Initialized ");   // db
-            print_elevator(elevator); // db
+            elevator->last_floor = elevator->current_floor;
+            elevio_floorIndicator(elevator->last_floor);
+            // print_elevator(elevator);
+        }
+
+        MotorDirection newDir = get_new_motor_direction(elevator);
+        if (elevator->motor_state != newDir)
+        {
+            elevator->motor_state = newDir;
+            elevio_motorDirection(newDir);
+        }
+
+        elevator->in_motion = (newDir != DIRN_STOP);
+
+        // Update moving_directio, DIRN_UP or DIRN_down
+        if (elevator->current_floor == TOP_FLOOR)
+        {
+            elevator->moving_direction = DIRN_DOWN;
+        }
+        else if (elevator->current_floor == BOTTOM_FLOOR)
+        {
+            elevator->moving_direction = DIRN_UP;
+        }
+        else if (elevator->motor_state != DIRN_STOP)
+        {
+            elevator->moving_direction = elevator->motor_state;
         }
 
         if (at_right_floor(elevator))
         {
-            if (elevator->in_motion)
+            if (!elevator->initialized)
             {
-                elevio_motorDirection(DIRN_STOP);
-                elevator->in_motion = false;
-                elevator->motor_state = DIRN_STOP;
+                elevator->initialized = true;
+                printf("Initialized ");   // db
+                print_elevator(elevator); // db
             }
 
-            printf("1 new dir: %s \n", motor_direction_to_string(newDir));
-            newDir = switch_direction(elevator);
-            printf("2 new dir: %s \n", motor_direction_to_string(newDir));
+            if (elevator->queue_size > 0)
+            {
+                elevio_buttonLamp(elevator->current_floor, elevator->request_queue[0].button, 0);
+                remove_request_from_queue(elevator, elevator->current_floor);
+            }
 
-            elevio_buttonLamp(elevator->current_floor, elevator->request_queue[0].button, 0);
-
-            remove_request_from_queue(elevator, elevator->current_floor);
             elevio_doorOpenLamp(1);
 
             printf("Destination reached and elevator stopped \n"); // db
             print_elevator(elevator);                              // db
 
             rest_elevator(elevator);
-
-            elevio_doorOpenLamp(0);
         }
-
-        if (elevator->queue_size != 0 && !elevator->in_motion)
-        {
-            newDir = switch_direction(elevator);
-        }
-
-        if (elevator->motor_state != newDir)
-        {
-            elevator->motor_state = newDir;
-            if (newDir != DIRN_STOP)
-            {
-                elevator->moving_direction = newDir;
-                elevator->in_motion = true;
-            }
-        }
-
-        elevio_motorDirection(newDir);
 
         pthread_mutex_unlock(&elevator_mtx);
 
@@ -137,24 +145,27 @@ void *emergency_listener(void *arg)
     {
         printf("LOL \n"); // db
         pthread_mutex_lock(&elevator_mtx);
-        // check_emergency_stop(elevator);
-        if (!elevator->is_stopped)
+        if (!elevator->is_emergency_stopped && elevator->initialized)
         {
-            elevator->is_stopped = is_emergency_stop(elevator);
-            if (elevator->is_stopped)
+            if (elevio_stopButton())
             {
+                elevator->is_emergency_stopped = true;
                 empty_queue(elevator);
 
                 elevio_motorDirection(DIRN_STOP);
                 elevator->in_motion = false;
                 elevator->motor_state = DIRN_STOP;
-
                 elevio_stopLamp(1);
 
-                // kill(getpid(), SIGKILL); // Forcefully stops the program
+                if (elevator->current_floor != -1)
+                {
+                    elevio_doorOpenLamp(1);
+                }
 
                 printf("Stopped ");       // db
                 print_elevator(elevator); // db
+
+                // kill(getpid(), SIGKILL); // Forcefully stops the program
             }
         }
         pthread_mutex_unlock(&elevator_mtx);

@@ -7,13 +7,14 @@ Header file for managing elevator requests.
 
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}elevio.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}utilities.\+h\char`\"{}}\newline
 Include dependency graph for request.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=287pt]{request_8h__incl}
+\includegraphics[width=341pt]{request_8h__incl}
 \end{center}
 \end{figure}
 This graph shows which files directly or indirectly include this file\+:\nopagebreak
@@ -33,16 +34,18 @@ struct \mbox{\hyperlink{structRequest}{Request}}
 \item 
 void \mbox{\hyperlink{request_8h_a87d7b129ea92db6cbb2b30cb4583bf6e}{extend\+\_\+requests}} (\mbox{\hyperlink{structRequest}{Request}} $\ast$arr1, size\+\_\+t index, \mbox{\hyperlink{structRequest}{Request}} $\ast$arr2, size\+\_\+t arr2\+\_\+size)
 \begin{DoxyCompactList}\small\item\em Extends an array of requests by inserting elements from another array. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{request_8h_aa0d8a4446d2b409d1054b718ba4d293b}{compare\+\_\+requests}} (const void $\ast$a, const void $\ast$b)
+\begin{DoxyCompactList}\small\item\em Compares two requests for sorting purposes. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{request_8h_a01502cf380fa7a467c1276b880d7acc7}{bubble\+\_\+sort}} (\mbox{\hyperlink{structRequest}{Request}} $\ast$arr, size\+\_\+t size, Motor\+Direction direction)
 \begin{DoxyCompactList}\small\item\em Sorts an array of requests using the bubble sort algorithm. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{request_8h_a9ef37aefa5313b9f76ff056733aa3327}{sort\+\_\+requests}} (\mbox{\hyperlink{structRequest}{Request}} $\ast$arr, size\+\_\+t arr\+\_\+size, int curr\+\_\+floor, Motor\+Direction moving\+\_\+dir)
-\begin{DoxyCompactList}\small\item\em Sorts elevator requests based on the current floor and direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{request_8h_acba741199a9411046392bdbf8cbb7e84}{sort\+\_\+requests}} (\mbox{\hyperlink{structRequest}{Request}} $\ast$arr, size\+\_\+t arr\+\_\+size, int curr\+\_\+floor, Motor\+Direction moving\+\_\+dir, bool in\+\_\+motion)
+\begin{DoxyCompactList}\small\item\em Sorts elevator requests based on the current floor and movement direction. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{request_8h_a3f95978399df01cc749cbd9f26dce6db}{add\+\_\+request}} (\mbox{\hyperlink{structRequest}{Request}} $\ast$$\ast$arr, size\+\_\+t $\ast$arr\+\_\+size, size\+\_\+t $\ast$capacity, \mbox{\hyperlink{structRequest}{Request}} req)
-\begin{DoxyCompactList}\small\item\em Adds a request to a dynamically allocated request array. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Adds a new request to a dynamically allocated request array. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{request_8h_a6e2c4bfbe7d96a852a0893018eec19f4}{remove\+\_\+request\+\_\+by\+\_\+floor}} (\mbox{\hyperlink{structRequest}{Request}} $\ast$$\ast$arr, size\+\_\+t $\ast$arr\+\_\+size, size\+\_\+t $\ast$capacity, int floor)
 \begin{DoxyCompactList}\small\item\em Removes all requests associated with a specific floor. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{request_8h_ac65b5c8a6a5fe4c460b482bada4d165d}{in\+\_\+array}} (\mbox{\hyperlink{structRequest}{Request}} arr\mbox{[}$\,$\mbox{]}, size\+\_\+t size, \mbox{\hyperlink{structRequest}{Request}} req)
-\begin{DoxyCompactList}\small\item\em Checks if a request exists in an array. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Checks if a specific request exists in an array. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{request_8h_ae4d039d77b6c7249c0d522abeebb9860}{print\+\_\+request}} (\mbox{\hyperlink{structRequest}{Request}} req)
 \begin{DoxyCompactList}\small\item\em Prints a single request in a human-\/readable format. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{request_8h_a2ec02587266875c87469de7ebfd74d33}{print\+\_\+requests}} (\mbox{\hyperlink{structRequest}{Request}} arr\mbox{[}$\,$\mbox{]}, size\+\_\+t size)
@@ -63,24 +66,24 @@ This file defines the \mbox{\hyperlink{structRequest}{Request}} structure and de
 
 
 
-Adds a request to a dynamically allocated request array. 
+Adds a new request to a dynamically allocated request array. 
 
-Resizes the array if necessary.
+The array is resized if necessary to accommodate the new request.
 
 
-\begin{DoxyParams}{Parameters}
-{\em arr} & Pointer to the request array. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em arr} & Pointer to the request array. \\
 \hline
-{\em arr\+\_\+size} & Pointer to the current array size. \\
+\mbox{\texttt{ in,out}}  & {\em arr\+\_\+size} & Pointer to the current number of requests in the array. \\
 \hline
-{\em capacity} & Pointer to the array\textquotesingle{}s capacity. \\
+\mbox{\texttt{ in,out}}  & {\em capacity} & Pointer to the array\textquotesingle{}s capacity (may be increased if needed). \\
 \hline
-{\em req} & The request to add. \\
+\mbox{\texttt{ in}}  & {\em req} & The request to be added. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 100 of file request.\+c.
+Definition at line 118 of file request.\+c.
 
 \mbox{\Hypertarget{request_8h_a01502cf380fa7a467c1276b880d7acc7}\label{request_8h_a01502cf380fa7a467c1276b880d7acc7}} 
 \index{request.h@{request.h}!bubble\_sort@{bubble\_sort}}
@@ -92,15 +95,43 @@ Definition at line 100 of file request.\+c.
 
 Sorts an array of requests using the bubble sort algorithm. 
 
+Requests are sorted in ascending or descending order based on the elevator\textquotesingle{}s movement direction.
 
-\begin{DoxyParams}{Parameters}
-{\em arr} & The array of requests. \\
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em arr} & The array of requests to be sorted. \\
 \hline
-{\em size} & The size of the array. \\
+\mbox{\texttt{ in}}  & {\em size} & The number of requests in the array. \\
 \hline
-{\em direction} & The sorting order based on motor direction. \\
+\mbox{\texttt{ in}}  & {\em direction} & The sorting order based on the motor direction (D\+I\+R\+N\+\_\+\+UP or D\+I\+R\+N\+\_\+\+D\+O\+WN). \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 33 of file request.\+c.
+
+\mbox{\Hypertarget{request_8h_aa0d8a4446d2b409d1054b718ba4d293b}\label{request_8h_aa0d8a4446d2b409d1054b718ba4d293b}} 
+\index{request.h@{request.h}!compare\_requests@{compare\_requests}}
+\index{compare\_requests@{compare\_requests}!request.h@{request.h}}
+\doxysubsubsection{\texorpdfstring{compare\_requests()}{compare\_requests()}}
+{\footnotesize\ttfamily int compare\+\_\+requests (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+Compares two requests for sorting purposes. 
+
+Used as a comparator function in sorting algorithms.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em a} & Pointer to the first request. \\
+\hline
+\mbox{\texttt{ in}}  & {\em b} & Pointer to the second request. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An integer less than, equal to, or greater than zero if {\ttfamily a} is less than, equal to, or greater than {\ttfamily b}, respectively. 
+\end{DoxyReturn}
 
 
 Definition at line 19 of file request.\+c.
@@ -115,15 +146,17 @@ Definition at line 19 of file request.\+c.
 
 Extends an array of requests by inserting elements from another array. 
 
+This function inserts elements from one request array ({\ttfamily arr2}) into another ({\ttfamily arr1}) at a specified index. The destination array must have enough allocated space.
 
-\begin{DoxyParams}{Parameters}
-{\em arr1} & The destination array. \\
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em arr1} & The destination array to be extended. \\
 \hline
-{\em index} & The index at which to insert arr2. \\
+\mbox{\texttt{ in}}  & {\em index} & The index at which to insert {\ttfamily arr2} into {\ttfamily arr1}. \\
 \hline
-{\em arr2} & The source array. \\
+\mbox{\texttt{ in}}  & {\em arr2} & The source array containing requests to be inserted. \\
 \hline
-{\em arr2\+\_\+size} & The size of arr2. \\
+\mbox{\texttt{ in}}  & {\em arr2\+\_\+size} & The number of elements in {\ttfamily arr2}. \\
 \hline
 \end{DoxyParams}
 
@@ -138,23 +171,23 @@ Definition at line 11 of file request.\+c.
 
 
 
-Checks if a request exists in an array. 
+Checks if a specific request exists in an array. 
 
 
-\begin{DoxyParams}{Parameters}
-{\em arr} & The request array. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em arr} & The request array. \\
 \hline
-{\em size} & The size of the array. \\
+\mbox{\texttt{ in}}  & {\em size} & The number of requests in the array. \\
 \hline
-{\em req} & The request to check for. \\
+\mbox{\texttt{ in}}  & {\em req} & The request to search for. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-True if the request is found, false otherwise. 
+{\ttfamily true} if the request exists in the array, {\ttfamily false} otherwise. 
 \end{DoxyReturn}
 
 
-Definition at line 148 of file request.\+c.
+Definition at line 173 of file request.\+c.
 
 \mbox{\Hypertarget{request_8h_ae4d039d77b6c7249c0d522abeebb9860}\label{request_8h_ae4d039d77b6c7249c0d522abeebb9860}} 
 \index{request.h@{request.h}!print\_request@{print\_request}}
@@ -166,14 +199,16 @@ Definition at line 148 of file request.\+c.
 
 Prints a single request in a human-\/readable format. 
 
+The function displays the requested floor and button type.
 
-\begin{DoxyParams}{Parameters}
-{\em req} & The request to print. \\
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em req} & The request to print. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 160 of file request.\+c.
+Definition at line 185 of file request.\+c.
 
 \mbox{\Hypertarget{request_8h_a2ec02587266875c87469de7ebfd74d33}\label{request_8h_a2ec02587266875c87469de7ebfd74d33}} 
 \index{request.h@{request.h}!print\_requests@{print\_requests}}
@@ -185,16 +220,18 @@ Definition at line 160 of file request.\+c.
 
 Prints all requests in an array. 
 
+Displays a list of all requests in the given array.
 
-\begin{DoxyParams}{Parameters}
-{\em arr} & The request array. \\
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em arr} & The request array. \\
 \hline
-{\em size} & The size of the array. \\
+\mbox{\texttt{ in}}  & {\em size} & The number of requests in the array. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 165 of file request.\+c.
+Definition at line 190 of file request.\+c.
 
 \mbox{\Hypertarget{request_8h_a6e2c4bfbe7d96a852a0893018eec19f4}\label{request_8h_a6e2c4bfbe7d96a852a0893018eec19f4}} 
 \index{request.h@{request.h}!remove\_request\_by\_floor@{remove\_request\_by\_floor}}
@@ -206,43 +243,49 @@ Definition at line 165 of file request.\+c.
 
 Removes all requests associated with a specific floor. 
 
+This function scans the request array and removes any requests for the specified floor. If necessary, the array is resized to free unused memory.
 
-\begin{DoxyParams}{Parameters}
-{\em arr} & Pointer to the request array. \\
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em arr} & Pointer to the request array. \\
 \hline
-{\em arr\+\_\+size} & Pointer to the array size. \\
+\mbox{\texttt{ in,out}}  & {\em arr\+\_\+size} & Pointer to the current number of requests in the array. \\
 \hline
-{\em capacity} & Pointer to the array\textquotesingle{}s capacity. \\
+\mbox{\texttt{ in,out}}  & {\em capacity} & Pointer to the array\textquotesingle{}s capacity (may be decreased if needed). \\
 \hline
-{\em floor} & The floor to remove requests for. \\
+\mbox{\texttt{ in}}  & {\em floor} & The floor number whose requests should be removed. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 119 of file request.\+c.
+Definition at line 136 of file request.\+c.
 
-\mbox{\Hypertarget{request_8h_a9ef37aefa5313b9f76ff056733aa3327}\label{request_8h_a9ef37aefa5313b9f76ff056733aa3327}} 
+\mbox{\Hypertarget{request_8h_acba741199a9411046392bdbf8cbb7e84}\label{request_8h_acba741199a9411046392bdbf8cbb7e84}} 
 \index{request.h@{request.h}!sort\_requests@{sort\_requests}}
 \index{sort\_requests@{sort\_requests}!request.h@{request.h}}
 \doxysubsubsection{\texorpdfstring{sort\_requests()}{sort\_requests()}}
-{\footnotesize\ttfamily void sort\+\_\+requests (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRequest}{Request}} $\ast$}]{arr,  }\item[{size\+\_\+t}]{arr\+\_\+size,  }\item[{int}]{curr\+\_\+floor,  }\item[{Motor\+Direction}]{moving\+\_\+dir }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void sort\+\_\+requests (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRequest}{Request}} $\ast$}]{arr,  }\item[{size\+\_\+t}]{arr\+\_\+size,  }\item[{int}]{curr\+\_\+floor,  }\item[{Motor\+Direction}]{moving\+\_\+dir,  }\item[{bool}]{in\+\_\+motion }\end{DoxyParamCaption})}
 
 
 
-Sorts elevator requests based on the current floor and direction. 
+Sorts elevator requests based on the current floor and movement direction. 
+
+Requests are ordered to optimize elevator travel efficiency.
 
 
-\begin{DoxyParams}{Parameters}
-{\em arr} & The array of requests. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em arr} & The array of requests. \\
 \hline
-{\em arr\+\_\+size} & The size of the request array. \\
+\mbox{\texttt{ in}}  & {\em arr\+\_\+size} & The size of the request array. \\
 \hline
-{\em curr\+\_\+floor} & The current floor of the elevator. \\
+\mbox{\texttt{ in}}  & {\em curr\+\_\+floor} & The current floor of the elevator. \\
 \hline
-{\em moving\+\_\+dir} & The current moving direction of the elevator. \\
+\mbox{\texttt{ in}}  & {\em moving\+\_\+dir} & The current moving direction of the elevator. \\
+\hline
+\mbox{\texttt{ in}}  & {\em in\+\_\+motion} & Whether the elevator is currently moving. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 42 of file request.\+c.
+Definition at line 59 of file request.\+c.
 

@@ -11,6 +11,7 @@ Header file for the elevator control system.
 {\ttfamily \#include $<$time.\+h$>$}\newline
 {\ttfamily \#include $<$signal.\+h$>$}\newline
 {\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}elevio.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}utilities.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}request.\+h\char`\"{}}\newline
@@ -32,22 +33,28 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structElevator}{Elevator}}
-\begin{DoxyCompactList}\small\item\em Defines an \mbox{\hyperlink{structElevator}{Elevator}} struct to store values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Structure representing the elevator\textquotesingle{}s state. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\Hypertarget{elevator_8h_a3db44cad9cecb8208d264bcd873bd01b}\label{elevator_8h_a3db44cad9cecb8208d264bcd873bd01b}} 
+\#define \mbox{\hyperlink{elevator_8h_a3db44cad9cecb8208d264bcd873bd01b}{S\+L\+E\+E\+P\+\_\+\+T\+I\+M\+E\+\_\+\+NS}}~10 $\ast$ 1000 $\ast$ 1000
+\begin{DoxyCompactList}\small\item\em Sleep time in nanoseconds (10ms). \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{elevator_8h_a360c832a52f523babde28630fe5561d3}\label{elevator_8h_a360c832a52f523babde28630fe5561d3}} 
-\#define {\bfseries B\+O\+T\+T\+O\+M\+\_\+\+F\+L\+O\+OR}~0
-\item 
+\#define \mbox{\hyperlink{elevator_8h_a360c832a52f523babde28630fe5561d3}{B\+O\+T\+T\+O\+M\+\_\+\+F\+L\+O\+OR}}~0
+\begin{DoxyCompactList}\small\item\em Defines the lowest floor number. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{elevator_8h_a00bda456521a6369be7f072fc4f43d59}\label{elevator_8h_a00bda456521a6369be7f072fc4f43d59}} 
-\#define {\bfseries T\+O\+P\+\_\+\+F\+L\+O\+OR}~3
-\item 
+\#define \mbox{\hyperlink{elevator_8h_a00bda456521a6369be7f072fc4f43d59}{T\+O\+P\+\_\+\+F\+L\+O\+OR}}~3
+\begin{DoxyCompactList}\small\item\em Defines the highest floor number. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{elevator_8h_a3147e85e20accdd9289d7a47cca62a68}\label{elevator_8h_a3147e85e20accdd9289d7a47cca62a68}} 
-\#define {\bfseries I\+N\+I\+T\+I\+A\+L\+\_\+\+F\+L\+O\+OR}~0
-\item 
+\#define \mbox{\hyperlink{elevator_8h_a3147e85e20accdd9289d7a47cca62a68}{I\+N\+I\+T\+I\+A\+L\+\_\+\+F\+L\+O\+OR}}~\mbox{\hyperlink{elevator_8h_a00bda456521a6369be7f072fc4f43d59}{T\+O\+P\+\_\+\+F\+L\+O\+OR}}
+\begin{DoxyCompactList}\small\item\em The initial floor where the elevator starts. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{elevator_8h_a72dd5b5bbcf73f7f9fb5ffbd69d432d3}\label{elevator_8h_a72dd5b5bbcf73f7f9fb5ffbd69d432d3}} 
-\#define {\bfseries I\+N\+I\+T\+I\+A\+L\+\_\+\+D\+I\+R\+E\+C\+T\+I\+ON}~D\+I\+R\+N\+\_\+\+UP
-\end{DoxyCompactItemize}
+\#define \mbox{\hyperlink{elevator_8h_a72dd5b5bbcf73f7f9fb5ffbd69d432d3}{I\+N\+I\+T\+I\+A\+L\+\_\+\+D\+I\+R\+E\+C\+T\+I\+ON}}~D\+I\+R\+N\+\_\+\+D\+O\+WN
+\begin{DoxyCompactList}\small\item\em The default direction when initializing the elevator. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{elevator_8h_a74e692e3271fe95467a0c9f6296207ad}\label{elevator_8h_a74e692e3271fe95467a0c9f6296207ad}} 
+\#define \mbox{\hyperlink{elevator_8h_a74e692e3271fe95467a0c9f6296207ad}{I\+N\+I\+T\+I\+A\+L\+\_\+\+R\+E\+Q\+U\+E\+ST}}~(\mbox{\hyperlink{structRequest}{Request}}) \{ \mbox{\hyperlink{elevator_8h_a360c832a52f523babde28630fe5561d3}{B\+O\+T\+T\+O\+M\+\_\+\+F\+L\+O\+OR}}, B\+U\+T\+T\+O\+N\+\_\+\+C\+AB \}
+\begin{DoxyCompactList}\small\item\em The default initial request assigned to the elevator. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -55,32 +62,28 @@ void \mbox{\hyperlink{elevator_8h_a6be99605e3761dee7d4e579978b4d03a}{initialize\
 \begin{DoxyCompactList}\small\item\em Initializes an \mbox{\hyperlink{structElevator}{Elevator}} struct with default values. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{elevator_8h_ab45cd18d19af28e6e537c60f244fd19c}{free\+\_\+elevator}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$elevator)
 \begin{DoxyCompactList}\small\item\em Frees memory allocated for the \mbox{\hyperlink{structElevator}{Elevator}} struct. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{elevator_8h_afd5e72590848c54b48b357211223e9b4}{run\+\_\+elevator\+\_\+program}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$elevator)
-\begin{DoxyCompactList}\small\item\em Initializes and runs the elevator control system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{elevator_8h_a0511d5c90918ca264b6052ddc1018504}{turn\+\_\+off\+\_\+all\+\_\+lamps}} ()
+\begin{DoxyCompactList}\small\item\em Turns off all elevator button lamps. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{elevator_8h_a4f348f1b497c1f050fa390439e96af58}{sort\+\_\+queue}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$elevator)
-\begin{DoxyCompactList}\small\item\em Sorts the destination queue in the \mbox{\hyperlink{structElevator}{Elevator}} struct. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Sorts the request queue in the \mbox{\hyperlink{structElevator}{Elevator}} struct. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{elevator_8h_aa85a67206f0a1badabc1ddffabfc4af4}{add\+\_\+request\+\_\+to\+\_\+queue}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$elevator, \mbox{\hyperlink{structRequest}{Request}} new\+\_\+req)
 \begin{DoxyCompactList}\small\item\em Adds a floor request to the \mbox{\hyperlink{structElevator}{Elevator}}\textquotesingle{}s destination queue. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{elevator_8h_a8e5355790bd87cb643194ce31f3c4ad1}{remove\+\_\+request\+\_\+from\+\_\+queue}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$elevator, int floor)
 \begin{DoxyCompactList}\small\item\em Removes a floor request from the \mbox{\hyperlink{structElevator}{Elevator}}\textquotesingle{}s destination queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{elevator_8h_a3171c5ef60df58df40a6c1cf8b48475b}{empty\+\_\+queue}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Clears all requests from the elevator queue. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{elevator_8h_a010d805d91a0088ce00c31cfb2fd52ef}{on\+\_\+button\+\_\+press}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$elevator)
 \begin{DoxyCompactList}\small\item\em Handles button press events and updates the elevator queue. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{elevator_8h_af25c41476042d9a9444b1720a6a8f001}{button\+\_\+pressed}} (\mbox{\hyperlink{structRequest}{Request}} $\ast$req)
+\mbox{\hyperlink{structRequest}{Request}} $\ast$ \mbox{\hyperlink{elevator_8h_a12a706aa9c5fbd50a93d5be583095937}{button\+\_\+pressed}} ()
 \begin{DoxyCompactList}\small\item\em Checks if any elevator button has been pressed. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{elevator_8h_a963a9c8c91c61b409d64159dba112f6c}{moving\+\_\+elevator}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$elevator)
-\begin{DoxyCompactList}\small\item\em Moves the elevator according to its queue and direction. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{elevator_8h_a017499c59660e09e848d80ae42ce91b3}{at\+\_\+right\+\_\+floor}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$elevator)
-\begin{DoxyCompactList}\small\item\em Checks if the elevator is at the correct floor and handles stopping logic. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{elevator_8h_a5122c7a557779d70de85ee2aa2227cca}{switch\+\_\+direction}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$elevator)
-\begin{DoxyCompactList}\small\item\em Switches the moving direction of the elevator when needed. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{elevator_8h_ae5fc973cf87be197b4e13dd72afec0ba}{at\+\_\+right\+\_\+floor}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Checks if the elevator is at the requested floor. \end{DoxyCompactList}\item 
+Motor\+Direction \mbox{\hyperlink{elevator_8h_a8f1783785c6778cae2a9cc08d02f1d27}{get\+\_\+new\+\_\+motor\+\_\+direction}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Determines the new motor direction based on requests. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{elevator_8h_a09fe0fbc43e9f9e0dfb501b8b7b30220}{rest\+\_\+elevator}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$elevator)
 \begin{DoxyCompactList}\small\item\em Resets the elevator to an idle state. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{elevator_8h_a0ee210d178f3017ab19d98bde6041b48}{stop\+\_\+elevator\+\_\+at\+\_\+floor}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$elevator, int floor)
-\begin{DoxyCompactList}\small\item\em Stops the elevator when it reaches a requested floor. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{elevator_8h_a2d233ebc137805f20b09b544442071df}{check\+\_\+emergency\+\_\+stop}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$elevator)
-\begin{DoxyCompactList}\small\item\em Monitors and handles emergency stop conditions. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{elevator_8h_a631f4cbd7d3d4f06ec68cd3d7d4f36b3}{print\+\_\+elevator}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$elevator)
-\begin{DoxyCompactList}\small\item\em Prints the memebers of the struct \mbox{\hyperlink{structElevator}{Elevator}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Prints the current state of the elevator. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -99,45 +102,48 @@ This file defines the \mbox{\hyperlink{structElevator}{Elevator}} structure and 
 
 Adds a floor request to the \mbox{\hyperlink{structElevator}{Elevator}}\textquotesingle{}s destination queue. 
 
-This function adds a new floor request to the elevator\textquotesingle{}s queue, specifying the direction in which the elevator should move after reaching the floor.
+This function adds a new floor request to the elevator\textquotesingle{}s queue.
 
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in,out}}  & {\em elevator} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} struct. \\
 \hline
-\mbox{\texttt{ in}}  & {\em new\+\_\+req} & The direction request to be added to the queue. \\
+\mbox{\texttt{ in}}  & {\em new\+\_\+req} & The new floor request to be added to the queue. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 72 of file elevator.\+c.
+Definition at line 78 of file elevator.\+c.
 
-\mbox{\Hypertarget{elevator_8h_a017499c59660e09e848d80ae42ce91b3}\label{elevator_8h_a017499c59660e09e848d80ae42ce91b3}} 
+\mbox{\Hypertarget{elevator_8h_ae5fc973cf87be197b4e13dd72afec0ba}\label{elevator_8h_ae5fc973cf87be197b4e13dd72afec0ba}} 
 \index{elevator.h@{elevator.h}!at\_right\_floor@{at\_right\_floor}}
 \index{at\_right\_floor@{at\_right\_floor}!elevator.h@{elevator.h}}
 \doxysubsubsection{\texorpdfstring{at\_right\_floor()}{at\_right\_floor()}}
-{\footnotesize\ttfamily void at\+\_\+right\+\_\+floor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structElevator}{Elevator}} $\ast$}]{elevator }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool at\+\_\+right\+\_\+floor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structElevator}{Elevator}} $\ast$}]{elevator }\end{DoxyParamCaption})}
 
 
 
-Checks if the elevator is at the correct floor and handles stopping logic. 
+Checks if the elevator is at the requested floor. 
 
 If the elevator reaches a requested floor, it performs necessary actions like stopping and opening doors.
 
 
-\begin{DoxyParams}{Parameters}
-{\em elevator} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} structure. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em elevator} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} structure. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the elevator is at the requested floor, false otherwise. 
+\end{DoxyReturn}
 
 
-Definition at line 148 of file elevator.\+c.
+Definition at line 151 of file elevator.\+c.
 
-\mbox{\Hypertarget{elevator_8h_af25c41476042d9a9444b1720a6a8f001}\label{elevator_8h_af25c41476042d9a9444b1720a6a8f001}} 
+\mbox{\Hypertarget{elevator_8h_a12a706aa9c5fbd50a93d5be583095937}\label{elevator_8h_a12a706aa9c5fbd50a93d5be583095937}} 
 \index{elevator.h@{elevator.h}!button\_pressed@{button\_pressed}}
 \index{button\_pressed@{button\_pressed}!elevator.h@{elevator.h}}
 \doxysubsubsection{\texorpdfstring{button\_pressed()}{button\_pressed()}}
-{\footnotesize\ttfamily bool button\+\_\+pressed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRequest}{Request}} $\ast$}]{req }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{structRequest}{Request}}$\ast$ button\+\_\+pressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -145,31 +151,33 @@ Checks if any elevator button has been pressed.
 
 Iterates through all floors and button types to detect a pressed button. If a button press is found, it updates the given request structure.
 
-
-\begin{DoxyParams}{Parameters}
-{\em req} & Pointer to a \mbox{\hyperlink{structRequest}{Request}} structure to store the button press details. \\
-\hline
-\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-True if a button was pressed, false otherwise. 
+A pointer to a \mbox{\hyperlink{structRequest}{Request}} struct if a button was pressed, N\+U\+LL otherwise. 
 \end{DoxyReturn}
 
 
-Definition at line 113 of file elevator.\+c.
+Definition at line 128 of file elevator.\+c.
 
-\mbox{\Hypertarget{elevator_8h_a2d233ebc137805f20b09b544442071df}\label{elevator_8h_a2d233ebc137805f20b09b544442071df}} 
-\index{elevator.h@{elevator.h}!check\_emergency\_stop@{check\_emergency\_stop}}
-\index{check\_emergency\_stop@{check\_emergency\_stop}!elevator.h@{elevator.h}}
-\doxysubsubsection{\texorpdfstring{check\_emergency\_stop()}{check\_emergency\_stop()}}
-{\footnotesize\ttfamily void check\+\_\+emergency\+\_\+stop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structElevator}{Elevator}} $\ast$}]{elevator }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{elevator_8h_a3171c5ef60df58df40a6c1cf8b48475b}\label{elevator_8h_a3171c5ef60df58df40a6c1cf8b48475b}} 
+\index{elevator.h@{elevator.h}!empty\_queue@{empty\_queue}}
+\index{empty\_queue@{empty\_queue}!elevator.h@{elevator.h}}
+\doxysubsubsection{\texorpdfstring{empty\_queue()}{empty\_queue()}}
+{\footnotesize\ttfamily void empty\+\_\+queue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structElevator}{Elevator}} $\ast$}]{elevator }\end{DoxyParamCaption})}
 
 
 
-Monitors and handles emergency stop conditions. 
+Clears all requests from the elevator queue. 
 
-If an emergency stop is detected, the elevator stops immediately and takes appropriate safety measures. 
+This function removes all pending floor requests, effectively resetting the queue.
 
-Definition at line 227 of file elevator.\+c.
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em elevator} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} struct. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 107 of file elevator.\+c.
 
 \mbox{\Hypertarget{elevator_8h_ab45cd18d19af28e6e537c60f244fd19c}\label{elevator_8h_ab45cd18d19af28e6e537c60f244fd19c}} 
 \index{elevator.h@{elevator.h}!free\_elevator@{free\_elevator}}
@@ -181,7 +189,7 @@ Definition at line 227 of file elevator.\+c.
 
 Frees memory allocated for the \mbox{\hyperlink{structElevator}{Elevator}} struct. 
 
-This function releases any allocated memory within the elevator structure to prevent memory leaks.
+This function releases any dynamically allocated memory used by the elevator structure to prevent memory leaks.
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -190,7 +198,31 @@ This function releases any allocated memory within the elevator structure to pre
 \end{DoxyParams}
 
 
-Definition at line 46 of file elevator.\+c.
+Definition at line 38 of file elevator.\+c.
+
+\mbox{\Hypertarget{elevator_8h_a8f1783785c6778cae2a9cc08d02f1d27}\label{elevator_8h_a8f1783785c6778cae2a9cc08d02f1d27}} 
+\index{elevator.h@{elevator.h}!get\_new\_motor\_direction@{get\_new\_motor\_direction}}
+\index{get\_new\_motor\_direction@{get\_new\_motor\_direction}!elevator.h@{elevator.h}}
+\doxysubsubsection{\texorpdfstring{get\_new\_motor\_direction()}{get\_new\_motor\_direction()}}
+{\footnotesize\ttfamily Motor\+Direction get\+\_\+new\+\_\+motor\+\_\+direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structElevator}{Elevator}} $\ast$}]{elevator }\end{DoxyParamCaption})}
+
+
+
+Determines the new motor direction based on requests. 
+
+This function decides whether the elevator should move up, down, or stop based on the request queue.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em elevator} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} struct. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new motor direction (UP, D\+O\+WN, or S\+T\+OP). 
+\end{DoxyReturn}
+
+
+Definition at line 168 of file elevator.\+c.
 
 \mbox{\Hypertarget{elevator_8h_a6be99605e3761dee7d4e579978b4d03a}\label{elevator_8h_a6be99605e3761dee7d4e579978b4d03a}} 
 \index{elevator.h@{elevator.h}!initialize\_elevator@{initialize\_elevator}}
@@ -202,39 +234,16 @@ Definition at line 46 of file elevator.\+c.
 
 Initializes an \mbox{\hyperlink{structElevator}{Elevator}} struct with default values. 
 
-This function sets up an elevator and moves it to the first floor.
+This function sets up an elevator by initializing its internal state and setting it to the default floor.
 
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in,out}}  & {\em elevator} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} struct to be initialized. \\
 \hline
-\mbox{\texttt{ in}}  & {\em initial\+Capacity} & The initial capacity of the destination queue. \\
-\hline
 \end{DoxyParams}
 
 
 Definition at line 11 of file elevator.\+c.
-
-\mbox{\Hypertarget{elevator_8h_a963a9c8c91c61b409d64159dba112f6c}\label{elevator_8h_a963a9c8c91c61b409d64159dba112f6c}} 
-\index{elevator.h@{elevator.h}!moving\_elevator@{moving\_elevator}}
-\index{moving\_elevator@{moving\_elevator}!elevator.h@{elevator.h}}
-\doxysubsubsection{\texorpdfstring{moving\_elevator()}{moving\_elevator()}}
-{\footnotesize\ttfamily void moving\+\_\+elevator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structElevator}{Elevator}} $\ast$}]{elevator }\end{DoxyParamCaption})}
-
-
-
-Moves the elevator according to its queue and direction. 
-
-This function ensures that the elevator moves towards its intended destination based on the queued requests.
-
-
-\begin{DoxyParams}{Parameters}
-{\em elevator} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} structure. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 131 of file elevator.\+c.
 
 \mbox{\Hypertarget{elevator_8h_a010d805d91a0088ce00c31cfb2fd52ef}\label{elevator_8h_a010d805d91a0088ce00c31cfb2fd52ef}} 
 \index{elevator.h@{elevator.h}!on\_button\_press@{on\_button\_press}}
@@ -249,13 +258,13 @@ Handles button press events and updates the elevator queue.
 This function checks if any button has been pressed and, if so, adds the request to the elevator\textquotesingle{}s queue.
 
 
-\begin{DoxyParams}{Parameters}
-{\em elevator} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} structure. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em elevator} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} struct. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 101 of file elevator.\+c.
+Definition at line 115 of file elevator.\+c.
 
 \mbox{\Hypertarget{elevator_8h_a631f4cbd7d3d4f06ec68cd3d7d4f36b3}\label{elevator_8h_a631f4cbd7d3d4f06ec68cd3d7d4f36b3}} 
 \index{elevator.h@{elevator.h}!print\_elevator@{print\_elevator}}
@@ -265,9 +274,9 @@ Definition at line 101 of file elevator.\+c.
 
 
 
-Prints the memebers of the struct \mbox{\hyperlink{structElevator}{Elevator}}. 
+Prints the current state of the elevator. 
 
-This function prints the values of an elevator in a nice way that helps with debuging of the code.
+This function outputs the values of the elevator struct to help with debugging.
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -276,7 +285,7 @@ This function prints the values of an elevator in a nice way that helps with deb
 \end{DoxyParams}
 
 
-Definition at line 239 of file elevator.\+c.
+Definition at line 215 of file elevator.\+c.
 
 \mbox{\Hypertarget{elevator_8h_a8e5355790bd87cb643194ce31f3c4ad1}\label{elevator_8h_a8e5355790bd87cb643194ce31f3c4ad1}} 
 \index{elevator.h@{elevator.h}!remove\_request\_from\_queue@{remove\_request\_from\_queue}}
@@ -288,7 +297,7 @@ Definition at line 239 of file elevator.\+c.
 
 Removes a floor request from the \mbox{\hyperlink{structElevator}{Elevator}}\textquotesingle{}s destination queue. 
 
-This function removes all occurrences of a specified floor from the queue and shifts remaining elements forward to fill the gap.
+This function removes all occurrences of a specified floor from the queue and shifts remaining elements forward to maintain queue structure.
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -299,7 +308,7 @@ This function removes all occurrences of a specified floor from the queue and sh
 \end{DoxyParams}
 
 
-Definition at line 93 of file elevator.\+c.
+Definition at line 99 of file elevator.\+c.
 
 \mbox{\Hypertarget{elevator_8h_a09fe0fbc43e9f9e0dfb501b8b7b30220}\label{elevator_8h_a09fe0fbc43e9f9e0dfb501b8b7b30220}} 
 \index{elevator.h@{elevator.h}!rest\_elevator@{rest\_elevator}}
@@ -311,44 +320,16 @@ Definition at line 93 of file elevator.\+c.
 
 Resets the elevator to an idle state. 
 
-Stops the elevator and clears any pending requests.
+This function stops the elevator and clears any pending requests.
 
 
-\begin{DoxyParams}{Parameters}
-{\em elevator} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} structure. \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em elevator} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} struct. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 200 of file elevator.\+c.
-
-\mbox{\Hypertarget{elevator_8h_afd5e72590848c54b48b357211223e9b4}\label{elevator_8h_afd5e72590848c54b48b357211223e9b4}} 
-\index{elevator.h@{elevator.h}!run\_elevator\_program@{run\_elevator\_program}}
-\index{run\_elevator\_program@{run\_elevator\_program}!elevator.h@{elevator.h}}
-\doxysubsubsection{\texorpdfstring{run\_elevator\_program()}{run\_elevator\_program()}}
-{\footnotesize\ttfamily void run\+\_\+elevator\+\_\+program (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structElevator}{Elevator}} $\ast$}]{elevator }\end{DoxyParamCaption})}
-
-
-
-Initializes and runs the elevator control system. 
-
-This function initializes the elevator system and creates separate threads for\+:
-\begin{DoxyItemize}
-\item Button press handling
-\item Floor monitoring
-\item Emergency stop checking
-\end{DoxyItemize}
-
-It continuously updates the elevator\textquotesingle{}s current floor while waiting for inputs.
-
-
-\begin{DoxyParams}{Parameters}
-{\em elevator} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} structure. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 9 of file main.\+c.
+Definition at line 196 of file elevator.\+c.
 
 \mbox{\Hypertarget{elevator_8h_a4f348f1b497c1f050fa390439e96af58}\label{elevator_8h_a4f348f1b497c1f050fa390439e96af58}} 
 \index{elevator.h@{elevator.h}!sort\_queue@{sort\_queue}}
@@ -358,7 +339,7 @@ Definition at line 9 of file main.\+c.
 
 
 
-Sorts the destination queue in the \mbox{\hyperlink{structElevator}{Elevator}} struct. 
+Sorts the request queue in the \mbox{\hyperlink{structElevator}{Elevator}} struct. 
 
 This function organizes the queue of floor requests in a logical order to optimize the elevator\textquotesingle{}s movement.
 
@@ -369,49 +350,19 @@ This function organizes the queue of floor requests in a logical order to optimi
 \end{DoxyParams}
 
 
-Definition at line 52 of file elevator.\+c.
+Definition at line 58 of file elevator.\+c.
 
-\mbox{\Hypertarget{elevator_8h_a0ee210d178f3017ab19d98bde6041b48}\label{elevator_8h_a0ee210d178f3017ab19d98bde6041b48}} 
-\index{elevator.h@{elevator.h}!stop\_elevator\_at\_floor@{stop\_elevator\_at\_floor}}
-\index{stop\_elevator\_at\_floor@{stop\_elevator\_at\_floor}!elevator.h@{elevator.h}}
-\doxysubsubsection{\texorpdfstring{stop\_elevator\_at\_floor()}{stop\_elevator\_at\_floor()}}
-{\footnotesize\ttfamily void stop\+\_\+elevator\+\_\+at\+\_\+floor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structElevator}{Elevator}} $\ast$}]{elevator,  }\item[{int}]{floor }\end{DoxyParamCaption})}
-
-
-
-Stops the elevator when it reaches a requested floor. 
-
-This function handles stopping the elevator and opening its doors.
-
-
-\begin{DoxyParams}{Parameters}
-{\em elevator} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} structure. \\
-\hline
-{\em floor} & The floor at which the elevator should stop. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 210 of file elevator.\+c.
-
-\mbox{\Hypertarget{elevator_8h_a5122c7a557779d70de85ee2aa2227cca}\label{elevator_8h_a5122c7a557779d70de85ee2aa2227cca}} 
-\index{elevator.h@{elevator.h}!switch\_direction@{switch\_direction}}
-\index{switch\_direction@{switch\_direction}!elevator.h@{elevator.h}}
-\doxysubsubsection{\texorpdfstring{switch\_direction()}{switch\_direction()}}
-{\footnotesize\ttfamily void switch\+\_\+direction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structElevator}{Elevator}} $\ast$}]{elevator }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{elevator_8h_a0511d5c90918ca264b6052ddc1018504}\label{elevator_8h_a0511d5c90918ca264b6052ddc1018504}} 
+\index{elevator.h@{elevator.h}!turn\_off\_all\_lamps@{turn\_off\_all\_lamps}}
+\index{turn\_off\_all\_lamps@{turn\_off\_all\_lamps}!elevator.h@{elevator.h}}
+\doxysubsubsection{\texorpdfstring{turn\_off\_all\_lamps()}{turn\_off\_all\_lamps()}}
+{\footnotesize\ttfamily void turn\+\_\+off\+\_\+all\+\_\+lamps (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
-Switches the moving direction of the elevator when needed. 
+Turns off all elevator button lamps. 
 
-This function updates the elevator\textquotesingle{}s movement direction based on its current position and queued requests.
+This function ensures that all floor and cab call button lamps are turned off. 
 
-
-\begin{DoxyParams}{Parameters}
-{\em elevator} & Pointer to the \mbox{\hyperlink{structElevator}{Elevator}} structure. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 172 of file elevator.\+c.
+Definition at line 44 of file elevator.\+c.
 

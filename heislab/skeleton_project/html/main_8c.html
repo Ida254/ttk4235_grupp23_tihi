@@ -82,19 +82,19 @@ Include dependency graph for main.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8c__incl.png" border="0" usemap="#source_2main_8c" alt=""/></div>
 <map name="source_2main_8c" id="source_2main_8c">
-<area shape="rect" title="The main file of the elevator application." alt="" coords="138,5,251,32"/>
-<area shape="rect" href="elevio_8h_source.html" title=" " alt="" coords="185,379,301,405"/>
-<area shape="rect" href="elevator_8h.html" title="Header file for the elevator control system." alt="" coords="253,155,384,181"/>
-<area shape="rect" href="threads_8h.html" title="Header file for elevator control threads." alt="" coords="132,80,257,107"/>
-<area shape="rect" title=" " alt="" coords="487,379,553,405"/>
-<area shape="rect" title=" " alt="" coords="577,379,660,405"/>
-<area shape="rect" title=" " alt="" coords="145,229,215,256"/>
-<area shape="rect" title=" " alt="" coords="240,229,304,256"/>
-<area shape="rect" title=" " alt="" coords="329,229,402,256"/>
-<area shape="rect" title=" " alt="" coords="427,229,501,256"/>
-<area shape="rect" href="utilities_8h.html" title="Utility functions for conversions and mappings in the elevator system." alt="" coords="424,304,507,331"/>
-<area shape="rect" href="request_8h.html" title="Header file for managing elevator requests." alt="" coords="525,229,608,256"/>
-<area shape="rect" title=" " alt="" coords="145,155,229,181"/>
+<area shape="rect" title="The main file of the elevator application." alt="" coords="555,5,668,32"/>
+<area shape="rect" href="elevio_8h_source.html" title=" " alt="" coords="588,379,704,405"/>
+<area shape="rect" href="elevator_8h.html" title="Header file for the elevator control system." alt="" coords="341,155,471,181"/>
+<area shape="rect" href="threads_8h.html" title="Header file for elevator control threads." alt="" coords="549,80,674,107"/>
+<area shape="rect" title=" " alt="" coords="347,379,414,405"/>
+<area shape="rect" title=" " alt="" coords="438,379,521,405"/>
+<area shape="rect" title=" " alt="" coords="304,304,375,331"/>
+<area shape="rect" title=" " alt="" coords="35,229,99,256"/>
+<area shape="rect" title=" " alt="" coords="124,229,197,256"/>
+<area shape="rect" title=" " alt="" coords="222,229,297,256"/>
+<area shape="rect" title=" " alt="" coords="631,229,715,256"/>
+<area shape="rect" href="utilities_8h.html" title="Utility functions for conversions and mappings in the elevator system." alt="" coords="501,304,583,331"/>
+<area shape="rect" href="request_8h.html" title="Header file for managing elevator requests." alt="" coords="422,229,505,256"/>
 </map>
 </div>
 </div>
@@ -102,8 +102,8 @@ Include dependency graph for main.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:afd5e72590848c54b48b357211223e9b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#afd5e72590848c54b48b357211223e9b4">run_elevator_program</a> (<a class="el" href="structElevator.html">Elevator</a> *elevator)</td></tr>
-<tr class="memdesc:afd5e72590848c54b48b357211223e9b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes and runs the elevator control system.  <a href="main_8c.html#afd5e72590848c54b48b357211223e9b4">More...</a><br /></td></tr>
+<tr class="memitem:afd5e72590848c54b48b357211223e9b4"><td class="memItemLeft" align="right" valign="top"><a id="afd5e72590848c54b48b357211223e9b4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>run_elevator_program</b> (<a class="el" href="structElevator.html">Elevator</a> *elevator)</td></tr>
 <tr class="separator:afd5e72590848c54b48b357211223e9b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top"><a id="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
@@ -113,42 +113,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> ()</td></tr>
 <div class="textblock"><p>The main file of the elevator application. </p>
 
 <p class="definition">Definition in file <a class="el" href="main_8c_source.html">main.c</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a id="afd5e72590848c54b48b357211223e9b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd5e72590848c54b48b357211223e9b4">&#9670;&nbsp;</a></span>run_elevator_program()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void run_elevator_program </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structElevator.html">Elevator</a> *&#160;</td>
-          <td class="paramname"><em>elevator</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initializes and runs the elevator control system. </p>
-<p>This function initializes the elevator system and creates separate threads for:</p><ul>
-<li>Button press handling</li>
-<li>Floor monitoring</li>
-<li>Emergency stop checking</li>
-</ul>
-<p>It continuously updates the elevator's current floor while waiting for inputs.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">elevator</td><td>Pointer to the <a class="el" href="structElevator.html" title="Defines an Elevator struct to store values.">Elevator</a> structure. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="main_8c_source.html#l00009">9</a> of file <a class="el" href="main_8c_source.html">main.c</a>.</p>
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

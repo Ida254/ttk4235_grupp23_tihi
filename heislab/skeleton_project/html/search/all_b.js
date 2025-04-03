@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['threads_2ec_41',['threads.c',['../threads_8c.html',1,'']]],
-  ['threads_2eh_42',['threads.h',['../threads_8h.html',1,'']]]
+  ['queue_5fcapacity_42',['queue_capacity',['../structElevator.html#a08decdabd2f38e0d9654e774c7258c1b',1,'Elevator']]],
+  ['queue_5fsize_43',['queue_size',['../structElevator.html#ac9cbaf17ae996f6a02c4b5ee2776e3a1',1,'Elevator']]]
 ];

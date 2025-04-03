@@ -4,10 +4,12 @@ Just some basics about how to initialize this project. This is mostly from the g
 
 <details>
   <summary>📖 Table of Contents</summary>
+  
   - [GUI and buttons](#gui-and-buttons)
   - [Run the elevator at the lab](#run-the-elevator-at-the-lab)
   - [Elevatorsimulator ('heissimulator')](#elevatorsimulator-heissimulator)
     - [How to set up the `heissimulator`](#how-to-set-up-the-heissimulator)
+
 </details>
 
 ## GUI and buttons
