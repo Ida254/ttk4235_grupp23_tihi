@@ -2,15 +2,16 @@
 #define GPIOTE_H
 #include <stdint.h>
 
-#define GPIOTE ((NRF_GPIOTE_REG*)0x40006000)
+#define GPIOTE ((NRF_GPIOTE_REG *)0x40006000)
 
-typedef struct {
+typedef struct
+{
 	volatile uint32_t TASKS_OUT[8];
 	volatile uint32_t RESERVED0[4];
 	volatile uint32_t TASKS_SET[8];
 	volatile uint32_t RESERVED1[4];
 	volatile uint32_t TASKS_CLR[8];
-	volatile uint32_t RESERVED3[32];
+	volatile uint32_t RESERVED2[32];
 	volatile uint32_t EVENTS_IN[8];
 	volatile uint32_t RESERVED4[23];
 	volatile uint32_t EVENTS_PORT;
