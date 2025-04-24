@@ -41,7 +41,6 @@ int main()
 
         if (buttonOnePressed)
         {
-            iprintf("Halla");
             uart_send('A');
         }
         if (buttonTwoPressed)
