@@ -1,5 +1,7 @@
 #include "uart.h"
 
+#define __NOP() __asm__ volatile("nop")
+
 void uart_init()
 {
     GPIO->DIRSET = (1 << TX_PIN); // Set TX pin as output
@@ -18,13 +20,17 @@ void uart_init()
 
 void uart_send(char letter)
 {
+    UART->EVENTS_TXDRDY = 0; // Clear TX ready event
     UART->TASK_STARTTX = 1; // Start TX
 
-    while (UART->EVENTS_TXDRDY == 0)
-        ; // Wait for TX ready
+    UART->TXD = letter;      // Send the letter
+
+    while (UART->EVENTS_TXDRDY == 0){
+        __NOP(); // Wait for TX ready
+    }
 
     UART->EVENTS_TXDRDY = 0; // Clear TX ready event
-    UART->TXD = letter;      // Send the letter
+    UART->TASKS_STOPTX = 1; //Stopper TX
 
     char buffer[50];
     sprintf(buffer, "%c", letter);
