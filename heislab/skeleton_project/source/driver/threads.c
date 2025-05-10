@@ -143,6 +143,7 @@ void *emergency_listener(void *arg)
 
     while (1)
     {
+        printf("LOL \n"); // db
         pthread_mutex_lock(&elevator_mtx);
         if (!elevator->is_emergency_stopped && elevator->initialized)
         {
@@ -167,7 +168,6 @@ void *emergency_listener(void *arg)
                 // kill(getpid(), SIGKILL); // Forcefully stops the program
             }
         }
-
         pthread_mutex_unlock(&elevator_mtx);
 
         nanosleep(&(struct timespec){0, SLEEP_TIME_NS}, NULL); // Sleep for 10ms
